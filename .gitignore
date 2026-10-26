@@ -1,0 +1,25 @@
+# Xcode
+build/
+*.xcworkspace/xcuserdata/
+*.xcodeproj/xcuserdata/
+DerivedData/
+*.ipa
+*.dSYM.zip
+
+# Swift Package Manager
+.swiftpm/
+Packages/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+*.egg-info/
+
+# macOS
+.DS_Store
+
+# Secrets — never commit
+.env
+*.pkey
+service-account*.json
