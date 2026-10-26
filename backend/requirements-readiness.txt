@@ -1,0 +1,2 @@
+# CPU-only offline geometry; independent of the live /assist service.
+numpy==2.5.4
