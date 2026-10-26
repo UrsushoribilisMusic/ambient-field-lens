@@ -62,6 +62,7 @@ final class AssistViewModel: ObservableObject {
                 verdict = .verify(detail: response.detail)
             }
         } catch {
+            verdict = .none
             lastError = error.localizedDescription
         }
     }
