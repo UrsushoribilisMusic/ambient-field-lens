@@ -1,0 +1,27 @@
+{
+  "enabled": false,
+  "status": "no_supported_threshold",
+  "phase3_review_required": true,
+  "target_precision": 0.9,
+  "threshold": 2.0,
+  "target": "corpus-answerability, not generated-answer correctness",
+  "split_method": "StratifiedGroupKFold(3, shuffle=True, random_state=0); whole topics",
+  "threshold_selection": "empirical precision target; uncertainty reported separately",
+  "platt_coefficient": -0.3560022291913827,
+  "platt_intercept": -0.13364359346152496,
+  "split_counts": {
+    "fit": 47,
+    "threshold": 48,
+    "test": 55
+  },
+  "test_accepted": 0,
+  "test_correct": 0,
+  "test_precision": null,
+  "test_precision_wilson_lower_95": 0.0,
+  "test_auc": 0.5746666666666667,
+  "gpu_used": false,
+  "elapsed_seconds": 0.009,
+  "measured_scores_sha256": "52de6f9028f03bbed118d08d3476986c017e179991863b6ffe7c0bc33d8aadf3",
+  "external_question_sha256": "8ebb98b11d9c448a4d1f7760454b6891f0af98d48cc6733e51ac0392a4c670f2",
+  "split_repair": "The initial hash split lacked a test class; this assignment uses labels/groups only, not model performance."
+}

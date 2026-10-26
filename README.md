@@ -28,6 +28,8 @@ The stub backend default-denies: until the Glimmer recalibration lands
 | `ios/` | Fresh SwiftUI app (camera + HUD + gate UX), built with xcodegen |
 | `backend/app.py` | `/assist` stub + `/healthz` (FastAPI) |
 | `backend/requirements.txt` | Backend deps |
+| `backend/recal/` | CPU-verified checkpoint staging and offline research jobs |
+| `docs/recalibration-results.md` | Measured Glimmer results and limitations |
 
 ## Run
 
@@ -74,6 +76,14 @@ visible in the dependency graph:
 - `ambient-field-lens-test` (Oct 23–25) — throwaway pre-kickoff verification
   (SDK wiring, MockDeviceKit, Modal staging scripts). Nothing was copied from
   it; anything needed is retyped here against the DAT docs.
+
+Offline research reads the Canis ancillary datasets and the pre-event Ross
+question set as external, disclosed reference inputs. Their filenames, counts
+and hashes are recorded; raw matrices, prompts and old recalibration/chunking
+code are not bundled in this repo or the Modal images. Ross manuals are
+separately ingested from user-owned source documents with fresh ingestion code.
+The contrastive baseline and results are described in
+[`docs/recalibration-results.md`](docs/recalibration-results.md).
 
 ## License
 

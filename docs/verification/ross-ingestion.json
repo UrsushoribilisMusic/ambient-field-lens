@@ -1,0 +1,97 @@
+{
+  "collection": "ross-manuals-2ca5f2f152267049",
+  "records": 38,
+  "sources": [
+    {
+      "path": "README.md",
+      "sha256": "8d7a7e6f7168c77b7ec701e7057a6e93f5a588516135f28f629a3721ecfc8cc2",
+      "ingested_sha256": "8df3d073ff7e19481de44cf15a56796dc5512e13b5e0ce8a13d855cbf26a3507",
+      "source_commit": "c75aade1b685f24ba5052018c41b3503dd778c41"
+    },
+    {
+      "path": "COMMANDS.md",
+      "sha256": "6291bcb5dc0a6925adc4dea42c58a339b2e705b56970956ed31443d4cf3b5cf9",
+      "ingested_sha256": "6291bcb5dc0a6925adc4dea42c58a339b2e705b56970956ed31443d4cf3b5cf9",
+      "source_commit": "c75aade1b685f24ba5052018c41b3503dd778c41"
+    },
+    {
+      "path": "skills/huenit/SKILL.md",
+      "sha256": "3611f38779551d0cabc2636b4da78f8b6ec80bd212723c4165735a8b8c92c684",
+      "ingested_sha256": "3611f38779551d0cabc2636b4da78f8b6ec80bd212723c4165735a8b8c92c684",
+      "source_commit": "c75aade1b685f24ba5052018c41b3503dd778c41"
+    },
+    {
+      "path": "skills/robot-ross/SKILL.md",
+      "sha256": "dfc0db4c4db453b96c02edf76dfa9546a2368de6cab6823049586e9a9bdf917b",
+      "ingested_sha256": "dfc0db4c4db453b96c02edf76dfa9546a2368de6cab6823049586e9a9bdf917b",
+      "source_commit": "c75aade1b685f24ba5052018c41b3503dd778c41"
+    },
+    {
+      "path": "docs/macos-feature-parity.md",
+      "sha256": "eead2f4d573cc97dc50edf3538c4c05ec32a38da44067c9e78bdb4ec602ad50c",
+      "ingested_sha256": "eead2f4d573cc97dc50edf3538c4c05ec32a38da44067c9e78bdb4ec602ad50c",
+      "source_commit": "c75aade1b685f24ba5052018c41b3503dd778c41"
+    },
+    {
+      "path": "atf-wiki/Overview.md",
+      "sha256": "eb917ee2a49c8289088a96409ac2e4667e36f6f89df59a707e41793550589016",
+      "ingested_sha256": "eb917ee2a49c8289088a96409ac2e4667e36f6f89df59a707e41793550589016",
+      "source_commit": "b11c6bce070beec3c85a24490df6b7154a6effea"
+    },
+    {
+      "path": "atf-wiki/Subsystems/HardwareInterface.md",
+      "sha256": "74d89bfc3fb0ec62500506ecc3c1211a2214875b7596d16b6f1dfb6a7155d7f0",
+      "ingested_sha256": "74d89bfc3fb0ec62500506ecc3c1211a2214875b7596d16b6f1dfb6a7155d7f0",
+      "source_commit": "b11c6bce070beec3c85a24490df6b7154a6effea"
+    },
+    {
+      "path": "atf-wiki/Subsystems/JobOrchestration.md",
+      "sha256": "299e26ed07e19092ba2484dca3e4bc40d15d981de60efcf8bef4b38d54780583",
+      "ingested_sha256": "299e26ed07e19092ba2484dca3e4bc40d15d981de60efcf8bef4b38d54780583",
+      "source_commit": "b11c6bce070beec3c85a24490df6b7154a6effea"
+    },
+    {
+      "path": "atf-wiki/Topics/Calibration.md",
+      "sha256": "e6c5e37c70291763dff0549dbfec2ebe520f77440c9b26d886e6f2e5453c966d",
+      "ingested_sha256": "e6c5e37c70291763dff0549dbfec2ebe520f77440c9b26d886e6f2e5453c966d",
+      "source_commit": "b11c6bce070beec3c85a24490df6b7154a6effea"
+    },
+    {
+      "path": "atf-wiki/Topics/Narration.md",
+      "sha256": "c1bf65d4d167ae577ae3ef100524f70a28efdcdc3c4355feaffa5b0dbc6dc9b8",
+      "ingested_sha256": "c1bf65d4d167ae577ae3ef100524f70a28efdcdc3c4355feaffa5b0dbc6dc9b8",
+      "source_commit": "b11c6bce070beec3c85a24490df6b7154a6effea"
+    }
+  ],
+  "fingerprint": "2ca5f2f1522670499b24eef33bdcdc4ef6a3c6300bbd4e937e744b2e056df5d1",
+  "gpu_used": false,
+  "embedding": "Chroma ONNX all-MiniLM-L6-v2 / CPUExecutionProvider",
+  "smoke_queries": [
+    "How do I calibrate the pen?",
+    "How do I write text on paper?"
+  ],
+  "retrieved_ids": [
+    [
+      "8aca37d81472ac5645ab997e1f5bf6875b7fa1738db728f2df78d7a7d022b8ba",
+      "9866b7ac5c5e96c43d78d956e5684cf7ecd35c25c6340bd4ee947261dc63161b",
+      "8135308218c2c50dfd8b0aec8c0a48b25782d42098b2af9d4aa03fb2d71ccbb6"
+    ],
+    [
+      "40bc6d3047465973038bd6b04437892e30a12652e727c3462a09abb78e5c15d8",
+      "9866b7ac5c5e96c43d78d956e5684cf7ecd35c25c6340bd4ee947261dc63161b",
+      "ac6103805ca32b77922b839b8d360f83d46ead4fb515d8337b941a3f9e74a3aa"
+    ]
+  ],
+  "retrieved_sources": [
+    [
+      "atf-wiki/Topics/Calibration.md",
+      "skills/huenit/SKILL.md",
+      "atf-wiki/Topics/Calibration.md"
+    ],
+    [
+      "COMMANDS.md",
+      "skills/huenit/SKILL.md",
+      "README.md"
+    ]
+  ]
+}

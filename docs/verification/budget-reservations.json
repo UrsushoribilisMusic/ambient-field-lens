@@ -1,0 +1,13 @@
+{
+  "ceiling_usd": 20.0,
+  "cpu_and_build_reserve_usd": 2.0,
+  "windows": [
+    {
+      "id": "69dca424-fabd-48fe-a6d0-303175a8fb4b",
+      "reserved_usd": 4.0,
+      "created_utc": "2026-10-26T18:31:43.685653+00:00"
+    }
+  ],
+  "scope": "Conservative reservations for this runner; workspace billing cap not verified.",
+  "active_gpu_containers_after_run": 0
+}

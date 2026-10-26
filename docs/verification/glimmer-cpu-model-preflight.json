@@ -1,0 +1,7 @@
+{
+  "loader_kind": "multimodal",
+  "decoder_path": "model.language_model.layers",
+  "maximum_prompt_tokens": 788,
+  "cases_checked": 1460,
+  "gpu_available": false
+}

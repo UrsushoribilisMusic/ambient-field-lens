@@ -44,7 +44,12 @@ cooldown patterns. This implementation was written in this repository during
 the event; no Flotilla code was vendored. No code/data was copied from
 `ambient-field-lens-test`, Canis matrices or Sovereign Mind chunkers.
 
-The baseline iOS error handler should be reviewed in the later green-path work:
-transport failures set `lastError` without clearing the previous HUD verdict.
-Phase 1 cannot produce a green verdict, and this backend branch leaves the
-client-owned area for Muse's integration work.
+The stale HUD verdict on transport errors was cleared by the client change
+`49efbf9`. Phase 1 cannot produce a green verdict.
+
+## Offline research
+
+`backend/recal/` contains separate Modal staging, corpus ingestion and finite
+research jobs. It does not participate in `/assist`. Its threshold artefacts
+remain disabled and require Phase 3 review. See `docs/recalibration-results.md`
+for measured results, external-input disclosures and execution limits.
