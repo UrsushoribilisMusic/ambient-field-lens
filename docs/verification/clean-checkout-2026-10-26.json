@@ -1,0 +1,37 @@
+{
+  "base_commit": "c73c514f3f8296abc515f41fa3d8c3eefbb0a561",
+  "python": "3.12.13",
+  "xcode": "27.1 (27A9275)",
+  "clean_clone": true,
+  "baseline_ios_build": "passed",
+  "baseline_backend_live_http": "passed",
+  "hardened_live_health": {
+    "ok": true,
+    "gate": "default-deny",
+    "phase": 1,
+    "circuit": "closed"
+  },
+  "hardened_live_valid_request": {
+    "status": 200,
+    "body": {
+      "verdict": "verify",
+      "step": null,
+      "score": 0.0,
+      "detail": "Calibration not yet run (Phase 1). Verify in the manual before touching the machine."
+    },
+    "cache_control": "no-store"
+  },
+  "hardened_live_invalid_request": {
+    "status": 422,
+    "body": {
+      "verdict": "verify",
+      "step": null,
+      "score": 0.0,
+      "detail": "Invalid query or JPEG frame. Verify in the manual."
+    }
+  },
+  "stub_http_seconds": 0.0033,
+  "stub_latency_note": "Loopback CPU stub only; not the multimodal/GPU latency goal.",
+  "gpu_calls": 0,
+  "external_model_api_calls": 0
+}

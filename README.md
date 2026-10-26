@@ -35,10 +35,15 @@ Backend:
 
 ```bash
 cd backend
-python3 -m venv .venv && source .venv/bin/activate
+python3.12 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 uvicorn app:app --port 8000
 ```
+
+Python 3.12 was verified. See [backend setup/tests](backend/README.md) and
+[architecture and failure boundaries](ARCHITECTURE.md). Phase 1 request/output
+validation, limits, timeouts and a circuit breaker retain default-deny responses;
+no model or GPU is started by the backend or its regression suite.
 
 iOS (Xcode 26.4+, iOS 17.2+):
 

@@ -1,43 +1,95 @@
-"""Ambient Field Lens backend — Phase 1 /assist stub.
-
-Default-deny: until the Glimmer recalibration + calibrated threshold land
-(Phase 3), every response is a `verify` verdict with no instruction step.
-The iOS HUD renders that as the amber "Verify in manual" card.
-"""
+"""Phase 1 HTTP boundary. All decisions and error envelopes default to amber."""
+import asyncio
+import time
 
 from fastapi import FastAPI
-from pydantic import BaseModel, Field
+from fastapi.exceptions import RequestValidationError
+from starlette.exceptions import HTTPException
+from starlette.responses import JSONResponse
 
-app = FastAPI(title="Ambient Field Lens /assist stub")
-
-
-class AssistRequest(BaseModel):
-    query: str = Field(default="", description="Operator voice query")
-    image_jpeg_base64: str = Field(
-        default="", description="Current frame as base64 JPEG (may be empty)"
-    )
+from contracts import AssistRequest, AssistResponse, MAX_BODY_BYTES, deny
+from service import AssistService
 
 
-class AssistResponse(BaseModel):
-    verdict: str
-    step: str | None = None
-    score: float = 0.0
-    detail: str = ""
+def amber_response(status, detail):
+    return JSONResponse(status_code=status, content=deny(detail).model_dump(),
+                        headers={'Cache-Control': 'no-store'})
 
 
-@app.get("/healthz")
-def healthz() -> dict:
-    return {"ok": True, "gate": "default-deny", "phase": 1}
+class RequestBoundary:
+    """Bound actual streamed bytes before FastAPI parses or buffers JSON."""
+    def __init__(self, app, max_bytes=MAX_BODY_BYTES, read_timeout=3.0):
+        self.app, self.max_bytes, self.read_timeout = app, max_bytes, read_timeout
+
+    async def __call__(self, scope, receive, send):
+        if scope['type'] != 'http' or scope['path'] != '/assist' or scope['method'] != 'POST':
+            return await self.app(scope, receive, send)
+        headers = dict(scope.get('headers', []))
+        media = headers.get(b'content-type', b'').split(b';', 1)[0].strip().lower()
+        if media != b'application/json' or headers.get(b'content-encoding', b'identity') != b'identity':
+            return await amber_response(415, 'Send uncompressed JSON. Verify in the manual.')(scope, receive, send)
+        try:
+            length = int(headers.get(b'content-length', b'0'))
+        except ValueError:
+            return await amber_response(400, 'Invalid request framing. Verify in the manual.')(scope, receive, send)
+        if length < 0 or length > self.max_bytes:
+            return await amber_response(413, 'Request exceeds the size limit. Verify in the manual.')(scope, receive, send)
+        body = bytearray()
+        deadline = time.monotonic() + self.read_timeout
+        try:
+            while True:
+                remaining = deadline-time.monotonic()
+                if remaining <= 0:
+                    raise TimeoutError
+                message = await asyncio.wait_for(receive(), timeout=remaining)
+                if message['type'] == 'http.disconnect':
+                    return
+                chunk = message.get('body', b'')
+                if len(body) + len(chunk) > self.max_bytes:
+                    return await amber_response(413, 'Request exceeds the size limit. Verify in the manual.')(scope, receive, send)
+                body.extend(chunk)
+                if not message.get('more_body', False):
+                    break
+        except TimeoutError:
+            return await amber_response(408, 'Request upload timed out. Verify in the manual.')(scope, receive, send)
+        replayed = False
+
+        async def replay():
+            nonlocal replayed
+            if replayed:
+                return await receive()
+            replayed = True
+            return {'type': 'http.request', 'body': bytes(body), 'more_body': False}
+
+        await self.app(scope, replay, send)
 
 
-@app.post("/assist", response_model=AssistResponse)
-def assist(req: AssistRequest) -> AssistResponse:
-    return AssistResponse(
-        verdict="verify",
-        step=None,
-        score=0.0,
-        detail=(
-            "Calibration not yet run (Phase 1 stub). "
-            "Verify in the manual before touching the machine."
-        ),
-    )
+def create_app(service=None):
+    app = FastAPI(title='Ambient Field Lens — default-deny assist')
+    app.state.assist_service = service or AssistService()
+    app.add_middleware(RequestBoundary)
+
+    @app.exception_handler(RequestValidationError)
+    async def invalid_request(request, exc):
+        # Pydantic's normal error output includes the submitted input; omit it.
+        return amber_response(422, 'Invalid query or JPEG frame. Verify in the manual.')
+
+    @app.exception_handler(HTTPException)
+    async def http_error(request, exc):
+        return amber_response(exc.status_code, 'Request could not be accepted. Verify in the manual.')
+
+    @app.get('/healthz')
+    async def healthz():
+        return {'ok': True, 'gate': 'default-deny', 'phase': 1,
+                'circuit': app.state.assist_service.breaker.state()}
+
+    @app.post('/assist', response_model=AssistResponse)
+    async def assist(request: AssistRequest):
+        status, response = await app.state.assist_service.assist(request)
+        return JSONResponse(status_code=status, content=response.model_dump(),
+                            headers={'Cache-Control': 'no-store'})
+
+    return app
+
+
+app = create_app()
