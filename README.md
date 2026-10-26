@@ -3,9 +3,10 @@
 Safety-gated wearable assistant for the Meta Global AI Developer Hackathon
 (Cerebral Valley), Startup track. Built Oct 26 – Nov 4, 2026.
 
-**One-liner:** the app identifies machine parts through smart glasses and only
-shows an operator step when its internal grounding check passes — otherwise it
-tells the user to verify in the manual.
+**One-liner:** a wearable machine-setup assistant intended to show an operator
+step only when observable world checks and a validated grounding check both
+pass; otherwise it names the fault and correction. The current backend is
+amber-only; this describes the product target.
 
 ## How it works (Phase 1 skeleton)
 
@@ -18,8 +19,14 @@ tells the user to verify in the manual.
    phone camera as mock feed) — designed for Ray-Ban Display; no Display
    hardware is available to the team, which the demo video states.
 
-The stub backend default-denies: until the Glimmer recalibration lands
-(Phase 3), every response is `verify`. That is the safe default, not a bug.
+The stub backend default-denies: every response is `verify`. Recalibration alone
+cannot enable green. Real scene validation and a separately reviewed evidence
+contract/integration are required; the failed confidence proxy remains failed.
+
+Current evidence: [architecture](ARCHITECTURE.md),
+[drawing-readiness contract](docs/drawing-readiness-contract.md), and
+[CPU checkpoint / remaining overnight work](docs/drawing-readiness-progress.md).
+Tonight's captures use one fixed viewpoint; viewpoint invariance is untested.
 
 ## Layout
 
@@ -28,6 +35,8 @@ The stub backend default-denies: until the Glimmer recalibration lands
 | `ios/` | Fresh SwiftUI app (camera + HUD + gate UX), built with xcodegen |
 | `backend/app.py` | `/assist` stub + `/healthz` (FastAPI) |
 | `backend/requirements.txt` | Backend deps |
+| `backend/readiness/` | Offline pure checks and planar geometry; not wired into `/assist` |
+| `tools/` | Explicit operator capture, one-request SAM diagnostic and offline replay utilities |
 
 ## Run
 
@@ -67,8 +76,9 @@ visible in the dependency graph:
 - Canis disposition seed phrases + CANIS-EVAL-001 eval matrices (540 core /
   350 matched negatives / 420 OOD) — `agentic-fleet-hub/disposition-lens/`,
   used only as a declared reference for the Phase 3 probe design.
-- Sovereign Mind ingestion/chunkers + Robot Ross chunk corpus (54 chunks) —
-  retrieval corpus source, disclosed on use.
+- Sovereign Mind ingestion/chunkers and the pre-event Robot Ross chunk corpus —
+  external references only, not copied. Unmerged PR #2 freshly ingests 38 chunks
+  from 10 user-owned documents with new in-event code.
 - Flotilla validators / circuit-breaker patterns — referenced for the
   Phase 3 low-grounding breaker.
 - `ambient-field-lens-test` (Oct 23–25) — throwaway pre-kickoff verification

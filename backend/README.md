@@ -8,6 +8,7 @@ not the interpreter used by this backend.
 cd backend
 python3.12 -m venv .venv
 .venv/bin/python -m pip install -r requirements-dev.txt
+.venv/bin/python -m pip install -r requirements-readiness.txt
 .venv/bin/python -m unittest discover -s tests -v
 .venv/bin/python -m uvicorn app:app --host 127.0.0.1 --port 8000
 ```
@@ -24,5 +25,7 @@ responses also contain `verdict: verify`, `step: null`, `score: 0` and a generic
 
 Limits and breaker behaviour are described in the root `ARCHITECTURE.md`.
 There is deliberately no configurable green bypass or public calibration flag.
-The tests use synthetic in-memory JPEGs and fake async providers, never a GPU,
-external model API, production manual corpus or secret.
+The tests use synthetic in-memory JPEGs, fake async providers and synthetic
+geometry/evidence fixtures, never a GPU, external model API, production manual
+corpus or secret. Offline readiness tests do not establish marker registration
+or per-scene physical validation; see `docs/drawing-readiness-progress.md`.

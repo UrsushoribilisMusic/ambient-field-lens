@@ -96,3 +96,56 @@ References: [request format](https://dev.meta.ai/docs/sam/segmenting),
 
 GPU eligibility remains **false**. The failed confidence threshold stays failed.
 No prior dataset, Canis matrices or Sovereign Mind chunker code was vendored.
+
+## Overnight handoff: requested work versus actual completion
+
+This is the first **single-view paired batch**, not the complete paired
+validation set. No all-scene pass/fail evaluation has been completed.
+
+| Requested deliverable | Actual status |
+| --- | --- |
+| Save captures, hashes and exact changes | Done: four reviewed representative frames, including a standalone displaced snapshot |
+| Ingest camera profile and pose bucket per image | Pending: camera ID exists, but no complete per-image camera-profile/pose-bucket schema has been ingested |
+| Pure footprint-inside-paper function with tests | Done on synthetic inputs; actual marker-derived surface coordinates missing |
+| Pure pen/holder presence function with tests | Partial: current module checks a pen mask and separate fitment evidence; independent holder-presence check still needed |
+| Run both checks on every tonight scene | Not done: only S03 has actual SAM masks and an offline replay |
+| Compare raw outputs with each staged fault | Pending; do not replace missing measurements with intended labels |
+| Viewpoint invariance explicitly untested | Confirmed: one fixed Reolink viewpoint, no angle-robustness result |
+| Default-deny, no gate wiring, no new GPU | Preserved; $20 ceiling unchanged |
+
+### Scene inventory for tomorrow's filming
+
+Known camera facts: Reolink saved source `Robot_Main_Cam`, camera ID
+`ross-reolink-tripod`, 896×512 video, fixed tripod viewpoint. Intrinsics,
+distortion, measured marker coordinates and a metric surface profile are not
+established. These facts are an inventory, not a calibrated camera profile.
+
+| Frame | Viewpoint | Surface-pose description | Exactly what varies | Raw check coverage |
+| --- | --- | --- | --- | --- |
+| S00 baseline | Fixed tripod A | Original book/paper-block pose | Clear reference view | No SAM paper/pen/holder batch outputs |
+| S01b at 15 s | Fixed tripod A | Not metrically verified | Calendar obscures pen/holder and much of paper | No detector run; observable presence expected not to pass |
+| S02 live snapshot | Fixed tripod A | Book and taped block shifted right | Work-surface position; not a camera-angle change | No marker mapping/footprint; containment unknown |
+| S03 restored baseline | Fixed tripod A | Approximate return, distinct unregistered pose | Surface returned approximately; no exact pose assumption | Manual-box SAM masks decoded; paper passes offline, fitment/footprint/calibration/procedure unknown |
+
+Tomorrow should extend this batch with new viewpoints, missing-pen cases,
+measured markers and the same explicitly specified drawing footprint, rather
+than recapture these visibility/position conditions without those additions.
+Pen removal/refitting changes height and requires calibration to be revisited.
+
+### Expected faults and disagreements
+
+- Covered pen/holder must fail **observable presence** because the evidence is
+  occluded. Physical absence and unknown visibility remain separate facts.
+- A displaced surface is intended to fail footprint containment, but displacement
+  alone is not sufficient evidence. The snapshot still puts the pen above part
+  of the paper; no drawing path/footprint or marker mapping has been supplied.
+  Record this as **unknown / unmet validation prerequisite**, not a measured
+  containment failure or a successful fault detection.
+- No detection threshold has been tuned to obtain the expected labels. The
+  fixed registration error bound in synthetic geometry tests is not a tuned
+  model confidence threshold and is not a measured physical calibration.
+
+PR #2 remains unmerged at this checkpoint. This work uses a fresh branch off
+main with Muse's architecture changes merged in, and does not depend on PR #2.
+The updated product requires world checks **and** supported generated steps;
+passing the five offline setup checks alone does not implement the footing gate.
