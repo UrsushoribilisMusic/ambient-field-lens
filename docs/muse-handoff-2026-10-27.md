@@ -2,6 +2,19 @@
 
 ## Evening update — supersedes the historical checkpoint below
 
+OPERATOR DIRECTION: Miguel reminds us Reolink is the development test camera,
+not the phone capture path, and requests proportional effort. Stop further
+physical sheet tweaks/precision chasing on Reolink. Freeze current evidence.
+The current native2px validation remains failed, with no green promotion; v2
+contract is unchanged pending review. Its application at2880px is3.21times
+stricter in image-width terms than at896px and should have been flagged earlier.
+Next geometry review should define a physical error budget and explicit camera
+profile/resolution, then validate on the intended phone capture path. Reolink
+manual-reading diagnostics do not validate or invalidate the phone mapping.
+Continue CPU replay/adapter work independently of this unaccepted geometry;
+missing footprint registration remains unknown. No new paid calls/GPU, no gate
+wiring. No further operator redrawing or recalibration requested for this test.
+
 LATEST RULER FOLLOW-UP: rectangle120×120mm and centre lines60/60mm confirmed;
 cross9 approximately78.5/92mm. Frozen rectangle-frame pixels unchanged.
 [Latest report](verification/rectangle-ruler-confirmed-result-2026-10-27.md):

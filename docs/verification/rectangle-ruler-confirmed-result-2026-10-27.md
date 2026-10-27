@@ -1,5 +1,15 @@
 # Ruler follow-up: unresolved measurement precision
 
+**Operator scope clarification:** this is a Reolink development fixture, not
+the intended phone camera. Stop further manual sheet modifications. The raw
+2px check remains failed; no phone-camera performance follows from it. Applying
+the same native-pixel bar at2880px instead of896px is3.21times stricter relative
+to image width. Review the physical error budget and explicitly bound camera
+profile/resolution before the phone validation round; do not retrospectively
+change this result or silently relax contract v2. Other CPU replay/adapter work
+can proceed with geometric containment unknown. No additional operator action
+needed on this sheet for now.
+
 Miguel confirms both rectangle spans120mm and centre lines60/60mm. He reports
 cross9 approximately78.5/92mm, interpreted as x/right and y/down from cross1's
 intersection. This supersedes earlier approximate85/90 and20right/30below
