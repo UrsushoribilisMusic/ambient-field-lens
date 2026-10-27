@@ -1,7 +1,8 @@
 # Ambient Field Lens — Architecture
 
 Companion to the [README](README.md) (setup, disclosure) and
-[docs/recalibration-results.md](docs/recalibration-results.md) (evidence).
+[drawing-readiness status](docs/drawing-readiness-progress.md) and
+[research evidence in PR #2](https://github.com/UrsushoribilisMusic/ambient-field-lens/blob/e577261/docs/recalibration-results.md).
 Status markings are load-bearing: **proven** means measured in-repo,
 **pending** means hypothesized with a defined validation.
 
@@ -20,12 +21,15 @@ step is grounded AND nothing is missing.** Amber fires on any failure and
 says which one. The backend default-denies; thresholds are never tuned to
 produce green.
 
-1. **World checks (proven pattern, in build).** Observable, deterministic:
+1. **World checks (CPU functions tested; physical validation pending).** Observable, deterministic:
    paper present, pen fitted, drawing footprint inside the paper boundary
    (SAM masks in marker-derived surface coordinates, never raw pixels),
    calibration ready from controller state, current step from the approved
-   procedure. Geometry runs per frame from visible markers, so it holds
-   from any viewpoint on a moving wearer.
+   procedure. The intended wearable implementation derives geometry per frame
+   from visible markers. Marker detection/tracking and real camera-to-surface
+   registration are not implemented or validated on tonight's captures.
+   One fixed viewpoint cannot establish viewpoint invariance. The offline
+   homography/containment functions have synthetic CPU tests only.
 2. **Footing check (pending validation).** Whether a generated step stands
    on retrieved manual text or on model priors. Internal readout directions
    (contrastive baseline now, full Jacobian comparison next) score
@@ -36,13 +40,16 @@ produce green.
 
 ## The flywheel
 
-Every ungrounded flag is a documentation gap with a name. Author the
-missing passage, re-ingest, and the same question passes grounded. The
-demo loop is amber, author, green — each green earned twice. Flags are
-candidates: ambiguous or out-of-scope questions also read ungrounded, so a
-human promotes flags to missing pages. Human-in-the-loop by design.
+The intended demo loop is amber, human-confirmed documentation gap, author,
+re-ingest, recheck, green. A flag is a candidate gap: ambiguity, out-of-scope
+questions or retrieval failure can also produce it. Adding a passage does not
+guarantee a grounded result and cannot override a physical fault or missing
+evidence. Green still requires both gates to pass. This loop is pending
+end-to-end validation. Human-in-the-loop by design.
 
 ## Data flow
+
+Target architecture below; the live Phase 1 path still returns amber only.
 
 ```
 glasses/phone camera → frame + voice query
@@ -53,7 +60,7 @@ glasses/phone camera → frame + voice query
   → 600×600 HUD card (green / amber)
 ```
 
-Retrieval: `ross-manuals-*` Chroma collection, freshly chunked in-repo
+Offline research in unmerged PR #2: `ross-manuals-*` Chroma collection, freshly chunked in-repo
 (38 chunks from 10 user-owned docs). Probes: Glimmer 30B prefill
 directions from the in-event recalibration. Prior datasets (Canis matrices,
 pre-event question sets) are hashed external references only — see README
@@ -67,11 +74,34 @@ disclosure; nothing vendored.
 | Confident-minus-uncertain predicts Ross answerability | Refuted (test AUROC 0.57, negative coefficient) |
 | Default-deny backend incapable of green steps | Proven (type-level) |
 | SAM reachable, accepts frames | Proven |
-| SAM mask output end-to-end on tripod frames | Pending (one authorized diagnostic) |
-| Paired multi-angle scenes (fault × viewpoint × evidence) | Pending (filming) |
+| SAM mask output on a tripod frame | Proven for one S03 frame: one request, two manually box-prompted masks decoded and visually inspected; not automatic recognition |
+| Offline readiness, planar geometry and presence functions | 29 synthetic CPU tests pass; not physical scene validation |
+| Scene inventory through 27 October | 42 image assets with verified digests, 3 stream/camera profiles and coarse pose buckets; 8 inventory regressions pass |
+| Separate observable pen/holder presence check | Implemented; human-reference replay 27 pass/3 fail/12 unknown. Image-model inputs absent, so actual check output remains unknown on all 42 assets |
+| Footprint check over inventoried frames | Executed, unknown on all 42: no accepted physical registration/footprint, paper masks only for S03 diagnostic |
+| Marker-derived surface coordinates on real frames | Pending; no measured marker correspondences or real footprint yet |
+| Viewpoint invariance | Explicitly untested; fixed tripod viewpoint only |
+| Paired multi-angle scenes (fault × viewpoint × evidence) | Multiple coarse views captured plus clear/covered/clear S27; complete calibrated fault/evidence grid still pending |
 | Grounding direction separates present-vs-removed passages | Pending (CPU analysis on paired set) |
 | Full Jacobian vs contrastive comparison | Pending (pre-GPU) |
 | Green path on a calibrated subset | Pending (requires all above) |
+
+Tonight's displaced surface is visibly shifted, but geometric containment is
+unknown without the requested footprint and registration. The covered holder
+cannot satisfy observable presence; that is not proof of physical pen absence.
+Raw outputs, reference provenance and unresolved faults are in the
+[CPU scene report](docs/verification/scene-batch-2026-10-27.md) and
+[machine-readable inventory](docs/verification/scene-batch-2026-10-27.json).
+The report is not an image-detector accuracy result. The commanded40×40 mm
+physical square was operator-measured45×40 mm, with matching opposite sides;
+visual stroke success does not imply metric accuracy. See the
+[27 October capture/fix log](docs/drawing-readiness-2026-10-27.md) and
+[original checkpoint](docs/drawing-readiness-progress.md).
+
+No new GPU window is authorized until the real paired set is hand-reviewed and
+passes its CPU checks. The $20 ceiling remains. The CPU work is isolated on
+`codi/drawing-readiness-cpu`, based on current main; it does not require PR #2
+to merge. Integration into `/assist` requires a separate review.
 
 ## Claims we do not make
 
@@ -113,7 +143,9 @@ change DAT wiring.
 The breaker is process-local. With several workers, each has its own four-call
 budget and breaker; distributed budgets are not implemented. There is no model,
 SAM endpoint, Modal deployment, calibration artefact, Chroma client or secret
-dependency in this implementation. The first-card <3s goal has not been measured
+dependency in the live Phase 1 request path. Separate offline tools capture
+private video and perform an explicitly invoked SAM diagnostic; they are not
+called by `/assist`. The first-card <3s goal has not been measured
 against the planned multimodal/GPU pipeline. Request/processing limits are
 bounded failure handling, not an end-to-end latency guarantee.
 
