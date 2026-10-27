@@ -130,3 +130,25 @@ review image preserve exact annotations and assumptions. Operator was asked to
 confirm whether down-measurements start below the binding or at pad top before
 any further interpretation; no redraw/camera move requested. No paid/model calls,
 GPU window, threshold adjustment or live gate wiring.
+
+### Operator origin clarification and centre refinement
+
+Operator clarified that downward measurements start from the sheet edge opposite
+the binding, and noted that the felt-tip marks may be too broad. This reverses
+the paper's vertical coordinate convention. A uniform coordinate reflection
+cannot by itself change held-out reprojection errors; no accepted robot mapping
+was inferred from the clarification.
+
+Refined the image centres offline in fixed manual 37×37 windows using positive
+red-minus-green-squared weights (red/magenta mark signal), without a binary
+presence detector or fault-label-dependent tuning. An initial red-excess-over-
+both-other-channels diagnostic had no signal for A under this lighting; no
+result was accepted from that method. The refined held-out errors E/F/G/H are
+2.64 / 18.64 / 2.21 / 24.85 px: still rejected by the unchanged 2 px bound.
+This does not establish a cause; physical positions, identities, localization,
+paper planarity and camera distortion are not independently verified.
+
+Requested actual bottom-edge-to-centre measurements for the two side midpoint
+marks (F/H in the proposed annotation, nominal 102.5 mm). Kept sheet/camera fixed;
+no redraw or robot motion requested. Private report `S12-refined-centres.json`
+retains the new origin convention and estimates. No paid API/GPU calls.
