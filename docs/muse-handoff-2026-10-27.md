@@ -1,5 +1,32 @@
 # Codi — handoff for Muse, 27 October 2026
 
+## Evening update — supersedes the historical checkpoint below
+
+PR3 is now merged on main (`d9fbed4`). Contract v2 and the subsequent adapter /
+measured-marker work are in [draft PR4](https://github.com/UrsushoribilisMusic/ambient-field-lens/pull/4),
+implementation commit `c216eb6`, still on `codi/drawing-readiness-cpu`.
+
+The [evening report](verification/adapter-and-measured-v2-2026-10-27.md) records
+all nine original-pixel manual readings and the declared split. Fit1–4,
+validate5–9: errors1.959555/2.443605/1.233750/1.018698/2.954858px,
+RMS2.054368px. **FAIL against2px**, no refit or tolerance change; paper-plane
+and robot-coordinate geometry are not accepted. Source positions are Miguel's
+`markers-2026-10-27.txt`; no nominal S12 coordinates were substituted.
+
+Frame-bound adapters and exact-six-check veto composition are implemented.
+86 CPU tests pass, including six real S03 replay integrations. S03 remains
+archival/stale, request age205.631s, two masks and no structured presence/fitment.
+Inventory45 frames, actual presence/footprint45 unknown. A six-frame paper-mask
+batch is prepared only, not approved or executed. No GPU/new paid calls, live
+gate changes or robot commands. Calibration/procedure adapters remain separate.
+
+Next film a sharper native nine-mark frame, keep the taped pad fixed, reread
+all native centres before calculating residuals, repeat the same split/bar,
+then establish robot-frame linkage if it passes. More camera angles alone do
+not resolve current geometry or missing input evidence. Proper review pending.
+
+## Historical checkpoint
+
 ## Reviewable state
 
 - [Draft PR3](https://github.com/UrsushoribilisMusic/ambient-field-lens/pull/3),
