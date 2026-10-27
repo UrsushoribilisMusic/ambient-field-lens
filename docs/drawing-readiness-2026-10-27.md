@@ -204,3 +204,25 @@ process recording before explicitly cueing normal Recalibrate. No agent-selected
 depth or robot command. Operator instructed to keep camera/paper fixed, finish
 calibration and report back without executing the next square. A redraw needs
 a separate recording-ready cue; preserve the faint result as fault evidence.
+
+## S17–S19: contact recalibration and repeat remain unsuccessful
+
+Operator reported finished recalibration. Fresh post-state: z_up3, tilt_y0.035,
+calibrated/session_ready true, job/showcase idle. S17 recording finalized. S18
+120-second drawing recording was started before an explicit GO, followed by
+operator reports “drawing is starting”, then finished but pen too high. Captured
+S19 main-stream result and completed controller state. Corners remain unsuitable
+for precise registration; no geometry/contact pass is claimed.
+
+Inspected the external Robot Ross implementation and found that basic-shape
+travel/draw moves ignore saved X tilt while applying Y. Corrected there as
+`a2ec499` on `feature/macos-control-center`; 19 hardware-free tests pass. At the
+current X slope0.01, 40 mm X travel lacked 0.4 mm relative correction. This is
+a definite software defect, not proof of the sole cause of the failed drawing.
+No Robot Ross code was copied into this clean-room hackathon repo, and no arm
+command was sent to validate the fix. Operator calibration/order files preserved.
+
+Clarified that Z_UP is travel clearance, not drawing pressure; changing6 to3
+does not fix an incorrectly established initial contact point. Supervised
+physical verification after that contact check remains pending. No GPU or
+paid API calls; experimental backend remains default-deny.
