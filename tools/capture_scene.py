@@ -14,6 +14,7 @@ def main():
     parser.add_argument('--id', required=True)
     parser.add_argument('--condition', required=True)
     parser.add_argument('--seconds', type=int, default=20)
+    parser.add_argument('--output-dir', type=Path)
     args = parser.parse_args()
     if not re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9_-]{0,79}', args.id):
         parser.error('Use a short scene ID containing only letters, digits, underscores or hyphens')
@@ -21,7 +22,8 @@ def main():
     scene = Path.home() / 'Library/Application Support/obs-studio/basic/scenes/Untitled.json'
     source = next(s for s in json.loads(scene.read_text())['sources'] if s.get('name') == 'Robot_Main_Cam')
     url = source['settings']['input']  # Never print credentials or put them in metadata.
-    root = Path.home() / 'Movies/Ambient-Field-Lens/2026-10-26/drawing-readiness'
+    root = args.output_dir or (Path.home() / 'Movies/Ambient-Field-Lens' /
+                              datetime.date.today().isoformat() / 'drawing-readiness')
     root.mkdir(parents=True, exist_ok=True)
     clip, frame = root / (args.id + '.mp4'), root / (args.id + '.jpg')
     if clip.exists(): parser.error('Scene already exists; use a new ID rather than overwriting evidence')
