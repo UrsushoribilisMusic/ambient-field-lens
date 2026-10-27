@@ -184,3 +184,23 @@ registration was accepted from visual inspection alone. Operator's measured
 208 mm loose-sheet depth and 101 mm F/H positions are preserved as such.
 Ruler scale height and phone intrinsics remain unverified. No request to redraw,
 no threshold adjustment, paid API, GPU window or motion command.
+
+## S15/S16: first square, timing failure and faint edges
+
+Operator configured the existing 40 mm Square command. The existing Execute
+button is at the bottom of Control Center; no UI fix was made. S15 180-second
+recording finalized, but operator confirms drawing was almost finished before
+the wait-for-cue instruction was seen. Preserve as an incomplete-action take,
+not a complete filmed drawing. Actual nominal dimensions were not measured.
+
+S16 main-stream result shows a new square-like outline overlapping earlier ink,
+with faint sides; four precise corners cannot be reliably localized. Controller
+reports command completed, calibrated/session_ready true, z_up6, tilt0.03125.
+Completion does not establish stroke quality. This differs from earlier tilt0.02
+and remains in provenance. No causal depth/tilt diagnosis accepted from image.
+
+Operator proposed recalibration/contact correction and redraw. Started S17
+process recording before explicitly cueing normal Recalibrate. No agent-selected
+depth or robot command. Operator instructed to keep camera/paper fixed, finish
+calibration and report back without executing the next square. A redraw needs
+a separate recording-ready cue; preserve the faint result as fault evidence.
