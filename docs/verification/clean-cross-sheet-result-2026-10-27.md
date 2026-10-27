@@ -37,3 +37,16 @@ measurements even if they disagree with target coordinates. If physical values
 are confirmed, resolve image-reading uncertainty/camera geometry rather than
 continue changing the paper to match predictions. Robot recalibration/drawing
 waits for explicit operator continuation and physical registration work.
+
+## Operator correction: cross9 at85–90
+
+Miguel reports cross9 is actually85–90, interpreted as x85/y90mm. A separate
+correction record changes only that physical coordinate. Image intersections,
+four fitting corners, split and2px bar are unchanged; previous results remain
+preserved. [Corrected diagnostic](clean-cross-sheet-correction-01-reprojection-2026-10-27.json)
+remains FAIL: cross9 error18.569767px, overall RMS8.469682px. Other errors are
+unchanged, including mark6 at3.235px. The reported coordinate increases the
+image disagreement. Do not reject an operator measurement just to reduce error
+or move a mark to fit predictions. Confirm the measurement origin is cross1's
+intersection rather than the sheet edge; original image centre readings and
+other physical coordinates remain possible uncertainty sources. No acceptance.

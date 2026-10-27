@@ -2,6 +2,12 @@
 
 ## Evening update — supersedes the historical checkpoint below
 
+Follow-up to clean-sheet result: operator says cross9 actually85–90 (interpreted
+x85/y90). Preserved separate physical correction, no changed pixels/corners.
+Corrected diagnostic fails: cross9 18.569767px/RMS8.469682px. Confirm cross1
+intersection is the measurement origin before more changes; do not tune away
+operator measurements or image residuals. Prior clean-sheet80/90 result retained.
+
 Latest: operator replaced sheet with fine crosses using new60mm-midpoint layout.
 [Clean-sheet report](verification/clean-cross-sheet-result-2026-10-27.md): new
 2880×1616 frame, frozen manual intersections, same1–4/5–9 split and2px bar.
