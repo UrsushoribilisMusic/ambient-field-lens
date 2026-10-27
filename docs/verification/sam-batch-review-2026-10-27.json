@@ -1,0 +1,301 @@
+{
+  "status": "PREPARED_FOR_REVIEW_NOT_APPROVED",
+  "execution_implemented": false,
+  "network_calls_made": 0,
+  "planned_requests": 6,
+  "automatic_retries": 0,
+  "provider": "meta-model-api",
+  "endpoint_reference": "https://api.meta.ai/v1/responses",
+  "approval": null,
+  "estimated_api_cost_usd": null,
+  "cost_status": "Unverified; review authorization and cost before any execution",
+  "gpu_allowed": false,
+  "gpu_budget_ceiling_usd": 20,
+  "source_inventory_sha256": "db4240fc051ac9d48c985c6beac280830bbc7595ef716fb76952bf9b35ea5c35",
+  "notes": [
+    "Review template only; this tool has no execute flag or network client.",
+    "Archived images preserve original clocks; no live admission or green decision.",
+    "This batch segments graph paper only, not pen fitment or autonomous holder presence.",
+    "Zero matches stays empty; multiple paper masks are ambiguous without validated association.",
+    "No largest-mask, nominal-marker or threshold-based shortcut to choose drawing paper.",
+    "Structured model observations need a separately reviewed invocation batch."
+  ],
+  "requests": [
+    {
+      "frame_asset": "2026-10-27/drawing-readiness/S04-pen-missing.jpg",
+      "frame_sha256": "45d5a4d4a3cc0d220f64d119152bd5d1f049254296097b81c30be101d498ddc9",
+      "camera_profile": "reolink-896x512-intrinsics-unknown",
+      "width": 896,
+      "height": 512,
+      "pose_bucket": "tripod-A-unmeasured",
+      "source_record": "2026-10-27/drawing-readiness/review-manifest.json",
+      "review_condition": "missing-pen; paper remains visible",
+      "pair": "tool-reference",
+      "mode": "archival_replay",
+      "request_body_template": {
+        "model": "sam-3.1",
+        "input": [
+          {
+            "type": "message",
+            "role": "user",
+            "content": [
+              {
+                "type": "input_text",
+                "text": "graph paper"
+              },
+              {
+                "type": "input_image",
+                "image_url": "{{verified_frame_data_url}}"
+              }
+            ]
+          }
+        ],
+        "stream": true,
+        "metadata": {
+          "mask_encoding": "one_bit"
+        }
+      },
+      "semantic_role_origin": "model_concept",
+      "role_binding": {
+        "*": "paper"
+      },
+      "automatic_retries": 0,
+      "required_saved_outputs": [
+        "exact sent request digest and receipt",
+        "original frame digest/profile",
+        "raw SSE through response.completed",
+        "provider response ID and timestamps"
+      ]
+    },
+    {
+      "frame_asset": "2026-10-27/drawing-readiness/S27-clear-before-t030.jpg",
+      "frame_sha256": "3dbe93903ceca471323035fb78ec70eb5c5e6863e5bd1e5de72b125a706b7a89",
+      "camera_profile": "reolink-896x512-intrinsics-unknown",
+      "width": 896,
+      "height": 512,
+      "pose_bucket": "tripod-F-unmeasured",
+      "source_record": "2026-10-27/drawing-readiness/review-manifest.json",
+      "review_condition": "clear before holder/paper occlusion",
+      "pair": "S27-visibility",
+      "mode": "archival_replay",
+      "request_body_template": {
+        "model": "sam-3.1",
+        "input": [
+          {
+            "type": "message",
+            "role": "user",
+            "content": [
+              {
+                "type": "input_text",
+                "text": "graph paper"
+              },
+              {
+                "type": "input_image",
+                "image_url": "{{verified_frame_data_url}}"
+              }
+            ]
+          }
+        ],
+        "stream": true,
+        "metadata": {
+          "mask_encoding": "one_bit"
+        }
+      },
+      "semantic_role_origin": "model_concept",
+      "role_binding": {
+        "*": "paper"
+      },
+      "automatic_retries": 0,
+      "required_saved_outputs": [
+        "exact sent request digest and receipt",
+        "original frame digest/profile",
+        "raw SSE through response.completed",
+        "provider response ID and timestamps"
+      ]
+    },
+    {
+      "frame_asset": "2026-10-27/drawing-readiness/S27-occluded-t080.jpg",
+      "frame_sha256": "4b0f29d2e7eb38dbbad173f62cf580b9fb5ed42bcfe1d82ab7fd4645f0076db3",
+      "camera_profile": "reolink-896x512-intrinsics-unknown",
+      "width": 896,
+      "height": 512,
+      "pose_bucket": "tripod-F-unmeasured",
+      "source_record": "2026-10-27/drawing-readiness/review-manifest.json",
+      "review_condition": "holder and much of paper obscured",
+      "pair": "S27-visibility",
+      "mode": "archival_replay",
+      "request_body_template": {
+        "model": "sam-3.1",
+        "input": [
+          {
+            "type": "message",
+            "role": "user",
+            "content": [
+              {
+                "type": "input_text",
+                "text": "graph paper"
+              },
+              {
+                "type": "input_image",
+                "image_url": "{{verified_frame_data_url}}"
+              }
+            ]
+          }
+        ],
+        "stream": true,
+        "metadata": {
+          "mask_encoding": "one_bit"
+        }
+      },
+      "semantic_role_origin": "model_concept",
+      "role_binding": {
+        "*": "paper"
+      },
+      "automatic_retries": 0,
+      "required_saved_outputs": [
+        "exact sent request digest and receipt",
+        "original frame digest/profile",
+        "raw SSE through response.completed",
+        "provider response ID and timestamps"
+      ]
+    },
+    {
+      "frame_asset": "2026-10-27/drawing-readiness/S27-clear-after-t100.jpg",
+      "frame_sha256": "4907a0ecffa2cd4a5a9cacf767e88dd5c138d5d0657499aa101b958028cc7701",
+      "camera_profile": "reolink-896x512-intrinsics-unknown",
+      "width": 896,
+      "height": 512,
+      "pose_bucket": "tripod-F-unmeasured",
+      "source_record": "2026-10-27/drawing-readiness/review-manifest.json",
+      "review_condition": "clear after occlusion removed",
+      "pair": "S27-visibility",
+      "mode": "archival_replay",
+      "request_body_template": {
+        "model": "sam-3.1",
+        "input": [
+          {
+            "type": "message",
+            "role": "user",
+            "content": [
+              {
+                "type": "input_text",
+                "text": "graph paper"
+              },
+              {
+                "type": "input_image",
+                "image_url": "{{verified_frame_data_url}}"
+              }
+            ]
+          }
+        ],
+        "stream": true,
+        "metadata": {
+          "mask_encoding": "one_bit"
+        }
+      },
+      "semantic_role_origin": "model_concept",
+      "role_binding": {
+        "*": "paper"
+      },
+      "automatic_retries": 0,
+      "required_saved_outputs": [
+        "exact sent request digest and receipt",
+        "original frame digest/profile",
+        "raw SSE through response.completed",
+        "provider response ID and timestamps"
+      ]
+    },
+    {
+      "frame_asset": "2026-10-27/drawing-readiness/S28-before-move-t000.jpg",
+      "frame_sha256": "8d43878f1b1d9b5ab9cca1e27b236b86870b0bae9ac91e7f9c5765702b06f75b",
+      "camera_profile": "reolink-896x512-intrinsics-unknown",
+      "width": 896,
+      "height": 512,
+      "pose_bucket": "tripod-F-unmeasured",
+      "source_record": "2026-10-27/drawing-readiness/review-manifest.json",
+      "review_condition": "drawn outline on paper before displacement",
+      "pair": "paper-placement-F",
+      "mode": "archival_replay",
+      "request_body_template": {
+        "model": "sam-3.1",
+        "input": [
+          {
+            "type": "message",
+            "role": "user",
+            "content": [
+              {
+                "type": "input_text",
+                "text": "graph paper"
+              },
+              {
+                "type": "input_image",
+                "image_url": "{{verified_frame_data_url}}"
+              }
+            ]
+          }
+        ],
+        "stream": true,
+        "metadata": {
+          "mask_encoding": "one_bit"
+        }
+      },
+      "semantic_role_origin": "model_concept",
+      "role_binding": {
+        "*": "paper"
+      },
+      "automatic_retries": 0,
+      "required_saved_outputs": [
+        "exact sent request digest and receipt",
+        "original frame digest/profile",
+        "raw SSE through response.completed",
+        "provider response ID and timestamps"
+      ]
+    },
+    {
+      "frame_asset": "2026-10-27/drawing-readiness/S30-paper-outside-pen-check.jpg",
+      "frame_sha256": "979e82f1fe009824ea80a58c61075712621ea6dd8329be727285551c2029c327",
+      "camera_profile": "reolink-2880x1616-intrinsics-unknown",
+      "width": 2880,
+      "height": 1616,
+      "pose_bucket": "tripod-F-unmeasured",
+      "source_record": "2026-10-27/drawing-readiness/review-manifest.json",
+      "review_condition": "fixed pen visibly outside displaced paper",
+      "pair": "paper-placement-F",
+      "mode": "archival_replay",
+      "request_body_template": {
+        "model": "sam-3.1",
+        "input": [
+          {
+            "type": "message",
+            "role": "user",
+            "content": [
+              {
+                "type": "input_text",
+                "text": "graph paper"
+              },
+              {
+                "type": "input_image",
+                "image_url": "{{verified_frame_data_url}}"
+              }
+            ]
+          }
+        ],
+        "stream": true,
+        "metadata": {
+          "mask_encoding": "one_bit"
+        }
+      },
+      "semantic_role_origin": "model_concept",
+      "role_binding": {
+        "*": "paper"
+      },
+      "automatic_retries": 0,
+      "required_saved_outputs": [
+        "exact sent request digest and receipt",
+        "original frame digest/profile",
+        "raw SSE through response.completed",
+        "provider response ID and timestamps"
+      ]
+    }
+  ]
+}

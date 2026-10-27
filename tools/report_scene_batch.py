@@ -157,13 +157,13 @@ def build_report(roots, references):
                          'actual_presence_check': asdict(actual_presence), 'actual_footprint_check': asdict(footprint),
                          'expected_reference_presence': expected,
                          'reference_logic_disagreement': expected is not None and ref.state.value != expected,
-                         'note': 'Reference replay is not a detector evaluation; actual missing inputs remain unknown.'})
+                         'note': 'Component-only offline replay; timestamp placeholder is not live freshness evidence. Reference replay is not a detector evaluation; actual missing inputs remain unknown.'})
     return {'dataset': 'drawing-readiness-through-2026-10-27', 'scene_count': len(rows),
             'profiles': sorted(profiles.values(), key=lambda p: p['id']), 'scenes': rows,
             'reference_logic_disagreements': [r['asset'] for r in rows if r['reference_logic_disagreement']],
             'gpu_eligible': False, 'viewpoint_invariance': 'untested; views captured, no cross-view calibrated evaluation',
             'live_gate_wiring': False,
-            'gaps': ['No real marker/robot registration accepted; S12 nominal/refined fits failed.',
+            'gaps': ['No real marker/robot registration accepted; S12 nominal/refined fits failed. Measured v2 corners 1-4 / held-out 5-9 also fails: max 2.955px > 2px; robot linkage unknown.',
                      'Quantitative out-of-paper footprint and robot registration unvalidated; qualitative placement labels do not substitute.',
                      'Presence outputs from an image recognizer absent; references are human-reviewed only.',
                      'Paper masks available only for the one S03 SAM diagnostic, not the whole batch.',
