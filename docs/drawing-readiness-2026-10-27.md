@@ -265,3 +265,11 @@ remaining two opposite-edge measurements before interpreting stretch/skew or
 ambiguous ink corners. No new drawing, calibration or firmware change issued.
 Visual stroke success remains separate from the failed dimensional check;
 do not use this square as an assumed40 mm metric calibration reference.
+
+Operator subsequently confirmed the opposite sides match:45/45 mm and40/40 mm,
+and describes the result as a rectangle. This is four operator edge measurements
+on one drawing, not repeatability across sizes/positions or independent angle
+measurement. Treat45×40 mm as this drawing's measured physical dimensions;
+do not infer a universal axis correction. Saved S23 main-stream baseline before
+the next camera-angle change. Robot, paper and book are to stay fixed while
+extending viewpoint captures; metric registration remains pending.
