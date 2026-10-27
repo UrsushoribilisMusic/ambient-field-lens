@@ -27,7 +27,7 @@ Current evidence: [architecture](ARCHITECTURE.md),
 [drawing-readiness contract](docs/drawing-readiness-contract.md), and
 [CPU checkpoint / remaining overnight work](docs/drawing-readiness-progress.md).
 The [27 October CPU scene report](docs/verification/scene-batch-2026-10-27.md)
-inventories34 image assets across coarse viewpoints and distinct stream profiles.
+inventories 38 image assets across coarse viewpoints and distinct stream profiles.
 Viewpoint invariance and metric containment remain unvalidated; human-reference
 logic replay is explicitly separate from actual image-model check outputs.
 

@@ -1,6 +1,6 @@
 # Codi — CPU scene inventory, 27 October 2026
 
-Inventoried **34 image assets** with verified hashes, actual stream dimensions and coarse pose buckets.
+Inventoried **38 image assets** with verified hashes, actual stream dimensions and coarse pose buckets.
 
 **No autonomous presence accuracy, real containment pass or viewpoint-invariance result is claimed.**
 Reference observations are hand labels. Replaying them tests logic, not image recognition.
@@ -41,11 +41,15 @@ Reference observations are hand labels. Replaying them tests logic, not image re
 | S27-viewF-holder-occlusion-repeat@30 / S27-clear-before-t030.jpg | reolink-896x512-intrinsics-unknown | tripod-F-unmeasured | pass | unknown | unknown |
 | S27-viewF-holder-occlusion-repeat@80 / S27-occluded-t080.jpg | reolink-896x512-intrinsics-unknown | tripod-F-unmeasured | fail | unknown | unknown |
 | S27-viewF-holder-occlusion-repeat / S27-viewF-holder-occlusion-repeat.jpg | reolink-896x512-intrinsics-unknown | tripod-F-unmeasured | unknown | unknown | unknown |
+| S28-paper-outside-fixed-drawing-position@0 / S28-before-move-t000.jpg | reolink-896x512-intrinsics-unknown | tripod-F-unmeasured | pass | unknown | unknown |
+| S28-paper-outside-fixed-drawing-position / S28-paper-outside-fixed-drawing-position.jpg | reolink-896x512-intrinsics-unknown | tripod-F-unmeasured | pass | unknown | unknown |
+| S29 / S29-paper-displaced-check.jpg | reolink-2880x1616-intrinsics-unknown | tripod-F-unmeasured | pass | unknown | unknown |
+| S30 / S30-paper-outside-pen-check.jpg | reolink-2880x1616-intrinsics-unknown | tripod-F-unmeasured | pass | unknown | unknown |
 
 ## Evidence gaps
 
 - No real marker/robot registration accepted; S12 nominal/refined fits failed.
-- No defined and validated out-of-paper footprint case.
+- Quantitative out-of-paper footprint and robot registration unvalidated; qualitative placement labels do not substitute.
 - Presence outputs from an image recognizer absent; references are human-reviewed only.
 - Paper masks available only for the one S03 SAM diagnostic, not the whole batch.
 - No fresh controller session/tool/surface binding or exact approved current corpus step.

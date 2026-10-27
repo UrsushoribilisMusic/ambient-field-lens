@@ -135,6 +135,32 @@
       "expected_presence": "pass",
       "pair": "S27-clear-covered-clear",
       "frame_sha256": "4907a0ecffa2cd4a5a9cacf767e88dd5c138d5d0657499aa101b958028cc7701"
+    },
+    "S28-before-move-t000.jpg": {
+      "pen": "clear_present",
+      "holder": "clear_present",
+      "frame_sha256": "8d43878f1b1d9b5ab9cca1e27b236b86870b0bae9ac91e7f9c5765702b06f75b",
+      "footprint_note": "Drawn outline visibly within paper before move; not a metric robot-registration pass."
+    },
+    "S28-paper-outside-fixed-drawing-position.jpg": {
+      "pen": "clear_present",
+      "holder": "clear_present",
+      "frame_sha256": "13fd89b3dcfdf98bd9b602721a2f56b671c5b84649524fabe4f1518b90dcd5ae",
+      "qualitative_placement": "pen_position_outside_paper",
+      "footprint_note": "Clear physical placement fault; quantitative mask/robot-coordinate check remains unknown."
+    },
+    "S29-paper-displaced-check.jpg": {
+      "pen": "clear_present",
+      "holder": "clear_present",
+      "frame_sha256": "34c7d2f059f670d5ccbd3faa450142ae23a6cf6187a3861f2d2f3ec534fee733",
+      "footprint_note": "Borderline edge placement, not a robust out-of-paper label."
+    },
+    "S30-paper-outside-pen-check.jpg": {
+      "pen": "clear_present",
+      "holder": "clear_present",
+      "frame_sha256": "979e82f1fe009824ea80a58c61075712621ea6dd8329be727285551c2029c327",
+      "qualitative_placement": "pen_position_outside_paper",
+      "footprint_note": "Clear physical placement fault; quantitative mask/robot-coordinate check remains unknown."
     }
   }
 }

@@ -341,3 +341,28 @@ Remaining: genuine measured out-of-paper fault, actual image-model readouts/mask
 accepted marker/robot mapping, controller setup binding and exact corpus-step
 evidence. Multi-view robustness is still untested. No GPU, model call, motion,
 threshold tuning or backend integration during lunch processing.
+
+## S28–S30: physical out-of-paper reference after lunch
+
+Kept Ross and camera fixed by operator instruction; recorded book/attached-paper
+movement without drawing. S28 finalized on explicit stop at415.4 seconds. The
+first frame shows the existing drawn outline on the sheet. S29 main-stream
+check was borderline at the paper/book edge, so was retained without a robust
+failure label. Operator then moved the book farther; S30 shows the stationary
+pen clearly over bare tabletop, outside the actual paper and book.
+
+This supplies a clear qualitative physical placement fault, unlike yesterday's
+displacement where the pen remained over part of the paper. It does not itself
+validate the metric robot-to-camera mapping, displacement distance or a mask-
+based containment result. The drawn rectangle moves with the sheet; the robot's
+intended drawing position stays fixed. No drawing was executed in the fault pose.
+Fresh controller still reports ready with job/showcase idle; those flags do not
+bind calibration to the newly moved work surface. Returning approximately cannot
+establish the previous calibration pose; check/recalibrate before another draw.
+
+Reviewed first/final S28 frames and S29/S30 stills, retained hashes and provenance,
+and extended the inventory to38 image assets. Human-reference presence replay
+now23 pass/3 fail/12 unknown; actual presence/metric footprint outputs remain
+unknown on all38. Three stream/camera profiles retained. No GPU/model calls or
+experimental gate wiring. The physical placement example is captured; quantitative
+mapping, image-model observations and a validated full check suite remain pending.

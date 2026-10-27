@@ -1,6 +1,6 @@
 {
   "dataset": "drawing-readiness-through-2026-10-27",
-  "scene_count": 34,
+  "scene_count": 38,
   "profiles": [
     {
       "id": "phone-3024x4032-intrinsics-unknown",
@@ -1297,6 +1297,164 @@
       "expected_reference_presence": null,
       "reference_logic_disagreement": false,
       "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+    },
+    {
+      "scene_id": "S28-paper-outside-fixed-drawing-position@0",
+      "asset": "2026-10-27/drawing-readiness/S28-before-move-t000.jpg",
+      "frame_sha256": "8d43878f1b1d9b5ab9cca1e27b236b86870b0bae9ac91e7f9c5765702b06f75b",
+      "source_record": "2026-10-27/drawing-readiness/review-manifest.json",
+      "camera_profile": "reolink-896x512-intrinsics-unknown",
+      "pose_bucket": "tripod-F-unmeasured",
+      "pose_assignment_method": "operator stage/capture sequence, not measured metric pose",
+      "review_status": "visually-reviewed-reference-sample",
+      "observed_variations": [],
+      "observed_note": "before: drawing outline on paper",
+      "reference_labels": {
+        "pen": "clear_present",
+        "holder": "clear_present",
+        "frame_sha256": "8d43878f1b1d9b5ab9cca1e27b236b86870b0bae9ac91e7f9c5765702b06f75b",
+        "footprint_note": "Drawn outline visibly within paper before move; not a metric robot-registration pass."
+      },
+      "reference_presence_logic": {
+        "name": "pen_holder_observable_presence",
+        "state": "pass",
+        "reason": "Pen and holder both observed clearly; mechanical fitment not established.",
+        "correction": ""
+      },
+      "actual_presence_check": {
+        "name": "pen_holder_observable_presence",
+        "state": "unknown",
+        "reason": "pen: missing or mismatched observation; holder: missing or mismatched observation",
+        "correction": "Show the pen and holder clearly; fit the pen if it is absent."
+      },
+      "actual_footprint_check": {
+        "name": "footprint_inside_paper",
+        "state": "unknown",
+        "reason": "Paper boundary is unavailable.",
+        "correction": "Show the complete drawing paper."
+      },
+      "expected_reference_presence": null,
+      "reference_logic_disagreement": false,
+      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+    },
+    {
+      "scene_id": "S28-paper-outside-fixed-drawing-position",
+      "asset": "2026-10-27/drawing-readiness/S28-paper-outside-fixed-drawing-position.jpg",
+      "frame_sha256": "13fd89b3dcfdf98bd9b602721a2f56b671c5b84649524fabe4f1518b90dcd5ae",
+      "source_record": "2026-10-27/drawing-readiness/review-manifest.json",
+      "camera_profile": "reolink-896x512-intrinsics-unknown",
+      "pose_bucket": "tripod-F-unmeasured",
+      "pose_assignment_method": "operator stage/capture sequence, not measured metric pose",
+      "review_status": "reviewed-first-and-final-frames-placement-change",
+      "observed_variations": [],
+      "observed_note": "Reviewed first frame shows drawn outline within paper; final representative frame shows fixed pen over bare desk and displaced book/paper. Intermediate borderline state separately preserved as S29.",
+      "reference_labels": {
+        "pen": "clear_present",
+        "holder": "clear_present",
+        "frame_sha256": "13fd89b3dcfdf98bd9b602721a2f56b671c5b84649524fabe4f1518b90dcd5ae",
+        "qualitative_placement": "pen_position_outside_paper",
+        "footprint_note": "Clear physical placement fault; quantitative mask/robot-coordinate check remains unknown."
+      },
+      "reference_presence_logic": {
+        "name": "pen_holder_observable_presence",
+        "state": "pass",
+        "reason": "Pen and holder both observed clearly; mechanical fitment not established.",
+        "correction": ""
+      },
+      "actual_presence_check": {
+        "name": "pen_holder_observable_presence",
+        "state": "unknown",
+        "reason": "pen: missing or mismatched observation; holder: missing or mismatched observation",
+        "correction": "Show the pen and holder clearly; fit the pen if it is absent."
+      },
+      "actual_footprint_check": {
+        "name": "footprint_inside_paper",
+        "state": "unknown",
+        "reason": "Paper boundary is unavailable.",
+        "correction": "Show the complete drawing paper."
+      },
+      "expected_reference_presence": null,
+      "reference_logic_disagreement": false,
+      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+    },
+    {
+      "scene_id": "S29",
+      "asset": "2026-10-27/drawing-readiness/S29-paper-displaced-check.jpg",
+      "frame_sha256": "34c7d2f059f670d5ccbd3faa450142ae23a6cf6187a3861f2d2f3ec534fee733",
+      "source_record": "2026-10-27/drawing-readiness/review-manifest.json",
+      "camera_profile": "reolink-2880x1616-intrinsics-unknown",
+      "pose_bucket": "tripod-F-unmeasured",
+      "pose_assignment_method": "operator stage/capture sequence, not measured metric pose",
+      "review_status": "visually-reviewed-borderline-paper-edge",
+      "observed_variations": [],
+      "observed_note": "Book/paper displaced from prior baseline; fixed pen tip appears at or just beyond near paper/book edge. Clear bare-table gap not established; retain as borderline, not robust out-of-paper fault.",
+      "reference_labels": {
+        "pen": "clear_present",
+        "holder": "clear_present",
+        "frame_sha256": "34c7d2f059f670d5ccbd3faa450142ae23a6cf6187a3861f2d2f3ec534fee733",
+        "footprint_note": "Borderline edge placement, not a robust out-of-paper label."
+      },
+      "reference_presence_logic": {
+        "name": "pen_holder_observable_presence",
+        "state": "pass",
+        "reason": "Pen and holder both observed clearly; mechanical fitment not established.",
+        "correction": ""
+      },
+      "actual_presence_check": {
+        "name": "pen_holder_observable_presence",
+        "state": "unknown",
+        "reason": "pen: missing or mismatched observation; holder: missing or mismatched observation",
+        "correction": "Show the pen and holder clearly; fit the pen if it is absent."
+      },
+      "actual_footprint_check": {
+        "name": "footprint_inside_paper",
+        "state": "unknown",
+        "reason": "Paper boundary is unavailable.",
+        "correction": "Show the complete drawing paper."
+      },
+      "expected_reference_presence": null,
+      "reference_logic_disagreement": false,
+      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+    },
+    {
+      "scene_id": "S30",
+      "asset": "2026-10-27/drawing-readiness/S30-paper-outside-pen-check.jpg",
+      "frame_sha256": "979e82f1fe009824ea80a58c61075712621ea6dd8329be727285551c2029c327",
+      "source_record": "2026-10-27/drawing-readiness/review-manifest.json",
+      "camera_profile": "reolink-2880x1616-intrinsics-unknown",
+      "pose_bucket": "tripod-F-unmeasured",
+      "pose_assignment_method": "operator stage/capture sequence, not measured metric pose",
+      "review_status": "visually-reviewed-clear-pen-outside-paper",
+      "observed_variations": [],
+      "observed_note": "Fixed pen tip visibly over bare tabletop, with paper/book displaced away. Clear qualitative placement fault captured; no drawing performed.",
+      "reference_labels": {
+        "pen": "clear_present",
+        "holder": "clear_present",
+        "frame_sha256": "979e82f1fe009824ea80a58c61075712621ea6dd8329be727285551c2029c327",
+        "qualitative_placement": "pen_position_outside_paper",
+        "footprint_note": "Clear physical placement fault; quantitative mask/robot-coordinate check remains unknown."
+      },
+      "reference_presence_logic": {
+        "name": "pen_holder_observable_presence",
+        "state": "pass",
+        "reason": "Pen and holder both observed clearly; mechanical fitment not established.",
+        "correction": ""
+      },
+      "actual_presence_check": {
+        "name": "pen_holder_observable_presence",
+        "state": "unknown",
+        "reason": "pen: missing or mismatched observation; holder: missing or mismatched observation",
+        "correction": "Show the pen and holder clearly; fit the pen if it is absent."
+      },
+      "actual_footprint_check": {
+        "name": "footprint_inside_paper",
+        "state": "unknown",
+        "reason": "Paper boundary is unavailable.",
+        "correction": "Show the complete drawing paper."
+      },
+      "expected_reference_presence": null,
+      "reference_logic_disagreement": false,
+      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
     }
   ],
   "reference_logic_disagreements": [],
@@ -1305,7 +1463,7 @@
   "live_gate_wiring": false,
   "gaps": [
     "No real marker/robot registration accepted; S12 nominal/refined fits failed.",
-    "No defined and validated out-of-paper footprint case.",
+    "Quantitative out-of-paper footprint and robot registration unvalidated; qualitative placement labels do not substitute.",
     "Presence outputs from an image recognizer absent; references are human-reviewed only.",
     "Paper masks available only for the one S03 SAM diagnostic, not the whole batch.",
     "No fresh controller session/tool/surface binding or exact approved current corpus step.",

@@ -164,7 +164,7 @@ def build_report(roots, references):
             'gpu_eligible': False, 'viewpoint_invariance': 'untested; views captured, no cross-view calibrated evaluation',
             'live_gate_wiring': False,
             'gaps': ['No real marker/robot registration accepted; S12 nominal/refined fits failed.',
-                     'No defined and validated out-of-paper footprint case.',
+                     'Quantitative out-of-paper footprint and robot registration unvalidated; qualitative placement labels do not substitute.',
                      'Presence outputs from an image recognizer absent; references are human-reviewed only.',
                      'Paper masks available only for the one S03 SAM diagnostic, not the whole batch.',
                      'No fresh controller session/tool/surface binding or exact approved current corpus step.',

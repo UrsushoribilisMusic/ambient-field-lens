@@ -3,12 +3,12 @@
 **27 October update:** the historical checklist below is retained as the night
 checkpoint. The [current scene report](verification/scene-batch-2026-10-27.md)
 and [capture/fix log](drawing-readiness-2026-10-27.md) supersede its inventory and
-test counts.34 image assets are now ingested with verified hashes, distinct
+test counts. 38 image assets are now ingested with verified hashes, distinct
 camera/stream profiles and coarse pose buckets. A separate observable pen/holder
 presence function is implemented.29 readiness tests,8 provenance tests and19
 backend tests pass (56 total). Human-reference replay is separate from absent
 image-model observations; actual presence/footprint outputs remain unknown on
-all34. No real registration, autonomous image check, viewpoint-invariance or
+all 38. No real registration, autonomous image check, viewpoint-invariance or
 GPU-eligibility pass is claimed.
 
 The green/amber contract was committed first (`972a81f`). The live `/assist`
