@@ -40,3 +40,23 @@ First check mark 6: it must be 55 mm along the top row from the **centre of mark
 1**, not from the sheet edge. Mark 9 must be x80/y90 mm from that same origin.
 Do not move/redraw marks to match the fitted projections. Report what is
 actually measured; resolve any discrepancy explicitly before another fit.
+
+## Operator follow-up: 65 mm / 120 mm
+
+Miguel reports mark1→mark6 is **65 mm** and confirms mark1→mark2 remains
+**120 mm**. The ruler snapshots are saved privately; the agent cannot read the
+fine graduations independently. Original input files and earlier failed report
+remain preserved. A separate operator-correction record changes only mark6 x
+from55 to65mm; all native pixel readings, four fit corners and the split/bar
+remain unchanged. This is a reported physical measurement, not a residual-derived
+coordinate adjustment.
+
+[Correction-01 diagnostic](after-dinner-reprojection-correction-01-2026-10-27.json):
+held-out errors5–9 =0.499/27.357/5.400/4.582/7.071px; RMS13.029377px,
+max27.357233px. **FAIL**. The disagreement increases for mark6. Neither the
+operator's ruler reading nor the agent's point identity/centre reading is
+independently confirmed by the camera evidence. Do not select55,60 or65mm based
+on whichever yields a smaller residual. Next resolve point identity explicitly:
+the agent's mark6 pixel is the top-middle green ring immediately left of the
+pen barrel. Confirm this matches the point Miguel measured before any more
+coordinate changes or capture requests. Robot linkage and checks remain unknown.
