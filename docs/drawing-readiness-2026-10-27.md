@@ -152,3 +152,19 @@ Requested actual bottom-edge-to-centre measurements for the two side midpoint
 marks (F/H in the proposed annotation, nominal 102.5 mm). Kept sheet/camera fixed;
 no redraw or robot motion requested. Private report `S12-refined-centres.json`
 retains the new origin convention and estimates. No paid API/GPU calls.
+
+## S13: paper dimensions corrected; ruler view insufficient for scale reading
+
+Operator measured a removed sheet at 208 mm depth, superseding the earlier
+205 mm estimate, and confirmed both F/H side marks are 101 mm from the opposite-
+binding paper edge. The book protrudes beyond the paper: the reported book-edge
+distance is 105 mm, so book and paper edges cannot be interchanged. Preserve
+actual mark positions rather than moving them to the nominal specification.
+
+Captured S13 main-stream still with ruler on paper. It is visible, but scale
+ticks and zero are not reliably legible in the crop; no new metric mapping was
+accepted. Requested a close overhead phone photograph with ruler zero tick at
+the actual paper edge and nearby marks included, leaving book/Reolink fixed.
+The removed-sheet measurement is operator evidence, not an independently
+verified fitted-sheet geometry. Camera/ruler scale plane and all eight actual
+mark positions remain unverified; prior rejected fits stay rejected.
