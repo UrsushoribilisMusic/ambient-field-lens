@@ -35,3 +35,21 @@ default-deny; viewpoint invariance and real containment validation are untested.
 
 Capture utility now chooses the current local-date directory by default and
 allows an explicit `--output-dir`, avoiding yesterday's hard-coded destination.
+
+## S05: pen refitted, before recalibration
+
+Recorded another 12-second take, representative at 9 s. Pen visibly fitted and
+extending through the holder toward paper. Operator reports it touches the paper
+at a slightly different spot from initial shots. Contact force, exact contact
+coordinates and correct Z calibration cannot be established from this image.
+
+Private S05 capture/review records are linked with S04 in today's manifest.
+Camera-profile inventory and approximate tripod-A bucket are retained, with
+metric continuity unverified. The tool/contact pose is explicitly new. Robot
+face is illuminated in S05, unlike S04; this additional change is logged rather
+than claiming a perfectly controlled missing/refitted pair.
+
+Pen/holder detector not run. Footprint check remains unknown. No motion,
+calibration, SAM or GPU command was issued by this capture. Operator was cued
+to run the existing Control Center's Recalibrate flow before drawing, keeping
+paper/camera fixed. A calibrated baseline remains pending.
