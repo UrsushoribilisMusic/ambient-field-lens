@@ -18,7 +18,7 @@ def main():
     args = parser.parse_args()
     if not re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9_-]{0,79}', args.id):
         parser.error('Use a short scene ID containing only letters, digits, underscores or hyphens')
-    if not 5 <= args.seconds <= 60: parser.error('Capture duration must be 5–60 seconds')
+    if not 5 <= args.seconds <= 600: parser.error('Capture duration must be 5–600 seconds')
     scene = Path.home() / 'Library/Application Support/obs-studio/basic/scenes/Untitled.json'
     source = next(s for s in json.loads(scene.read_text())['sources'] if s.get('name') == 'Robot_Main_Cam')
     url = source['settings']['input']  # Never print credentials or put them in metadata.

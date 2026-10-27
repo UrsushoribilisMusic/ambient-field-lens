@@ -53,3 +53,26 @@ Pen/holder detector not run. Footprint check remains unknown. No motion,
 calibration, SAM or GPU command was issued by this capture. Operator was cued
 to run the existing Control Center's Recalibrate flow before drawing, keeping
 paper/camera fixed. A calibrated baseline remains pending.
+
+## S06/S07: operator calibration and post-calibration baseline
+
+On explicit operator request, recorded 180 seconds of video-only calibration
+observation (S06), finalized and probed at 896×512. Sampled frames at 30/90 s
+were reviewed; they show the pen fitted and near-static views, not verification
+of every calibration step. Operator reports completion. A separate 12-second
+post-calibration baseline (S07, representative 9 s) was captured and inspected.
+
+Fresh controller snapshot reports calibrated/session_ready true, no job/showcase,
+z_up 6 and tilt_slope 0.02 (previously 0.0325). Saved calibration file also reports
+tilt_slope_x 0.00625. This establishes that new calibration values were saved;
+it does not establish physical accuracy, a measured camera mapping or trusted
+controller-session/tool/surface binding. The post-state snapshot and capture
+records are in today's private directory/review manifest. No robot command was
+issued by the recording utility. The operator ran the normal calibration flow.
+
+Capture duration now allows up to 600 seconds for explicitly requested process
+recordings. No camera-angle change, SAM call, GPU window or gate wiring occurred.
+Operator has ruler and pencil/tape available; requested top-sheet dimensions in
+millimetres before specifying reference points. Paper-plane registration still
+needs a separate link to Ross's drawing coordinates; paper-attached marks alone
+must not make the planned robot path follow displaced paper.
