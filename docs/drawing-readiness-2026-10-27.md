@@ -226,3 +226,25 @@ Clarified that Z_UP is travel clearance, not drawing pressure; changing6 to3
 does not fix an incorrectly established initial contact point. Supervised
 physical verification after that contact check remains pending. No GPU or
 paid API calls; experimental backend remains default-deny.
+
+## S20–S22: successful supervised square after fix and recalibration
+
+Operator completed another normal calibration; fresh state reports z_up2,
+tilt_y0.0325, ready true, job/showcase idle. The saved operator calibration also
+has tilt_x0.00375. S20 process clip finalized. S21 drawing recording started
+before an explicit GO; operator then reported drawing in progress and completion
+with “worked beautifully”. S21 finalized at 120 s (896×512). Initial/late sampled
+frame reviews show tip/state changes and completed outline; exact individual
+stroke boundaries have not been annotated.
+
+S22 main-stream result shows a closed square with much clearer sides, consistent
+with operator feedback; controller reports completed and idle. This supports
+one successful supervised trial after both external Robot Ross X/Y tilt fix
+`a2ec499` and recalibration. It does not isolate which change resolved contact.
+Prior HELLO ink overlaps the square. Side lengths have not been measured, and
+no precise robot-camera mapping, viewpoint invariance or gate pass is claimed.
+
+All raw/result clips, original images, provenance and calibration snapshots are
+private in today's capture directory. Next: measure two adjacent square sides
+without moving the book, then extend viewpoint captures of the same fixed
+setup. GPU eligibility remains false; no paid/model calls or live gate wiring.
