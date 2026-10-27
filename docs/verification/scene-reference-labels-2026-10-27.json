@@ -161,6 +161,34 @@
       "frame_sha256": "979e82f1fe009824ea80a58c61075712621ea6dd8329be727285551c2029c327",
       "qualitative_placement": "pen_position_outside_paper",
       "footprint_note": "Clear physical placement fault; quantitative mask/robot-coordinate check remains unknown."
+    },
+    "S31-outside-paper-next-angle.jpg": {
+      "pen": "clear_present",
+      "holder": "clear_present",
+      "frame_sha256": "57cb282a817fe890f19f5b855f798b876676d4e995d71dff06d6e731d174a1f3",
+      "qualitative_placement": "pen_position_outside_paper",
+      "footprint_note": "Clear outside-paper position; camera angle changed and metric mapping unvalidated."
+    },
+    "S32-before-return-t000.jpg": {
+      "pen": "clear_present",
+      "holder": "clear_present",
+      "frame_sha256": "377a58b9fed2bf83e53c5d6e4acf95446d9619de2e448f156519ccf09c0cdfe4",
+      "qualitative_placement": "pen_position_outside_paper",
+      "footprint_note": "Clear outside-paper position; camera angle changed and metric mapping unvalidated."
+    },
+    "S32-viewG-paper-return.jpg": {
+      "pen": "clear_present",
+      "holder": "clear_present",
+      "frame_sha256": "d245e2840a4055a6f78bf4fe42375a8b6481c43fbd52359289ce4cd9204d4231",
+      "qualitative_placement": "pen_above_returned_drawn_rectangle",
+      "footprint_note": "Corrected pen/paper placement; lower sheet cropped, full containment and calibration not established."
+    },
+    "S33-viewG-paper-return-check.jpg": {
+      "pen": "clear_present",
+      "holder": "clear_present",
+      "frame_sha256": "e5849e44a026af5d6b8180463c30a9fbba79884a8452e8a151c1993f7f9eefc7",
+      "qualitative_placement": "pen_above_returned_drawn_rectangle",
+      "footprint_note": "Corrected pen/paper placement; lower sheet cropped, full containment and calibration not established."
     }
   }
 }

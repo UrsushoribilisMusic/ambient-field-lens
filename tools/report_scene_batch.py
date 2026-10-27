@@ -47,9 +47,9 @@ def pose_bucket(record, phone=False):
         return 'phone-overhead-unmeasured'
     ident = record.get('id', '')
     pose = record.get('pose_bucket', '')
-    for letter in 'ABCDEF':
-        if pose.startswith('tripod-' + letter):
-            return 'tripod-' + letter + '-unmeasured'
+    explicit_pose = re.match(r'tripod-([A-Z])(?:-|$)', pose)
+    if explicit_pose:
+        return 'tripod-' + explicit_pose.group(1) + '-unmeasured'
     # Capture sequence fallback, never an inferred numerical camera pose.
     match = re.match(r'S(\d+)', ident)
     if not match:

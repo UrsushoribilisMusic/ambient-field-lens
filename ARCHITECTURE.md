@@ -76,9 +76,9 @@ disclosure; nothing vendored.
 | SAM reachable, accepts frames | Proven |
 | SAM mask output on a tripod frame | Proven for one S03 frame: one request, two manually box-prompted masks decoded and visually inspected; not automatic recognition |
 | Offline readiness, planar geometry and presence functions | 29 synthetic CPU tests pass; not physical scene validation |
-| Scene inventory through 27 October | 38 image assets with verified digests, 3 stream/camera profiles and coarse pose buckets; 8 inventory regressions pass |
-| Separate observable pen/holder presence check | Implemented; human-reference replay 23 pass/3 fail/12 unknown. Image-model inputs absent, so actual check output remains unknown on all 38 assets |
-| Footprint check over inventoried frames | Executed, unknown on all 38: no accepted physical registration/footprint, paper masks only for S03 diagnostic |
+| Scene inventory through 27 October | 42 image assets with verified digests, 3 stream/camera profiles and coarse pose buckets; 8 inventory regressions pass |
+| Separate observable pen/holder presence check | Implemented; human-reference replay 27 pass/3 fail/12 unknown. Image-model inputs absent, so actual check output remains unknown on all 42 assets |
+| Footprint check over inventoried frames | Executed, unknown on all 42: no accepted physical registration/footprint, paper masks only for S03 diagnostic |
 | Marker-derived surface coordinates on real frames | Pending; no measured marker correspondences or real footprint yet |
 | Viewpoint invariance | Explicitly untested; fixed tripod viewpoint only |
 | Paired multi-angle scenes (fault × viewpoint × evidence) | Multiple coarse views captured plus clear/covered/clear S27; complete calibrated fault/evidence grid still pending |

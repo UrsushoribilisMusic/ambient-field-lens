@@ -1,6 +1,6 @@
 # Codi — CPU scene inventory, 27 October 2026
 
-Inventoried **38 image assets** with verified hashes, actual stream dimensions and coarse pose buckets.
+Inventoried **42 image assets** with verified hashes, actual stream dimensions and coarse pose buckets.
 
 **No autonomous presence accuracy, real containment pass or viewpoint-invariance result is claimed.**
 Reference observations are hand labels. Replaying them tests logic, not image recognition.
@@ -45,6 +45,10 @@ Reference observations are hand labels. Replaying them tests logic, not image re
 | S28-paper-outside-fixed-drawing-position / S28-paper-outside-fixed-drawing-position.jpg | reolink-896x512-intrinsics-unknown | tripod-F-unmeasured | pass | unknown | unknown |
 | S29 / S29-paper-displaced-check.jpg | reolink-2880x1616-intrinsics-unknown | tripod-F-unmeasured | pass | unknown | unknown |
 | S30 / S30-paper-outside-pen-check.jpg | reolink-2880x1616-intrinsics-unknown | tripod-F-unmeasured | pass | unknown | unknown |
+| S31 / S31-outside-paper-next-angle.jpg | reolink-2880x1616-intrinsics-unknown | tripod-G-unmeasured | pass | unknown | unknown |
+| S32-viewG-paper-return@0 / S32-before-return-t000.jpg | reolink-896x512-intrinsics-unknown | tripod-G-unmeasured | pass | unknown | unknown |
+| S32-viewG-paper-return / S32-viewG-paper-return.jpg | reolink-896x512-intrinsics-unknown | tripod-G-unmeasured | pass | unknown | unknown |
+| S33 / S33-viewG-paper-return-check.jpg | reolink-2880x1616-intrinsics-unknown | tripod-G-unmeasured | pass | unknown | unknown |
 
 ## Evidence gaps
 

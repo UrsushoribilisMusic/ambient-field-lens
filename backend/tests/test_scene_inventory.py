@@ -80,6 +80,7 @@ class SceneInventoryTests(unittest.TestCase):
     def test_pose_bucket_is_coarse_and_supports_letter_suffix(self):
         self.assertEqual(inventory.pose_bucket({'id': 'S01b'}), 'tripod-A-unmeasured')
         self.assertEqual(inventory.pose_bucket({'id': 'S27@80', 'pose_bucket': 'tripod-F-backed-away'}), 'tripod-F-unmeasured')
+        self.assertEqual(inventory.pose_bucket({'id': 'S31', 'pose_bucket': 'tripod-G-sideways'}), 'tripod-G-unmeasured')
 
 
 if __name__ == '__main__':

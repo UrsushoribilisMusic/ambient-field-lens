@@ -366,3 +366,27 @@ now23 pass/3 fail/12 unknown; actual presence/metric footprint outputs remain
 unknown on all38. Three stream/camera profiles retained. No GPU/model calls or
 experimental gate wiring. The physical placement example is captured; quantitative
 mapping, image-model observations and a validated full check suite remain pending.
+
+## S31–S33: frontal viewpoint and returned-under-pen pair
+
+S31 captures the same outside-paper fault after a camera-only lateral change
+to viewpointG. The bare-table gap is clear; near paper perimeter is at the lower
+frame boundary. S32 recorded an incorrect-to-returned position sequence and
+finalized on operator completion at198.4 seconds. Its first frame shows the
+outside-paper state; final image/S33 shows pen above the existing drawn rectangle.
+Lower sheet perimeter is cropped, so corrected placement is not a complete
+containment pass. No drawing, metric pose restoration or calibration pass is
+implied by returning the book approximately.
+
+Operator offered to move Ross for a better angle. No robot move was requested:
+keep the current setup; earlier full-sheet views and these labelled partial-
+visibility views are enough for the next software step. Moving the robot would
+change the comparison setup. Next work is actual image-model inputs and accepted
+geometry, not indefinite camera adjustments.
+
+Extended inventory to42 assets across coarse tripod A–G/phone poses, preserving
+separate stream profiles and source hashes. Fixed pose normalization to preserve
+explicit G and later letter buckets rather than fall back to F; the8 provenance
+tests pass, including a G-bucket regression. Human-reference presence replay is
+27 pass/3 fail/12 unknown; both actual image-model/metric checks remain unknown
+on all42. GPU eligibility remains false; the live gate is unchanged.

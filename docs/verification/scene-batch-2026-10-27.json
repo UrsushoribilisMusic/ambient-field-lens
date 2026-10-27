@@ -1,6 +1,6 @@
 {
   "dataset": "drawing-readiness-through-2026-10-27",
-  "scene_count": 38,
+  "scene_count": 42,
   "profiles": [
     {
       "id": "phone-3024x4032-intrinsics-unknown",
@@ -1433,6 +1433,166 @@
         "frame_sha256": "979e82f1fe009824ea80a58c61075712621ea6dd8329be727285551c2029c327",
         "qualitative_placement": "pen_position_outside_paper",
         "footprint_note": "Clear physical placement fault; quantitative mask/robot-coordinate check remains unknown."
+      },
+      "reference_presence_logic": {
+        "name": "pen_holder_observable_presence",
+        "state": "pass",
+        "reason": "Pen and holder both observed clearly; mechanical fitment not established.",
+        "correction": ""
+      },
+      "actual_presence_check": {
+        "name": "pen_holder_observable_presence",
+        "state": "unknown",
+        "reason": "pen: missing or mismatched observation; holder: missing or mismatched observation",
+        "correction": "Show the pen and holder clearly; fit the pen if it is absent."
+      },
+      "actual_footprint_check": {
+        "name": "footprint_inside_paper",
+        "state": "unknown",
+        "reason": "Paper boundary is unavailable.",
+        "correction": "Show the complete drawing paper."
+      },
+      "expected_reference_presence": null,
+      "reference_logic_disagreement": false,
+      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+    },
+    {
+      "scene_id": "S31",
+      "asset": "2026-10-27/drawing-readiness/S31-outside-paper-next-angle.jpg",
+      "frame_sha256": "57cb282a817fe890f19f5b855f798b876676d4e995d71dff06d6e731d174a1f3",
+      "source_record": "2026-10-27/drawing-readiness/review-manifest.json",
+      "camera_profile": "reolink-2880x1616-intrinsics-unknown",
+      "pose_bucket": "tripod-G-unmeasured",
+      "pose_assignment_method": "operator stage/capture sequence, not measured metric pose",
+      "review_status": "visually-reviewed-outside-paper-new-angle",
+      "observed_variations": [],
+      "observed_note": "Frontal changed viewpoint clearly separates fixed pen over bare tabletop from displaced book/paper. Near sheet corner at lower frame boundary; full paper perimeter not independently verified.",
+      "reference_labels": {
+        "pen": "clear_present",
+        "holder": "clear_present",
+        "frame_sha256": "57cb282a817fe890f19f5b855f798b876676d4e995d71dff06d6e731d174a1f3",
+        "qualitative_placement": "pen_position_outside_paper",
+        "footprint_note": "Clear outside-paper position; camera angle changed and metric mapping unvalidated."
+      },
+      "reference_presence_logic": {
+        "name": "pen_holder_observable_presence",
+        "state": "pass",
+        "reason": "Pen and holder both observed clearly; mechanical fitment not established.",
+        "correction": ""
+      },
+      "actual_presence_check": {
+        "name": "pen_holder_observable_presence",
+        "state": "unknown",
+        "reason": "pen: missing or mismatched observation; holder: missing or mismatched observation",
+        "correction": "Show the pen and holder clearly; fit the pen if it is absent."
+      },
+      "actual_footprint_check": {
+        "name": "footprint_inside_paper",
+        "state": "unknown",
+        "reason": "Paper boundary is unavailable.",
+        "correction": "Show the complete drawing paper."
+      },
+      "expected_reference_presence": null,
+      "reference_logic_disagreement": false,
+      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+    },
+    {
+      "scene_id": "S32-viewG-paper-return@0",
+      "asset": "2026-10-27/drawing-readiness/S32-before-return-t000.jpg",
+      "frame_sha256": "377a58b9fed2bf83e53c5d6e4acf95446d9619de2e448f156519ccf09c0cdfe4",
+      "source_record": "2026-10-27/drawing-readiness/review-manifest.json",
+      "camera_profile": "reolink-896x512-intrinsics-unknown",
+      "pose_bucket": "tripod-G-unmeasured",
+      "pose_assignment_method": "operator stage/capture sequence, not measured metric pose",
+      "review_status": "visually-reviewed-reference-sample",
+      "observed_variations": [],
+      "observed_note": "before: pen outside displaced paper",
+      "reference_labels": {
+        "pen": "clear_present",
+        "holder": "clear_present",
+        "frame_sha256": "377a58b9fed2bf83e53c5d6e4acf95446d9619de2e448f156519ccf09c0cdfe4",
+        "qualitative_placement": "pen_position_outside_paper",
+        "footprint_note": "Clear outside-paper position; camera angle changed and metric mapping unvalidated."
+      },
+      "reference_presence_logic": {
+        "name": "pen_holder_observable_presence",
+        "state": "pass",
+        "reason": "Pen and holder both observed clearly; mechanical fitment not established.",
+        "correction": ""
+      },
+      "actual_presence_check": {
+        "name": "pen_holder_observable_presence",
+        "state": "unknown",
+        "reason": "pen: missing or mismatched observation; holder: missing or mismatched observation",
+        "correction": "Show the pen and holder clearly; fit the pen if it is absent."
+      },
+      "actual_footprint_check": {
+        "name": "footprint_inside_paper",
+        "state": "unknown",
+        "reason": "Paper boundary is unavailable.",
+        "correction": "Show the complete drawing paper."
+      },
+      "expected_reference_presence": null,
+      "reference_logic_disagreement": false,
+      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+    },
+    {
+      "scene_id": "S32-viewG-paper-return",
+      "asset": "2026-10-27/drawing-readiness/S32-viewG-paper-return.jpg",
+      "frame_sha256": "d245e2840a4055a6f78bf4fe42375a8b6481c43fbd52359289ce4cd9204d4231",
+      "source_record": "2026-10-27/drawing-readiness/review-manifest.json",
+      "camera_profile": "reolink-896x512-intrinsics-unknown",
+      "pose_bucket": "tripod-G-unmeasured",
+      "pose_assignment_method": "operator stage/capture sequence, not measured metric pose",
+      "review_status": "first-and-final-frames-visually-reviewed",
+      "observed_variations": [],
+      "observed_note": "Wrong-to-returned paper placement, no drawing. Operator reports robot/camera fixed; numerical continuity unverified.",
+      "reference_labels": {
+        "pen": "clear_present",
+        "holder": "clear_present",
+        "frame_sha256": "d245e2840a4055a6f78bf4fe42375a8b6481c43fbd52359289ce4cd9204d4231",
+        "qualitative_placement": "pen_above_returned_drawn_rectangle",
+        "footprint_note": "Corrected pen/paper placement; lower sheet cropped, full containment and calibration not established."
+      },
+      "reference_presence_logic": {
+        "name": "pen_holder_observable_presence",
+        "state": "pass",
+        "reason": "Pen and holder both observed clearly; mechanical fitment not established.",
+        "correction": ""
+      },
+      "actual_presence_check": {
+        "name": "pen_holder_observable_presence",
+        "state": "unknown",
+        "reason": "pen: missing or mismatched observation; holder: missing or mismatched observation",
+        "correction": "Show the pen and holder clearly; fit the pen if it is absent."
+      },
+      "actual_footprint_check": {
+        "name": "footprint_inside_paper",
+        "state": "unknown",
+        "reason": "Paper boundary is unavailable.",
+        "correction": "Show the complete drawing paper."
+      },
+      "expected_reference_presence": null,
+      "reference_logic_disagreement": false,
+      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+    },
+    {
+      "scene_id": "S33",
+      "asset": "2026-10-27/drawing-readiness/S33-viewG-paper-return-check.jpg",
+      "frame_sha256": "e5849e44a026af5d6b8180463c30a9fbba79884a8452e8a151c1993f7f9eefc7",
+      "source_record": "2026-10-27/drawing-readiness/review-manifest.json",
+      "camera_profile": "reolink-2880x1616-intrinsics-unknown",
+      "pose_bucket": "tripod-G-unmeasured",
+      "pose_assignment_method": "operator stage/capture sequence, not measured metric pose",
+      "review_status": "visually-reviewed-pen-above-returned-rectangle",
+      "observed_variations": [],
+      "observed_note": "Pen visibly above interior of existing drawn rectangle on returned paper. Lower sheet perimeter cropped. Approximate corrected placement only, no metric calibration restoration or full containment pass.",
+      "reference_labels": {
+        "pen": "clear_present",
+        "holder": "clear_present",
+        "frame_sha256": "e5849e44a026af5d6b8180463c30a9fbba79884a8452e8a151c1993f7f9eefc7",
+        "qualitative_placement": "pen_above_returned_drawn_rectangle",
+        "footprint_note": "Corrected pen/paper placement; lower sheet cropped, full containment and calibration not established."
       },
       "reference_presence_logic": {
         "name": "pen_holder_observable_presence",
