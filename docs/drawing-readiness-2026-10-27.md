@@ -76,3 +76,19 @@ Operator has ruler and pencil/tape available; requested top-sheet dimensions in
 millimetres before specifying reference points. Paper-plane registration still
 needs a separate link to Ross's drawing coordinates; paper-attached marks alone
 must not make the planned robot path follow displaced paper.
+
+## S08: first four red reference marks, visibility limitation
+
+Operator measured 145×205 mm usable sheet, plus 15 mm binding (220 mm total
+depth), then reported drawing the first four red A–D crosses at the requested
+10 mm inset. Recorded a 5-second original-view take and an additional main-stream
+snapshot. The paper is heavily foreshortened; all four red cross centers cannot
+be reliably distinguished in either image. No measured image-point
+correspondences or physical registration were accepted.
+
+Preserved the sheet/marks and requested only a higher, downward-looking camera
+view including all paper corners and the pen holder. Thinner lines would not
+address the visibility problem. The new viewpoint must receive its own pose
+identity/registration. The main-stream detail has a distinct resolution/profile;
+its pixel coordinates must not be reused as substream coordinates without an
+explicitly validated mapping. Private inventory records this limitation.
