@@ -15,6 +15,14 @@ Continue CPU replay/adapter work independently of this unaccepted geometry;
 missing footprint registration remains unknown. No new paid calls/GPU, no gate
 wiring. No further operator redrawing or recalibration requested for this test.
 
+Miguel also notes the actual drawing tool is a thick felt pen, producing broad
+strokes rather than detailed drafting. The proposed physical tolerance review
+should use measured stroke width, path clearance from paper edges, camera
+registration uncertainty and robot drawing error as separate budget components.
+Task success is observable setup readiness and a comfortably contained drawing,
+not precision plotting. Stroke width alone is not a validated error bound or a
+reason to relabel the current2px failure. No new acceptance number chosen yet.
+
 LATEST RULER FOLLOW-UP: rectangle120×120mm and centre lines60/60mm confirmed;
 cross9 approximately78.5/92mm. Frozen rectangle-frame pixels unchanged.
 [Latest report](verification/rectangle-ruler-confirmed-result-2026-10-27.md):
