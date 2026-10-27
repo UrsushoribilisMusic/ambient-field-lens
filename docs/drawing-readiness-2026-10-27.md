@@ -168,3 +168,19 @@ the actual paper edge and nearby marks included, leaving book/Reolink fixed.
 The removed-sheet measurement is operator evidence, not an independently
 verified fitted-sheet geometry. Camera/ruler scale plane and all eight actual
 mark positions remain unverified; prior rejected fits stay rejected.
+
+## S14: close phone ruler photograph
+
+Inspected operator photo IMG_7107.HEIC; archived original, converted PNG and
+orientation-normalized derivative privately with hashes/provenance. This is a
+distinct phone camera/viewpoint, not a substitute Reolink calibration image.
+Centimetre labels are readable, and the ruler zero lies beyond the opposite-
+binding paper edge. Any ruler-derived mark coordinates need that offset; the
+book edge is not the reference origin. Thick red cross centres and graph grid
+are visible, with upper-middle paper occluded by the holder.
+
+No exact ruler offset, grid spacing, all-eight coordinate set or camera/robot
+registration was accepted from visual inspection alone. Operator's measured
+208 mm loose-sheet depth and 101 mm F/H positions are preserved as such.
+Ruler scale height and phone intrinsics remain unverified. No request to redraw,
+no threshold adjustment, paid API, GPU window or motion command.
