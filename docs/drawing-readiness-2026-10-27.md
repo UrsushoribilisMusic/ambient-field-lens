@@ -101,3 +101,14 @@ metadata and viewpoint bucket `tripod-B-raised-downward`. Three red corner marks
 are now distinguishable; the far-side fourth near Ross is not identifiable.
 No four-point mapping was accepted. Requested a steeper downward view framing
 paper and holder; sheet, robot and red marks are to remain in place.
+
+## S10/S11: further height and sideways visibility correction
+
+S10 records the operator's reported 24 cm height increase. Three crosses remained
+clear but the far reference was partly hidden; no four-point mapping accepted.
+After a sideways camera adjustment, S11 main-stream still and paper crop show
+all four red reference marks, including the far mark beside the binding. This
+is adequate visibility to attempt point annotation, not a validated registration.
+Requested camera/surface stay fixed and independent measured E–H points be added
+at the previously specified positions. Coordinates, fit and held-out validation
+remain pending. All snapshots/review metadata remain private; no SAM/GPU calls.
