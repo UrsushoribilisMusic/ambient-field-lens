@@ -129,6 +129,10 @@ def _mask(frame, mask, kind):
 
 
 def check_pen(frame, mask, fitment):
+    if (fitment is not None and fitment.frame_sha256 == frame.sha256
+            and fitment.tool == frame.tool and fitment.visible is True and fitment.fitted is False):
+        return _result('pen_fitted', State.FAIL, 'Visible fitment observation reports the intended pen is not fitted.',
+                       'Fit the intended pen in its holder and re-check.')
     observed = _mask(frame, mask, 'pen')
     if observed.state is not State.PASS:
         return observed

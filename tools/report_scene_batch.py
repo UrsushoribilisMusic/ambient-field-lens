@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import argparse
 from dataclasses import asdict
+from datetime import datetime
 import hashlib
 import json
 import re
@@ -16,6 +17,20 @@ import subprocess
 
 from readiness.checks import Frame, Mask, check_footprint
 from readiness.presence import Observation, Visibility, check_pen_holder_presence
+
+
+def capture_timestamp(record):
+    if record.get('captured_at_utc'):
+        stamp = datetime.fromisoformat(record['captured_at_utc'])
+        if stamp.tzinfo is None:
+            raise ValueError('Capture timestamp needs timezone')
+        return stamp.timestamp()
+    if record.get('capture_started_utc') and 'representative_frame_seconds' in record:
+        stamp = datetime.fromisoformat(record['capture_started_utc'])
+        if stamp.tzinfo is None:
+            raise ValueError('Capture timestamp needs timezone')
+        return stamp.timestamp() + record['representative_frame_seconds']
+    raise ValueError('Capture timestamp missing; do not fabricate freshness')
 
 
 def resolve_asset(root, value):

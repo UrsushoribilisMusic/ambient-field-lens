@@ -87,6 +87,35 @@ class ModelAdapterTests(unittest.TestCase):
         self.assertEqual(bundle.fitment.provenance.camera, self.frame.camera)
         self.assertIs(bundle.require_live(self.frame, now=103.), bundle)
 
+    def test_opaque_reasoning_item_is_not_mistaken_for_observation_text(self):
+        value = json.loads(self.response)
+        value['output'].insert(0, {'type': 'reasoning', 'id': 'rs_fixture', 'summary': [], 'content': [],
+                                 'encrypted_content': 'opaque-provider-replay-bytes-not-observations'})
+        raw = canonical(value)
+        result = self.adapt(response=raw, binding=replace(self.binding, response_sha256=sha256(raw)))
+        self.assertEqual(len(result.observations), 2)
+        for item in [{'type': 'function_call', 'name': 'verdict', 'arguments': '{}'},
+                     {'type': 'reasoning', 'id': 'rs_bad', 'summary': [{'text': 'not an observation'}]}]:
+            bad = json.loads(self.response)
+            bad['output'].insert(0, item)
+            raw = canonical(bad)
+            with self.assertRaises(AdapterError):
+                self.adapt(response=raw, binding=replace(self.binding, response_sha256=sha256(raw)))
+
+    def test_nonstreaming_request_options_are_bound_to_captured_request(self):
+        receipt = json.loads(self.receipt)
+        receipt.update(stream=False, max_output_tokens=2048, store=False, reasoning={'effort':'low'})
+        raw_receipt = canonical(receipt)
+        request = canonical(request_body_from_receipt(self.image, receipt))
+        binding = replace(self.binding, receipt_sha256=sha256(raw_receipt),
+                          request_sha256=sha256(request), request_digest_basis='captured_request_bytes')
+        result = adapt_model(self.frame, binding, self.image, raw_receipt, self.response,
+                             now=103., request_bytes=request)
+        self.assertEqual(result.provenance.request_digest_basis, 'captured_request_bytes')
+        for changes in [dict(stream='false'), dict(max_output_tokens=1), dict(max_output_tokens=True), dict(store='false')]:
+            with self.subTest(changes=changes), self.assertRaises(AdapterError):
+                request_body_from_receipt(self.image, {**receipt, **changes})
+
     def test_stale_future_or_unverified_capture_is_rejected(self):
         for now in [99., 106., float('nan')]:
             with self.subTest(now=now), self.assertRaises(AdapterError):

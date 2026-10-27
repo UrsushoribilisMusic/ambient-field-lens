@@ -1,0 +1,100 @@
+{
+  "schema_version": "drawing-pipeline-replay-v1",
+  "mode": "archival_replay",
+  "checks": [
+    {
+      "name": "paper_present",
+      "state": "unknown",
+      "reason": "Frame identity or freshness is invalid.",
+      "correction": "Capture a fresh identified frame and re-check the setup."
+    },
+    {
+      "name": "pen_holder_observable_presence",
+      "state": "unknown",
+      "reason": "Frame identity or freshness is invalid.",
+      "correction": "Capture a fresh identified frame and re-check the setup."
+    },
+    {
+      "name": "pen_fitted",
+      "state": "unknown",
+      "reason": "Frame identity or freshness is invalid.",
+      "correction": "Capture a fresh identified frame and re-check the setup."
+    },
+    {
+      "name": "footprint_inside_paper",
+      "state": "unknown",
+      "reason": "Frame identity or freshness is invalid.",
+      "correction": "Capture a fresh identified frame and re-check the setup."
+    },
+    {
+      "name": "calibration_ready",
+      "state": "unknown",
+      "reason": "Frame identity or freshness is invalid.",
+      "correction": "Capture a fresh identified frame and re-check the setup."
+    },
+    {
+      "name": "approved_current_step",
+      "state": "unknown",
+      "reason": "Frame identity or freshness is invalid.",
+      "correction": "Capture a fresh identified frame and re-check the setup."
+    }
+  ],
+  "evidence_errors": [],
+  "provenance": [
+    {
+      "provider": "meta-model-api",
+      "model": "sam-3.1",
+      "response_id": "resp_6adfba4aeed7696a153b47c1",
+      "frame_sha256": "ec3118828805f3cc30fa4da3fcb5b44de8827b3e2fa8d38fd6b2ea2c6b8a4dc9",
+      "width": 896,
+      "height": 512,
+      "camera": "ross-reolink-tripod",
+      "rig": "S03-archived-unmeasured-rig",
+      "surface_pose": "S03-unregistered-surface",
+      "tool": "S03-unbound-archived-tool",
+      "controller_session": "",
+      "frame_captured_at": 1793046908.104731,
+      "capture_clock_verified": false,
+      "request_started_at": 1793047113.735723,
+      "response_created_at": 1793047114.0,
+      "response_completed_at": 1793047114.0,
+      "ingested_at": 1793047114.0,
+      "mode": "archival_replay",
+      "receipt_sha256": "4743cd24b6a43cf8fca1fa31257f98979915f0d198174f3f932154fddee09efb",
+      "request_sha256": "c497f212ea64ae91555bbcf595f6f3b6079f11dab332a8243e03b84796ee7bcf",
+      "request_digest_basis": "reconstructed_from_saved_receipt",
+      "response_sha256": "9263e45efa123bdaa4c23dffa9694dc249f4d55df0478068fa588ad90f56746b",
+      "prompt_sha256": "ef81e37958fe5e30808e94e90421a092855b5bf8e9441526ff5bebdd64ced8fc",
+      "semantic_origin": "manual_box_prompt",
+      "object_id": "",
+      "role": "",
+      "parser": "meta-sam-parser==0.1.0",
+      "linkage": "Local saved receipt + raw SSE association; provider did not echo frame digest; capture time is clip-start plus offset estimate.",
+      "coordinate_space": "native_full_frame_pixels",
+      "spatial_transform": "identity_only",
+      "mask_encoding": "one_bit",
+      "object_bounds": null
+    }
+  ],
+  "evidence_summary": {
+    "mask_pixels": {
+      "paper": [
+        12971
+      ],
+      "pen": [
+        1642
+      ]
+    },
+    "observation_roles": [],
+    "fitment_observation_count": 0,
+    "aggregate_inputs_rejected": false
+  },
+  "verdict": "amber",
+  "step": null,
+  "live_ready": false,
+  "grounding_validated": false,
+  "network_calls": 0,
+  "gpu_used": false,
+  "frame_sha256": "ec3118828805f3cc30fa4da3fcb5b44de8827b3e2fa8d38fd6b2ea2c6b8a4dc9",
+  "historical_evaluation_time": 1793047114.0
+}

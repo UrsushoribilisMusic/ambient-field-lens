@@ -142,10 +142,27 @@ def _fresh(frame, now):
 
 def request_body_from_receipt(image, receipt):
     media_type = 'image/png' if image.startswith(b'\x89PNG') else 'image/jpeg'
-    return {'model': receipt['model'], 'input': [{'type': 'message', 'role': 'user', 'content': [
+    stream = receipt.get('stream', True)  # Legacy S03 was streamed.
+    if type(stream) is not bool:
+        raise AdapterError('request_stream_invalid')
+    body = {'model': receipt['model'], 'input': [{'type': 'message', 'role': 'user', 'content': [
         {'type': 'input_text', 'text': receipt['prompt']},
         {'type': 'input_image', 'image_url': 'data:' + media_type + ';base64,' + base64.b64encode(image).decode()}]}],
-        'stream': True, 'metadata': receipt.get('metadata', {})}
+        'stream': stream, 'metadata': receipt.get('metadata', {})}
+    if 'max_output_tokens' in receipt:
+        limit = receipt['max_output_tokens']
+        if type(limit) is not int or not 16 <= limit <= 8192:
+            raise AdapterError('request_output_budget_invalid')
+        body['max_output_tokens'] = limit
+    if 'store' in receipt:
+        if type(receipt['store']) is not bool:
+            raise AdapterError('request_store_invalid')
+        body['store'] = receipt['store']
+    if 'reasoning' in receipt:
+        if receipt['reasoning'] != {'effort': 'low'}:
+            raise AdapterError('request_reasoning_invalid')
+        body['reasoning'] = receipt['reasoning']
+    return body
 
 
 def reconstructed_request_hash(image, receipt):
@@ -410,9 +427,28 @@ def adapt_model(frame, binding, image, receipt_bytes, response_json, *, now, mod
     response = _json(response_json)
     times = _response_times(response, binding, now)
     output = response.get('output')
-    if not isinstance(output, list) or len(output) != 1:
+    if not isinstance(output, list) or not output or len(output) > 8:
         raise AdapterError('structured_output_lane_mismatch')
-    message = output[0]
+    messages = []
+    for item in output:
+        if not isinstance(item, dict):
+            raise AdapterError('structured_output_lane_mismatch')
+        if item.get('type') == 'message':
+            messages.append(item)
+        elif item.get('type') == 'reasoning':
+            # Responses may include opaque reasoning items. Never parse them as
+            # observations or silently accept tools/extra assistant messages.
+            allowed = {'type', 'id', 'summary', 'content', 'encrypted_content', 'status'}
+            if (set(item) - allowed or not isinstance(item.get('id'), str)
+                    or item.get('content', []) != [] or item.get('summary', []) != []
+                    or item.get('encrypted_content') is not None and not isinstance(item['encrypted_content'], str)
+                    or item.get('status', 'completed') != 'completed'):
+                raise AdapterError('structured_reasoning_lane_mismatch')
+        else:
+            raise AdapterError('structured_output_lane_mismatch')
+    if len(messages) != 1:
+        raise AdapterError('structured_output_lane_mismatch')
+    message = messages[0]
     content = message.get('content') if isinstance(message, dict) else None
     if (not isinstance(message, dict) or message.get('type') != 'message' or message.get('role') != 'assistant'
             or not isinstance(content, list) or len(content) != 1 or not isinstance(content[0], dict)

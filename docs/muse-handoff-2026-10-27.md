@@ -1,5 +1,40 @@
 # Codi — handoff for Muse, 27 October 2026
 
+## Current software round — after Meta API authorization
+
+Miguel explicitly authorized **Meta API calls** (Spark/SAM) while walking the
+dog. **Modal/GPU remains forbidden**; no instance was started. The paper fixture
+is frozen; operator priority is algorithm/model progress, not more marker work.
+
+The [real-model report](verification/real-model-pipeline-2026-10-27.md) supersedes
+earlier statements that no new API calls or real observation inputs exist.
+One offline runner now joins adapted raw model observations and masks into
+six checks, with separate historical image-component diagnostics.107tests pass.
+Seven Spark requests:6completed schema-valid scene responses,1incomplete token-
+budget failure. A deliberate low-reasoning revision fixed generation; opaque
+encrypted reasoning stays private and is never treated as observation text.
+Four of six component presence checks pass. Missing-pen scene says fitmentfalse
+but pen presenceunknown; covered holder isunknown, not relabelled as correct
+occlusionFAIL. Keep both disagreements. Clear/covered/clear sequence is
+pass/unknown/pass. A negative visible fitment can fail without a pen mask;
+positive fitment still needs an identified target pen mask.
+
+Fourteen SAM still requests completed: graph-paper6zero matches, pen6returns
+zero/one/multiple candidates; broadpaper probe8masktokens, specific relational
+paper probe0. No largest-mask shortcut. **Next algorithm unit: target association
+for the intended drawing paper and fitted pen.** Missing/ambiguous geometry
+staysunknown; controller/procedure/footing integrations remain separate.
+
+Estimated conservative Meta cost$0.0743445 using reported usage/published rates,
+not an invoice. Exact requests/responses, encrypted reasoning, receipts/images
+and executable replay manifests remain private inMovies. Private review page:
+`~/Movies/Ambient-Field-Lens/2026-10-27/drawing-readiness/model-observation-review.html`.
+PR4 contains reviewable code/reports; `/assist` untouched/default-deny. No new
+GPU window or confidence/geometry threshold change. No more physical changes
+requested of Miguel. Existing benchmark/reference disclosure boundary unchanged.
+
+## Earlier capture history — superseded where stated above
+
 ## Evening update — supersedes the historical checkpoint below
 
 OPERATOR DIRECTION: Miguel reminds us Reolink is the development test camera,

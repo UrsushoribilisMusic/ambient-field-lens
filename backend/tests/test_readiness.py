@@ -71,6 +71,13 @@ class ReadinessTests(unittest.TestCase):
             with self.subTest(change=change):
                 self.assertEqual(self.run_checks(fitment=replace(self.fitment, **change)).verdict, 'amber')
 
+    def test_visible_empty_holder_fails_fitment_without_a_pen_mask(self):
+        result = self.run_checks(pen=None, fitment=replace(self.fitment, fitted=False))
+        self.assertIs(result.checks[2].state, State.FAIL)
+        for change in [dict(frame_sha256='old'), dict(tool='other'), dict(visible=False)]:
+            result = self.run_checks(pen=None, fitment=replace(self.fitment, fitted=False, **change))
+            self.assertIs(result.checks[2].state, State.UNKNOWN)
+
     def test_paper_hole_fails_despite_identical_bounding_box(self):
         paper = replace(self.paper, pixels=self.paper.pixels - {(4, 4)})
         self.assertEqual(self.run_checks(paper=paper).checks[3].state, State.FAIL)
