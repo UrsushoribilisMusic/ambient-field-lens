@@ -2,6 +2,14 @@
 
 ## Evening update — supersedes the historical checkpoint below
 
+Latest: operator replaced sheet with fine crosses using new60mm-midpoint layout.
+[Clean-sheet report](verification/clean-cross-sheet-result-2026-10-27.md): new
+2880×1616 frame, frozen manual intersections, same1–4/5–9 split and2px bar.
+Errors5–9=1.293/3.235/1.061/0.761/5.290px; RMS2.892333px/max5.290237px FAIL.
+Actual ruler positions not independently verified by agent; requested mark9
+x80/y90 check next, then midpoint6. Pad replacement is a new surface pose,
+no old calibration/robot mapping accepted. No GPU/calls/motion or gate change.
+
 After dinner: [new 2880×1616 geometry-only capture](verification/after-dinner-reprojection-2026-10-27.md)
 fits all nine marks in frame. Fresh manual centres, same split/bar: RMS5.915379px,
 max8.634428px FAIL. No scale transfer from v2. Requested physical centre-distance

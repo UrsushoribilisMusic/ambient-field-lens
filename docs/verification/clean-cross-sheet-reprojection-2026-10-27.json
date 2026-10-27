@@ -1,0 +1,313 @@
+{
+  "measurement_record": {
+    "source_frame": "clean-cross-sheet-200843.jpg",
+    "source_frame_sha256": "4d60b7cfb0808829e50f8393ce1b55155053883c41792a07e1d93cd87c08ebc5",
+    "physical_measurements": "markers-clean-cross-sheet-2026-10-27.txt",
+    "physical_measurements_sha256": "3494076370b596a29a75e6043f2f71e2ebcd1a1f4ee1e7872d856de332e77ae5",
+    "image_size_px": [
+      2880,
+      1616
+    ],
+    "camera_pose": "after-dinner camera with newly replaced clean cross sheet; new unregistered surface pose",
+    "method": "Hand-read cross intersections in native main-stream image from nearest-neighbour 2x and 4x crops. Numbers beside crosses excluded. Frozen before residual computation.",
+    "reading_precision_note": "Small crosses remain blurred. Native pixel centre uncertainty roughly1-3px, unquantified; half-pixel notation not subpixel accuracy.",
+    "physical_position_status": "Operator prepared supplied layout and reported ready; no independent camera ruler verification.",
+    "fit_ids": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "validation_ids": [
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "acceptance_bar_px": 2.0,
+    "points": [
+      {
+        "id": 1,
+        "plane_mm": [
+          0,
+          0
+        ],
+        "image_px": [
+          868.5,
+          844.5
+        ]
+      },
+      {
+        "id": 2,
+        "plane_mm": [
+          120,
+          0
+        ],
+        "image_px": [
+          1282,
+          735
+        ]
+      },
+      {
+        "id": 3,
+        "plane_mm": [
+          0,
+          120
+        ],
+        "image_px": [
+          1043.5,
+          1110
+        ]
+      },
+      {
+        "id": 4,
+        "plane_mm": [
+          120,
+          120
+        ],
+        "image_px": [
+          1521,
+          958
+        ]
+      },
+      {
+        "id": 5,
+        "plane_mm": [
+          60,
+          120
+        ],
+        "image_px": [
+          1293.5,
+          1030
+        ]
+      },
+      {
+        "id": 6,
+        "plane_mm": [
+          60,
+          0
+        ],
+        "image_px": [
+          1081,
+          785
+        ]
+      },
+      {
+        "id": 7,
+        "plane_mm": [
+          120,
+          60
+        ],
+        "image_px": [
+          1392,
+          837.5
+        ]
+      },
+      {
+        "id": 8,
+        "plane_mm": [
+          0,
+          60
+        ],
+        "image_px": [
+          948.5,
+          964.5
+        ]
+      },
+      {
+        "id": 9,
+        "plane_mm": [
+          80,
+          90
+        ],
+        "image_px": [
+          1311,
+          943
+        ]
+      }
+    ],
+    "robot_coordinate_linkage": "unknown"
+  },
+  "homography_paper_mm_to_image_px": [
+    [
+      0.0034969707609367553,
+      -2.4101326724373588e-05,
+      0.7169385670852626
+    ],
+    [
+      -0.00037918539374573505,
+      0.000520202076581824,
+      0.6971267932107128
+    ],
+    [
+      5.089452500356472e-07,
+      -1.1767529977281203e-06,
+      0.0008254905781062318
+    ]
+  ],
+  "residuals": [
+    {
+      "id": 1,
+      "split": "fit",
+      "observed_px": [
+        868.5,
+        844.5
+      ],
+      "projected_px": [
+        868.5000000000003,
+        844.5
+      ],
+      "residual_xy_px": [
+        3.410605131648481e-13,
+        0.0
+      ],
+      "error_px": 3.410605131648481e-13
+    },
+    {
+      "id": 2,
+      "split": "fit",
+      "observed_px": [
+        1282,
+        735
+      ],
+      "projected_px": [
+        1282.0,
+        735.0000000000002
+      ],
+      "residual_xy_px": [
+        0.0,
+        2.2737367544323206e-13
+      ],
+      "error_px": 2.2737367544323206e-13
+    },
+    {
+      "id": 3,
+      "split": "fit",
+      "observed_px": [
+        1043.5,
+        1110
+      ],
+      "projected_px": [
+        1043.5,
+        1110.0
+      ],
+      "residual_xy_px": [
+        0.0,
+        0.0
+      ],
+      "error_px": 0.0
+    },
+    {
+      "id": 4,
+      "split": "fit",
+      "observed_px": [
+        1521,
+        958
+      ],
+      "projected_px": [
+        1521.0,
+        958.0000000000001
+      ],
+      "residual_xy_px": [
+        0.0,
+        1.1368683772161603e-13
+      ],
+      "error_px": 1.1368683772161603e-13
+    },
+    {
+      "id": 5,
+      "split": "validation",
+      "observed_px": [
+        1293.5,
+        1030
+      ],
+      "projected_px": [
+        1292.449311692683,
+        1030.753308110392
+      ],
+      "residual_xy_px": [
+        -1.050688307316932,
+        0.7533081103920267
+      ],
+      "error_px": 1.2928337202884699
+    },
+    {
+      "id": 6,
+      "split": "validation",
+      "observed_px": [
+        1081,
+        785
+      ],
+      "projected_px": [
+        1082.6253090322239,
+        787.7969254195201
+      ],
+      "residual_xy_px": [
+        1.6253090322238677,
+        2.7969254195201074
+      ],
+      "error_px": 3.2348757708119513
+    },
+    {
+      "id": 7,
+      "split": "validation",
+      "observed_px": [
+        1392,
+        837.5
+      ],
+      "projected_px": [
+        1391.1596265624835,
+        836.8518691357064
+      ],
+      "residual_xy_px": [
+        -0.8403734375165186,
+        -0.6481308642936483
+      ],
+      "error_px": 1.061273353916587
+    },
+    {
+      "id": 8,
+      "split": "validation",
+      "observed_px": [
+        948.5,
+        964.5
+      ],
+      "projected_px": [
+        947.8160382324849,
+        964.8337608612837
+      ],
+      "residual_xy_px": [
+        -0.683961767515143,
+        0.3337608612837357
+      ],
+      "error_px": 0.7610519114668195
+    },
+    {
+      "id": 9,
+      "split": "validation",
+      "observed_px": [
+        1311,
+        943
+      ],
+      "projected_px": [
+        1308.0746605790152,
+        938.5921659555503
+      ],
+      "residual_xy_px": [
+        -2.9253394209847556,
+        -4.407834044449714
+      ],
+      "error_px": 5.290237394614476
+    }
+  ],
+  "held_out_rms_px": 2.892333076115514,
+  "held_out_max_px": 5.290237394614476,
+  "acceptance_bar_px": 2.0,
+  "network_calls": 0,
+  "gpu_used": false,
+  "robot_coordinate_linkage": "unknown",
+  "footprint_registration_accepted": false,
+  "paper_plane_validation": "FAIL",
+  "rejection": "Independent registration validation exceeds tolerance"
+}
