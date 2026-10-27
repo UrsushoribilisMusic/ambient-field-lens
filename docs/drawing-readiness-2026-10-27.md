@@ -248,3 +248,20 @@ All raw/result clips, original images, provenance and calibration snapshots are
 private in today's capture directory. Next: measure two adjacent square sides
 without moving the book, then extend viewpoint captures of the same fixed
 setup. GPU eligibility remains false; no paid/model calls or live gate wiring.
+
+### Dimensional check: 45×40 mm reported, not a metric pass
+
+Operator measured the post-fix square as width45, height40 and explicitly
+confirmed millimetres (initial message said cm). Nominal command is40×40 mm:
+reported width error+5 mm/+12.5%, height0. These are operator ruler measurements,
+not independently verified photo coordinates. Actual robot-axis identity of
+the named width has not been verified.
+
+Read-only source inspection confirms Control Center passes the selected shape
+size, the wrapper does not enlarge40 mm, and basic-shape code requests relative
+X40/Y40/-X40/-Y40 after selecting metric mode. No application width multiplier
+was found. This does not identify a firmware/mechanical cause. Requested the
+remaining two opposite-edge measurements before interpreting stretch/skew or
+ambiguous ink corners. No new drawing, calibration or firmware change issued.
+Visual stroke success remains separate from the failed dimensional check;
+do not use this square as an assumed40 mm metric calibration reference.
