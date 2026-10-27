@@ -112,3 +112,21 @@ is adequate visibility to attempt point annotation, not a validated registration
 Requested camera/surface stay fixed and independent measured E–H points be added
 at the previously specified positions. Coordinates, fit and held-out validation
 remain pending. All snapshots/review metadata remain private; no SAM/GPU calls.
+
+## S12: eight marks visible; preliminary nominal mapping rejected
+
+Captured main-stream S12 with all eight red marks distinguishable, camera left at
+the successful sideways viewpoint. A preliminary manual annotation used corner
+marks A–D for fitting and edge marks E–H for independent validation, with the
+nominal ruler positions supplied in the operator instructions. Proposed point
+identities/origin are not yet operator-confirmed; manual image localization
+uncertainty is approximately 4 px. No coordinates were inferred as Ross robot
+coordinates.
+
+Held-out errors E/F/G/H: 5.13 / 18.12 / 4.13 / 19.97 px. The unchanged 2 px bound
+rejects this preliminary mapping. This is not an accepted physical calibration
+and not evidence of successful marker registration. Private report and point-ID
+review image preserve exact annotations and assumptions. Operator was asked to
+confirm whether down-measurements start below the binding or at pad top before
+any further interpretation; no redraw/camera move requested. No paid/model calls,
+GPU window, threshold adjustment or live gate wiring.
