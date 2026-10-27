@@ -2,6 +2,13 @@
 
 ## Evening update — supersedes the historical checkpoint below
 
+After dinner: [new 2880×1616 geometry-only capture](verification/after-dinner-reprojection-2026-10-27.md)
+fits all nine marks in frame. Fresh manual centres, same split/bar: RMS5.915379px,
+max8.634428px FAIL. No scale transfer from v2. Requested physical centre-distance
+verification (mark6 at55mm from mark1 along top row; mark9 x80/y90), not another
+camera adjustment or residual-guided annotation. This new frame has no masks;
+presence/footprint unknown. Earlier45-frame inventory remains a separate batch.
+
 PR3 is now merged on main (`d9fbed4`). Contract v2 and the subsequent adapter /
 measured-marker work are in [draft PR4](https://github.com/UrsushoribilisMusic/ambient-field-lens/pull/4),
 implementation commit `c216eb6`, still on `codi/drawing-readiness-cpu`.

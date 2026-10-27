@@ -60,7 +60,9 @@ def report(readings, source_dir):
     def pairs(group):
         return [Correspondence(tuple(p['plane_mm']), tuple(p['image_px'])) for p in group]
     try:
-        fit_registration(pairs(fit), pairs(held), camera='reolink-896x512', rig='v2-2026-10-27',
+        width, height = readings['image_size_px']
+        fit_registration(pairs(fit), pairs(held), camera=f'reolink-{width}x{height}',
+                         rig=readings.get('camera_pose', 'v2-2026-10-27'),
                          surface_pose='measured-paper-local-plane',
                          source_frame_sha256=readings['source_frame_sha256'], max_error_px=2.0)
         result['paper_plane_validation'] = 'PASS'
