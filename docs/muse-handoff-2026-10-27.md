@@ -2,6 +2,15 @@
 
 ## Evening update — supersedes the historical checkpoint below
 
+LATEST: Miguel discovers new sheet grid is4mm, not5mm. Grid-count-derived
+coordinates now unverified; no automatic80% rescaling. Rectangle/centrelines
+captured, native hand readings preserved, centre10 hidden by pen stays unknown.
+[Conditional result and clarification](verification/rectangle-centrelines-result-2026-10-27.md):
+nominal120/60 layout with9 at80/90 gives RMS3.694776/max7.356228px FAIL2px,
+but physical acceptance is UNKNOWN until ruler-only actual coordinates exist.
+Requested top span1→2 and left span1→3, no redrawing/motion/calibration. A unit
+rescale alone does not repair pixel errors; do not tune or infer coordinates.
+
 Follow-up to clean-sheet result: operator says cross9 actually85–90 (interpreted
 x85/y90). Preserved separate physical correction, no changed pixels/corners.
 Corrected diagnostic fails: cross9 18.569767px/RMS8.469682px. Confirm cross1
