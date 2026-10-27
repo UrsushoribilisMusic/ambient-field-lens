@@ -2,6 +2,16 @@
 
 ## Evening update — supersedes the historical checkpoint below
 
+LATEST RULER FOLLOW-UP: rectangle120×120mm and centre lines60/60mm confirmed;
+cross9 approximately78.5/92mm. Frozen rectangle-frame pixels unchanged.
+[Latest report](verification/rectangle-ruler-confirmed-result-2026-10-27.md):
+errors5–9=1.010/3.062/1.043/1.631/4.954px; RMS2.781517/max4.953930px FAIL2px.
+Three validation points pass;6/9 fail. Physical approximation and1–3px manual
+reading ambiguity are unquantified. Requested no more sheet changes: next
+independently review image centres/measurement precision, not redraw to improve
+residuals. All previous hypotheses preserved. Centre10 hidden remains unknown;
+robot linkage and live gate still absent. No calls/GPU/motion/tolerance change.
+
 LATEST: Miguel discovers new sheet grid is4mm, not5mm. Grid-count-derived
 coordinates now unverified; no automatic80% rescaling. Rectangle/centrelines
 captured, native hand readings preserved, centre10 hidden by pen stays unknown.
