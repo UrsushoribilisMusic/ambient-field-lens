@@ -92,3 +92,12 @@ address the visibility problem. The new viewpoint must receive its own pose
 identity/registration. The main-stream detail has a distinct resolution/profile;
 its pixel coordinates must not be reused as substream coordinates without an
 explicitly validated mapping. Private inventory records this limitation.
+
+## S09: raised/downward viewpoint B
+
+Operator reports camera raised approximately 9 cm and panned downward. Saved a
+5-second substream take and 2880×1616 main-stream still, with distinct profile
+metadata and viewpoint bucket `tripod-B-raised-downward`. Three red corner marks
+are now distinguishable; the far-side fourth near Ross is not identifiable.
+No four-point mapping was accepted. Requested a steeper downward view framing
+paper and holder; sheet, robot and red marks are to remain in place.
