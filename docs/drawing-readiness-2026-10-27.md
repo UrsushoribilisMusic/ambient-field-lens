@@ -273,3 +273,12 @@ measurement. Treat45×40 mm as this drawing's measured physical dimensions;
 do not infer a universal axis correction. Saved S23 main-stream baseline before
 the next camera-angle change. Robot, paper and book are to stay fixed while
 extending viewpoint captures; metric registration remains pending.
+
+## S24: next sideways viewpoint, near paper edge clipped
+
+Captured new main-stream viewpoint after operator's lateral camera move. Pen
+holder and rectangle are clear, but near paper edge/lower red marks are cut off
+at frame bottom. Preserve this as an incomplete-visibility case, not a passing
+full-paper/containment example. Requested camera remain at the new position and
+tilt down slightly to include sheet, all marks and holder; robot/book unchanged.
+Actual camera displacement and physical setup continuity remain unmeasured.
