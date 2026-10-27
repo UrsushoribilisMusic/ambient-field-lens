@@ -282,3 +282,27 @@ at frame bottom. Preserve this as an incomplete-visibility case, not a passing
 full-paper/containment example. Requested camera remain at the new position and
 tilt down slightly to include sheet, all marks and holder; robot/book unchanged.
 Actual camera displacement and physical setup continuity remain unmeasured.
+
+## S25–S27: usable backed-away view and matched occlusion sequence
+
+At the camera's tilt limit, operator backed it away. S25 shows the full sheet
+and pen holder; retained as viewpointF. S26's45-second window missed the intended
+occlusion in reviewed samples, so it is not marked a successful fault take.
+
+Added operator-stop recording support: capture writes a private PID receipt,
+and `stop_capture.py` verifies the exact ffmpeg process/clip identity before
+SIGINT to finalize the file. Capture accepts that explicitly requested stop only
+after a valid-duration probe and extracts a representative frame within actual
+duration. It never sends a robot command or prints credential-bearing argv.
+
+S27 used the longer window and finalized at111.7 seconds on operator completion.
+Human-reviewed same-clip reference frames: clear30 s, calendar-covered80 s,
+clear100 s. Full holder/pen occlusion visible at75/80/85/90 s, clear again95 s.
+The calendar also hides much of the paper: log both tool and paper visibility
+changes, not a pure tool-only manipulation. Exact transitions are only bracketed
+by sampled times. Frames/hashes and private timing contact sheet are retained.
+
+This confirms a captured visibility pair, not an automated presence/containment
+check pass. Metric mapping and all-scene CPU/model evaluation remain pending.
+The896×512 substream samples have a distinct profile from2880×1616 main-stream
+images. No coordinate interchange, paid API, GPU, motion or backend gate wiring.
