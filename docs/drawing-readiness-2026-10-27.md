@@ -306,3 +306,38 @@ This confirms a captured visibility pair, not an automated presence/containment
 check pass. Metric mapping and all-scene CPU/model evaluation remain pending.
 The896×512 substream samples have a distinct profile from2880×1616 main-stream
 images. No coordinate interchange, paid API, GPU, motion or backend gate wiring.
+
+## CPU processing during operator lunch
+
+Implemented the separate pure `pen_holder_observable_presence` check with
+frame-bound pen and holder observations. Occlusion fails observable presence
+without claiming physical absence. Missing observations remain unknown. Eight
+new tests cover absent pen/visible holder, occlusion, wrong frame/role/size,
+unknown visibility and preservation of one role's failure alongside another's
+unknown. The function does not accept an LLM verdict or score and is not wired
+into the live gate.
+
+Ingested34 primary/curated image assets across26–27 October. Verified hashes
+against saved provenance, probed actual dimensions, normalized phone orientation,
+assigned distinct2880×1616 main-stream,896×512 substream and3024×4032 phone
+profiles, and assigned coarse tripod A–F/phone buckets from the operator stages.
+Intrinsics/distortion and metric poses remain explicitly unknown. Raw media stays
+private; only whitelisted metadata, public reference observations and raw reports
+are committed. Eight provenance regressions cover hash corruption, path/symlink
+escape, profile separation, curated merges, and preventing requested faults or
+human-reference outcomes from becoming model outputs.
+
+Ran both pure checks on every inventoried frame. Actual presence outputs are
+34 unknown because no image-model observations are available. Actual footprint
+outputs are34 unknown because no physical mapping/footprint is accepted and
+paper masks exist only for the S03 diagnostic. Separate human-reference presence
+replay gives19 pass/3 fail/12 unknown, with no disagreements among the4 explicit
+reference expectations. This is logic replay, not detector accuracy. Requested
+displacement labels are not automatically promoted to a containment failure.
+
+29 readiness/geometry/presence tests +8 provenance tests +19 backend tests pass
+(56 total). See `verification/scene-batch-2026-10-27.md` and its JSON companion.
+Remaining: genuine measured out-of-paper fault, actual image-model readouts/masks,
+accepted marker/robot mapping, controller setup binding and exact corpus-step
+evidence. Multi-view robustness is still untested. No GPU, model call, motion,
+threshold tuning or backend integration during lunch processing.

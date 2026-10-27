@@ -1,0 +1,1314 @@
+{
+  "dataset": "drawing-readiness-through-2026-10-27",
+  "scene_count": 34,
+  "profiles": [
+    {
+      "id": "phone-3024x4032-intrinsics-unknown",
+      "width": 3024,
+      "height": 4032,
+      "intrinsics": null,
+      "distortion": null,
+      "cross_stream_coordinate_transfer_validated": false
+    },
+    {
+      "id": "reolink-2880x1616-intrinsics-unknown",
+      "width": 2880,
+      "height": 1616,
+      "intrinsics": null,
+      "distortion": null,
+      "cross_stream_coordinate_transfer_validated": false
+    },
+    {
+      "id": "reolink-896x512-intrinsics-unknown",
+      "width": 896,
+      "height": 512,
+      "intrinsics": null,
+      "distortion": null,
+      "cross_stream_coordinate_transfer_validated": false
+    }
+  ],
+  "scenes": [
+    {
+      "scene_id": "S00",
+      "asset": "2026-10-26/drawing-readiness/S00-baseline.jpg",
+      "frame_sha256": "bb8083d7c9132644595b1f77fb8c391ebfd17ff0fd24350ae8e25301d988c950",
+      "source_record": "2026-10-26/drawing-readiness/review-manifest.json",
+      "camera_profile": "reolink-896x512-intrinsics-unknown",
+      "pose_bucket": "tripod-A-unmeasured",
+      "pose_assignment_method": "operator stage/capture sequence, not measured metric pose",
+      "review_status": "unreviewed",
+      "observed_variations": [],
+      "observed_note": "Clear view; paper block on book under fitted pen. Original pose.",
+      "reference_labels": {
+        "pen": "clear_present",
+        "holder": "clear_present",
+        "frame_sha256": "bb8083d7c9132644595b1f77fb8c391ebfd17ff0fd24350ae8e25301d988c950"
+      },
+      "reference_presence_logic": {
+        "name": "pen_holder_observable_presence",
+        "state": "pass",
+        "reason": "Pen and holder both observed clearly; mechanical fitment not established.",
+        "correction": ""
+      },
+      "actual_presence_check": {
+        "name": "pen_holder_observable_presence",
+        "state": "unknown",
+        "reason": "pen: missing or mismatched observation; holder: missing or mismatched observation",
+        "correction": "Show the pen and holder clearly; fit the pen if it is absent."
+      },
+      "actual_footprint_check": {
+        "name": "footprint_inside_paper",
+        "state": "unknown",
+        "reason": "Paper boundary is unavailable.",
+        "correction": "Show the complete drawing paper."
+      },
+      "expected_reference_presence": null,
+      "reference_logic_disagreement": false,
+      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+    },
+    {
+      "scene_id": "S01-pen-occluded",
+      "asset": "2026-10-26/drawing-readiness/S01-pen-occluded.jpg",
+      "frame_sha256": "af01d5e90e4596be9c42b9add759f5730f688e366e0faa5e14e02a4dd222743c",
+      "source_record": "2026-10-26/drawing-readiness/S01-pen-occluded.capture.json",
+      "camera_profile": "reolink-896x512-intrinsics-unknown",
+      "pose_bucket": "tripod-A-unmeasured",
+      "pose_assignment_method": "operator stage/capture sequence, not measured metric pose",
+      "review_status": "unreviewed",
+      "observed_variations": [],
+      "observed_note": "",
+      "reference_labels": {},
+      "reference_presence_logic": {
+        "name": "pen_holder_observable_presence",
+        "state": "unknown",
+        "reason": "pen: missing or mismatched observation; holder: missing or mismatched observation",
+        "correction": "Show the pen and holder clearly; fit the pen if it is absent."
+      },
+      "actual_presence_check": {
+        "name": "pen_holder_observable_presence",
+        "state": "unknown",
+        "reason": "pen: missing or mismatched observation; holder: missing or mismatched observation",
+        "correction": "Show the pen and holder clearly; fit the pen if it is absent."
+      },
+      "actual_footprint_check": {
+        "name": "footprint_inside_paper",
+        "state": "unknown",
+        "reason": "Paper boundary is unavailable.",
+        "correction": "Show the complete drawing paper."
+      },
+      "expected_reference_presence": null,
+      "reference_logic_disagreement": false,
+      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+    },
+    {
+      "scene_id": "S01b",
+      "asset": "2026-10-26/drawing-readiness/S01b-pen-occluded-t15.jpg",
+      "frame_sha256": "dc85c331d9cc27421cb7315a218d2fe5d6218e49251b53aa154083a530c6684a",
+      "source_record": "2026-10-26/drawing-readiness/review-manifest.json",
+      "camera_profile": "reolink-896x512-intrinsics-unknown",
+      "pose_bucket": "tripod-A-unmeasured",
+      "pose_assignment_method": "operator stage/capture sequence, not measured metric pose",
+      "review_status": "reference-reviewed",
+      "observed_variations": [],
+      "observed_note": "Calendar blocks pen holder and much of drawing surface. Do not infer tool absence from occlusion.",
+      "reference_labels": {
+        "pen": "occluded",
+        "holder": "occluded",
+        "frame_sha256": "dc85c331d9cc27421cb7315a218d2fe5d6218e49251b53aa154083a530c6684a"
+      },
+      "reference_presence_logic": {
+        "name": "pen_holder_observable_presence",
+        "state": "fail",
+        "reason": "pen: occluded; observable presence fails, physical absence not inferred; holder: occluded; observable presence fails, physical absence not inferred",
+        "correction": "Show the pen and holder clearly; fit the pen if it is absent."
+      },
+      "actual_presence_check": {
+        "name": "pen_holder_observable_presence",
+        "state": "unknown",
+        "reason": "pen: missing or mismatched observation; holder: missing or mismatched observation",
+        "correction": "Show the pen and holder clearly; fit the pen if it is absent."
+      },
+      "actual_footprint_check": {
+        "name": "footprint_inside_paper",
+        "state": "unknown",
+        "reason": "Paper boundary is unavailable.",
+        "correction": "Show the complete drawing paper."
+      },
+      "expected_reference_presence": null,
+      "reference_logic_disagreement": false,
+      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+    },
+    {
+      "scene_id": "S01b-pen-occluded",
+      "asset": "2026-10-26/drawing-readiness/S01b-pen-occluded.jpg",
+      "frame_sha256": "df331e58dfddb48997a147c4733a449a5472f2ad673f3ba02a0bbfff77be2bf2",
+      "source_record": "2026-10-26/drawing-readiness/S01b-pen-occluded.capture.json",
+      "camera_profile": "reolink-896x512-intrinsics-unknown",
+      "pose_bucket": "tripod-A-unmeasured",
+      "pose_assignment_method": "operator stage/capture sequence, not measured metric pose",
+      "review_status": "unreviewed",
+      "observed_variations": [],
+      "observed_note": "",
+      "reference_labels": {},
+      "reference_presence_logic": {
+        "name": "pen_holder_observable_presence",
+        "state": "unknown",
+        "reason": "pen: missing or mismatched observation; holder: missing or mismatched observation",
+        "correction": "Show the pen and holder clearly; fit the pen if it is absent."
+      },
+      "actual_presence_check": {
+        "name": "pen_holder_observable_presence",
+        "state": "unknown",
+        "reason": "pen: missing or mismatched observation; holder: missing or mismatched observation",
+        "correction": "Show the pen and holder clearly; fit the pen if it is absent."
+      },
+      "actual_footprint_check": {
+        "name": "footprint_inside_paper",
+        "state": "unknown",
+        "reason": "Paper boundary is unavailable.",
+        "correction": "Show the complete drawing paper."
+      },
+      "expected_reference_presence": null,
+      "reference_logic_disagreement": false,
+      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+    },
+    {
+      "scene_id": "S02-paper-displaced",
+      "asset": "2026-10-26/drawing-readiness/S02-paper-displaced.jpg",
+      "frame_sha256": "54db9a4d657ecf69107d2f54fdccc56a1433e06ca775f2ecedc219e3cbbea2ff",
+      "source_record": "2026-10-26/drawing-readiness/S02-paper-displaced.capture.json",
+      "camera_profile": "reolink-896x512-intrinsics-unknown",
+      "pose_bucket": "tripod-A-unmeasured",
+      "pose_assignment_method": "operator stage/capture sequence, not measured metric pose",
+      "review_status": "unreviewed",
+      "observed_variations": [],
+      "observed_note": "",
+      "reference_labels": {},
+      "reference_presence_logic": {
+        "name": "pen_holder_observable_presence",
+        "state": "unknown",
+        "reason": "pen: missing or mismatched observation; holder: missing or mismatched observation",
+        "correction": "Show the pen and holder clearly; fit the pen if it is absent."
+      },
+      "actual_presence_check": {
+        "name": "pen_holder_observable_presence",
+        "state": "unknown",
+        "reason": "pen: missing or mismatched observation; holder: missing or mismatched observation",
+        "correction": "Show the pen and holder clearly; fit the pen if it is absent."
+      },
+      "actual_footprint_check": {
+        "name": "footprint_inside_paper",
+        "state": "unknown",
+        "reason": "Paper boundary is unavailable.",
+        "correction": "Show the complete drawing paper."
+      },
+      "expected_reference_presence": null,
+      "reference_logic_disagreement": false,
+      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+    },
+    {
+      "scene_id": "S03",
+      "asset": "2026-10-26/drawing-readiness/S03-restored-baseline.jpg",
+      "frame_sha256": "ec3118828805f3cc30fa4da3fcb5b44de8827b3e2fa8d38fd6b2ea2c6b8a4dc9",
+      "source_record": "2026-10-26/drawing-readiness/review-manifest.json",
+      "camera_profile": "reolink-896x512-intrinsics-unknown",
+      "pose_bucket": "tripod-A-unmeasured",
+      "pose_assignment_method": "operator stage/capture sequence, not measured metric pose",
+      "review_status": "unreviewed",
+      "observed_variations": [],
+      "observed_note": "Clear restored view; approximate return only. User confirms paper block taped to book for Z height. New surface pose.",
+      "reference_labels": {
+        "pen": "clear_present",
+        "holder": "clear_present",
+        "frame_sha256": "ec3118828805f3cc30fa4da3fcb5b44de8827b3e2fa8d38fd6b2ea2c6b8a4dc9"
+      },
+      "reference_presence_logic": {
+        "name": "pen_holder_observable_presence",
+        "state": "pass",
+        "reason": "Pen and holder both observed clearly; mechanical fitment not established.",
+        "correction": ""
+      },
+      "actual_presence_check": {
+        "name": "pen_holder_observable_presence",
+        "state": "unknown",
+        "reason": "pen: missing or mismatched observation; holder: missing or mismatched observation",
+        "correction": "Show the pen and holder clearly; fit the pen if it is absent."
+      },
+      "actual_footprint_check": {
+        "name": "footprint_inside_paper",
+        "state": "unknown",
+        "reason": "Missing, stale or unvalidated footprint geometry.",
+        "correction": "Register this camera and surface pose, then recompute the footprint with its margin."
+      },
+      "expected_reference_presence": null,
+      "reference_logic_disagreement": false,
+      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+    },
+    {
+      "scene_id": "S02-live",
+      "asset": "2026-10-26/drawing-readiness/live-paper-displaced.jpg",
+      "frame_sha256": "347ddaa6098a63c1fd67fc7bbfdedd95c1da0605fdbc1cde3205be4a8510bb03",
+      "source_record": "2026-10-26/drawing-readiness/review-manifest.json",
+      "camera_profile": "reolink-896x512-intrinsics-unknown",
+      "pose_bucket": "tripod-A-unmeasured",
+      "pose_assignment_method": "operator stage/capture sequence, not measured metric pose",
+      "review_status": "reference-reviewed",
+      "observed_variations": [],
+      "observed_note": "Book and taped paper block visibly shifted right. Pen remains over part of surface; out-of-paper footprint NOT established. Timed S02 clip did not retain this position.",
+      "reference_labels": {
+        "pen": "clear_present",
+        "holder": "clear_present",
+        "footprint_note": "Displacement visible, but no independently established out-of-paper footprint",
+        "frame_sha256": "347ddaa6098a63c1fd67fc7bbfdedd95c1da0605fdbc1cde3205be4a8510bb03"
+      },
+      "reference_presence_logic": {
+        "name": "pen_holder_observable_presence",
+        "state": "pass",
+        "reason": "Pen and holder both observed clearly; mechanical fitment not established.",
+        "correction": ""
+      },
+      "actual_presence_check": {
+        "name": "pen_holder_observable_presence",
+        "state": "unknown",
+        "reason": "pen: missing or mismatched observation; holder: missing or mismatched observation",
+        "correction": "Show the pen and holder clearly; fit the pen if it is absent."
+      },
+      "actual_footprint_check": {
+        "name": "footprint_inside_paper",
+        "state": "unknown",
+        "reason": "Paper boundary is unavailable.",
+        "correction": "Show the complete drawing paper."
+      },
+      "expected_reference_presence": null,
+      "reference_logic_disagreement": false,
+      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+    },
+    {
+      "scene_id": "S04-pen-missing",
+      "asset": "2026-10-27/drawing-readiness/S04-pen-missing.jpg",
+      "frame_sha256": "45d5a4d4a3cc0d220f64d119152bd5d1f049254296097b81c30be101d498ddc9",
+      "source_record": "2026-10-27/drawing-readiness/review-manifest.json",
+      "camera_profile": "reolink-896x512-intrinsics-unknown",
+      "pose_bucket": "tripod-A-unmeasured",
+      "pose_assignment_method": "operator stage/capture sequence, not measured metric pose",
+      "review_status": "visually-reviewed",
+      "observed_variations": [
+        "pen removed",
+        "daylight/illumination differs from previous evening",
+        "physical setup continuity across sessions unverified"
+      ],
+      "observed_note": "Holder visible and empty; no pen fitted. Paper block on book visible. Robot face unlit; controller reachable.",
+      "reference_labels": {
+        "pen": "clear_not_observed",
+        "holder": "clear_present",
+        "expected_presence": "fail",
+        "frame_sha256": "45d5a4d4a3cc0d220f64d119152bd5d1f049254296097b81c30be101d498ddc9"
+      },
+      "reference_presence_logic": {
+        "name": "pen_holder_observable_presence",
+        "state": "fail",
+        "reason": "pen: not observed in clear view",
+        "correction": "Show the pen and holder clearly; fit the pen if it is absent."
+      },
+      "actual_presence_check": {
+        "name": "pen_holder_observable_presence",
+        "state": "unknown",
+        "reason": "pen: missing or mismatched observation; holder: missing or mismatched observation",
+        "correction": "Show the pen and holder clearly; fit the pen if it is absent."
+      },
+      "actual_footprint_check": {
+        "name": "footprint_inside_paper",
+        "state": "unknown",
+        "reason": "Paper boundary is unavailable.",
+        "correction": "Show the complete drawing paper."
+      },
+      "expected_reference_presence": "fail",
+      "reference_logic_disagreement": false,
+      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+    },
+    {
+      "scene_id": "S05-pen-refitted",
+      "asset": "2026-10-27/drawing-readiness/S05-pen-refitted.jpg",
+      "frame_sha256": "ba9509765dd4d309ad257583305a2e25dc1072c5ae27d8ff78b8e78f846d0363",
+      "source_record": "2026-10-27/drawing-readiness/review-manifest.json",
+      "camera_profile": "reolink-896x512-intrinsics-unknown",
+      "pose_bucket": "tripod-A-unmeasured",
+      "pose_assignment_method": "operator stage/capture sequence, not measured metric pose",
+      "review_status": "visually-reviewed",
+      "observed_variations": [
+        "pen refitted since S04",
+        "tool/contact pose changed; operator reports slightly different spot",
+        "robot face illuminated now; S04 face was unlit",
+        "inter-capture paper/camera metric continuity not verified"
+      ],
+      "observed_note": "Pen visibly fitted, extending through holder toward paper. Operator reports contact at a slightly different spot. Contact force and Z calibration not established by image.",
+      "reference_labels": {
+        "pen": "clear_present",
+        "holder": "clear_present",
+        "frame_sha256": "ba9509765dd4d309ad257583305a2e25dc1072c5ae27d8ff78b8e78f846d0363"
+      },
+      "reference_presence_logic": {
+        "name": "pen_holder_observable_presence",
+        "state": "pass",
+        "reason": "Pen and holder both observed clearly; mechanical fitment not established.",
+        "correction": ""
+      },
+      "actual_presence_check": {
+        "name": "pen_holder_observable_presence",
+        "state": "unknown",
+        "reason": "pen: missing or mismatched observation; holder: missing or mismatched observation",
+        "correction": "Show the pen and holder clearly; fit the pen if it is absent."
+      },
+      "actual_footprint_check": {
+        "name": "footprint_inside_paper",
+        "state": "unknown",
+        "reason": "Paper boundary is unavailable.",
+        "correction": "Show the complete drawing paper."
+      },
+      "expected_reference_presence": null,
+      "reference_logic_disagreement": false,
+      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+    },
+    {
+      "scene_id": "S06-calibration-process",
+      "asset": "2026-10-27/drawing-readiness/S06-calibration-process.jpg",
+      "frame_sha256": "8ca9066aff489d724de503f05a12c6d132598e83ea92b325d8deea6b72a98781",
+      "source_record": "2026-10-27/drawing-readiness/review-manifest.json",
+      "camera_profile": "reolink-896x512-intrinsics-unknown",
+      "pose_bucket": "tripod-A-unmeasured",
+      "pose_assignment_method": "operator stage/capture sequence, not measured metric pose",
+      "review_status": "sampled-frames-reviewed-not-full-clip",
+      "observed_variations": [],
+      "observed_note": "180-second video finalized; frames at30s and90s reviewed, pen fitted, near-static sampled views. Process completion reported by operator; no claim full procedural correctness verified from samples.",
+      "reference_labels": {},
+      "reference_presence_logic": {
+        "name": "pen_holder_observable_presence",
+        "state": "unknown",
+        "reason": "pen: missing or mismatched observation; holder: missing or mismatched observation",
+        "correction": "Show the pen and holder clearly; fit the pen if it is absent."
+      },
+      "actual_presence_check": {
+        "name": "pen_holder_observable_presence",
+        "state": "unknown",
+        "reason": "pen: missing or mismatched observation; holder: missing or mismatched observation",
+        "correction": "Show the pen and holder clearly; fit the pen if it is absent."
+      },
+      "actual_footprint_check": {
+        "name": "footprint_inside_paper",
+        "state": "unknown",
+        "reason": "Paper boundary is unavailable.",
+        "correction": "Show the complete drawing paper."
+      },
+      "expected_reference_presence": null,
+      "reference_logic_disagreement": false,
+      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+    },
+    {
+      "scene_id": "S07-post-calibration-baseline",
+      "asset": "2026-10-27/drawing-readiness/S07-post-calibration-baseline.jpg",
+      "frame_sha256": "7b58003a6b1b93b76fc1fabaf3c1d51d623dd6a5fc2377acc2d0aa279e7be686",
+      "source_record": "2026-10-27/drawing-readiness/review-manifest.json",
+      "camera_profile": "reolink-896x512-intrinsics-unknown",
+      "pose_bucket": "tripod-A-unmeasured",
+      "pose_assignment_method": "operator stage/capture sequence, not measured metric pose",
+      "review_status": "visually-reviewed",
+      "observed_variations": [],
+      "observed_note": "Pen fitted above paper in post-calibration baseline; operator completion plus fresh controller ready flags recorded; metric camera registration and contact force unverified.",
+      "reference_labels": {
+        "pen": "clear_present",
+        "holder": "clear_present",
+        "frame_sha256": "7b58003a6b1b93b76fc1fabaf3c1d51d623dd6a5fc2377acc2d0aa279e7be686"
+      },
+      "reference_presence_logic": {
+        "name": "pen_holder_observable_presence",
+        "state": "pass",
+        "reason": "Pen and holder both observed clearly; mechanical fitment not established.",
+        "correction": ""
+      },
+      "actual_presence_check": {
+        "name": "pen_holder_observable_presence",
+        "state": "unknown",
+        "reason": "pen: missing or mismatched observation; holder: missing or mismatched observation",
+        "correction": "Show the pen and holder clearly; fit the pen if it is absent."
+      },
+      "actual_footprint_check": {
+        "name": "footprint_inside_paper",
+        "state": "unknown",
+        "reason": "Paper boundary is unavailable.",
+        "correction": "Show the complete drawing paper."
+      },
+      "expected_reference_presence": null,
+      "reference_logic_disagreement": false,
+      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+    },
+    {
+      "scene_id": "S08-first-four-red-marks",
+      "asset": "2026-10-27/drawing-readiness/S08-first-four-red-marks.jpg",
+      "frame_sha256": "33759242a325e2140e6c1bb8eefac33fa08edfcb818b16976e87564ab998dc7f",
+      "source_record": "2026-10-27/drawing-readiness/review-manifest.json",
+      "camera_profile": "reolink-896x512-intrinsics-unknown",
+      "pose_bucket": "tripod-A-unmeasured",
+      "pose_assignment_method": "operator stage/capture sequence, not measured metric pose",
+      "review_status": "visually-reviewed-unusable-for-point-localization",
+      "observed_variations": [],
+      "observed_note": "Paper heavily foreshortened in low oblique view. All four red cross centers cannot be reliably distinguished in substream or main-stream detail. No pixel correspondences approved.",
+      "reference_labels": {
+        "pen": "clear_present",
+        "holder": "clear_present",
+        "frame_sha256": "33759242a325e2140e6c1bb8eefac33fa08edfcb818b16976e87564ab998dc7f"
+      },
+      "reference_presence_logic": {
+        "name": "pen_holder_observable_presence",
+        "state": "pass",
+        "reason": "Pen and holder both observed clearly; mechanical fitment not established.",
+        "correction": ""
+      },
+      "actual_presence_check": {
+        "name": "pen_holder_observable_presence",
+        "state": "unknown",
+        "reason": "pen: missing or mismatched observation; holder: missing or mismatched observation",
+        "correction": "Show the pen and holder clearly; fit the pen if it is absent."
+      },
+      "actual_footprint_check": {
+        "name": "footprint_inside_paper",
+        "state": "unknown",
+        "reason": "Paper boundary is unavailable.",
+        "correction": "Show the complete drawing paper."
+      },
+      "expected_reference_presence": null,
+      "reference_logic_disagreement": false,
+      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+    },
+    {
+      "scene_id": "S09-higher-camera-red-marks",
+      "asset": "2026-10-27/drawing-readiness/S09-higher-camera-red-marks.jpg",
+      "frame_sha256": "97d795eab21e1e440da2ecea6c145ed49a7de702bbabe621676759adca611366",
+      "source_record": "2026-10-27/drawing-readiness/review-manifest.json",
+      "camera_profile": "reolink-896x512-intrinsics-unknown",
+      "pose_bucket": "tripod-B-unmeasured",
+      "pose_assignment_method": "operator stage/capture sequence, not measured metric pose",
+      "review_status": "visually-reviewed-incomplete-marker-visibility",
+      "observed_variations": [],
+      "observed_note": "Paper less foreshortened; three red corner marks distinguishable. Fourth far-side mark near robot not identifiable; no accepted 4-point correspondence set.",
+      "reference_labels": {
+        "pen": "clear_present",
+        "holder": "clear_present",
+        "frame_sha256": "97d795eab21e1e440da2ecea6c145ed49a7de702bbabe621676759adca611366"
+      },
+      "reference_presence_logic": {
+        "name": "pen_holder_observable_presence",
+        "state": "pass",
+        "reason": "Pen and holder both observed clearly; mechanical fitment not established.",
+        "correction": ""
+      },
+      "actual_presence_check": {
+        "name": "pen_holder_observable_presence",
+        "state": "unknown",
+        "reason": "pen: missing or mismatched observation; holder: missing or mismatched observation",
+        "correction": "Show the pen and holder clearly; fit the pen if it is absent."
+      },
+      "actual_footprint_check": {
+        "name": "footprint_inside_paper",
+        "state": "unknown",
+        "reason": "Paper boundary is unavailable.",
+        "correction": "Show the complete drawing paper."
+      },
+      "expected_reference_presence": null,
+      "reference_logic_disagreement": false,
+      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+    },
+    {
+      "scene_id": "S10",
+      "asset": "2026-10-27/drawing-readiness/S10-mainstream-detail.jpg",
+      "frame_sha256": "fa90f7693ab477a8557faba791d5abadad16c3d7b8617332c89700b352e5fc39",
+      "source_record": "2026-10-27/drawing-readiness/review-manifest.json",
+      "camera_profile": "reolink-2880x1616-intrinsics-unknown",
+      "pose_bucket": "tripod-C-unmeasured",
+      "pose_assignment_method": "operator stage/capture sequence, not measured metric pose",
+      "review_status": "visually-reviewed-incomplete-marker-visibility",
+      "observed_variations": [],
+      "observed_note": "Three red cross centers clear in main-stream crop; far reference remains partly obscured by arm/holder. No accepted four-point correspondence set.",
+      "reference_labels": {
+        "pen": "clear_present",
+        "holder": "clear_present",
+        "frame_sha256": "fa90f7693ab477a8557faba791d5abadad16c3d7b8617332c89700b352e5fc39"
+      },
+      "reference_presence_logic": {
+        "name": "pen_holder_observable_presence",
+        "state": "pass",
+        "reason": "Pen and holder both observed clearly; mechanical fitment not established.",
+        "correction": ""
+      },
+      "actual_presence_check": {
+        "name": "pen_holder_observable_presence",
+        "state": "unknown",
+        "reason": "pen: missing or mismatched observation; holder: missing or mismatched observation",
+        "correction": "Show the pen and holder clearly; fit the pen if it is absent."
+      },
+      "actual_footprint_check": {
+        "name": "footprint_inside_paper",
+        "state": "unknown",
+        "reason": "Paper boundary is unavailable.",
+        "correction": "Show the complete drawing paper."
+      },
+      "expected_reference_presence": null,
+      "reference_logic_disagreement": false,
+      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+    },
+    {
+      "scene_id": "S11",
+      "asset": "2026-10-27/drawing-readiness/S11-mainstream-detail.jpg",
+      "frame_sha256": "011c143775f70b675d0ccf693762dbff9642dd4136da5f9a3d6f96616e767291",
+      "source_record": "2026-10-27/drawing-readiness/review-manifest.json",
+      "camera_profile": "reolink-2880x1616-intrinsics-unknown",
+      "pose_bucket": "tripod-D-unmeasured",
+      "pose_assignment_method": "operator stage/capture sequence, not measured metric pose",
+      "review_status": "visually-reviewed-four-marks-visible",
+      "observed_variations": [],
+      "observed_note": "Four red reference marks distinguishable in main-stream paper crop, including far mark beside binding. Suitable to attempt point annotation; no metric registration accepted yet.",
+      "reference_labels": {
+        "pen": "clear_present",
+        "holder": "clear_present",
+        "frame_sha256": "011c143775f70b675d0ccf693762dbff9642dd4136da5f9a3d6f96616e767291"
+      },
+      "reference_presence_logic": {
+        "name": "pen_holder_observable_presence",
+        "state": "pass",
+        "reason": "Pen and holder both observed clearly; mechanical fitment not established.",
+        "correction": ""
+      },
+      "actual_presence_check": {
+        "name": "pen_holder_observable_presence",
+        "state": "unknown",
+        "reason": "pen: missing or mismatched observation; holder: missing or mismatched observation",
+        "correction": "Show the pen and holder clearly; fit the pen if it is absent."
+      },
+      "actual_footprint_check": {
+        "name": "footprint_inside_paper",
+        "state": "unknown",
+        "reason": "Paper boundary is unavailable.",
+        "correction": "Show the complete drawing paper."
+      },
+      "expected_reference_presence": null,
+      "reference_logic_disagreement": false,
+      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+    },
+    {
+      "scene_id": "S12",
+      "asset": "2026-10-27/drawing-readiness/S12-eight-marks.jpg",
+      "frame_sha256": "6a786035fa5922da86296692f46408fac132cc19ad0b070911878009b033841b",
+      "source_record": "2026-10-27/drawing-readiness/review-manifest.json",
+      "camera_profile": "reolink-2880x1616-intrinsics-unknown",
+      "pose_bucket": "tripod-D-unmeasured",
+      "pose_assignment_method": "operator stage/capture sequence, not measured metric pose",
+      "review_status": "visually-reviewed-eight-marks-visible",
+      "observed_variations": [],
+      "observed_note": "All8 red marks distinguishable. Preliminary manual corner-fit/edge-validation rejects nominal mapping; worst approx20px vs fixed2px bound. No robot registration.",
+      "reference_labels": {
+        "pen": "clear_present",
+        "holder": "clear_present",
+        "footprint_note": "Marker fit rejected; not metric registration",
+        "frame_sha256": "6a786035fa5922da86296692f46408fac132cc19ad0b070911878009b033841b"
+      },
+      "reference_presence_logic": {
+        "name": "pen_holder_observable_presence",
+        "state": "pass",
+        "reason": "Pen and holder both observed clearly; mechanical fitment not established.",
+        "correction": ""
+      },
+      "actual_presence_check": {
+        "name": "pen_holder_observable_presence",
+        "state": "unknown",
+        "reason": "pen: missing or mismatched observation; holder: missing or mismatched observation",
+        "correction": "Show the pen and holder clearly; fit the pen if it is absent."
+      },
+      "actual_footprint_check": {
+        "name": "footprint_inside_paper",
+        "state": "unknown",
+        "reason": "Paper boundary is unavailable.",
+        "correction": "Show the complete drawing paper."
+      },
+      "expected_reference_presence": null,
+      "reference_logic_disagreement": false,
+      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+    },
+    {
+      "scene_id": "S13",
+      "asset": "2026-10-27/drawing-readiness/S13-ruler-on-paper.jpg",
+      "frame_sha256": "cfb5561151f32bd05b07740ff626dd3af158ef216b0d2eddf8699bb54c946a0c",
+      "source_record": "2026-10-27/drawing-readiness/review-manifest.json",
+      "camera_profile": "reolink-2880x1616-intrinsics-unknown",
+      "pose_bucket": "tripod-D-unmeasured",
+      "pose_assignment_method": "operator stage/capture sequence, not measured metric pose",
+      "review_status": "visually-reviewed-ruler-ticks-unreadable",
+      "observed_variations": [],
+      "observed_note": "Ruler/calculator ruler resting across paper visible in main-stream crop. Scale ticks/zero cannot be reliably read at this angle/resolution; ruler thickness/scale plane not validated. No new metric correspondences accepted.",
+      "reference_labels": {
+        "pen": "clear_present",
+        "holder": "clear_present",
+        "frame_sha256": "cfb5561151f32bd05b07740ff626dd3af158ef216b0d2eddf8699bb54c946a0c"
+      },
+      "reference_presence_logic": {
+        "name": "pen_holder_observable_presence",
+        "state": "pass",
+        "reason": "Pen and holder both observed clearly; mechanical fitment not established.",
+        "correction": ""
+      },
+      "actual_presence_check": {
+        "name": "pen_holder_observable_presence",
+        "state": "unknown",
+        "reason": "pen: missing or mismatched observation; holder: missing or mismatched observation",
+        "correction": "Show the pen and holder clearly; fit the pen if it is absent."
+      },
+      "actual_footprint_check": {
+        "name": "footprint_inside_paper",
+        "state": "unknown",
+        "reason": "Paper boundary is unavailable.",
+        "correction": "Show the complete drawing paper."
+      },
+      "expected_reference_presence": null,
+      "reference_logic_disagreement": false,
+      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+    },
+    {
+      "scene_id": "S14",
+      "asset": "2026-10-27/drawing-readiness/S14-phone-ruler-upright.png",
+      "frame_sha256": "84a97ba4a8dff1736e09bf9a2b1c0751851f809135269165f1321ac3c607e58a",
+      "source_record": "2026-10-27/drawing-readiness/review-manifest.json",
+      "camera_profile": "phone-3024x4032-intrinsics-unknown",
+      "pose_bucket": "phone-overhead-unmeasured",
+      "pose_assignment_method": "operator stage/capture sequence, not measured metric pose",
+      "review_status": "visually-reviewed",
+      "observed_variations": [],
+      "observed_note": "Centimetre labels readable; scale zero extends beyond bottom paper edge; paper and book edges distinct. Broad crosses and printed graph grid visible. Robot holder obscures upper-middle paper.",
+      "reference_labels": {
+        "pen": "unresolved",
+        "holder": "clear_present",
+        "footprint_note": "Distinct phone camera, no transfer of Reolink coordinates",
+        "frame_sha256": "84a97ba4a8dff1736e09bf9a2b1c0751851f809135269165f1321ac3c607e58a"
+      },
+      "reference_presence_logic": {
+        "name": "pen_holder_observable_presence",
+        "state": "unknown",
+        "reason": "pen: visibility or presence unresolved",
+        "correction": "Show the pen and holder clearly; fit the pen if it is absent."
+      },
+      "actual_presence_check": {
+        "name": "pen_holder_observable_presence",
+        "state": "unknown",
+        "reason": "pen: missing or mismatched observation; holder: missing or mismatched observation",
+        "correction": "Show the pen and holder clearly; fit the pen if it is absent."
+      },
+      "actual_footprint_check": {
+        "name": "footprint_inside_paper",
+        "state": "unknown",
+        "reason": "Paper boundary is unavailable.",
+        "correction": "Show the complete drawing paper."
+      },
+      "expected_reference_presence": null,
+      "reference_logic_disagreement": false,
+      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+    },
+    {
+      "scene_id": "S15-square40-drawing",
+      "asset": "2026-10-27/drawing-readiness/S15-square40-drawing.jpg",
+      "frame_sha256": "19264565e6037dfa11be338de7fcd2b80cba0a42532686b6094dd6abcefadedb",
+      "source_record": "2026-10-27/drawing-readiness/review-manifest.json",
+      "camera_profile": "reolink-896x512-intrinsics-unknown",
+      "pose_bucket": "tripod-D-unmeasured",
+      "pose_assignment_method": "operator stage/capture sequence, not measured metric pose",
+      "review_status": "timing-failure-operator-confirmed-video-unreviewed",
+      "observed_variations": [],
+      "observed_note": "",
+      "reference_labels": {},
+      "reference_presence_logic": {
+        "name": "pen_holder_observable_presence",
+        "state": "unknown",
+        "reason": "pen: missing or mismatched observation; holder: missing or mismatched observation",
+        "correction": "Show the pen and holder clearly; fit the pen if it is absent."
+      },
+      "actual_presence_check": {
+        "name": "pen_holder_observable_presence",
+        "state": "unknown",
+        "reason": "pen: missing or mismatched observation; holder: missing or mismatched observation",
+        "correction": "Show the pen and holder clearly; fit the pen if it is absent."
+      },
+      "actual_footprint_check": {
+        "name": "footprint_inside_paper",
+        "state": "unknown",
+        "reason": "Paper boundary is unavailable.",
+        "correction": "Show the complete drawing paper."
+      },
+      "expected_reference_presence": null,
+      "reference_logic_disagreement": false,
+      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+    },
+    {
+      "scene_id": "S16",
+      "asset": "2026-10-27/drawing-readiness/S16-square40-result.jpg",
+      "frame_sha256": "5b20ec43d0e15eafa1cc093c02c7e63184abac194a8f044592a242df13f33677",
+      "source_record": "2026-10-27/drawing-readiness/review-manifest.json",
+      "camera_profile": "reolink-2880x1616-intrinsics-unknown",
+      "pose_bucket": "tripod-D-unmeasured",
+      "pose_assignment_method": "operator stage/capture sequence, not measured metric pose",
+      "review_status": "visually-reviewed-faint-square-edges",
+      "observed_variations": [],
+      "observed_note": "New square-like outline near pre-existing HELLO writing visible. Some sides faint and partially overlap prior ink; four precise independent corners cannot be reliably localized from this result. No automatic contact/tilt diagnosis.",
+      "reference_labels": {
+        "pen": "clear_present",
+        "holder": "clear_present",
+        "frame_sha256": "5b20ec43d0e15eafa1cc093c02c7e63184abac194a8f044592a242df13f33677"
+      },
+      "reference_presence_logic": {
+        "name": "pen_holder_observable_presence",
+        "state": "pass",
+        "reason": "Pen and holder both observed clearly; mechanical fitment not established.",
+        "correction": ""
+      },
+      "actual_presence_check": {
+        "name": "pen_holder_observable_presence",
+        "state": "unknown",
+        "reason": "pen: missing or mismatched observation; holder: missing or mismatched observation",
+        "correction": "Show the pen and holder clearly; fit the pen if it is absent."
+      },
+      "actual_footprint_check": {
+        "name": "footprint_inside_paper",
+        "state": "unknown",
+        "reason": "Paper boundary is unavailable.",
+        "correction": "Show the complete drawing paper."
+      },
+      "expected_reference_presence": null,
+      "reference_logic_disagreement": false,
+      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+    },
+    {
+      "scene_id": "S17-contact-recalibration",
+      "asset": "2026-10-27/drawing-readiness/S17-contact-recalibration.jpg",
+      "frame_sha256": "c7180400c28712ab88035a5b007f187d4bd33a4d9f0c118fec585ff88827b22d",
+      "source_record": "2026-10-27/drawing-readiness/review-manifest.json",
+      "camera_profile": "reolink-896x512-intrinsics-unknown",
+      "pose_bucket": "tripod-D-unmeasured",
+      "pose_assignment_method": "operator stage/capture sequence, not measured metric pose",
+      "review_status": "unreviewed",
+      "observed_variations": [],
+      "observed_note": "",
+      "reference_labels": {},
+      "reference_presence_logic": {
+        "name": "pen_holder_observable_presence",
+        "state": "unknown",
+        "reason": "pen: missing or mismatched observation; holder: missing or mismatched observation",
+        "correction": "Show the pen and holder clearly; fit the pen if it is absent."
+      },
+      "actual_presence_check": {
+        "name": "pen_holder_observable_presence",
+        "state": "unknown",
+        "reason": "pen: missing or mismatched observation; holder: missing or mismatched observation",
+        "correction": "Show the pen and holder clearly; fit the pen if it is absent."
+      },
+      "actual_footprint_check": {
+        "name": "footprint_inside_paper",
+        "state": "unknown",
+        "reason": "Paper boundary is unavailable.",
+        "correction": "Show the complete drawing paper."
+      },
+      "expected_reference_presence": null,
+      "reference_logic_disagreement": false,
+      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+    },
+    {
+      "scene_id": "S18-square40-repeat",
+      "asset": "2026-10-27/drawing-readiness/S18-square40-repeat.jpg",
+      "frame_sha256": "f64778ed78d91b7bc041c93d86d4ecc366f46bfe8bf09c3499b16d0298770692",
+      "source_record": "2026-10-27/drawing-readiness/review-manifest.json",
+      "camera_profile": "reolink-896x512-intrinsics-unknown",
+      "pose_bucket": "tripod-D-unmeasured",
+      "pose_assignment_method": "operator stage/capture sequence, not measured metric pose",
+      "review_status": "unreviewed",
+      "observed_variations": [],
+      "observed_note": "",
+      "reference_labels": {},
+      "reference_presence_logic": {
+        "name": "pen_holder_observable_presence",
+        "state": "unknown",
+        "reason": "pen: missing or mismatched observation; holder: missing or mismatched observation",
+        "correction": "Show the pen and holder clearly; fit the pen if it is absent."
+      },
+      "actual_presence_check": {
+        "name": "pen_holder_observable_presence",
+        "state": "unknown",
+        "reason": "pen: missing or mismatched observation; holder: missing or mismatched observation",
+        "correction": "Show the pen and holder clearly; fit the pen if it is absent."
+      },
+      "actual_footprint_check": {
+        "name": "footprint_inside_paper",
+        "state": "unknown",
+        "reason": "Paper boundary is unavailable.",
+        "correction": "Show the complete drawing paper."
+      },
+      "expected_reference_presence": null,
+      "reference_logic_disagreement": false,
+      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+    },
+    {
+      "scene_id": "S19",
+      "asset": "2026-10-27/drawing-readiness/S19-square-repeat-result.jpg",
+      "frame_sha256": "0eb692eec0f95713f485340ccf4d976ce58a4a6bf39f9cdb7aed12739fb0932c",
+      "source_record": "2026-10-27/drawing-readiness/review-manifest.json",
+      "camera_profile": "reolink-2880x1616-intrinsics-unknown",
+      "pose_bucket": "tripod-D-unmeasured",
+      "pose_assignment_method": "operator stage/capture sequence, not measured metric pose",
+      "review_status": "visually-reviewed-operator-reported-too-high",
+      "observed_variations": [],
+      "observed_note": "Repeat result does not provide four independently legible square corners; operator reports pen too high. Prior ink overlaps region; no physical depth diagnosis certified.",
+      "reference_labels": {
+        "pen": "clear_present",
+        "holder": "clear_present",
+        "frame_sha256": "0eb692eec0f95713f485340ccf4d976ce58a4a6bf39f9cdb7aed12739fb0932c"
+      },
+      "reference_presence_logic": {
+        "name": "pen_holder_observable_presence",
+        "state": "pass",
+        "reason": "Pen and holder both observed clearly; mechanical fitment not established.",
+        "correction": ""
+      },
+      "actual_presence_check": {
+        "name": "pen_holder_observable_presence",
+        "state": "unknown",
+        "reason": "pen: missing or mismatched observation; holder: missing or mismatched observation",
+        "correction": "Show the pen and holder clearly; fit the pen if it is absent."
+      },
+      "actual_footprint_check": {
+        "name": "footprint_inside_paper",
+        "state": "unknown",
+        "reason": "Paper boundary is unavailable.",
+        "correction": "Show the complete drawing paper."
+      },
+      "expected_reference_presence": null,
+      "reference_logic_disagreement": false,
+      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+    },
+    {
+      "scene_id": "S20-post-fix-contact-calibration",
+      "asset": "2026-10-27/drawing-readiness/S20-post-fix-contact-calibration.jpg",
+      "frame_sha256": "49765eec9030aa7572669b3d7f95c7e1f6b597324453b16c1aabb5b94b6bc816",
+      "source_record": "2026-10-27/drawing-readiness/review-manifest.json",
+      "camera_profile": "reolink-896x512-intrinsics-unknown",
+      "pose_bucket": "tripod-D-unmeasured",
+      "pose_assignment_method": "operator stage/capture sequence, not measured metric pose",
+      "review_status": "unreviewed",
+      "observed_variations": [],
+      "observed_note": "",
+      "reference_labels": {},
+      "reference_presence_logic": {
+        "name": "pen_holder_observable_presence",
+        "state": "unknown",
+        "reason": "pen: missing or mismatched observation; holder: missing or mismatched observation",
+        "correction": "Show the pen and holder clearly; fit the pen if it is absent."
+      },
+      "actual_presence_check": {
+        "name": "pen_holder_observable_presence",
+        "state": "unknown",
+        "reason": "pen: missing or mismatched observation; holder: missing or mismatched observation",
+        "correction": "Show the pen and holder clearly; fit the pen if it is absent."
+      },
+      "actual_footprint_check": {
+        "name": "footprint_inside_paper",
+        "state": "unknown",
+        "reason": "Paper boundary is unavailable.",
+        "correction": "Show the complete drawing paper."
+      },
+      "expected_reference_presence": null,
+      "reference_logic_disagreement": false,
+      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+    },
+    {
+      "scene_id": "S21-square40-post-fix",
+      "asset": "2026-10-27/drawing-readiness/S21-square40-post-fix.jpg",
+      "frame_sha256": "86ef36e399c4ce9f054ad976fd085508fa0d8585eadd4840de44761b2b8e1f61",
+      "source_record": "2026-10-27/drawing-readiness/review-manifest.json",
+      "camera_profile": "reolink-896x512-intrinsics-unknown",
+      "pose_bucket": "tripod-D-unmeasured",
+      "pose_assignment_method": "operator stage/capture sequence, not measured metric pose",
+      "review_status": "unreviewed",
+      "observed_variations": [],
+      "observed_note": "",
+      "reference_labels": {},
+      "reference_presence_logic": {
+        "name": "pen_holder_observable_presence",
+        "state": "unknown",
+        "reason": "pen: missing or mismatched observation; holder: missing or mismatched observation",
+        "correction": "Show the pen and holder clearly; fit the pen if it is absent."
+      },
+      "actual_presence_check": {
+        "name": "pen_holder_observable_presence",
+        "state": "unknown",
+        "reason": "pen: missing or mismatched observation; holder: missing or mismatched observation",
+        "correction": "Show the pen and holder clearly; fit the pen if it is absent."
+      },
+      "actual_footprint_check": {
+        "name": "footprint_inside_paper",
+        "state": "unknown",
+        "reason": "Paper boundary is unavailable.",
+        "correction": "Show the complete drawing paper."
+      },
+      "expected_reference_presence": null,
+      "reference_logic_disagreement": false,
+      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+    },
+    {
+      "scene_id": "S22",
+      "asset": "2026-10-27/drawing-readiness/S22-square-post-fix-result.jpg",
+      "frame_sha256": "7482e4d5109e7a77e0703d6592674647762208ba6e32bbd2c7cef2e6405cb4fa",
+      "source_record": "2026-10-27/drawing-readiness/review-manifest.json",
+      "camera_profile": "reolink-2880x1616-intrinsics-unknown",
+      "pose_bucket": "tripod-D-unmeasured",
+      "pose_assignment_method": "operator stage/capture sequence, not measured metric pose",
+      "review_status": "visually-reviewed-closed-square",
+      "observed_variations": [],
+      "observed_note": "Closed square with clearer continuous sides visible after operator-run X/Y tilt fix and fresh calibration. Earlier HELLO ink overlaps square; no measured40mm dimensional pass or independent causal attribution.",
+      "reference_labels": {
+        "pen": "clear_present",
+        "holder": "clear_present",
+        "footprint_note": "Operator measured45x40mm for commanded40x40mm; dimensionally mismatched",
+        "frame_sha256": "7482e4d5109e7a77e0703d6592674647762208ba6e32bbd2c7cef2e6405cb4fa"
+      },
+      "reference_presence_logic": {
+        "name": "pen_holder_observable_presence",
+        "state": "pass",
+        "reason": "Pen and holder both observed clearly; mechanical fitment not established.",
+        "correction": ""
+      },
+      "actual_presence_check": {
+        "name": "pen_holder_observable_presence",
+        "state": "unknown",
+        "reason": "pen: missing or mismatched observation; holder: missing or mismatched observation",
+        "correction": "Show the pen and holder clearly; fit the pen if it is absent."
+      },
+      "actual_footprint_check": {
+        "name": "footprint_inside_paper",
+        "state": "unknown",
+        "reason": "Paper boundary is unavailable.",
+        "correction": "Show the complete drawing paper."
+      },
+      "expected_reference_presence": null,
+      "reference_logic_disagreement": false,
+      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+    },
+    {
+      "scene_id": "S23",
+      "asset": "2026-10-27/drawing-readiness/S23-measured-rectangle-baseline.jpg",
+      "frame_sha256": "d0a57fb7466dba543cb796ba391d9f3214764814560f7ea5d6ff0b67858a431c",
+      "source_record": "2026-10-27/drawing-readiness/review-manifest.json",
+      "camera_profile": "reolink-2880x1616-intrinsics-unknown",
+      "pose_bucket": "tripod-D-unmeasured",
+      "pose_assignment_method": "operator stage/capture sequence, not measured metric pose",
+      "review_status": "unreviewed",
+      "observed_variations": [],
+      "observed_note": "",
+      "reference_labels": {
+        "pen": "clear_present",
+        "holder": "clear_present",
+        "frame_sha256": "d0a57fb7466dba543cb796ba391d9f3214764814560f7ea5d6ff0b67858a431c"
+      },
+      "reference_presence_logic": {
+        "name": "pen_holder_observable_presence",
+        "state": "pass",
+        "reason": "Pen and holder both observed clearly; mechanical fitment not established.",
+        "correction": ""
+      },
+      "actual_presence_check": {
+        "name": "pen_holder_observable_presence",
+        "state": "unknown",
+        "reason": "pen: missing or mismatched observation; holder: missing or mismatched observation",
+        "correction": "Show the pen and holder clearly; fit the pen if it is absent."
+      },
+      "actual_footprint_check": {
+        "name": "footprint_inside_paper",
+        "state": "unknown",
+        "reason": "Paper boundary is unavailable.",
+        "correction": "Show the complete drawing paper."
+      },
+      "expected_reference_presence": null,
+      "reference_logic_disagreement": false,
+      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+    },
+    {
+      "scene_id": "S24",
+      "asset": "2026-10-27/drawing-readiness/S24-next-viewpoint.jpg",
+      "frame_sha256": "e8d2a95c534ba6af1925d1baabaf2ca16310acd5368b35450ce4e979f0646a82",
+      "source_record": "2026-10-27/drawing-readiness/review-manifest.json",
+      "camera_profile": "reolink-2880x1616-intrinsics-unknown",
+      "pose_bucket": "tripod-E-unmeasured",
+      "pose_assignment_method": "operator stage/capture sequence, not measured metric pose",
+      "review_status": "visually-reviewed-paper-clipped",
+      "observed_variations": [],
+      "observed_note": "Changed angle with clear pen/holder and drawn rectangle; near paper edge and lower reference marks clipped by bottom frame boundary. Incomplete paper visibility; no registration or containment accepted.",
+      "reference_labels": {
+        "pen": "clear_present",
+        "holder": "clear_present",
+        "footprint_note": "Near paper edge clipped; cannot pass full-paper containment",
+        "frame_sha256": "e8d2a95c534ba6af1925d1baabaf2ca16310acd5368b35450ce4e979f0646a82"
+      },
+      "reference_presence_logic": {
+        "name": "pen_holder_observable_presence",
+        "state": "pass",
+        "reason": "Pen and holder both observed clearly; mechanical fitment not established.",
+        "correction": ""
+      },
+      "actual_presence_check": {
+        "name": "pen_holder_observable_presence",
+        "state": "unknown",
+        "reason": "pen: missing or mismatched observation; holder: missing or mismatched observation",
+        "correction": "Show the pen and holder clearly; fit the pen if it is absent."
+      },
+      "actual_footprint_check": {
+        "name": "footprint_inside_paper",
+        "state": "unknown",
+        "reason": "Paper boundary is unavailable.",
+        "correction": "Show the complete drawing paper."
+      },
+      "expected_reference_presence": null,
+      "reference_logic_disagreement": false,
+      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+    },
+    {
+      "scene_id": "S25",
+      "asset": "2026-10-27/drawing-readiness/S25-camera-moved-back.jpg",
+      "frame_sha256": "fd67c9b3622c8cd61f2249228df9afe74592aad401fcffdd1a638fc074593c4a",
+      "source_record": "2026-10-27/drawing-readiness/review-manifest.json",
+      "camera_profile": "reolink-2880x1616-intrinsics-unknown",
+      "pose_bucket": "tripod-F-unmeasured",
+      "pose_assignment_method": "operator stage/capture sequence, not measured metric pose",
+      "review_status": "visually-reviewed-full-sheet-visible",
+      "observed_variations": [],
+      "observed_note": "Whole sheet and near edge, reference marks, drawn rectangle and pen holder fit in frame after backing camera away. Far mark visibility still subject to annotation, not metric validation.",
+      "reference_labels": {
+        "pen": "clear_present",
+        "holder": "clear_present",
+        "frame_sha256": "fd67c9b3622c8cd61f2249228df9afe74592aad401fcffdd1a638fc074593c4a"
+      },
+      "reference_presence_logic": {
+        "name": "pen_holder_observable_presence",
+        "state": "pass",
+        "reason": "Pen and holder both observed clearly; mechanical fitment not established.",
+        "correction": ""
+      },
+      "actual_presence_check": {
+        "name": "pen_holder_observable_presence",
+        "state": "unknown",
+        "reason": "pen: missing or mismatched observation; holder: missing or mismatched observation",
+        "correction": "Show the pen and holder clearly; fit the pen if it is absent."
+      },
+      "actual_footprint_check": {
+        "name": "footprint_inside_paper",
+        "state": "unknown",
+        "reason": "Paper boundary is unavailable.",
+        "correction": "Show the complete drawing paper."
+      },
+      "expected_reference_presence": null,
+      "reference_logic_disagreement": false,
+      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+    },
+    {
+      "scene_id": "S26-viewF-holder-occlusion",
+      "asset": "2026-10-27/drawing-readiness/S26-viewF-holder-occlusion.jpg",
+      "frame_sha256": "78f554e1eafc1d39b29035ea4bfbc188c5ad971ccda4a51b672cea4e9a56fd57",
+      "source_record": "2026-10-27/drawing-readiness/review-manifest.json",
+      "camera_profile": "reolink-896x512-intrinsics-unknown",
+      "pose_bucket": "tripod-F-unmeasured",
+      "pose_assignment_method": "operator stage/capture sequence, not measured metric pose",
+      "review_status": "reviewed-samples-no-covered-interval",
+      "observed_variations": [],
+      "observed_note": "12 sampled frames show clear holder; intended10s occlusion not captured in reviewed samples; do not treat as occlusion-fault success.",
+      "reference_labels": {},
+      "reference_presence_logic": {
+        "name": "pen_holder_observable_presence",
+        "state": "unknown",
+        "reason": "pen: missing or mismatched observation; holder: missing or mismatched observation",
+        "correction": "Show the pen and holder clearly; fit the pen if it is absent."
+      },
+      "actual_presence_check": {
+        "name": "pen_holder_observable_presence",
+        "state": "unknown",
+        "reason": "pen: missing or mismatched observation; holder: missing or mismatched observation",
+        "correction": "Show the pen and holder clearly; fit the pen if it is absent."
+      },
+      "actual_footprint_check": {
+        "name": "footprint_inside_paper",
+        "state": "unknown",
+        "reason": "Paper boundary is unavailable.",
+        "correction": "Show the complete drawing paper."
+      },
+      "expected_reference_presence": null,
+      "reference_logic_disagreement": false,
+      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+    },
+    {
+      "scene_id": "S27-viewF-holder-occlusion-repeat@100",
+      "asset": "2026-10-27/drawing-readiness/S27-clear-after-t100.jpg",
+      "frame_sha256": "4907a0ecffa2cd4a5a9cacf767e88dd5c138d5d0657499aa101b958028cc7701",
+      "source_record": "2026-10-27/drawing-readiness/review-manifest.json",
+      "camera_profile": "reolink-896x512-intrinsics-unknown",
+      "pose_bucket": "tripod-F-unmeasured",
+      "pose_assignment_method": "operator stage/capture sequence, not measured metric pose",
+      "review_status": "visually-reviewed-reference-sample",
+      "observed_variations": [],
+      "observed_note": "clear-after",
+      "reference_labels": {
+        "pen": "clear_present",
+        "holder": "clear_present",
+        "expected_presence": "pass",
+        "pair": "S27-clear-covered-clear",
+        "frame_sha256": "4907a0ecffa2cd4a5a9cacf767e88dd5c138d5d0657499aa101b958028cc7701"
+      },
+      "reference_presence_logic": {
+        "name": "pen_holder_observable_presence",
+        "state": "pass",
+        "reason": "Pen and holder both observed clearly; mechanical fitment not established.",
+        "correction": ""
+      },
+      "actual_presence_check": {
+        "name": "pen_holder_observable_presence",
+        "state": "unknown",
+        "reason": "pen: missing or mismatched observation; holder: missing or mismatched observation",
+        "correction": "Show the pen and holder clearly; fit the pen if it is absent."
+      },
+      "actual_footprint_check": {
+        "name": "footprint_inside_paper",
+        "state": "unknown",
+        "reason": "Paper boundary is unavailable.",
+        "correction": "Show the complete drawing paper."
+      },
+      "expected_reference_presence": "pass",
+      "reference_logic_disagreement": false,
+      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+    },
+    {
+      "scene_id": "S27-viewF-holder-occlusion-repeat@30",
+      "asset": "2026-10-27/drawing-readiness/S27-clear-before-t030.jpg",
+      "frame_sha256": "3dbe93903ceca471323035fb78ec70eb5c5e6863e5bd1e5de72b125a706b7a89",
+      "source_record": "2026-10-27/drawing-readiness/review-manifest.json",
+      "camera_profile": "reolink-896x512-intrinsics-unknown",
+      "pose_bucket": "tripod-F-unmeasured",
+      "pose_assignment_method": "operator stage/capture sequence, not measured metric pose",
+      "review_status": "visually-reviewed-reference-sample",
+      "observed_variations": [],
+      "observed_note": "clear-before",
+      "reference_labels": {
+        "pen": "clear_present",
+        "holder": "clear_present",
+        "expected_presence": "pass",
+        "pair": "S27-clear-covered-clear",
+        "frame_sha256": "3dbe93903ceca471323035fb78ec70eb5c5e6863e5bd1e5de72b125a706b7a89"
+      },
+      "reference_presence_logic": {
+        "name": "pen_holder_observable_presence",
+        "state": "pass",
+        "reason": "Pen and holder both observed clearly; mechanical fitment not established.",
+        "correction": ""
+      },
+      "actual_presence_check": {
+        "name": "pen_holder_observable_presence",
+        "state": "unknown",
+        "reason": "pen: missing or mismatched observation; holder: missing or mismatched observation",
+        "correction": "Show the pen and holder clearly; fit the pen if it is absent."
+      },
+      "actual_footprint_check": {
+        "name": "footprint_inside_paper",
+        "state": "unknown",
+        "reason": "Paper boundary is unavailable.",
+        "correction": "Show the complete drawing paper."
+      },
+      "expected_reference_presence": "pass",
+      "reference_logic_disagreement": false,
+      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+    },
+    {
+      "scene_id": "S27-viewF-holder-occlusion-repeat@80",
+      "asset": "2026-10-27/drawing-readiness/S27-occluded-t080.jpg",
+      "frame_sha256": "4b0f29d2e7eb38dbbad173f62cf580b9fb5ed42bcfe1d82ab7fd4645f0076db3",
+      "source_record": "2026-10-27/drawing-readiness/review-manifest.json",
+      "camera_profile": "reolink-896x512-intrinsics-unknown",
+      "pose_bucket": "tripod-F-unmeasured",
+      "pose_assignment_method": "operator stage/capture sequence, not measured metric pose",
+      "review_status": "visually-reviewed-reference-sample",
+      "observed_variations": [],
+      "observed_note": "pen-holder-and-paper-occluded",
+      "reference_labels": {
+        "pen": "occluded",
+        "holder": "occluded",
+        "expected_presence": "fail",
+        "pair": "S27-clear-covered-clear",
+        "footprint_note": "Card also occludes much of paper; not tool-only fault",
+        "frame_sha256": "4b0f29d2e7eb38dbbad173f62cf580b9fb5ed42bcfe1d82ab7fd4645f0076db3"
+      },
+      "reference_presence_logic": {
+        "name": "pen_holder_observable_presence",
+        "state": "fail",
+        "reason": "pen: occluded; observable presence fails, physical absence not inferred; holder: occluded; observable presence fails, physical absence not inferred",
+        "correction": "Show the pen and holder clearly; fit the pen if it is absent."
+      },
+      "actual_presence_check": {
+        "name": "pen_holder_observable_presence",
+        "state": "unknown",
+        "reason": "pen: missing or mismatched observation; holder: missing or mismatched observation",
+        "correction": "Show the pen and holder clearly; fit the pen if it is absent."
+      },
+      "actual_footprint_check": {
+        "name": "footprint_inside_paper",
+        "state": "unknown",
+        "reason": "Paper boundary is unavailable.",
+        "correction": "Show the complete drawing paper."
+      },
+      "expected_reference_presence": "fail",
+      "reference_logic_disagreement": false,
+      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+    },
+    {
+      "scene_id": "S27-viewF-holder-occlusion-repeat",
+      "asset": "2026-10-27/drawing-readiness/S27-viewF-holder-occlusion-repeat.jpg",
+      "frame_sha256": "5aacf35430a049126fe3a19e678a3c2d9728528c544069505a2f02899c9e745d",
+      "source_record": "2026-10-27/drawing-readiness/review-manifest.json",
+      "camera_profile": "reolink-896x512-intrinsics-unknown",
+      "pose_bucket": "tripod-F-unmeasured",
+      "pose_assignment_method": "operator stage/capture sequence, not measured metric pose",
+      "review_status": "visually-reviewed-clear-covered-clear",
+      "observed_variations": [],
+      "observed_note": "Clear view at30s; holder/pen and much of paper covered by calendar at80s; clear again100s. Card introduces both tool and paper visibility faults.",
+      "reference_labels": {},
+      "reference_presence_logic": {
+        "name": "pen_holder_observable_presence",
+        "state": "unknown",
+        "reason": "pen: missing or mismatched observation; holder: missing or mismatched observation",
+        "correction": "Show the pen and holder clearly; fit the pen if it is absent."
+      },
+      "actual_presence_check": {
+        "name": "pen_holder_observable_presence",
+        "state": "unknown",
+        "reason": "pen: missing or mismatched observation; holder: missing or mismatched observation",
+        "correction": "Show the pen and holder clearly; fit the pen if it is absent."
+      },
+      "actual_footprint_check": {
+        "name": "footprint_inside_paper",
+        "state": "unknown",
+        "reason": "Paper boundary is unavailable.",
+        "correction": "Show the complete drawing paper."
+      },
+      "expected_reference_presence": null,
+      "reference_logic_disagreement": false,
+      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+    }
+  ],
+  "reference_logic_disagreements": [],
+  "gpu_eligible": false,
+  "viewpoint_invariance": "untested; views captured, no cross-view calibrated evaluation",
+  "live_gate_wiring": false,
+  "gaps": [
+    "No real marker/robot registration accepted; S12 nominal/refined fits failed.",
+    "No defined and validated out-of-paper footprint case.",
+    "Presence outputs from an image recognizer absent; references are human-reviewed only.",
+    "Paper masks available only for the one S03 SAM diagnostic, not the whole batch.",
+    "No fresh controller session/tool/surface binding or exact approved current corpus step.",
+    "Physical drawing commanded40x40mm measured45x40mm; not a dimensional pass."
+  ]
+}

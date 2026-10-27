@@ -75,12 +75,13 @@ disclosure; nothing vendored.
 | Default-deny backend incapable of green steps | Proven (type-level) |
 | SAM reachable, accepts frames | Proven |
 | SAM mask output on a tripod frame | Proven for one S03 frame: one request, two manually box-prompted masks decoded and visually inspected; not automatic recognition |
-| Offline world-check and planar geometry functions | 21 synthetic CPU tests pass; not physical scene validation |
-| First single-view paired batch | Four reviewed frames saved with hashes/variations; ingestion profile/pose metadata and complete per-scene evaluation pending |
-| Pen/holder presence evaluated across tonight's batch | Pending; existing pen-fitment check is not a separately validated holder-presence detector |
+| Offline readiness, planar geometry and presence functions | 29 synthetic CPU tests pass; not physical scene validation |
+| Scene inventory through 27 October | 34 image assets with verified digests, 3 stream/camera profiles and coarse pose buckets; 8 inventory regressions pass |
+| Separate observable pen/holder presence check | Implemented; human-reference replay19 pass/3 fail/12 unknown. Image-model inputs absent, so actual check output remains unknown on all34 assets |
+| Footprint check over inventoried frames | Executed, unknown on all34: no accepted physical registration/footprint, paper masks only for S03 diagnostic |
 | Marker-derived surface coordinates on real frames | Pending; no measured marker correspondences or real footprint yet |
 | Viewpoint invariance | Explicitly untested; fixed tripod viewpoint only |
-| Paired multi-angle scenes (fault × viewpoint × evidence) | Pending (filming) |
+| Paired multi-angle scenes (fault × viewpoint × evidence) | Multiple coarse views captured plus clear/covered/clear S27; complete calibrated fault/evidence grid still pending |
 | Grounding direction separates present-vs-removed passages | Pending (CPU analysis on paired set) |
 | Full Jacobian vs contrastive comparison | Pending (pre-GPU) |
 | Green path on a calibrated subset | Pending (requires all above) |
@@ -88,8 +89,14 @@ disclosure; nothing vendored.
 Tonight's displaced surface is visibly shifted, but geometric containment is
 unknown without the requested footprint and registration. The covered holder
 cannot satisfy observable presence; that is not proof of physical pen absence.
-Full raw per-scene outputs and fault disagreements remain to be produced.
-See the [checkpoint and overnight checklist](docs/drawing-readiness-progress.md).
+Raw outputs, reference provenance and unresolved faults are in the
+[CPU scene report](docs/verification/scene-batch-2026-10-27.md) and
+[machine-readable inventory](docs/verification/scene-batch-2026-10-27.json).
+The report is not an image-detector accuracy result. The commanded40×40 mm
+physical square was operator-measured45×40 mm, with matching opposite sides;
+visual stroke success does not imply metric accuracy. See the
+[27 October capture/fix log](docs/drawing-readiness-2026-10-27.md) and
+[original checkpoint](docs/drawing-readiness-progress.md).
 
 No new GPU window is authorized until the real paired set is hand-reviewed and
 passes its CPU checks. The $20 ceiling remains. The CPU work is isolated on

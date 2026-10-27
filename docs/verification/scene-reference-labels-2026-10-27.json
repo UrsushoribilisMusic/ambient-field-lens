@@ -1,0 +1,140 @@
+{
+  "label_source": "Codex visual inspection of recorded frames, with operator reports separately recorded in capture metadata",
+  "purpose": "Reference observations for deterministic logic replay; not model predictions, autonomous detection results or an accuracy evaluation",
+  "values": "clear_present, clear_not_observed, occluded, unresolved",
+  "frames": {
+    "S00-baseline.jpg": {
+      "pen": "clear_present",
+      "holder": "clear_present",
+      "frame_sha256": "bb8083d7c9132644595b1f77fb8c391ebfd17ff0fd24350ae8e25301d988c950"
+    },
+    "S01b-pen-occluded-t15.jpg": {
+      "pen": "occluded",
+      "holder": "occluded",
+      "frame_sha256": "dc85c331d9cc27421cb7315a218d2fe5d6218e49251b53aa154083a530c6684a"
+    },
+    "live-paper-displaced.jpg": {
+      "pen": "clear_present",
+      "holder": "clear_present",
+      "footprint_note": "Displacement visible, but no independently established out-of-paper footprint",
+      "frame_sha256": "347ddaa6098a63c1fd67fc7bbfdedd95c1da0605fdbc1cde3205be4a8510bb03"
+    },
+    "S03-restored-baseline.jpg": {
+      "pen": "clear_present",
+      "holder": "clear_present",
+      "frame_sha256": "ec3118828805f3cc30fa4da3fcb5b44de8827b3e2fa8d38fd6b2ea2c6b8a4dc9"
+    },
+    "S04-pen-missing.jpg": {
+      "pen": "clear_not_observed",
+      "holder": "clear_present",
+      "expected_presence": "fail",
+      "frame_sha256": "45d5a4d4a3cc0d220f64d119152bd5d1f049254296097b81c30be101d498ddc9"
+    },
+    "S05-pen-refitted.jpg": {
+      "pen": "clear_present",
+      "holder": "clear_present",
+      "frame_sha256": "ba9509765dd4d309ad257583305a2e25dc1072c5ae27d8ff78b8e78f846d0363"
+    },
+    "S07-post-calibration-baseline.jpg": {
+      "pen": "clear_present",
+      "holder": "clear_present",
+      "frame_sha256": "7b58003a6b1b93b76fc1fabaf3c1d51d623dd6a5fc2377acc2d0aa279e7be686"
+    },
+    "S08-first-four-red-marks.jpg": {
+      "pen": "clear_present",
+      "holder": "clear_present",
+      "frame_sha256": "33759242a325e2140e6c1bb8eefac33fa08edfcb818b16976e87564ab998dc7f"
+    },
+    "S09-higher-camera-red-marks.jpg": {
+      "pen": "clear_present",
+      "holder": "clear_present",
+      "frame_sha256": "97d795eab21e1e440da2ecea6c145ed49a7de702bbabe621676759adca611366"
+    },
+    "S09-mainstream-detail.jpg": {
+      "pen": "clear_present",
+      "holder": "clear_present",
+      "frame_sha256": "d66d16fd7cbb727335bf3969885f9342c067b717c4ad849bffd0bb80c1345c96"
+    },
+    "S10-mainstream-detail.jpg": {
+      "pen": "clear_present",
+      "holder": "clear_present",
+      "frame_sha256": "fa90f7693ab477a8557faba791d5abadad16c3d7b8617332c89700b352e5fc39"
+    },
+    "S11-mainstream-detail.jpg": {
+      "pen": "clear_present",
+      "holder": "clear_present",
+      "frame_sha256": "011c143775f70b675d0ccf693762dbff9642dd4136da5f9a3d6f96616e767291"
+    },
+    "S12-eight-marks.jpg": {
+      "pen": "clear_present",
+      "holder": "clear_present",
+      "footprint_note": "Marker fit rejected; not metric registration",
+      "frame_sha256": "6a786035fa5922da86296692f46408fac132cc19ad0b070911878009b033841b"
+    },
+    "S13-ruler-on-paper.jpg": {
+      "pen": "clear_present",
+      "holder": "clear_present",
+      "frame_sha256": "cfb5561151f32bd05b07740ff626dd3af158ef216b0d2eddf8699bb54c946a0c"
+    },
+    "S14-phone-ruler-upright.png": {
+      "pen": "unresolved",
+      "holder": "clear_present",
+      "footprint_note": "Distinct phone camera, no transfer of Reolink coordinates",
+      "frame_sha256": "84a97ba4a8dff1736e09bf9a2b1c0751851f809135269165f1321ac3c607e58a"
+    },
+    "S16-square40-result.jpg": {
+      "pen": "clear_present",
+      "holder": "clear_present",
+      "frame_sha256": "5b20ec43d0e15eafa1cc093c02c7e63184abac194a8f044592a242df13f33677"
+    },
+    "S19-square-repeat-result.jpg": {
+      "pen": "clear_present",
+      "holder": "clear_present",
+      "frame_sha256": "0eb692eec0f95713f485340ccf4d976ce58a4a6bf39f9cdb7aed12739fb0932c"
+    },
+    "S22-square-post-fix-result.jpg": {
+      "pen": "clear_present",
+      "holder": "clear_present",
+      "footprint_note": "Operator measured45x40mm for commanded40x40mm; dimensionally mismatched",
+      "frame_sha256": "7482e4d5109e7a77e0703d6592674647762208ba6e32bbd2c7cef2e6405cb4fa"
+    },
+    "S23-measured-rectangle-baseline.jpg": {
+      "pen": "clear_present",
+      "holder": "clear_present",
+      "frame_sha256": "d0a57fb7466dba543cb796ba391d9f3214764814560f7ea5d6ff0b67858a431c"
+    },
+    "S24-next-viewpoint.jpg": {
+      "pen": "clear_present",
+      "holder": "clear_present",
+      "footprint_note": "Near paper edge clipped; cannot pass full-paper containment",
+      "frame_sha256": "e8d2a95c534ba6af1925d1baabaf2ca16310acd5368b35450ce4e979f0646a82"
+    },
+    "S25-camera-moved-back.jpg": {
+      "pen": "clear_present",
+      "holder": "clear_present",
+      "frame_sha256": "fd67c9b3622c8cd61f2249228df9afe74592aad401fcffdd1a638fc074593c4a"
+    },
+    "S27-clear-before-t030.jpg": {
+      "pen": "clear_present",
+      "holder": "clear_present",
+      "expected_presence": "pass",
+      "pair": "S27-clear-covered-clear",
+      "frame_sha256": "3dbe93903ceca471323035fb78ec70eb5c5e6863e5bd1e5de72b125a706b7a89"
+    },
+    "S27-occluded-t080.jpg": {
+      "pen": "occluded",
+      "holder": "occluded",
+      "expected_presence": "fail",
+      "pair": "S27-clear-covered-clear",
+      "footprint_note": "Card also occludes much of paper; not tool-only fault",
+      "frame_sha256": "4b0f29d2e7eb38dbbad173f62cf580b9fb5ed42bcfe1d82ab7fd4645f0076db3"
+    },
+    "S27-clear-after-t100.jpg": {
+      "pen": "clear_present",
+      "holder": "clear_present",
+      "expected_presence": "pass",
+      "pair": "S27-clear-covered-clear",
+      "frame_sha256": "4907a0ecffa2cd4a5a9cacf767e88dd5c138d5d0657499aa101b958028cc7701"
+    }
+  }
+}
