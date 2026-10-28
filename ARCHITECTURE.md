@@ -199,3 +199,15 @@ controls. Fixed layers and fit-only estimators score actual pre-candidate inputs
 Results: hidden AUROC1.000, norm/head lens0.970486 on24 new wording pairs; still
 only two independent held-out topics, no grounding or Jacobian-advantage claim.
 See `docs/verification/heldout-wording-results-2026-10-28.md`.
+
+
+## Image-only pair authoring and human review
+
+`tools/prepare_visual_pair_review.py` derives native crops and provenance from
+archived footage, without filming, model/provider requests or new predictions.
+`tools/render_visual_pair_review.py` makes the local independent-label form.
+`backend/recal/visual_review.py` rejects missing/unknown/manual-answerable
+pairs, changed digests and capture-family fold leakage. No scoring or GPU path
+is implemented here; even validated human labels only enable later planning.
+The supplied image-space footprint is a separate reference target, not accepted
+robot registration. See `docs/visual-grounding-pair-protocol-2026-10-28.md`.
