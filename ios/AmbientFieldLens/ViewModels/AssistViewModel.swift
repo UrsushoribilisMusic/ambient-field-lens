@@ -180,14 +180,14 @@ final class AssistViewModel: ObservableObject {
             )
             self.lastRequestLog =
                 "status=\(status) bytes=\(data.count) in \(String(format: "%.2f", elapsed))s"
-            let response = try JSONDecoder().decode(
+            let decoded = try JSONDecoder().decode(
                 AssistResponse.self, from: data
             )
-            let receipt = Self.receipt(from: response)
-            if response.verdict == "verified", let step = response.step {
+            let receipt = Self.receipt(from: decoded)
+            if decoded.verdict == "verified", let step = decoded.step {
                 verdict = .verified(step: step, receipt: receipt)
             } else {
-                let corrections = (response.checks ?? []).filter {
+                let corrections = (decoded.checks ?? []).filter {
                     $0.state != "pass"
                 }.map {
                     CheckInfo(
@@ -195,7 +195,7 @@ final class AssistViewModel: ObservableObject {
                         correction: $0.correction ?? "")
                 }
                 verdict = .verify(
-                    detail: response.detail ?? "Verify in the manual.",
+                    detail: decoded.detail ?? "Verify in the manual.",
                     corrections: corrections, receipt: receipt)
             }
         } catch {
