@@ -29,7 +29,7 @@ final class AssistViewModel: ObservableObject {
         case verify(detail: String, corrections: [CheckInfo], receipt: ReceiptInfo?)
     }
 
-    @Published var baseURLString: String = "http://192.168.0.56:8000"
+    @Published var baseURLString: String = "https://miguel-40686--afl-assist-stub-api.us-east.modal.run"
     @Published var query: String = ""
     @Published var verdict: Verdict = .none
     @Published var isAsking = false
