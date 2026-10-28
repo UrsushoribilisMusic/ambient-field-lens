@@ -61,7 +61,10 @@ The original rejection remains in `initial_calibration` in the full report.
 The corrected partitions contain 47 fit, 48 threshold-selection and 55 test
 items. Held-out test AUROC is **0.5747**. No validation threshold met the 90%
 empirical precision target. The research threshold therefore rejects all items,
-and its `enabled` field remains false.
+and its `enabled` field remains false. The fitted Platt coefficient is negative
+(-0.356 in `verification/glimmer-domain-calibration.json`): the
+confident-minus-uncertain axis points the wrong way on Ross, which strengthens
+the no-green conclusion rather than qualifying it.
 
 This measures corpus answerability, not generated-answer correctness. It does
 not validate operator instructions. The external labels also need review
