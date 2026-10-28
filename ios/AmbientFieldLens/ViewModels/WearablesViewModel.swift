@@ -121,6 +121,7 @@ final class WearablesViewModel: ObservableObject {
             device.powerOn()
             device.unfold()
             device.don()
+            device.services.camera.setCameraFeed(cameraFacing: .back)
             mockEnabled = true
         } catch {
             lastError = "Mock pairing failed: \(error.localizedDescription)"
