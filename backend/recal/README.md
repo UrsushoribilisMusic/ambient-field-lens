@@ -100,3 +100,15 @@ versus the prior final-candidate-token0.889 baseline. No incremental timing or
 Jacobian benefit was demonstrated, so retire the extra generation-time extension
 for this task. See [protocol](../../docs/trajectory-protocol-2026-10-28.md) and
 [results](../../docs/verification/trajectory-comparison-2026-10-28.md).
+
+
+## Frozen-label held-out wording round
+
+The one authorized expanded-wording window is **complete; do not rerun**.
+`expanded_analysis.py` tests strict candidate/context/frame/label inheritance
+from the human-reviewed parent records. `expanded_window.py` uses actual native
+pre-candidate prefixes and fixed prior layers27/22, no layer selection or
+trajectory extension.24 new wording pairs are scored separately from known
+controls. Report and limitations are in
+[results](../../docs/verification/heldout-wording-results-2026-10-28.md).
+The increase is in prompt coverage, not independent test topics.

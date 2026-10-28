@@ -188,3 +188,14 @@ and layers using validation only. Results and the true pre-candidate control
 are in `docs/verification/trajectory-comparison-2026-10-28.md`: both score1.000
 on this tiny test, so extra trajectory scoring adds no demonstrated value.
 This remains an offline research unit, not a live generation or /assist adapter.
+
+
+## Frozen-label wording robustness
+
+`backend/recal/expanded_window.py` is a separate offline experiment, not a live
+readiness adapter. It inherits only exact candidate/context/frame combinations
+from Miguel's frozen label review and keeps novel wording separate from old
+controls. Fixed layers and fit-only estimators score actual pre-candidate inputs.
+Results: hidden AUROC1.000, norm/head lens0.970486 on24 new wording pairs; still
+only two independent held-out topics, no grounding or Jacobian-advantage claim.
+See `docs/verification/heldout-wording-results-2026-10-28.md`.

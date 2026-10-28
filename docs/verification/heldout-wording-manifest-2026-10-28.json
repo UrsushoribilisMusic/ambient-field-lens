@@ -1,0 +1,889 @@
+{
+  "base_inputs_sha256": "1f8fe74d3300b7aa09f1a76e723e5a323e686c5289c72fb95dfc8066bc33c17a",
+  "review_sha256": "88581a96206f2e2b4ed026735d7d6fbaec2b2ae2b6cdbb36e0e9323719218b47",
+  "reviewed_records_sha256": "3c5b9cd707811d6b7e9bff51a27cb9c489c34e714aa53d59abc15ce2ccec3908",
+  "author_review": "Miguel signed six topic step-versus-support labels and unrelated controls, as frozen on main4eafbe5. New wording inherits only identical candidate/context/frame combinations; questions authored by Codi.",
+  "case_origin": "24 newly authored held-out prompt wordings for the exact reviewed locking/narration facts; no new fact labels",
+  "input_sha256": "1d3b686c80f2a2196813a92af0b95e051b9d772a322904947d13c879f69f3994",
+  "records": 84,
+  "original_records": 36,
+  "novel_test_records": 48,
+  "novel_test_pairs": 24,
+  "novel_test_topics": 2,
+  "fixed_layers": {
+    "hidden_contrastive": 27,
+    "norm_head_jacobian": 22
+  },
+  "novel_questions": {
+    "locking": [
+      "How is simultaneous execution of drawing jobs prevented?",
+      "What stops a second drawing job from running alongside the first?",
+      "What does the documented job lock enforce?",
+      "Which control keeps execution to one drawing job?",
+      "How does job orchestration stop overlapping drawing jobs?",
+      "Which lock is used to prevent concurrent job execution?",
+      "What mechanism serializes drawing jobs?",
+      "What ensures two submitted drawing jobs cannot execute together?",
+      "Which documented safeguard prevents drawing jobs from overlapping?",
+      "What is the purpose of the robot_ross_running.lock file during jobs?",
+      "How is the one-job-at-a-time rule enforced?",
+      "What prevents parallel drawing execution?"
+    ],
+    "narration": [
+      "Which drawing option suppresses spoken narration?",
+      "How can a drawing be requested without voice commentary?",
+      "What command-line flag disables narration for a drawing?",
+      "Which option should I use when I want the arm to draw silently?",
+      "How does the documented drawing command omit narration?",
+      "What flag makes a drawing run without speech?",
+      "Which argument requests drawing with no spoken commentary?",
+      "How do I request a drawing job with the narrator turned off?",
+      "What documented flag produces a silent draw?",
+      "Which option leaves out the voice narration during drawing?",
+      "How can voice output be disabled for the requested drawing job?",
+      "What drawing flag should be supplied to avoid narration?"
+    ]
+  },
+  "record_provenance": [
+    {
+      "id": "calibration-0-support",
+      "parent_id": "calibration-0-support",
+      "group": "calibration",
+      "fold": "fit",
+      "partition": "legacy",
+      "candidate_sha256": "eaabb4734bc708a034fac5fea449518d82ad285659d953bd2b9ae7bc53e5f7a4",
+      "context_sha256": "cdf8620397b02bef997596a353f4682392ad41d805e1912057f9ffc645101aca",
+      "frame_sha256": "45d5a4d4a3cc0d220f64d119152bd5d1f049254296097b81c30be101d498ddc9"
+    },
+    {
+      "id": "calibration-0-control",
+      "parent_id": "calibration-0-control",
+      "group": "calibration",
+      "fold": "fit",
+      "partition": "legacy",
+      "candidate_sha256": "eaabb4734bc708a034fac5fea449518d82ad285659d953bd2b9ae7bc53e5f7a4",
+      "context_sha256": "c1d08b838bfe2644c1d1040a38678b1fa34751514f91c20581368383b9b1aced",
+      "frame_sha256": "45d5a4d4a3cc0d220f64d119152bd5d1f049254296097b81c30be101d498ddc9"
+    },
+    {
+      "id": "calibration-1-support",
+      "parent_id": "calibration-1-support",
+      "group": "calibration",
+      "fold": "fit",
+      "partition": "legacy",
+      "candidate_sha256": "eaabb4734bc708a034fac5fea449518d82ad285659d953bd2b9ae7bc53e5f7a4",
+      "context_sha256": "cdf8620397b02bef997596a353f4682392ad41d805e1912057f9ffc645101aca",
+      "frame_sha256": "3dbe93903ceca471323035fb78ec70eb5c5e6863e5bd1e5de72b125a706b7a89"
+    },
+    {
+      "id": "calibration-1-control",
+      "parent_id": "calibration-1-control",
+      "group": "calibration",
+      "fold": "fit",
+      "partition": "legacy",
+      "candidate_sha256": "eaabb4734bc708a034fac5fea449518d82ad285659d953bd2b9ae7bc53e5f7a4",
+      "context_sha256": "c1d08b838bfe2644c1d1040a38678b1fa34751514f91c20581368383b9b1aced",
+      "frame_sha256": "3dbe93903ceca471323035fb78ec70eb5c5e6863e5bd1e5de72b125a706b7a89"
+    },
+    {
+      "id": "calibration-2-support",
+      "parent_id": "calibration-2-support",
+      "group": "calibration",
+      "fold": "fit",
+      "partition": "legacy",
+      "candidate_sha256": "eaabb4734bc708a034fac5fea449518d82ad285659d953bd2b9ae7bc53e5f7a4",
+      "context_sha256": "cdf8620397b02bef997596a353f4682392ad41d805e1912057f9ffc645101aca",
+      "frame_sha256": "4b0f29d2e7eb38dbbad173f62cf580b9fb5ed42bcfe1d82ab7fd4645f0076db3"
+    },
+    {
+      "id": "calibration-2-control",
+      "parent_id": "calibration-2-control",
+      "group": "calibration",
+      "fold": "fit",
+      "partition": "legacy",
+      "candidate_sha256": "eaabb4734bc708a034fac5fea449518d82ad285659d953bd2b9ae7bc53e5f7a4",
+      "context_sha256": "c1d08b838bfe2644c1d1040a38678b1fa34751514f91c20581368383b9b1aced",
+      "frame_sha256": "4b0f29d2e7eb38dbbad173f62cf580b9fb5ed42bcfe1d82ab7fd4645f0076db3"
+    },
+    {
+      "id": "port-0-support",
+      "parent_id": "port-0-support",
+      "group": "port",
+      "fold": "fit",
+      "partition": "legacy",
+      "candidate_sha256": "078040e2d3d2a299d3fbeef7b9eec184fe90402bd26500857266e2f5f102ce99",
+      "context_sha256": "b48954eb38693aac3bafec63ec27614043f888952e307fd07fbdc35b57c331f4",
+      "frame_sha256": "4907a0ecffa2cd4a5a9cacf767e88dd5c138d5d0657499aa101b958028cc7701"
+    },
+    {
+      "id": "port-0-control",
+      "parent_id": "port-0-control",
+      "group": "port",
+      "fold": "fit",
+      "partition": "legacy",
+      "candidate_sha256": "078040e2d3d2a299d3fbeef7b9eec184fe90402bd26500857266e2f5f102ce99",
+      "context_sha256": "ac10974b9758c120c904b4f803b782f03b03abca0dae2d0fc88b256aaa167dc1",
+      "frame_sha256": "4907a0ecffa2cd4a5a9cacf767e88dd5c138d5d0657499aa101b958028cc7701"
+    },
+    {
+      "id": "port-1-support",
+      "parent_id": "port-1-support",
+      "group": "port",
+      "fold": "fit",
+      "partition": "legacy",
+      "candidate_sha256": "078040e2d3d2a299d3fbeef7b9eec184fe90402bd26500857266e2f5f102ce99",
+      "context_sha256": "b48954eb38693aac3bafec63ec27614043f888952e307fd07fbdc35b57c331f4",
+      "frame_sha256": "8d43878f1b1d9b5ab9cca1e27b236b86870b0bae9ac91e7f9c5765702b06f75b"
+    },
+    {
+      "id": "port-1-control",
+      "parent_id": "port-1-control",
+      "group": "port",
+      "fold": "fit",
+      "partition": "legacy",
+      "candidate_sha256": "078040e2d3d2a299d3fbeef7b9eec184fe90402bd26500857266e2f5f102ce99",
+      "context_sha256": "ac10974b9758c120c904b4f803b782f03b03abca0dae2d0fc88b256aaa167dc1",
+      "frame_sha256": "8d43878f1b1d9b5ab9cca1e27b236b86870b0bae9ac91e7f9c5765702b06f75b"
+    },
+    {
+      "id": "port-2-support",
+      "parent_id": "port-2-support",
+      "group": "port",
+      "fold": "fit",
+      "partition": "legacy",
+      "candidate_sha256": "078040e2d3d2a299d3fbeef7b9eec184fe90402bd26500857266e2f5f102ce99",
+      "context_sha256": "b48954eb38693aac3bafec63ec27614043f888952e307fd07fbdc35b57c331f4",
+      "frame_sha256": "979e82f1fe009824ea80a58c61075712621ea6dd8329be727285551c2029c327"
+    },
+    {
+      "id": "port-2-control",
+      "parent_id": "port-2-control",
+      "group": "port",
+      "fold": "fit",
+      "partition": "legacy",
+      "candidate_sha256": "078040e2d3d2a299d3fbeef7b9eec184fe90402bd26500857266e2f5f102ce99",
+      "context_sha256": "ac10974b9758c120c904b4f803b782f03b03abca0dae2d0fc88b256aaa167dc1",
+      "frame_sha256": "979e82f1fe009824ea80a58c61075712621ea6dd8329be727285551c2029c327"
+    },
+    {
+      "id": "pressure-0-support",
+      "parent_id": "pressure-0-support",
+      "group": "pressure",
+      "fold": "validation",
+      "partition": "legacy",
+      "candidate_sha256": "f16c5e705ab77caaa6923da25a03a0c7b4126d5dc866d2e7526cecf057474d80",
+      "context_sha256": "ad1380fb3e82a85b42bfc8138130660b7c273e88651815c6785f20457d7d8a63",
+      "frame_sha256": "45d5a4d4a3cc0d220f64d119152bd5d1f049254296097b81c30be101d498ddc9"
+    },
+    {
+      "id": "pressure-0-control",
+      "parent_id": "pressure-0-control",
+      "group": "pressure",
+      "fold": "validation",
+      "partition": "legacy",
+      "candidate_sha256": "f16c5e705ab77caaa6923da25a03a0c7b4126d5dc866d2e7526cecf057474d80",
+      "context_sha256": "c86926733c4e3a95829fe38a982307cce90df78e0d72591ad7f0a2519270ae9d",
+      "frame_sha256": "45d5a4d4a3cc0d220f64d119152bd5d1f049254296097b81c30be101d498ddc9"
+    },
+    {
+      "id": "pressure-1-support",
+      "parent_id": "pressure-1-support",
+      "group": "pressure",
+      "fold": "validation",
+      "partition": "legacy",
+      "candidate_sha256": "f16c5e705ab77caaa6923da25a03a0c7b4126d5dc866d2e7526cecf057474d80",
+      "context_sha256": "ad1380fb3e82a85b42bfc8138130660b7c273e88651815c6785f20457d7d8a63",
+      "frame_sha256": "3dbe93903ceca471323035fb78ec70eb5c5e6863e5bd1e5de72b125a706b7a89"
+    },
+    {
+      "id": "pressure-1-control",
+      "parent_id": "pressure-1-control",
+      "group": "pressure",
+      "fold": "validation",
+      "partition": "legacy",
+      "candidate_sha256": "f16c5e705ab77caaa6923da25a03a0c7b4126d5dc866d2e7526cecf057474d80",
+      "context_sha256": "c86926733c4e3a95829fe38a982307cce90df78e0d72591ad7f0a2519270ae9d",
+      "frame_sha256": "3dbe93903ceca471323035fb78ec70eb5c5e6863e5bd1e5de72b125a706b7a89"
+    },
+    {
+      "id": "pressure-2-support",
+      "parent_id": "pressure-2-support",
+      "group": "pressure",
+      "fold": "validation",
+      "partition": "legacy",
+      "candidate_sha256": "f16c5e705ab77caaa6923da25a03a0c7b4126d5dc866d2e7526cecf057474d80",
+      "context_sha256": "ad1380fb3e82a85b42bfc8138130660b7c273e88651815c6785f20457d7d8a63",
+      "frame_sha256": "4b0f29d2e7eb38dbbad173f62cf580b9fb5ed42bcfe1d82ab7fd4645f0076db3"
+    },
+    {
+      "id": "pressure-2-control",
+      "parent_id": "pressure-2-control",
+      "group": "pressure",
+      "fold": "validation",
+      "partition": "legacy",
+      "candidate_sha256": "f16c5e705ab77caaa6923da25a03a0c7b4126d5dc866d2e7526cecf057474d80",
+      "context_sha256": "c86926733c4e3a95829fe38a982307cce90df78e0d72591ad7f0a2519270ae9d",
+      "frame_sha256": "4b0f29d2e7eb38dbbad173f62cf580b9fb5ed42bcfe1d82ab7fd4645f0076db3"
+    },
+    {
+      "id": "approval-0-support",
+      "parent_id": "approval-0-support",
+      "group": "approval",
+      "fold": "validation",
+      "partition": "legacy",
+      "candidate_sha256": "6c3a6553d689ac6b0655635e1a5460dd0bb9384664403b58d83fe6a47ee81fb9",
+      "context_sha256": "a98f7c1a7bb64dab783f3017a6335a91fd2760e43bb00f0fe27f6e47c7a08b5e",
+      "frame_sha256": "4907a0ecffa2cd4a5a9cacf767e88dd5c138d5d0657499aa101b958028cc7701"
+    },
+    {
+      "id": "approval-0-control",
+      "parent_id": "approval-0-control",
+      "group": "approval",
+      "fold": "validation",
+      "partition": "legacy",
+      "candidate_sha256": "6c3a6553d689ac6b0655635e1a5460dd0bb9384664403b58d83fe6a47ee81fb9",
+      "context_sha256": "39691b95075ebedc7cb8911357cb30e5cd93323dbf292cf0fdb629c99867a1de",
+      "frame_sha256": "4907a0ecffa2cd4a5a9cacf767e88dd5c138d5d0657499aa101b958028cc7701"
+    },
+    {
+      "id": "approval-1-support",
+      "parent_id": "approval-1-support",
+      "group": "approval",
+      "fold": "validation",
+      "partition": "legacy",
+      "candidate_sha256": "6c3a6553d689ac6b0655635e1a5460dd0bb9384664403b58d83fe6a47ee81fb9",
+      "context_sha256": "a98f7c1a7bb64dab783f3017a6335a91fd2760e43bb00f0fe27f6e47c7a08b5e",
+      "frame_sha256": "8d43878f1b1d9b5ab9cca1e27b236b86870b0bae9ac91e7f9c5765702b06f75b"
+    },
+    {
+      "id": "approval-1-control",
+      "parent_id": "approval-1-control",
+      "group": "approval",
+      "fold": "validation",
+      "partition": "legacy",
+      "candidate_sha256": "6c3a6553d689ac6b0655635e1a5460dd0bb9384664403b58d83fe6a47ee81fb9",
+      "context_sha256": "39691b95075ebedc7cb8911357cb30e5cd93323dbf292cf0fdb629c99867a1de",
+      "frame_sha256": "8d43878f1b1d9b5ab9cca1e27b236b86870b0bae9ac91e7f9c5765702b06f75b"
+    },
+    {
+      "id": "approval-2-support",
+      "parent_id": "approval-2-support",
+      "group": "approval",
+      "fold": "validation",
+      "partition": "legacy",
+      "candidate_sha256": "6c3a6553d689ac6b0655635e1a5460dd0bb9384664403b58d83fe6a47ee81fb9",
+      "context_sha256": "a98f7c1a7bb64dab783f3017a6335a91fd2760e43bb00f0fe27f6e47c7a08b5e",
+      "frame_sha256": "979e82f1fe009824ea80a58c61075712621ea6dd8329be727285551c2029c327"
+    },
+    {
+      "id": "approval-2-control",
+      "parent_id": "approval-2-control",
+      "group": "approval",
+      "fold": "validation",
+      "partition": "legacy",
+      "candidate_sha256": "6c3a6553d689ac6b0655635e1a5460dd0bb9384664403b58d83fe6a47ee81fb9",
+      "context_sha256": "39691b95075ebedc7cb8911357cb30e5cd93323dbf292cf0fdb629c99867a1de",
+      "frame_sha256": "979e82f1fe009824ea80a58c61075712621ea6dd8329be727285551c2029c327"
+    },
+    {
+      "id": "locking-0-support",
+      "parent_id": "locking-0-support",
+      "group": "locking",
+      "fold": "test",
+      "partition": "legacy",
+      "candidate_sha256": "33e139cf5e6b0f56c81dbd5c37f6c49e30aae07c366f0da359cef9f8b8b29860",
+      "context_sha256": "3fe9ac378d9229f44a124f3806f364ad665037dc1d823cd0d6e61f008a503fab",
+      "frame_sha256": "45d5a4d4a3cc0d220f64d119152bd5d1f049254296097b81c30be101d498ddc9"
+    },
+    {
+      "id": "locking-0-control",
+      "parent_id": "locking-0-control",
+      "group": "locking",
+      "fold": "test",
+      "partition": "legacy",
+      "candidate_sha256": "33e139cf5e6b0f56c81dbd5c37f6c49e30aae07c366f0da359cef9f8b8b29860",
+      "context_sha256": "c8e0e5d6e222516ce191dd53dfffd598a32297c32d26003de6b77ffce4cc85b8",
+      "frame_sha256": "45d5a4d4a3cc0d220f64d119152bd5d1f049254296097b81c30be101d498ddc9"
+    },
+    {
+      "id": "locking-1-support",
+      "parent_id": "locking-1-support",
+      "group": "locking",
+      "fold": "test",
+      "partition": "legacy",
+      "candidate_sha256": "33e139cf5e6b0f56c81dbd5c37f6c49e30aae07c366f0da359cef9f8b8b29860",
+      "context_sha256": "3fe9ac378d9229f44a124f3806f364ad665037dc1d823cd0d6e61f008a503fab",
+      "frame_sha256": "3dbe93903ceca471323035fb78ec70eb5c5e6863e5bd1e5de72b125a706b7a89"
+    },
+    {
+      "id": "locking-1-control",
+      "parent_id": "locking-1-control",
+      "group": "locking",
+      "fold": "test",
+      "partition": "legacy",
+      "candidate_sha256": "33e139cf5e6b0f56c81dbd5c37f6c49e30aae07c366f0da359cef9f8b8b29860",
+      "context_sha256": "c8e0e5d6e222516ce191dd53dfffd598a32297c32d26003de6b77ffce4cc85b8",
+      "frame_sha256": "3dbe93903ceca471323035fb78ec70eb5c5e6863e5bd1e5de72b125a706b7a89"
+    },
+    {
+      "id": "locking-2-support",
+      "parent_id": "locking-2-support",
+      "group": "locking",
+      "fold": "test",
+      "partition": "legacy",
+      "candidate_sha256": "33e139cf5e6b0f56c81dbd5c37f6c49e30aae07c366f0da359cef9f8b8b29860",
+      "context_sha256": "3fe9ac378d9229f44a124f3806f364ad665037dc1d823cd0d6e61f008a503fab",
+      "frame_sha256": "4b0f29d2e7eb38dbbad173f62cf580b9fb5ed42bcfe1d82ab7fd4645f0076db3"
+    },
+    {
+      "id": "locking-2-control",
+      "parent_id": "locking-2-control",
+      "group": "locking",
+      "fold": "test",
+      "partition": "legacy",
+      "candidate_sha256": "33e139cf5e6b0f56c81dbd5c37f6c49e30aae07c366f0da359cef9f8b8b29860",
+      "context_sha256": "c8e0e5d6e222516ce191dd53dfffd598a32297c32d26003de6b77ffce4cc85b8",
+      "frame_sha256": "4b0f29d2e7eb38dbbad173f62cf580b9fb5ed42bcfe1d82ab7fd4645f0076db3"
+    },
+    {
+      "id": "narration-0-support",
+      "parent_id": "narration-0-support",
+      "group": "narration",
+      "fold": "test",
+      "partition": "legacy",
+      "candidate_sha256": "0838a757de4438950f66d05142f8ca3eff58331244febd487b332e2cf27dcb35",
+      "context_sha256": "c37f0998d17b647732c9c0123dfc407126d4951180c051a3d5f091c06e96b24e",
+      "frame_sha256": "4907a0ecffa2cd4a5a9cacf767e88dd5c138d5d0657499aa101b958028cc7701"
+    },
+    {
+      "id": "narration-0-control",
+      "parent_id": "narration-0-control",
+      "group": "narration",
+      "fold": "test",
+      "partition": "legacy",
+      "candidate_sha256": "0838a757de4438950f66d05142f8ca3eff58331244febd487b332e2cf27dcb35",
+      "context_sha256": "09d9d0ae39535c99ec20ff2bc0a4de0f6055e68b1be19a388535308c1a006cd6",
+      "frame_sha256": "4907a0ecffa2cd4a5a9cacf767e88dd5c138d5d0657499aa101b958028cc7701"
+    },
+    {
+      "id": "narration-1-support",
+      "parent_id": "narration-1-support",
+      "group": "narration",
+      "fold": "test",
+      "partition": "legacy",
+      "candidate_sha256": "0838a757de4438950f66d05142f8ca3eff58331244febd487b332e2cf27dcb35",
+      "context_sha256": "c37f0998d17b647732c9c0123dfc407126d4951180c051a3d5f091c06e96b24e",
+      "frame_sha256": "8d43878f1b1d9b5ab9cca1e27b236b86870b0bae9ac91e7f9c5765702b06f75b"
+    },
+    {
+      "id": "narration-1-control",
+      "parent_id": "narration-1-control",
+      "group": "narration",
+      "fold": "test",
+      "partition": "legacy",
+      "candidate_sha256": "0838a757de4438950f66d05142f8ca3eff58331244febd487b332e2cf27dcb35",
+      "context_sha256": "09d9d0ae39535c99ec20ff2bc0a4de0f6055e68b1be19a388535308c1a006cd6",
+      "frame_sha256": "8d43878f1b1d9b5ab9cca1e27b236b86870b0bae9ac91e7f9c5765702b06f75b"
+    },
+    {
+      "id": "narration-2-support",
+      "parent_id": "narration-2-support",
+      "group": "narration",
+      "fold": "test",
+      "partition": "legacy",
+      "candidate_sha256": "0838a757de4438950f66d05142f8ca3eff58331244febd487b332e2cf27dcb35",
+      "context_sha256": "c37f0998d17b647732c9c0123dfc407126d4951180c051a3d5f091c06e96b24e",
+      "frame_sha256": "979e82f1fe009824ea80a58c61075712621ea6dd8329be727285551c2029c327"
+    },
+    {
+      "id": "narration-2-control",
+      "parent_id": "narration-2-control",
+      "group": "narration",
+      "fold": "test",
+      "partition": "legacy",
+      "candidate_sha256": "0838a757de4438950f66d05142f8ca3eff58331244febd487b332e2cf27dcb35",
+      "context_sha256": "09d9d0ae39535c99ec20ff2bc0a4de0f6055e68b1be19a388535308c1a006cd6",
+      "frame_sha256": "979e82f1fe009824ea80a58c61075712621ea6dd8329be727285551c2029c327"
+    },
+    {
+      "id": "locking-expanded-00-support",
+      "parent_id": "locking-0-support",
+      "group": "locking",
+      "fold": "test",
+      "partition": "novel_wording",
+      "candidate_sha256": "33e139cf5e6b0f56c81dbd5c37f6c49e30aae07c366f0da359cef9f8b8b29860",
+      "context_sha256": "3fe9ac378d9229f44a124f3806f364ad665037dc1d823cd0d6e61f008a503fab",
+      "frame_sha256": "45d5a4d4a3cc0d220f64d119152bd5d1f049254296097b81c30be101d498ddc9"
+    },
+    {
+      "id": "locking-expanded-00-control",
+      "parent_id": "locking-0-control",
+      "group": "locking",
+      "fold": "test",
+      "partition": "novel_wording",
+      "candidate_sha256": "33e139cf5e6b0f56c81dbd5c37f6c49e30aae07c366f0da359cef9f8b8b29860",
+      "context_sha256": "c8e0e5d6e222516ce191dd53dfffd598a32297c32d26003de6b77ffce4cc85b8",
+      "frame_sha256": "45d5a4d4a3cc0d220f64d119152bd5d1f049254296097b81c30be101d498ddc9"
+    },
+    {
+      "id": "locking-expanded-01-support",
+      "parent_id": "locking-1-support",
+      "group": "locking",
+      "fold": "test",
+      "partition": "novel_wording",
+      "candidate_sha256": "33e139cf5e6b0f56c81dbd5c37f6c49e30aae07c366f0da359cef9f8b8b29860",
+      "context_sha256": "3fe9ac378d9229f44a124f3806f364ad665037dc1d823cd0d6e61f008a503fab",
+      "frame_sha256": "3dbe93903ceca471323035fb78ec70eb5c5e6863e5bd1e5de72b125a706b7a89"
+    },
+    {
+      "id": "locking-expanded-01-control",
+      "parent_id": "locking-1-control",
+      "group": "locking",
+      "fold": "test",
+      "partition": "novel_wording",
+      "candidate_sha256": "33e139cf5e6b0f56c81dbd5c37f6c49e30aae07c366f0da359cef9f8b8b29860",
+      "context_sha256": "c8e0e5d6e222516ce191dd53dfffd598a32297c32d26003de6b77ffce4cc85b8",
+      "frame_sha256": "3dbe93903ceca471323035fb78ec70eb5c5e6863e5bd1e5de72b125a706b7a89"
+    },
+    {
+      "id": "locking-expanded-02-support",
+      "parent_id": "locking-2-support",
+      "group": "locking",
+      "fold": "test",
+      "partition": "novel_wording",
+      "candidate_sha256": "33e139cf5e6b0f56c81dbd5c37f6c49e30aae07c366f0da359cef9f8b8b29860",
+      "context_sha256": "3fe9ac378d9229f44a124f3806f364ad665037dc1d823cd0d6e61f008a503fab",
+      "frame_sha256": "4b0f29d2e7eb38dbbad173f62cf580b9fb5ed42bcfe1d82ab7fd4645f0076db3"
+    },
+    {
+      "id": "locking-expanded-02-control",
+      "parent_id": "locking-2-control",
+      "group": "locking",
+      "fold": "test",
+      "partition": "novel_wording",
+      "candidate_sha256": "33e139cf5e6b0f56c81dbd5c37f6c49e30aae07c366f0da359cef9f8b8b29860",
+      "context_sha256": "c8e0e5d6e222516ce191dd53dfffd598a32297c32d26003de6b77ffce4cc85b8",
+      "frame_sha256": "4b0f29d2e7eb38dbbad173f62cf580b9fb5ed42bcfe1d82ab7fd4645f0076db3"
+    },
+    {
+      "id": "locking-expanded-03-support",
+      "parent_id": "locking-0-support",
+      "group": "locking",
+      "fold": "test",
+      "partition": "novel_wording",
+      "candidate_sha256": "33e139cf5e6b0f56c81dbd5c37f6c49e30aae07c366f0da359cef9f8b8b29860",
+      "context_sha256": "3fe9ac378d9229f44a124f3806f364ad665037dc1d823cd0d6e61f008a503fab",
+      "frame_sha256": "45d5a4d4a3cc0d220f64d119152bd5d1f049254296097b81c30be101d498ddc9"
+    },
+    {
+      "id": "locking-expanded-03-control",
+      "parent_id": "locking-0-control",
+      "group": "locking",
+      "fold": "test",
+      "partition": "novel_wording",
+      "candidate_sha256": "33e139cf5e6b0f56c81dbd5c37f6c49e30aae07c366f0da359cef9f8b8b29860",
+      "context_sha256": "c8e0e5d6e222516ce191dd53dfffd598a32297c32d26003de6b77ffce4cc85b8",
+      "frame_sha256": "45d5a4d4a3cc0d220f64d119152bd5d1f049254296097b81c30be101d498ddc9"
+    },
+    {
+      "id": "locking-expanded-04-support",
+      "parent_id": "locking-1-support",
+      "group": "locking",
+      "fold": "test",
+      "partition": "novel_wording",
+      "candidate_sha256": "33e139cf5e6b0f56c81dbd5c37f6c49e30aae07c366f0da359cef9f8b8b29860",
+      "context_sha256": "3fe9ac378d9229f44a124f3806f364ad665037dc1d823cd0d6e61f008a503fab",
+      "frame_sha256": "3dbe93903ceca471323035fb78ec70eb5c5e6863e5bd1e5de72b125a706b7a89"
+    },
+    {
+      "id": "locking-expanded-04-control",
+      "parent_id": "locking-1-control",
+      "group": "locking",
+      "fold": "test",
+      "partition": "novel_wording",
+      "candidate_sha256": "33e139cf5e6b0f56c81dbd5c37f6c49e30aae07c366f0da359cef9f8b8b29860",
+      "context_sha256": "c8e0e5d6e222516ce191dd53dfffd598a32297c32d26003de6b77ffce4cc85b8",
+      "frame_sha256": "3dbe93903ceca471323035fb78ec70eb5c5e6863e5bd1e5de72b125a706b7a89"
+    },
+    {
+      "id": "locking-expanded-05-support",
+      "parent_id": "locking-2-support",
+      "group": "locking",
+      "fold": "test",
+      "partition": "novel_wording",
+      "candidate_sha256": "33e139cf5e6b0f56c81dbd5c37f6c49e30aae07c366f0da359cef9f8b8b29860",
+      "context_sha256": "3fe9ac378d9229f44a124f3806f364ad665037dc1d823cd0d6e61f008a503fab",
+      "frame_sha256": "4b0f29d2e7eb38dbbad173f62cf580b9fb5ed42bcfe1d82ab7fd4645f0076db3"
+    },
+    {
+      "id": "locking-expanded-05-control",
+      "parent_id": "locking-2-control",
+      "group": "locking",
+      "fold": "test",
+      "partition": "novel_wording",
+      "candidate_sha256": "33e139cf5e6b0f56c81dbd5c37f6c49e30aae07c366f0da359cef9f8b8b29860",
+      "context_sha256": "c8e0e5d6e222516ce191dd53dfffd598a32297c32d26003de6b77ffce4cc85b8",
+      "frame_sha256": "4b0f29d2e7eb38dbbad173f62cf580b9fb5ed42bcfe1d82ab7fd4645f0076db3"
+    },
+    {
+      "id": "locking-expanded-06-support",
+      "parent_id": "locking-0-support",
+      "group": "locking",
+      "fold": "test",
+      "partition": "novel_wording",
+      "candidate_sha256": "33e139cf5e6b0f56c81dbd5c37f6c49e30aae07c366f0da359cef9f8b8b29860",
+      "context_sha256": "3fe9ac378d9229f44a124f3806f364ad665037dc1d823cd0d6e61f008a503fab",
+      "frame_sha256": "45d5a4d4a3cc0d220f64d119152bd5d1f049254296097b81c30be101d498ddc9"
+    },
+    {
+      "id": "locking-expanded-06-control",
+      "parent_id": "locking-0-control",
+      "group": "locking",
+      "fold": "test",
+      "partition": "novel_wording",
+      "candidate_sha256": "33e139cf5e6b0f56c81dbd5c37f6c49e30aae07c366f0da359cef9f8b8b29860",
+      "context_sha256": "c8e0e5d6e222516ce191dd53dfffd598a32297c32d26003de6b77ffce4cc85b8",
+      "frame_sha256": "45d5a4d4a3cc0d220f64d119152bd5d1f049254296097b81c30be101d498ddc9"
+    },
+    {
+      "id": "locking-expanded-07-support",
+      "parent_id": "locking-1-support",
+      "group": "locking",
+      "fold": "test",
+      "partition": "novel_wording",
+      "candidate_sha256": "33e139cf5e6b0f56c81dbd5c37f6c49e30aae07c366f0da359cef9f8b8b29860",
+      "context_sha256": "3fe9ac378d9229f44a124f3806f364ad665037dc1d823cd0d6e61f008a503fab",
+      "frame_sha256": "3dbe93903ceca471323035fb78ec70eb5c5e6863e5bd1e5de72b125a706b7a89"
+    },
+    {
+      "id": "locking-expanded-07-control",
+      "parent_id": "locking-1-control",
+      "group": "locking",
+      "fold": "test",
+      "partition": "novel_wording",
+      "candidate_sha256": "33e139cf5e6b0f56c81dbd5c37f6c49e30aae07c366f0da359cef9f8b8b29860",
+      "context_sha256": "c8e0e5d6e222516ce191dd53dfffd598a32297c32d26003de6b77ffce4cc85b8",
+      "frame_sha256": "3dbe93903ceca471323035fb78ec70eb5c5e6863e5bd1e5de72b125a706b7a89"
+    },
+    {
+      "id": "locking-expanded-08-support",
+      "parent_id": "locking-2-support",
+      "group": "locking",
+      "fold": "test",
+      "partition": "novel_wording",
+      "candidate_sha256": "33e139cf5e6b0f56c81dbd5c37f6c49e30aae07c366f0da359cef9f8b8b29860",
+      "context_sha256": "3fe9ac378d9229f44a124f3806f364ad665037dc1d823cd0d6e61f008a503fab",
+      "frame_sha256": "4b0f29d2e7eb38dbbad173f62cf580b9fb5ed42bcfe1d82ab7fd4645f0076db3"
+    },
+    {
+      "id": "locking-expanded-08-control",
+      "parent_id": "locking-2-control",
+      "group": "locking",
+      "fold": "test",
+      "partition": "novel_wording",
+      "candidate_sha256": "33e139cf5e6b0f56c81dbd5c37f6c49e30aae07c366f0da359cef9f8b8b29860",
+      "context_sha256": "c8e0e5d6e222516ce191dd53dfffd598a32297c32d26003de6b77ffce4cc85b8",
+      "frame_sha256": "4b0f29d2e7eb38dbbad173f62cf580b9fb5ed42bcfe1d82ab7fd4645f0076db3"
+    },
+    {
+      "id": "locking-expanded-09-support",
+      "parent_id": "locking-0-support",
+      "group": "locking",
+      "fold": "test",
+      "partition": "novel_wording",
+      "candidate_sha256": "33e139cf5e6b0f56c81dbd5c37f6c49e30aae07c366f0da359cef9f8b8b29860",
+      "context_sha256": "3fe9ac378d9229f44a124f3806f364ad665037dc1d823cd0d6e61f008a503fab",
+      "frame_sha256": "45d5a4d4a3cc0d220f64d119152bd5d1f049254296097b81c30be101d498ddc9"
+    },
+    {
+      "id": "locking-expanded-09-control",
+      "parent_id": "locking-0-control",
+      "group": "locking",
+      "fold": "test",
+      "partition": "novel_wording",
+      "candidate_sha256": "33e139cf5e6b0f56c81dbd5c37f6c49e30aae07c366f0da359cef9f8b8b29860",
+      "context_sha256": "c8e0e5d6e222516ce191dd53dfffd598a32297c32d26003de6b77ffce4cc85b8",
+      "frame_sha256": "45d5a4d4a3cc0d220f64d119152bd5d1f049254296097b81c30be101d498ddc9"
+    },
+    {
+      "id": "locking-expanded-10-support",
+      "parent_id": "locking-1-support",
+      "group": "locking",
+      "fold": "test",
+      "partition": "novel_wording",
+      "candidate_sha256": "33e139cf5e6b0f56c81dbd5c37f6c49e30aae07c366f0da359cef9f8b8b29860",
+      "context_sha256": "3fe9ac378d9229f44a124f3806f364ad665037dc1d823cd0d6e61f008a503fab",
+      "frame_sha256": "3dbe93903ceca471323035fb78ec70eb5c5e6863e5bd1e5de72b125a706b7a89"
+    },
+    {
+      "id": "locking-expanded-10-control",
+      "parent_id": "locking-1-control",
+      "group": "locking",
+      "fold": "test",
+      "partition": "novel_wording",
+      "candidate_sha256": "33e139cf5e6b0f56c81dbd5c37f6c49e30aae07c366f0da359cef9f8b8b29860",
+      "context_sha256": "c8e0e5d6e222516ce191dd53dfffd598a32297c32d26003de6b77ffce4cc85b8",
+      "frame_sha256": "3dbe93903ceca471323035fb78ec70eb5c5e6863e5bd1e5de72b125a706b7a89"
+    },
+    {
+      "id": "locking-expanded-11-support",
+      "parent_id": "locking-2-support",
+      "group": "locking",
+      "fold": "test",
+      "partition": "novel_wording",
+      "candidate_sha256": "33e139cf5e6b0f56c81dbd5c37f6c49e30aae07c366f0da359cef9f8b8b29860",
+      "context_sha256": "3fe9ac378d9229f44a124f3806f364ad665037dc1d823cd0d6e61f008a503fab",
+      "frame_sha256": "4b0f29d2e7eb38dbbad173f62cf580b9fb5ed42bcfe1d82ab7fd4645f0076db3"
+    },
+    {
+      "id": "locking-expanded-11-control",
+      "parent_id": "locking-2-control",
+      "group": "locking",
+      "fold": "test",
+      "partition": "novel_wording",
+      "candidate_sha256": "33e139cf5e6b0f56c81dbd5c37f6c49e30aae07c366f0da359cef9f8b8b29860",
+      "context_sha256": "c8e0e5d6e222516ce191dd53dfffd598a32297c32d26003de6b77ffce4cc85b8",
+      "frame_sha256": "4b0f29d2e7eb38dbbad173f62cf580b9fb5ed42bcfe1d82ab7fd4645f0076db3"
+    },
+    {
+      "id": "narration-expanded-00-support",
+      "parent_id": "narration-0-support",
+      "group": "narration",
+      "fold": "test",
+      "partition": "novel_wording",
+      "candidate_sha256": "0838a757de4438950f66d05142f8ca3eff58331244febd487b332e2cf27dcb35",
+      "context_sha256": "c37f0998d17b647732c9c0123dfc407126d4951180c051a3d5f091c06e96b24e",
+      "frame_sha256": "4907a0ecffa2cd4a5a9cacf767e88dd5c138d5d0657499aa101b958028cc7701"
+    },
+    {
+      "id": "narration-expanded-00-control",
+      "parent_id": "narration-0-control",
+      "group": "narration",
+      "fold": "test",
+      "partition": "novel_wording",
+      "candidate_sha256": "0838a757de4438950f66d05142f8ca3eff58331244febd487b332e2cf27dcb35",
+      "context_sha256": "09d9d0ae39535c99ec20ff2bc0a4de0f6055e68b1be19a388535308c1a006cd6",
+      "frame_sha256": "4907a0ecffa2cd4a5a9cacf767e88dd5c138d5d0657499aa101b958028cc7701"
+    },
+    {
+      "id": "narration-expanded-01-support",
+      "parent_id": "narration-1-support",
+      "group": "narration",
+      "fold": "test",
+      "partition": "novel_wording",
+      "candidate_sha256": "0838a757de4438950f66d05142f8ca3eff58331244febd487b332e2cf27dcb35",
+      "context_sha256": "c37f0998d17b647732c9c0123dfc407126d4951180c051a3d5f091c06e96b24e",
+      "frame_sha256": "8d43878f1b1d9b5ab9cca1e27b236b86870b0bae9ac91e7f9c5765702b06f75b"
+    },
+    {
+      "id": "narration-expanded-01-control",
+      "parent_id": "narration-1-control",
+      "group": "narration",
+      "fold": "test",
+      "partition": "novel_wording",
+      "candidate_sha256": "0838a757de4438950f66d05142f8ca3eff58331244febd487b332e2cf27dcb35",
+      "context_sha256": "09d9d0ae39535c99ec20ff2bc0a4de0f6055e68b1be19a388535308c1a006cd6",
+      "frame_sha256": "8d43878f1b1d9b5ab9cca1e27b236b86870b0bae9ac91e7f9c5765702b06f75b"
+    },
+    {
+      "id": "narration-expanded-02-support",
+      "parent_id": "narration-2-support",
+      "group": "narration",
+      "fold": "test",
+      "partition": "novel_wording",
+      "candidate_sha256": "0838a757de4438950f66d05142f8ca3eff58331244febd487b332e2cf27dcb35",
+      "context_sha256": "c37f0998d17b647732c9c0123dfc407126d4951180c051a3d5f091c06e96b24e",
+      "frame_sha256": "979e82f1fe009824ea80a58c61075712621ea6dd8329be727285551c2029c327"
+    },
+    {
+      "id": "narration-expanded-02-control",
+      "parent_id": "narration-2-control",
+      "group": "narration",
+      "fold": "test",
+      "partition": "novel_wording",
+      "candidate_sha256": "0838a757de4438950f66d05142f8ca3eff58331244febd487b332e2cf27dcb35",
+      "context_sha256": "09d9d0ae39535c99ec20ff2bc0a4de0f6055e68b1be19a388535308c1a006cd6",
+      "frame_sha256": "979e82f1fe009824ea80a58c61075712621ea6dd8329be727285551c2029c327"
+    },
+    {
+      "id": "narration-expanded-03-support",
+      "parent_id": "narration-0-support",
+      "group": "narration",
+      "fold": "test",
+      "partition": "novel_wording",
+      "candidate_sha256": "0838a757de4438950f66d05142f8ca3eff58331244febd487b332e2cf27dcb35",
+      "context_sha256": "c37f0998d17b647732c9c0123dfc407126d4951180c051a3d5f091c06e96b24e",
+      "frame_sha256": "4907a0ecffa2cd4a5a9cacf767e88dd5c138d5d0657499aa101b958028cc7701"
+    },
+    {
+      "id": "narration-expanded-03-control",
+      "parent_id": "narration-0-control",
+      "group": "narration",
+      "fold": "test",
+      "partition": "novel_wording",
+      "candidate_sha256": "0838a757de4438950f66d05142f8ca3eff58331244febd487b332e2cf27dcb35",
+      "context_sha256": "09d9d0ae39535c99ec20ff2bc0a4de0f6055e68b1be19a388535308c1a006cd6",
+      "frame_sha256": "4907a0ecffa2cd4a5a9cacf767e88dd5c138d5d0657499aa101b958028cc7701"
+    },
+    {
+      "id": "narration-expanded-04-support",
+      "parent_id": "narration-1-support",
+      "group": "narration",
+      "fold": "test",
+      "partition": "novel_wording",
+      "candidate_sha256": "0838a757de4438950f66d05142f8ca3eff58331244febd487b332e2cf27dcb35",
+      "context_sha256": "c37f0998d17b647732c9c0123dfc407126d4951180c051a3d5f091c06e96b24e",
+      "frame_sha256": "8d43878f1b1d9b5ab9cca1e27b236b86870b0bae9ac91e7f9c5765702b06f75b"
+    },
+    {
+      "id": "narration-expanded-04-control",
+      "parent_id": "narration-1-control",
+      "group": "narration",
+      "fold": "test",
+      "partition": "novel_wording",
+      "candidate_sha256": "0838a757de4438950f66d05142f8ca3eff58331244febd487b332e2cf27dcb35",
+      "context_sha256": "09d9d0ae39535c99ec20ff2bc0a4de0f6055e68b1be19a388535308c1a006cd6",
+      "frame_sha256": "8d43878f1b1d9b5ab9cca1e27b236b86870b0bae9ac91e7f9c5765702b06f75b"
+    },
+    {
+      "id": "narration-expanded-05-support",
+      "parent_id": "narration-2-support",
+      "group": "narration",
+      "fold": "test",
+      "partition": "novel_wording",
+      "candidate_sha256": "0838a757de4438950f66d05142f8ca3eff58331244febd487b332e2cf27dcb35",
+      "context_sha256": "c37f0998d17b647732c9c0123dfc407126d4951180c051a3d5f091c06e96b24e",
+      "frame_sha256": "979e82f1fe009824ea80a58c61075712621ea6dd8329be727285551c2029c327"
+    },
+    {
+      "id": "narration-expanded-05-control",
+      "parent_id": "narration-2-control",
+      "group": "narration",
+      "fold": "test",
+      "partition": "novel_wording",
+      "candidate_sha256": "0838a757de4438950f66d05142f8ca3eff58331244febd487b332e2cf27dcb35",
+      "context_sha256": "09d9d0ae39535c99ec20ff2bc0a4de0f6055e68b1be19a388535308c1a006cd6",
+      "frame_sha256": "979e82f1fe009824ea80a58c61075712621ea6dd8329be727285551c2029c327"
+    },
+    {
+      "id": "narration-expanded-06-support",
+      "parent_id": "narration-0-support",
+      "group": "narration",
+      "fold": "test",
+      "partition": "novel_wording",
+      "candidate_sha256": "0838a757de4438950f66d05142f8ca3eff58331244febd487b332e2cf27dcb35",
+      "context_sha256": "c37f0998d17b647732c9c0123dfc407126d4951180c051a3d5f091c06e96b24e",
+      "frame_sha256": "4907a0ecffa2cd4a5a9cacf767e88dd5c138d5d0657499aa101b958028cc7701"
+    },
+    {
+      "id": "narration-expanded-06-control",
+      "parent_id": "narration-0-control",
+      "group": "narration",
+      "fold": "test",
+      "partition": "novel_wording",
+      "candidate_sha256": "0838a757de4438950f66d05142f8ca3eff58331244febd487b332e2cf27dcb35",
+      "context_sha256": "09d9d0ae39535c99ec20ff2bc0a4de0f6055e68b1be19a388535308c1a006cd6",
+      "frame_sha256": "4907a0ecffa2cd4a5a9cacf767e88dd5c138d5d0657499aa101b958028cc7701"
+    },
+    {
+      "id": "narration-expanded-07-support",
+      "parent_id": "narration-1-support",
+      "group": "narration",
+      "fold": "test",
+      "partition": "novel_wording",
+      "candidate_sha256": "0838a757de4438950f66d05142f8ca3eff58331244febd487b332e2cf27dcb35",
+      "context_sha256": "c37f0998d17b647732c9c0123dfc407126d4951180c051a3d5f091c06e96b24e",
+      "frame_sha256": "8d43878f1b1d9b5ab9cca1e27b236b86870b0bae9ac91e7f9c5765702b06f75b"
+    },
+    {
+      "id": "narration-expanded-07-control",
+      "parent_id": "narration-1-control",
+      "group": "narration",
+      "fold": "test",
+      "partition": "novel_wording",
+      "candidate_sha256": "0838a757de4438950f66d05142f8ca3eff58331244febd487b332e2cf27dcb35",
+      "context_sha256": "09d9d0ae39535c99ec20ff2bc0a4de0f6055e68b1be19a388535308c1a006cd6",
+      "frame_sha256": "8d43878f1b1d9b5ab9cca1e27b236b86870b0bae9ac91e7f9c5765702b06f75b"
+    },
+    {
+      "id": "narration-expanded-08-support",
+      "parent_id": "narration-2-support",
+      "group": "narration",
+      "fold": "test",
+      "partition": "novel_wording",
+      "candidate_sha256": "0838a757de4438950f66d05142f8ca3eff58331244febd487b332e2cf27dcb35",
+      "context_sha256": "c37f0998d17b647732c9c0123dfc407126d4951180c051a3d5f091c06e96b24e",
+      "frame_sha256": "979e82f1fe009824ea80a58c61075712621ea6dd8329be727285551c2029c327"
+    },
+    {
+      "id": "narration-expanded-08-control",
+      "parent_id": "narration-2-control",
+      "group": "narration",
+      "fold": "test",
+      "partition": "novel_wording",
+      "candidate_sha256": "0838a757de4438950f66d05142f8ca3eff58331244febd487b332e2cf27dcb35",
+      "context_sha256": "09d9d0ae39535c99ec20ff2bc0a4de0f6055e68b1be19a388535308c1a006cd6",
+      "frame_sha256": "979e82f1fe009824ea80a58c61075712621ea6dd8329be727285551c2029c327"
+    },
+    {
+      "id": "narration-expanded-09-support",
+      "parent_id": "narration-0-support",
+      "group": "narration",
+      "fold": "test",
+      "partition": "novel_wording",
+      "candidate_sha256": "0838a757de4438950f66d05142f8ca3eff58331244febd487b332e2cf27dcb35",
+      "context_sha256": "c37f0998d17b647732c9c0123dfc407126d4951180c051a3d5f091c06e96b24e",
+      "frame_sha256": "4907a0ecffa2cd4a5a9cacf767e88dd5c138d5d0657499aa101b958028cc7701"
+    },
+    {
+      "id": "narration-expanded-09-control",
+      "parent_id": "narration-0-control",
+      "group": "narration",
+      "fold": "test",
+      "partition": "novel_wording",
+      "candidate_sha256": "0838a757de4438950f66d05142f8ca3eff58331244febd487b332e2cf27dcb35",
+      "context_sha256": "09d9d0ae39535c99ec20ff2bc0a4de0f6055e68b1be19a388535308c1a006cd6",
+      "frame_sha256": "4907a0ecffa2cd4a5a9cacf767e88dd5c138d5d0657499aa101b958028cc7701"
+    },
+    {
+      "id": "narration-expanded-10-support",
+      "parent_id": "narration-1-support",
+      "group": "narration",
+      "fold": "test",
+      "partition": "novel_wording",
+      "candidate_sha256": "0838a757de4438950f66d05142f8ca3eff58331244febd487b332e2cf27dcb35",
+      "context_sha256": "c37f0998d17b647732c9c0123dfc407126d4951180c051a3d5f091c06e96b24e",
+      "frame_sha256": "8d43878f1b1d9b5ab9cca1e27b236b86870b0bae9ac91e7f9c5765702b06f75b"
+    },
+    {
+      "id": "narration-expanded-10-control",
+      "parent_id": "narration-1-control",
+      "group": "narration",
+      "fold": "test",
+      "partition": "novel_wording",
+      "candidate_sha256": "0838a757de4438950f66d05142f8ca3eff58331244febd487b332e2cf27dcb35",
+      "context_sha256": "09d9d0ae39535c99ec20ff2bc0a4de0f6055e68b1be19a388535308c1a006cd6",
+      "frame_sha256": "8d43878f1b1d9b5ab9cca1e27b236b86870b0bae9ac91e7f9c5765702b06f75b"
+    },
+    {
+      "id": "narration-expanded-11-support",
+      "parent_id": "narration-2-support",
+      "group": "narration",
+      "fold": "test",
+      "partition": "novel_wording",
+      "candidate_sha256": "0838a757de4438950f66d05142f8ca3eff58331244febd487b332e2cf27dcb35",
+      "context_sha256": "c37f0998d17b647732c9c0123dfc407126d4951180c051a3d5f091c06e96b24e",
+      "frame_sha256": "979e82f1fe009824ea80a58c61075712621ea6dd8329be727285551c2029c327"
+    },
+    {
+      "id": "narration-expanded-11-control",
+      "parent_id": "narration-2-control",
+      "group": "narration",
+      "fold": "test",
+      "partition": "novel_wording",
+      "candidate_sha256": "0838a757de4438950f66d05142f8ca3eff58331244febd487b332e2cf27dcb35",
+      "context_sha256": "09d9d0ae39535c99ec20ff2bc0a4de0f6055e68b1be19a388535308c1a006cd6",
+      "frame_sha256": "979e82f1fe009824ea80a58c61075712621ea6dd8329be727285551c2029c327"
+    }
+  ]
+}
