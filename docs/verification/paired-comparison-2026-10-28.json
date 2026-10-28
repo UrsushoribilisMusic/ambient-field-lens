@@ -1,0 +1,1298 @@
+{
+  "reports": {
+    "text": {
+      "input_sha256": "f6d166a34f1f97be5b95bd6bfb8cf51a14b7363ec738691e8d6a80cdd23a296a",
+      "sources": [
+        {
+          "group": "calibration",
+          "fold": "fit",
+          "source": "atf-wiki/Topics/Calibration.md",
+          "source_sha256": "e6c5e37c70291763dff0549dbfec2ebe520f77440c9b26d886e6f2e5453c966d",
+          "support_span_sha256": "4e33349eeeeb016fe2a8054b354224d5c8c8c25395adea4a5b3b5d7b6a41759f",
+          "control_source": "README.md",
+          "control_span_sha256": "965cd461fd801e594a3125e7d8d142edae987cfceda31c6b990ebaabf6aa2bc4"
+        },
+        {
+          "group": "port",
+          "fold": "fit",
+          "source": "skills/huenit/SKILL.md",
+          "source_sha256": "3611f38779551d0cabc2636b4da78f8b6ec80bd212723c4165735a8b8c92c684",
+          "support_span_sha256": "ccd33f480d4ab50c1e47252889dc7073d0b598fb3c0ae5dc4d8934da3c612b49",
+          "control_source": "atf-wiki/Topics/Narration.md",
+          "control_span_sha256": "19299d6553e782003c25a3a6d13e27b0083a30cd771c945c4ca9fff92c9bc583"
+        },
+        {
+          "group": "pressure",
+          "fold": "validation",
+          "source": "COMMANDS.md",
+          "source_sha256": "6291bcb5dc0a6925adc4dea42c58a339b2e705b56970956ed31443d4cf3b5cf9",
+          "support_span_sha256": "b9bb1810057e36162c1837b41bb44d9ddaf95c8bb4612d55d8d35e36a05a9c44",
+          "control_source": "README.md",
+          "control_span_sha256": "ff5e42c23d21f078a03d55d0372c7107fb93fe20f5a2a984320cf7e332390226"
+        },
+        {
+          "group": "approval",
+          "fold": "validation",
+          "source": "COMMANDS.md",
+          "source_sha256": "6291bcb5dc0a6925adc4dea42c58a339b2e705b56970956ed31443d4cf3b5cf9",
+          "support_span_sha256": "2ae1c94f87f82b6208f53af47f65369109a71869ab4d1ab4369ebb3a63b6da97",
+          "control_source": "atf-wiki/Topics/Calibration.md",
+          "control_span_sha256": "f2fdfaee623caedc1ef4b10369f7006da2a6af62cfd775ec6935b31b42e2def7"
+        },
+        {
+          "group": "locking",
+          "fold": "test",
+          "source": "atf-wiki/Subsystems/JobOrchestration.md",
+          "source_sha256": "299e26ed07e19092ba2484dca3e4bc40d15d981de60efcf8bef4b38d54780583",
+          "support_span_sha256": "876bdf0e541da8952730010978438b5bc6d75ef27434152923081618795e81f9",
+          "control_source": "atf-wiki/Overview.md",
+          "control_span_sha256": "f3955a2f72be8a117e1a6725cdb15be9beb68e91f4d85d61fd1a3a529bc0c029"
+        },
+        {
+          "group": "narration",
+          "fold": "test",
+          "source": "skills/robot-ross/SKILL.md",
+          "source_sha256": "dfc0db4c4db453b96c02edf76dfa9546a2368de6cab6823049586e9a9bdf917b",
+          "support_span_sha256": "340fb994f3907d3df65f4572464784a677a35dce3971c0fcfb016bd958ebcb34",
+          "control_source": "README.md",
+          "control_span_sha256": "916501e3f56d7fa3ce1f5ccfdb4593d6f340e90780944cf6c43e3c9cc1749e44"
+        }
+      ],
+      "input_cache_sha256": "959116d55968f72c2ca583f5d9bf8e24c168f0bed62c0cab627dc32b06d57586",
+      "case_origin": "new in-event authored questions, exact spans from existing Ross manual snapshot; not a copied evaluation matrix",
+      "author_review": "Codi (agent) checked each exact support span/candidate/control; independent human review pending.",
+      "image_input": false,
+      "folds": {
+        "fit": [
+          "calibration-0-support",
+          "calibration-0-control",
+          "calibration-1-support",
+          "calibration-1-control",
+          "calibration-2-support",
+          "calibration-2-control",
+          "port-0-support",
+          "port-0-control",
+          "port-1-support",
+          "port-1-control",
+          "port-2-support",
+          "port-2-control"
+        ],
+        "validation": [
+          "pressure-0-support",
+          "pressure-0-control",
+          "pressure-1-support",
+          "pressure-1-control",
+          "pressure-2-support",
+          "pressure-2-control",
+          "approval-0-support",
+          "approval-0-control",
+          "approval-1-support",
+          "approval-1-control",
+          "approval-2-support",
+          "approval-2-control"
+        ],
+        "test": [
+          "locking-0-support",
+          "locking-0-control",
+          "locking-1-support",
+          "locking-1-control",
+          "locking-2-support",
+          "locking-2-control",
+          "narration-0-support",
+          "narration-0-control",
+          "narration-1-support",
+          "narration-1-control",
+          "narration-2-support",
+          "narration-2-control"
+        ]
+      },
+      "reservation": {
+        "id": "317b4e64-4a8a-4834-a39c-bbeddb5e96e6",
+        "reserved_usd": 4.0,
+        "created_utc": "2026-10-28T06:34:02.057402+00:00"
+      },
+      "preflight": {
+        "loader_kind": "multimodal",
+        "decoder_path": "model.language_model.layers",
+        "norm_path": "model.language_model.norm",
+        "norm_class": "MuseGlimmerRMSNorm",
+        "cases_checked": 36,
+        "maximum_prompt_tokens": 121,
+        "prompt_tokens": [
+          107,
+          106,
+          110,
+          109,
+          110,
+          109,
+          114,
+          108,
+          115,
+          109,
+          116,
+          110,
+          112,
+          119,
+          113,
+          120,
+          109,
+          116,
+          115,
+          119,
+          116,
+          120,
+          117,
+          121,
+          118,
+          107,
+          119,
+          108,
+          118,
+          107,
+          111,
+          114,
+          112,
+          115,
+          113,
+          116
+        ],
+        "actual_norm_jvp_cpu_verified": true,
+        "candidate_token_readout_verified": true,
+        "gpu_used": false
+      },
+      "phase3_enabled": false,
+      "source_revision": "cec94fcfd6512f2cfe708138c32533b346ea4f69",
+      "hidden_contrastive": {
+        "selected_layer": 4,
+        "validation_auc_per_layer": [
+          0.13888888888888887,
+          0.9444444444444444,
+          0.888888888888889,
+          0.7222222222222222,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "validation_auc": 1.0,
+        "test_auc": 0.888888888888889,
+        "test_auc_group_bootstrap_95": [
+          0.7777777777777779,
+          1.0
+        ],
+        "test_pairs": 6,
+        "test_records": 12,
+        "test_topic_clusters": 2,
+        "pair_accuracy": 1.0,
+        "pair_wins": 6,
+        "pair_ties": 0,
+        "paired_sign_test_two_sided_p": 0.03125,
+        "pair_sign_test_caveat": "Unadjusted diagnostic; paraphrases within topics are correlated",
+        "topic_mean_margins": {
+          "locking": 0.09443545010392307,
+          "narration": 0.08849257131580197
+        },
+        "topic_sign_test_two_sided_p": 0.5,
+        "test_pair_margins": [
+          {
+            "pair_id": "locking-0",
+            "group": "locking",
+            "positive": 0.01792865237119763,
+            "negative": -0.07299458972778557,
+            "margin": 0.0909232420989832
+          },
+          {
+            "pair_id": "locking-1",
+            "group": "locking",
+            "positive": -0.014798930245803987,
+            "negative": -0.1082978681228915,
+            "margin": 0.0934989378770875
+          },
+          {
+            "pair_id": "locking-2",
+            "group": "locking",
+            "positive": 0.05582935665627844,
+            "negative": -0.0430548136794201,
+            "margin": 0.09888417033569855
+          },
+          {
+            "pair_id": "narration-0",
+            "group": "narration",
+            "positive": 0.10485903725708985,
+            "negative": 0.03576051563755383,
+            "margin": 0.06909852161953603
+          },
+          {
+            "pair_id": "narration-1",
+            "group": "narration",
+            "positive": 0.03521952822918547,
+            "negative": -0.054305055602524986,
+            "margin": 0.08952458383171046
+          },
+          {
+            "pair_id": "narration-2",
+            "group": "narration",
+            "positive": 0.02805169717830205,
+            "negative": -0.07880291131785738,
+            "margin": 0.10685460849615944
+          }
+        ],
+        "enabled": false,
+        "target": "support present in supplied manual context; not generated answer correctness",
+        "limitations": [
+          "Tiny pilot: only two test topic clusters",
+          "Teacher-forced fixed candidate; no generated-answer correctness labels",
+          "Image inclusion is recorded in image_input; camera robustness and physical readiness remain untested"
+        ]
+      },
+      "full_vocabulary_norm_head_jacobian": {
+        "selected_layer": 4,
+        "validation_auc_per_layer": [
+          0.0,
+          0.9166666666666667,
+          0.7222222222222223,
+          0.75,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          0.8611111111111112,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          0.8611111111111112,
+          0.6944444444444445,
+          0.7777777777777778,
+          1.0,
+          0.8333333333333333,
+          0.7777777777777778,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          0.9166666666666667,
+          0.9722222222222223,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          0.9722222222222223,
+          0.9722222222222223,
+          0.888888888888889
+        ],
+        "validation_auc": 1.0,
+        "test_auc": 0.8611111111111112,
+        "test_auc_group_bootstrap_95": [
+          0.7777777777777779,
+          1.0
+        ],
+        "test_pairs": 6,
+        "test_records": 12,
+        "test_topic_clusters": 2,
+        "pair_accuracy": 1.0,
+        "pair_wins": 6,
+        "pair_ties": 0,
+        "paired_sign_test_two_sided_p": 0.03125,
+        "pair_sign_test_caveat": "Unadjusted diagnostic; paraphrases within topics are correlated",
+        "topic_mean_margins": {
+          "locking": 0.24921507435520343,
+          "narration": 0.2780135042813166
+        },
+        "topic_sign_test_two_sided_p": 0.5,
+        "test_pair_margins": [
+          {
+            "pair_id": "locking-0",
+            "group": "locking",
+            "positive": 0.09842242267547448,
+            "negative": -0.1448750342198914,
+            "margin": 0.24329745689536586
+          },
+          {
+            "pair_id": "locking-1",
+            "group": "locking",
+            "positive": 0.01154223619380896,
+            "negative": -0.23356433274362082,
+            "margin": 0.24510656893742977
+          },
+          {
+            "pair_id": "locking-2",
+            "group": "locking",
+            "positive": 0.19714442494880569,
+            "negative": -0.062096772284008936,
+            "margin": 0.25924119723281464
+          },
+          {
+            "pair_id": "narration-0",
+            "group": "narration",
+            "positive": 0.38545054253421407,
+            "negative": 0.20612990387509686,
+            "margin": 0.1793206386591172
+          },
+          {
+            "pair_id": "narration-1",
+            "group": "narration",
+            "positive": 0.18835992527129758,
+            "negative": -0.11220461264407229,
+            "margin": 0.30056453791536986
+          },
+          {
+            "pair_id": "narration-2",
+            "group": "narration",
+            "positive": 0.16761665446555601,
+            "negative": -0.18653868180390684,
+            "margin": 0.35415533626946283
+          }
+        ],
+        "enabled": false,
+        "target": "support present in supplied manual context; not generated answer correctness",
+        "limitations": [
+          "Tiny pilot: only two test topic clusters",
+          "Teacher-forced fixed candidate; no generated-answer correctness labels",
+          "Image inclusion is recorded in image_input; camera robustness and physical readiness remain untested"
+        ]
+      },
+      "jacobian_scope": "Exact Jacobian of final norm + entire unembedding at fit-only mean residual; local readout lens, not full transformer network Jacobian",
+      "same_cases_folds_activations": true,
+      "elapsed_seconds": 75.27,
+      "runtime": {
+        "torch": "2.14.1+cu130",
+        "transformers": "5.21.0",
+        "gpu": "NVIDIA A100-SXM4-80GB",
+        "peak_gpu_memory_bytes": 65023480320,
+        "vocab_coordinates": 202048
+      },
+      "artifact_directory": "/artifacts/317b4e64-4a8a-4834-a39c-bbeddb5e96e6",
+      "status": "complete",
+      "audit": {
+        "original_gpu_report_sha256": "b82653665e6462674fb73161ccdcef295f28b3c14d5354ca1a49296509f7213a",
+        "all_layer_scores_sha256": "0cd17dbe358d7227e127d4ce8e8e708944993aac462265aa9be93bf027fd4444",
+        "recomputed_on_cpu": true,
+        "layer_scores_and_selected_layer_unchanged": true,
+        "added_topic_cluster_diagnostics": true
+      }
+    },
+    "camera": {
+      "input_sha256": "1f8fe74d3300b7aa09f1a76e723e5a323e686c5289c72fb95dfc8066bc33c17a",
+      "sources": [
+        {
+          "group": "calibration",
+          "fold": "fit",
+          "source": "atf-wiki/Topics/Calibration.md",
+          "source_sha256": "e6c5e37c70291763dff0549dbfec2ebe520f77440c9b26d886e6f2e5453c966d",
+          "support_span_sha256": "4e33349eeeeb016fe2a8054b354224d5c8c8c25395adea4a5b3b5d7b6a41759f",
+          "control_source": "README.md",
+          "control_span_sha256": "965cd461fd801e594a3125e7d8d142edae987cfceda31c6b990ebaabf6aa2bc4"
+        },
+        {
+          "group": "port",
+          "fold": "fit",
+          "source": "skills/huenit/SKILL.md",
+          "source_sha256": "3611f38779551d0cabc2636b4da78f8b6ec80bd212723c4165735a8b8c92c684",
+          "support_span_sha256": "ccd33f480d4ab50c1e47252889dc7073d0b598fb3c0ae5dc4d8934da3c612b49",
+          "control_source": "atf-wiki/Topics/Narration.md",
+          "control_span_sha256": "19299d6553e782003c25a3a6d13e27b0083a30cd771c945c4ca9fff92c9bc583"
+        },
+        {
+          "group": "pressure",
+          "fold": "validation",
+          "source": "COMMANDS.md",
+          "source_sha256": "6291bcb5dc0a6925adc4dea42c58a339b2e705b56970956ed31443d4cf3b5cf9",
+          "support_span_sha256": "b9bb1810057e36162c1837b41bb44d9ddaf95c8bb4612d55d8d35e36a05a9c44",
+          "control_source": "README.md",
+          "control_span_sha256": "ff5e42c23d21f078a03d55d0372c7107fb93fe20f5a2a984320cf7e332390226"
+        },
+        {
+          "group": "approval",
+          "fold": "validation",
+          "source": "COMMANDS.md",
+          "source_sha256": "6291bcb5dc0a6925adc4dea42c58a339b2e705b56970956ed31443d4cf3b5cf9",
+          "support_span_sha256": "2ae1c94f87f82b6208f53af47f65369109a71869ab4d1ab4369ebb3a63b6da97",
+          "control_source": "atf-wiki/Topics/Calibration.md",
+          "control_span_sha256": "f2fdfaee623caedc1ef4b10369f7006da2a6af62cfd775ec6935b31b42e2def7"
+        },
+        {
+          "group": "locking",
+          "fold": "test",
+          "source": "atf-wiki/Subsystems/JobOrchestration.md",
+          "source_sha256": "299e26ed07e19092ba2484dca3e4bc40d15d981de60efcf8bef4b38d54780583",
+          "support_span_sha256": "876bdf0e541da8952730010978438b5bc6d75ef27434152923081618795e81f9",
+          "control_source": "atf-wiki/Overview.md",
+          "control_span_sha256": "f3955a2f72be8a117e1a6725cdb15be9beb68e91f4d85d61fd1a3a529bc0c029"
+        },
+        {
+          "group": "narration",
+          "fold": "test",
+          "source": "skills/robot-ross/SKILL.md",
+          "source_sha256": "dfc0db4c4db453b96c02edf76dfa9546a2368de6cab6823049586e9a9bdf917b",
+          "support_span_sha256": "340fb994f3907d3df65f4572464784a677a35dce3971c0fcfb016bd958ebcb34",
+          "control_source": "README.md",
+          "control_span_sha256": "916501e3f56d7fa3ce1f5ccfdb4593d6f340e90780944cf6c43e3c9cc1749e44"
+        }
+      ],
+      "input_cache_sha256": "959116d55968f72c2ca583f5d9bf8e24c168f0bed62c0cab627dc32b06d57586",
+      "case_origin": "new in-event authored questions, exact spans from existing Ross manual snapshot; not a copied evaluation matrix",
+      "author_review": "Codi (agent) checked each exact support span/candidate/control; independent human review pending.",
+      "image_input": true,
+      "frames": [
+        {
+          "sha256": "45d5a4d4a3cc0d220f64d119152bd5d1f049254296097b81c30be101d498ddc9",
+          "asset": "2026-10-27/drawing-readiness/S04-pen-missing.jpg",
+          "camera_profile": "reolink-896x512-intrinsics-unknown",
+          "pose_bucket": "tripod-A-unmeasured",
+          "pose_assignment_method": "operator stage/capture sequence, not measured metric pose",
+          "source_record": "2026-10-27/drawing-readiness/review-manifest.json",
+          "scene_id": "S04-pen-missing"
+        },
+        {
+          "sha256": "3dbe93903ceca471323035fb78ec70eb5c5e6863e5bd1e5de72b125a706b7a89",
+          "asset": "2026-10-27/drawing-readiness/S27-clear-before-t030.jpg",
+          "camera_profile": "reolink-896x512-intrinsics-unknown",
+          "pose_bucket": "tripod-F-unmeasured",
+          "pose_assignment_method": "operator stage/capture sequence, not measured metric pose",
+          "source_record": "2026-10-27/drawing-readiness/review-manifest.json",
+          "scene_id": "S27-viewF-holder-occlusion-repeat@30"
+        },
+        {
+          "sha256": "4b0f29d2e7eb38dbbad173f62cf580b9fb5ed42bcfe1d82ab7fd4645f0076db3",
+          "asset": "2026-10-27/drawing-readiness/S27-occluded-t080.jpg",
+          "camera_profile": "reolink-896x512-intrinsics-unknown",
+          "pose_bucket": "tripod-F-unmeasured",
+          "pose_assignment_method": "operator stage/capture sequence, not measured metric pose",
+          "source_record": "2026-10-27/drawing-readiness/review-manifest.json",
+          "scene_id": "S27-viewF-holder-occlusion-repeat@80"
+        },
+        {
+          "sha256": "4907a0ecffa2cd4a5a9cacf767e88dd5c138d5d0657499aa101b958028cc7701",
+          "asset": "2026-10-27/drawing-readiness/S27-clear-after-t100.jpg",
+          "camera_profile": "reolink-896x512-intrinsics-unknown",
+          "pose_bucket": "tripod-F-unmeasured",
+          "pose_assignment_method": "operator stage/capture sequence, not measured metric pose",
+          "source_record": "2026-10-27/drawing-readiness/review-manifest.json",
+          "scene_id": "S27-viewF-holder-occlusion-repeat@100"
+        },
+        {
+          "sha256": "8d43878f1b1d9b5ab9cca1e27b236b86870b0bae9ac91e7f9c5765702b06f75b",
+          "asset": "2026-10-27/drawing-readiness/S28-before-move-t000.jpg",
+          "camera_profile": "reolink-896x512-intrinsics-unknown",
+          "pose_bucket": "tripod-F-unmeasured",
+          "pose_assignment_method": "operator stage/capture sequence, not measured metric pose",
+          "source_record": "2026-10-27/drawing-readiness/review-manifest.json",
+          "scene_id": "S28-paper-outside-fixed-drawing-position@0"
+        },
+        {
+          "sha256": "979e82f1fe009824ea80a58c61075712621ea6dd8329be727285551c2029c327",
+          "asset": "2026-10-27/drawing-readiness/S30-paper-outside-pen-check.jpg",
+          "camera_profile": "reolink-2880x1616-intrinsics-unknown",
+          "pose_bucket": "tripod-F-unmeasured",
+          "pose_assignment_method": "operator stage/capture sequence, not measured metric pose",
+          "source_record": "2026-10-27/drawing-readiness/review-manifest.json",
+          "scene_id": "S30"
+        }
+      ],
+      "camera_scope": "Same six real saved frames recur across topic folds; question-topic holdout only, not a held-out-viewpoint evaluation. No physical ground-truth validity claim.",
+      "folds": {
+        "fit": [
+          "calibration-0-support",
+          "calibration-0-control",
+          "calibration-1-support",
+          "calibration-1-control",
+          "calibration-2-support",
+          "calibration-2-control",
+          "port-0-support",
+          "port-0-control",
+          "port-1-support",
+          "port-1-control",
+          "port-2-support",
+          "port-2-control"
+        ],
+        "validation": [
+          "pressure-0-support",
+          "pressure-0-control",
+          "pressure-1-support",
+          "pressure-1-control",
+          "pressure-2-support",
+          "pressure-2-control",
+          "approval-0-support",
+          "approval-0-control",
+          "approval-1-support",
+          "approval-1-control",
+          "approval-2-support",
+          "approval-2-control"
+        ],
+        "test": [
+          "locking-0-support",
+          "locking-0-control",
+          "locking-1-support",
+          "locking-1-control",
+          "locking-2-support",
+          "locking-2-control",
+          "narration-0-support",
+          "narration-0-control",
+          "narration-1-support",
+          "narration-1-control",
+          "narration-2-support",
+          "narration-2-control"
+        ]
+      },
+      "reservation": {
+        "id": "54930b50-897d-4d5f-8928-8ec064368cf6",
+        "reserved_usd": 4.0,
+        "created_utc": "2026-10-28T06:43:52.172092+00:00"
+      },
+      "preflight": {
+        "loader_kind": "multimodal",
+        "decoder_path": "model.language_model.layers",
+        "norm_path": "model.language_model.norm",
+        "norm_class": "MuseGlimmerRMSNorm",
+        "cases_checked": 36,
+        "maximum_prompt_tokens": 375,
+        "prompt_tokens": [
+          361,
+          360,
+          364,
+          363,
+          364,
+          363,
+          368,
+          362,
+          369,
+          363,
+          370,
+          364,
+          366,
+          373,
+          367,
+          374,
+          363,
+          370,
+          369,
+          373,
+          370,
+          374,
+          371,
+          375,
+          372,
+          361,
+          373,
+          362,
+          372,
+          361,
+          365,
+          368,
+          366,
+          369,
+          367,
+          370
+        ],
+        "image_input": true,
+        "frame_count": 6,
+        "max_image_tokens": 256,
+        "image_grids": [
+          [
+            [
+              1,
+              24,
+              42
+            ]
+          ],
+          [
+            [
+              1,
+              24,
+              42
+            ]
+          ],
+          [
+            [
+              1,
+              24,
+              42
+            ]
+          ],
+          [
+            [
+              1,
+              24,
+              42
+            ]
+          ],
+          [
+            [
+              1,
+              24,
+              42
+            ]
+          ],
+          [
+            [
+              1,
+              24,
+              42
+            ]
+          ],
+          [
+            [
+              1,
+              24,
+              42
+            ]
+          ],
+          [
+            [
+              1,
+              24,
+              42
+            ]
+          ],
+          [
+            [
+              1,
+              24,
+              42
+            ]
+          ],
+          [
+            [
+              1,
+              24,
+              42
+            ]
+          ],
+          [
+            [
+              1,
+              24,
+              42
+            ]
+          ],
+          [
+            [
+              1,
+              24,
+              42
+            ]
+          ],
+          [
+            [
+              1,
+              24,
+              42
+            ]
+          ],
+          [
+            [
+              1,
+              24,
+              42
+            ]
+          ],
+          [
+            [
+              1,
+              24,
+              42
+            ]
+          ],
+          [
+            [
+              1,
+              24,
+              42
+            ]
+          ],
+          [
+            [
+              1,
+              24,
+              42
+            ]
+          ],
+          [
+            [
+              1,
+              24,
+              42
+            ]
+          ],
+          [
+            [
+              1,
+              24,
+              42
+            ]
+          ],
+          [
+            [
+              1,
+              24,
+              42
+            ]
+          ],
+          [
+            [
+              1,
+              24,
+              42
+            ]
+          ],
+          [
+            [
+              1,
+              24,
+              42
+            ]
+          ],
+          [
+            [
+              1,
+              24,
+              42
+            ]
+          ],
+          [
+            [
+              1,
+              24,
+              42
+            ]
+          ],
+          [
+            [
+              1,
+              24,
+              42
+            ]
+          ],
+          [
+            [
+              1,
+              24,
+              42
+            ]
+          ],
+          [
+            [
+              1,
+              24,
+              42
+            ]
+          ],
+          [
+            [
+              1,
+              24,
+              42
+            ]
+          ],
+          [
+            [
+              1,
+              24,
+              42
+            ]
+          ],
+          [
+            [
+              1,
+              24,
+              42
+            ]
+          ],
+          [
+            [
+              1,
+              24,
+              42
+            ]
+          ],
+          [
+            [
+              1,
+              24,
+              42
+            ]
+          ],
+          [
+            [
+              1,
+              24,
+              42
+            ]
+          ],
+          [
+            [
+              1,
+              24,
+              42
+            ]
+          ],
+          [
+            [
+              1,
+              24,
+              42
+            ]
+          ],
+          [
+            [
+              1,
+              24,
+              42
+            ]
+          ]
+        ],
+        "actual_norm_jvp_cpu_verified": true,
+        "candidate_token_readout_verified": true,
+        "gpu_used": false
+      },
+      "phase3_enabled": false,
+      "source_revision": "cec94fcfd6512f2cfe708138c32533b346ea4f69",
+      "hidden_contrastive": {
+        "selected_layer": 4,
+        "validation_auc_per_layer": [
+          0.0,
+          0.9444444444444444,
+          0.9166666666666667,
+          0.8055555555555556,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "validation_auc": 1.0,
+        "test_auc": 0.888888888888889,
+        "test_auc_group_bootstrap_95": [
+          0.7777777777777779,
+          1.0
+        ],
+        "test_pairs": 6,
+        "test_records": 12,
+        "test_topic_clusters": 2,
+        "pair_accuracy": 1.0,
+        "pair_wins": 6,
+        "pair_ties": 0,
+        "paired_sign_test_two_sided_p": 0.03125,
+        "pair_sign_test_caveat": "Unadjusted diagnostic; paraphrases within topics are correlated",
+        "topic_mean_margins": {
+          "locking": 0.09915073992482011,
+          "narration": 0.09448184647451974
+        },
+        "topic_sign_test_two_sided_p": 0.5,
+        "test_pair_margins": [
+          {
+            "pair_id": "locking-0",
+            "group": "locking",
+            "positive": 0.04474290104916067,
+            "negative": -0.05118918763552589,
+            "margin": 0.09593208868468656
+          },
+          {
+            "pair_id": "locking-1",
+            "group": "locking",
+            "positive": 0.013786107732263112,
+            "negative": -0.08541663516914771,
+            "margin": 0.09920274290141083
+          },
+          {
+            "pair_id": "locking-2",
+            "group": "locking",
+            "positive": 0.08326422125575901,
+            "negative": -0.01905316693260397,
+            "margin": 0.10231738818836297
+          },
+          {
+            "pair_id": "narration-0",
+            "group": "narration",
+            "positive": 0.1393607923519986,
+            "negative": 0.06728415972042455,
+            "margin": 0.07207663263157406
+          },
+          {
+            "pair_id": "narration-1",
+            "group": "narration",
+            "positive": 0.0632659086701941,
+            "negative": -0.031839939316540576,
+            "margin": 0.09510584798673469
+          },
+          {
+            "pair_id": "narration-2",
+            "group": "narration",
+            "positive": 0.05771251250319152,
+            "negative": -0.05855054630205892,
+            "margin": 0.11626305880525044
+          }
+        ],
+        "enabled": false,
+        "target": "support present in supplied manual context; not generated answer correctness",
+        "limitations": [
+          "Tiny pilot: only two test topic clusters",
+          "Teacher-forced fixed candidate; no generated-answer correctness labels",
+          "Image inclusion is recorded in image_input; camera robustness and physical readiness remain untested"
+        ]
+      },
+      "full_vocabulary_norm_head_jacobian": {
+        "selected_layer": 4,
+        "validation_auc_per_layer": [
+          0.1388888888888889,
+          0.9166666666666667,
+          0.8333333333333335,
+          0.8333333333333334,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          0.888888888888889,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          0.8611111111111112,
+          0.8333333333333334,
+          0.9722222222222223
+        ],
+        "validation_auc": 1.0,
+        "test_auc": 0.8611111111111112,
+        "test_auc_group_bootstrap_95": [
+          0.7777777777777779,
+          1.0
+        ],
+        "test_pairs": 6,
+        "test_records": 12,
+        "test_topic_clusters": 2,
+        "pair_accuracy": 1.0,
+        "pair_wins": 6,
+        "pair_ties": 0,
+        "paired_sign_test_two_sided_p": 0.03125,
+        "pair_sign_test_caveat": "Unadjusted diagnostic; paraphrases within topics are correlated",
+        "topic_mean_margins": {
+          "locking": 0.27182058227624717,
+          "narration": 0.31262477610737355
+        },
+        "topic_sign_test_two_sided_p": 0.5,
+        "test_pair_margins": [
+          {
+            "pair_id": "locking-0",
+            "group": "locking",
+            "positive": 0.12380958435756209,
+            "negative": -0.14660461506508052,
+            "margin": 0.2704141994226426
+          },
+          {
+            "pair_id": "locking-1",
+            "group": "locking",
+            "positive": 0.03318988435172488,
+            "negative": -0.23585057426817027,
+            "margin": 0.2690404586198952
+          },
+          {
+            "pair_id": "locking-2",
+            "group": "locking",
+            "positive": 0.2153774702544568,
+            "negative": -0.060629618531746955,
+            "margin": 0.2760070887862038
+          },
+          {
+            "pair_id": "narration-0",
+            "group": "narration",
+            "positive": 0.43615002670310377,
+            "negative": 0.24371914461946095,
+            "margin": 0.1924308820836428
+          },
+          {
+            "pair_id": "narration-1",
+            "group": "narration",
+            "positive": 0.2198711165225617,
+            "negative": -0.11937841937304951,
+            "margin": 0.3392495358956112
+          },
+          {
+            "pair_id": "narration-2",
+            "group": "narration",
+            "positive": 0.20602628304517237,
+            "negative": -0.20016762729769427,
+            "margin": 0.40619391034286667
+          }
+        ],
+        "enabled": false,
+        "target": "support present in supplied manual context; not generated answer correctness",
+        "limitations": [
+          "Tiny pilot: only two test topic clusters",
+          "Teacher-forced fixed candidate; no generated-answer correctness labels",
+          "Image inclusion is recorded in image_input; camera robustness and physical readiness remain untested"
+        ]
+      },
+      "jacobian_scope": "Exact Jacobian of final norm + entire unembedding at fit-only mean residual; local readout lens, not full transformer network Jacobian",
+      "same_cases_folds_activations": true,
+      "elapsed_seconds": 77.06,
+      "runtime": {
+        "torch": "2.14.1+cu130",
+        "transformers": "5.21.0",
+        "gpu": "NVIDIA A100-SXM4-80GB",
+        "peak_gpu_memory_bytes": 65023215104,
+        "vocab_coordinates": 202048
+      },
+      "artifact_directory": "/artifacts/54930b50-897d-4d5f-8928-8ec064368cf6",
+      "status": "complete",
+      "audit": {
+        "original_gpu_report_sha256": "62d0d359f9f25a913cb9ffe61068550e76ba8a0fa480727ab6a7e5b51209bfe5",
+        "all_layer_scores_sha256": "0615a6bfbfe82ea4357d730d764ec542792c5c7897d2825827868d48c3326158",
+        "recomputed_on_cpu": true,
+        "layer_scores_and_selected_layer_unchanged": true,
+        "added_topic_cluster_diagnostics": true
+      }
+    }
+  },
+  "cross_condition_max_abs_score_delta": {
+    "hidden": 0.525744790095165,
+    "jacobian_lens": 1.1314192207650609
+  },
+  "interpretation": "No demonstrated Jacobian-lens advantage. Identical held-out rank metrics with/without real camera input does not establish vision grounding. Two held-out topics only; no live green gate.",
+  "method_scope": "Complete norm/head Jacobian lens; not end-to-end transformer Jacobian",
+  "gate_enabled": false,
+  "fixture_modified": false,
+  "containers_after": [],
+  "reservation_ledger": {
+    "ceiling_usd": 100.0,
+    "cpu_and_build_reserve_usd": 2.0,
+    "windows": [
+      {
+        "id": "69dca424-fabd-48fe-a6d0-303175a8fb4b",
+        "reserved_usd": 4.0,
+        "created_utc": "2026-10-26T18:31:43.685653+00:00"
+      },
+      {
+        "id": "317b4e64-4a8a-4834-a39c-bbeddb5e96e6",
+        "reserved_usd": 4.0,
+        "created_utc": "2026-10-28T06:34:02.057402+00:00",
+        "status": "complete_recovered_from_volume",
+        "error_type": "DeserializationError",
+        "error": "Deserialization failed because the 'torch' module is not available in the local environment.",
+        "updated_utc": "2026-10-28T06:40:06.138077+00:00",
+        "client_transfer_error": "TorchVersion return subtype required absent local torch; canonical JSON recovered without rerunning GPU",
+        "elapsed_seconds": 75.27,
+        "artifact_directory": "/artifacts/317b4e64-4a8a-4834-a39c-bbeddb5e96e6",
+        "containers_after": 0
+      },
+      {
+        "id": "54930b50-897d-4d5f-8928-8ec064368cf6",
+        "reserved_usd": 4.0,
+        "created_utc": "2026-10-28T06:43:52.172092+00:00",
+        "status": "complete",
+        "elapsed_seconds": 77.06,
+        "artifact_directory": "/artifacts/54930b50-897d-4d5f-8928-8ec064368cf6",
+        "updated_utc": "2026-10-28T06:48:57.987989+00:00",
+        "containers_after": 0,
+        "app_id": "ap-kPpGrJd901LSKiHHx3oFaY"
+      }
+    ],
+    "previous_ceiling_usd": 20.0,
+    "authorization": {
+      "workspace": "miguel-40686",
+      "grant_usd": 100,
+      "confirmed_by": "Miguel, 2026-10-28 screenshot and instruction",
+      "expires": "2027-10-31"
+    },
+    "preflight_attempts": [
+      {
+        "id": "paired-comparison-20261028-01",
+        "started_utc": "2026-10-28T06:30:30.147883+00:00",
+        "status": "failed_before_gpu",
+        "gpu_allocated": false,
+        "input_sha256": "f6d166a34f1f97be5b95bd6bfb8cf51a14b7363ec738691e8d6a80cdd23a296a",
+        "log": "/tmp/afl-paired-window-20261028.log",
+        "cpu_cost_bound": "covered by existing $2 CPU/build reserve",
+        "error": "Launcher environment missing scipy; switching to already-tested recalibration venv"
+      },
+      {
+        "id": "paired-comparison-20261028-02",
+        "started_utc": "2026-10-28T06:32:13.950040+00:00",
+        "status": "failed_before_gpu",
+        "gpu_allocated": false,
+        "log": "/tmp/afl-paired-window-20261028-02.log",
+        "cpu_cost_bound": "existing $2 CPU/build reserve",
+        "error": "Remote CPU import did not bundle sibling recal_window; app explicitly stopped",
+        "app_id": "ap-qpRMDTB2O8nADOHGXjDdlB"
+      },
+      {
+        "id": "paired-comparison-20261028-03",
+        "started_utc": "2026-10-28T06:33:27.349971+00:00",
+        "status": "complete_gpu_result_recovered",
+        "gpu_allocated": true,
+        "log": "/tmp/afl-paired-window-20261028-03.log",
+        "cpu_cost_bound": "existing $2 CPU/build reserve",
+        "reservation_id": "317b4e64-4a8a-4834-a39c-bbeddb5e96e6",
+        "containers_after": 0
+      },
+      {
+        "id": "paired-camera-20261028-01",
+        "started_utc": "2026-10-28T06:40:06.145008+00:00",
+        "status": "failed_before_gpu",
+        "gpu_allocated": false,
+        "input_sha256": "c8a977a1a6a464bd4dc4e637e5f233ee2c378915099bc57f5bc969d76957fe11",
+        "log": "/tmp/afl-paired-camera-20261028.log",
+        "error": "Native image processor requires torchvision; pinned compatible 0.29.1 after checking PyPI requires torch>=2.14",
+        "containers_after": 0
+      },
+      {
+        "id": "paired-camera-20261028-02",
+        "started_utc": "2026-10-28T06:43:22.646974+00:00",
+        "status": "complete",
+        "gpu_allocated": true,
+        "input_sha256": "1f8fe74d3300b7aa09f1a76e723e5a323e686c5289c72fb95dfc8066bc33c17a",
+        "log": "/tmp/afl-paired-camera-20261028-02.log",
+        "reservation_id": "54930b50-897d-4d5f-8928-8ec064368cf6",
+        "containers_after": 0
+      }
+    ]
+  },
+  "reference_document": {
+    "filename": "canis_disposition_paper_DRAFT.md",
+    "role": "pre-event concept reference only; section3; no code, vectors or cases copied",
+    "sha256": "23b792fea86858cbe4b4cc18eea5282eada25d943a788cc1a3928c803189c924"
+  }
+}
