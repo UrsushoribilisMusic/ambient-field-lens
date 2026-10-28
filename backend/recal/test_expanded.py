@@ -1,7 +1,7 @@
 import copy,unittest
 import numpy as np
 from test_paired import records
-from expanded_analysis import expand,validate,report
+from expanded_analysis import expand,validate,report,prefill_inputs
 from paired_analysis import fit_score
 
 
@@ -14,6 +14,13 @@ def base():
 
 
 class ExpansionTests(unittest.TestCase):
+    def test_actual_prefill_excludes_all_candidate_tokens_but_keeps_pixels(self):
+        ids=np.arange(9).reshape(1,9);pixels=np.zeros((4,6));e={'input_ids':ids,'attention_mask':np.ones((1,9)),'pixel_values':pixels}
+        out=prefill_inputs(e,6)
+        np.testing.assert_array_equal(out['input_ids'],ids[:,:6])
+        self.assertEqual(out['attention_mask'].shape,(1,6));self.assertIs(out['pixel_values'],pixels)
+        self.assertEqual(e['input_ids'].shape,(1,9))
+        with self.assertRaises(ValueError):prefill_inputs(e,9)
     def test_counts_and_human_reviewed_inheritance(self):
         b=base();r=expand(b);validate(r,b['records']);self.assertEqual(len(r),84)
         self.assertEqual(sum(x['partition']=='novel_wording' for x in r),48)

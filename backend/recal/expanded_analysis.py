@@ -116,3 +116,14 @@ def report(scores,records,layer):
          'Candidate, context and frame combinations unchanged from Miguel-reviewed set',
          'Same camera frames recur across folds; no visual-grounding claim',
          'No new labels: evidence-candidate labels inherited only under strict identity checks'])
+
+
+def prefill_inputs(encoded,start):
+    full=int(encoded['input_ids'].shape[-1])
+    if not 0<start<full:raise ValueError('Actual pre-candidate boundary required')
+    out=dict(encoded)
+    for key in ('input_ids','attention_mask','token_type_ids','position_ids'):
+        if key in out:
+            if int(out[key].shape[-1])!=full:raise ValueError('Unaligned token tensor: '+key)
+            out[key]=out[key][...,:start]
+    return out
