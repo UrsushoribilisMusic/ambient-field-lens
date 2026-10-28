@@ -10,6 +10,7 @@ from dataclasses import dataclass
 from enum import Enum
 
 from .checks import Check, Frame, State
+from .evidence import Provenance
 
 
 class Visibility(str, Enum):
@@ -27,6 +28,7 @@ class Observation:
     visible: Visibility
     observed_present: bool | None
     source: str  # human_reference or model_observation, not a verdict/score
+    provenance: Provenance | None = None
 
 
 def check_pen_holder_presence(frame: Frame, pen: Observation | None = None,

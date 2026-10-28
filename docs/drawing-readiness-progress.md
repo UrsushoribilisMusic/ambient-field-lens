@@ -1,6 +1,14 @@
 # Drawing readiness — CPU checkpoint, 26 October 2026
 
-**27 October update:** the historical checklist below is retained as the night
+**27 October evening update:** see the [measured v2 and adapter report](verification/adapter-and-measured-v2-2026-10-27.md).
+Nine manual readings, fit 1–4 / validation 5–9, fail the unchanged 2 px bar:
+RMS 2.054368 px, max 2.954858 px. No robot-frame linkage accepted. Frame-bound
+adapters and six-check veto composition are implemented; saved S03 is archival
+and stale, never refreshed. The inventory now covers 45 frames, both actual
+presence and footprint unknown on all 45. A six-frame SAM batch is prepared
+for review only; zero calls. Calibration/procedure adapters remain pending.
+
+**Earlier 27 October update:** the historical checklist below is retained as the night
 checkpoint. The [current scene report](verification/scene-batch-2026-10-27.md)
 and [capture/fix log](drawing-readiness-2026-10-27.md) supersede its inventory and
 test counts. 42 image assets are now ingested with verified hashes, distinct

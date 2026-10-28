@@ -1,6 +1,6 @@
 {
   "dataset": "drawing-readiness-through-2026-10-27",
-  "scene_count": 42,
+  "scene_count": 45,
   "profiles": [
     {
       "id": "phone-3024x4032-intrinsics-unknown",
@@ -64,7 +64,7 @@
       },
       "expected_reference_presence": null,
       "reference_logic_disagreement": false,
-      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+      "note": "Component-only offline replay; timestamp placeholder is not live freshness evidence. Reference replay is not a detector evaluation; actual missing inputs remain unknown."
     },
     {
       "scene_id": "S01-pen-occluded",
@@ -98,7 +98,7 @@
       },
       "expected_reference_presence": null,
       "reference_logic_disagreement": false,
-      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+      "note": "Component-only offline replay; timestamp placeholder is not live freshness evidence. Reference replay is not a detector evaluation; actual missing inputs remain unknown."
     },
     {
       "scene_id": "S01b",
@@ -136,7 +136,7 @@
       },
       "expected_reference_presence": null,
       "reference_logic_disagreement": false,
-      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+      "note": "Component-only offline replay; timestamp placeholder is not live freshness evidence. Reference replay is not a detector evaluation; actual missing inputs remain unknown."
     },
     {
       "scene_id": "S01b-pen-occluded",
@@ -170,7 +170,7 @@
       },
       "expected_reference_presence": null,
       "reference_logic_disagreement": false,
-      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+      "note": "Component-only offline replay; timestamp placeholder is not live freshness evidence. Reference replay is not a detector evaluation; actual missing inputs remain unknown."
     },
     {
       "scene_id": "S02-paper-displaced",
@@ -204,7 +204,7 @@
       },
       "expected_reference_presence": null,
       "reference_logic_disagreement": false,
-      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+      "note": "Component-only offline replay; timestamp placeholder is not live freshness evidence. Reference replay is not a detector evaluation; actual missing inputs remain unknown."
     },
     {
       "scene_id": "S03",
@@ -242,7 +242,7 @@
       },
       "expected_reference_presence": null,
       "reference_logic_disagreement": false,
-      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+      "note": "Component-only offline replay; timestamp placeholder is not live freshness evidence. Reference replay is not a detector evaluation; actual missing inputs remain unknown."
     },
     {
       "scene_id": "S02-live",
@@ -281,7 +281,7 @@
       },
       "expected_reference_presence": null,
       "reference_logic_disagreement": false,
-      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+      "note": "Component-only offline replay; timestamp placeholder is not live freshness evidence. Reference replay is not a detector evaluation; actual missing inputs remain unknown."
     },
     {
       "scene_id": "S04-pen-missing",
@@ -324,7 +324,7 @@
       },
       "expected_reference_presence": "fail",
       "reference_logic_disagreement": false,
-      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+      "note": "Component-only offline replay; timestamp placeholder is not live freshness evidence. Reference replay is not a detector evaluation; actual missing inputs remain unknown."
     },
     {
       "scene_id": "S05-pen-refitted",
@@ -367,7 +367,7 @@
       },
       "expected_reference_presence": null,
       "reference_logic_disagreement": false,
-      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+      "note": "Component-only offline replay; timestamp placeholder is not live freshness evidence. Reference replay is not a detector evaluation; actual missing inputs remain unknown."
     },
     {
       "scene_id": "S06-calibration-process",
@@ -401,7 +401,7 @@
       },
       "expected_reference_presence": null,
       "reference_logic_disagreement": false,
-      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+      "note": "Component-only offline replay; timestamp placeholder is not live freshness evidence. Reference replay is not a detector evaluation; actual missing inputs remain unknown."
     },
     {
       "scene_id": "S07-post-calibration-baseline",
@@ -439,7 +439,7 @@
       },
       "expected_reference_presence": null,
       "reference_logic_disagreement": false,
-      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+      "note": "Component-only offline replay; timestamp placeholder is not live freshness evidence. Reference replay is not a detector evaluation; actual missing inputs remain unknown."
     },
     {
       "scene_id": "S08-first-four-red-marks",
@@ -477,7 +477,7 @@
       },
       "expected_reference_presence": null,
       "reference_logic_disagreement": false,
-      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+      "note": "Component-only offline replay; timestamp placeholder is not live freshness evidence. Reference replay is not a detector evaluation; actual missing inputs remain unknown."
     },
     {
       "scene_id": "S09-higher-camera-red-marks",
@@ -515,7 +515,7 @@
       },
       "expected_reference_presence": null,
       "reference_logic_disagreement": false,
-      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+      "note": "Component-only offline replay; timestamp placeholder is not live freshness evidence. Reference replay is not a detector evaluation; actual missing inputs remain unknown."
     },
     {
       "scene_id": "S10",
@@ -553,7 +553,7 @@
       },
       "expected_reference_presence": null,
       "reference_logic_disagreement": false,
-      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+      "note": "Component-only offline replay; timestamp placeholder is not live freshness evidence. Reference replay is not a detector evaluation; actual missing inputs remain unknown."
     },
     {
       "scene_id": "S11",
@@ -591,7 +591,7 @@
       },
       "expected_reference_presence": null,
       "reference_logic_disagreement": false,
-      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+      "note": "Component-only offline replay; timestamp placeholder is not live freshness evidence. Reference replay is not a detector evaluation; actual missing inputs remain unknown."
     },
     {
       "scene_id": "S12",
@@ -630,7 +630,7 @@
       },
       "expected_reference_presence": null,
       "reference_logic_disagreement": false,
-      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+      "note": "Component-only offline replay; timestamp placeholder is not live freshness evidence. Reference replay is not a detector evaluation; actual missing inputs remain unknown."
     },
     {
       "scene_id": "S13",
@@ -668,7 +668,7 @@
       },
       "expected_reference_presence": null,
       "reference_logic_disagreement": false,
-      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+      "note": "Component-only offline replay; timestamp placeholder is not live freshness evidence. Reference replay is not a detector evaluation; actual missing inputs remain unknown."
     },
     {
       "scene_id": "S14",
@@ -707,7 +707,7 @@
       },
       "expected_reference_presence": null,
       "reference_logic_disagreement": false,
-      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+      "note": "Component-only offline replay; timestamp placeholder is not live freshness evidence. Reference replay is not a detector evaluation; actual missing inputs remain unknown."
     },
     {
       "scene_id": "S15-square40-drawing",
@@ -741,7 +741,7 @@
       },
       "expected_reference_presence": null,
       "reference_logic_disagreement": false,
-      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+      "note": "Component-only offline replay; timestamp placeholder is not live freshness evidence. Reference replay is not a detector evaluation; actual missing inputs remain unknown."
     },
     {
       "scene_id": "S16",
@@ -779,7 +779,7 @@
       },
       "expected_reference_presence": null,
       "reference_logic_disagreement": false,
-      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+      "note": "Component-only offline replay; timestamp placeholder is not live freshness evidence. Reference replay is not a detector evaluation; actual missing inputs remain unknown."
     },
     {
       "scene_id": "S17-contact-recalibration",
@@ -813,7 +813,7 @@
       },
       "expected_reference_presence": null,
       "reference_logic_disagreement": false,
-      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+      "note": "Component-only offline replay; timestamp placeholder is not live freshness evidence. Reference replay is not a detector evaluation; actual missing inputs remain unknown."
     },
     {
       "scene_id": "S18-square40-repeat",
@@ -847,7 +847,7 @@
       },
       "expected_reference_presence": null,
       "reference_logic_disagreement": false,
-      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+      "note": "Component-only offline replay; timestamp placeholder is not live freshness evidence. Reference replay is not a detector evaluation; actual missing inputs remain unknown."
     },
     {
       "scene_id": "S19",
@@ -885,7 +885,7 @@
       },
       "expected_reference_presence": null,
       "reference_logic_disagreement": false,
-      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+      "note": "Component-only offline replay; timestamp placeholder is not live freshness evidence. Reference replay is not a detector evaluation; actual missing inputs remain unknown."
     },
     {
       "scene_id": "S20-post-fix-contact-calibration",
@@ -919,7 +919,7 @@
       },
       "expected_reference_presence": null,
       "reference_logic_disagreement": false,
-      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+      "note": "Component-only offline replay; timestamp placeholder is not live freshness evidence. Reference replay is not a detector evaluation; actual missing inputs remain unknown."
     },
     {
       "scene_id": "S21-square40-post-fix",
@@ -953,7 +953,7 @@
       },
       "expected_reference_presence": null,
       "reference_logic_disagreement": false,
-      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+      "note": "Component-only offline replay; timestamp placeholder is not live freshness evidence. Reference replay is not a detector evaluation; actual missing inputs remain unknown."
     },
     {
       "scene_id": "S22",
@@ -992,7 +992,7 @@
       },
       "expected_reference_presence": null,
       "reference_logic_disagreement": false,
-      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+      "note": "Component-only offline replay; timestamp placeholder is not live freshness evidence. Reference replay is not a detector evaluation; actual missing inputs remain unknown."
     },
     {
       "scene_id": "S23",
@@ -1030,7 +1030,7 @@
       },
       "expected_reference_presence": null,
       "reference_logic_disagreement": false,
-      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+      "note": "Component-only offline replay; timestamp placeholder is not live freshness evidence. Reference replay is not a detector evaluation; actual missing inputs remain unknown."
     },
     {
       "scene_id": "S24",
@@ -1069,7 +1069,7 @@
       },
       "expected_reference_presence": null,
       "reference_logic_disagreement": false,
-      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+      "note": "Component-only offline replay; timestamp placeholder is not live freshness evidence. Reference replay is not a detector evaluation; actual missing inputs remain unknown."
     },
     {
       "scene_id": "S25",
@@ -1107,7 +1107,7 @@
       },
       "expected_reference_presence": null,
       "reference_logic_disagreement": false,
-      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+      "note": "Component-only offline replay; timestamp placeholder is not live freshness evidence. Reference replay is not a detector evaluation; actual missing inputs remain unknown."
     },
     {
       "scene_id": "S26-viewF-holder-occlusion",
@@ -1141,7 +1141,7 @@
       },
       "expected_reference_presence": null,
       "reference_logic_disagreement": false,
-      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+      "note": "Component-only offline replay; timestamp placeholder is not live freshness evidence. Reference replay is not a detector evaluation; actual missing inputs remain unknown."
     },
     {
       "scene_id": "S27-viewF-holder-occlusion-repeat@100",
@@ -1181,7 +1181,7 @@
       },
       "expected_reference_presence": "pass",
       "reference_logic_disagreement": false,
-      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+      "note": "Component-only offline replay; timestamp placeholder is not live freshness evidence. Reference replay is not a detector evaluation; actual missing inputs remain unknown."
     },
     {
       "scene_id": "S27-viewF-holder-occlusion-repeat@30",
@@ -1221,7 +1221,7 @@
       },
       "expected_reference_presence": "pass",
       "reference_logic_disagreement": false,
-      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+      "note": "Component-only offline replay; timestamp placeholder is not live freshness evidence. Reference replay is not a detector evaluation; actual missing inputs remain unknown."
     },
     {
       "scene_id": "S27-viewF-holder-occlusion-repeat@80",
@@ -1262,7 +1262,7 @@
       },
       "expected_reference_presence": "fail",
       "reference_logic_disagreement": false,
-      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+      "note": "Component-only offline replay; timestamp placeholder is not live freshness evidence. Reference replay is not a detector evaluation; actual missing inputs remain unknown."
     },
     {
       "scene_id": "S27-viewF-holder-occlusion-repeat",
@@ -1296,7 +1296,7 @@
       },
       "expected_reference_presence": null,
       "reference_logic_disagreement": false,
-      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+      "note": "Component-only offline replay; timestamp placeholder is not live freshness evidence. Reference replay is not a detector evaluation; actual missing inputs remain unknown."
     },
     {
       "scene_id": "S28-paper-outside-fixed-drawing-position@0",
@@ -1335,7 +1335,7 @@
       },
       "expected_reference_presence": null,
       "reference_logic_disagreement": false,
-      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+      "note": "Component-only offline replay; timestamp placeholder is not live freshness evidence. Reference replay is not a detector evaluation; actual missing inputs remain unknown."
     },
     {
       "scene_id": "S28-paper-outside-fixed-drawing-position",
@@ -1375,7 +1375,7 @@
       },
       "expected_reference_presence": null,
       "reference_logic_disagreement": false,
-      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+      "note": "Component-only offline replay; timestamp placeholder is not live freshness evidence. Reference replay is not a detector evaluation; actual missing inputs remain unknown."
     },
     {
       "scene_id": "S29",
@@ -1414,7 +1414,7 @@
       },
       "expected_reference_presence": null,
       "reference_logic_disagreement": false,
-      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+      "note": "Component-only offline replay; timestamp placeholder is not live freshness evidence. Reference replay is not a detector evaluation; actual missing inputs remain unknown."
     },
     {
       "scene_id": "S30",
@@ -1454,7 +1454,7 @@
       },
       "expected_reference_presence": null,
       "reference_logic_disagreement": false,
-      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+      "note": "Component-only offline replay; timestamp placeholder is not live freshness evidence. Reference replay is not a detector evaluation; actual missing inputs remain unknown."
     },
     {
       "scene_id": "S31",
@@ -1494,7 +1494,7 @@
       },
       "expected_reference_presence": null,
       "reference_logic_disagreement": false,
-      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+      "note": "Component-only offline replay; timestamp placeholder is not live freshness evidence. Reference replay is not a detector evaluation; actual missing inputs remain unknown."
     },
     {
       "scene_id": "S32-viewG-paper-return@0",
@@ -1534,7 +1534,7 @@
       },
       "expected_reference_presence": null,
       "reference_logic_disagreement": false,
-      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+      "note": "Component-only offline replay; timestamp placeholder is not live freshness evidence. Reference replay is not a detector evaluation; actual missing inputs remain unknown."
     },
     {
       "scene_id": "S32-viewG-paper-return",
@@ -1574,7 +1574,7 @@
       },
       "expected_reference_presence": null,
       "reference_logic_disagreement": false,
-      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+      "note": "Component-only offline replay; timestamp placeholder is not live freshness evidence. Reference replay is not a detector evaluation; actual missing inputs remain unknown."
     },
     {
       "scene_id": "S33",
@@ -1614,7 +1614,115 @@
       },
       "expected_reference_presence": null,
       "reference_logic_disagreement": false,
-      "note": "Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+      "note": "Component-only offline replay; timestamp placeholder is not live freshness evidence. Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+    },
+    {
+      "scene_id": "REG-V1",
+      "asset": "2026-10-27/drawing-readiness/reolink-registration-frame-2026-10-27.jpg",
+      "frame_sha256": "d7f0c4f1c3915600d2065a401e8d626dcf9b98aa2d725135640646210778a3f8",
+      "source_record": "2026-10-27/drawing-readiness/reolink-registration-frame-2026-10-27.capture.json",
+      "camera_profile": "reolink-896x512-intrinsics-unknown",
+      "pose_bucket": "unassigned",
+      "pose_assignment_method": "operator stage/capture sequence, not measured metric pose",
+      "review_status": "manual-marker-reading-only; object presence not labelled",
+      "observed_variations": [
+        "new measured 120x120mm paper-local marker zone"
+      ],
+      "observed_note": "First view of operator-measured nine-marker surface; pixels not read in this round.",
+      "reference_labels": {},
+      "reference_presence_logic": {
+        "name": "pen_holder_observable_presence",
+        "state": "unknown",
+        "reason": "pen: missing or mismatched observation; holder: missing or mismatched observation",
+        "correction": "Show the pen and holder clearly; fit the pen if it is absent."
+      },
+      "actual_presence_check": {
+        "name": "pen_holder_observable_presence",
+        "state": "unknown",
+        "reason": "pen: missing or mismatched observation; holder: missing or mismatched observation",
+        "correction": "Show the pen and holder clearly; fit the pen if it is absent."
+      },
+      "actual_footprint_check": {
+        "name": "footprint_inside_paper",
+        "state": "unknown",
+        "reason": "Paper boundary is unavailable.",
+        "correction": "Show the complete drawing paper."
+      },
+      "expected_reference_presence": null,
+      "reference_logic_disagreement": false,
+      "note": "Component-only offline replay; timestamp placeholder is not live freshness evidence. Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+    },
+    {
+      "scene_id": "REG-WIDE-V1",
+      "asset": "2026-10-27/drawing-readiness/reolink-wide-frame-2026-10-27.jpg",
+      "frame_sha256": "83bdb7ad9a958a5ba66c91dc847869d64e20a7aaad5cef79355ff17adc798a89",
+      "source_record": "2026-10-27/drawing-readiness/reolink-wide-frame-2026-10-27.capture.json",
+      "camera_profile": "reolink-896x512-intrinsics-unknown",
+      "pose_bucket": "unassigned",
+      "pose_assignment_method": "operator stage/capture sequence, not measured metric pose",
+      "review_status": "manual-marker-reading-only; object presence not labelled",
+      "observed_variations": [
+        "new measured 120x120mm paper-local marker zone"
+      ],
+      "observed_note": "Superseded by retraced v2 marker frame; no pixel readings.",
+      "reference_labels": {},
+      "reference_presence_logic": {
+        "name": "pen_holder_observable_presence",
+        "state": "unknown",
+        "reason": "pen: missing or mismatched observation; holder: missing or mismatched observation",
+        "correction": "Show the pen and holder clearly; fit the pen if it is absent."
+      },
+      "actual_presence_check": {
+        "name": "pen_holder_observable_presence",
+        "state": "unknown",
+        "reason": "pen: missing or mismatched observation; holder: missing or mismatched observation",
+        "correction": "Show the pen and holder clearly; fit the pen if it is absent."
+      },
+      "actual_footprint_check": {
+        "name": "footprint_inside_paper",
+        "state": "unknown",
+        "reason": "Paper boundary is unavailable.",
+        "correction": "Show the complete drawing paper."
+      },
+      "expected_reference_presence": null,
+      "reference_logic_disagreement": false,
+      "note": "Component-only offline replay; timestamp placeholder is not live freshness evidence. Reference replay is not a detector evaluation; actual missing inputs remain unknown."
+    },
+    {
+      "scene_id": "REG-V2",
+      "asset": "2026-10-27/drawing-readiness/reolink-wide-frame-v2-2026-10-27.jpg",
+      "frame_sha256": "e652486ba24cfa28bff42725f2f070d52c0cda9aacf7627b5d85ef4a69fd3dda",
+      "source_record": "2026-10-27/drawing-readiness/reolink-wide-frame-v2-2026-10-27.capture.json",
+      "camera_profile": "reolink-896x512-intrinsics-unknown",
+      "pose_bucket": "unassigned",
+      "pose_assignment_method": "operator stage/capture sequence, not measured metric pose",
+      "review_status": "manual-marker-reading-only; object presence not labelled",
+      "observed_variations": [
+        "new measured 120x120mm paper-local marker zone"
+      ],
+      "observed_note": "Nine green marks manually measured; held-out geometry FAIL, max2.955px, bar2px. Robot linkage unknown.",
+      "reference_labels": {},
+      "reference_presence_logic": {
+        "name": "pen_holder_observable_presence",
+        "state": "unknown",
+        "reason": "pen: missing or mismatched observation; holder: missing or mismatched observation",
+        "correction": "Show the pen and holder clearly; fit the pen if it is absent."
+      },
+      "actual_presence_check": {
+        "name": "pen_holder_observable_presence",
+        "state": "unknown",
+        "reason": "pen: missing or mismatched observation; holder: missing or mismatched observation",
+        "correction": "Show the pen and holder clearly; fit the pen if it is absent."
+      },
+      "actual_footprint_check": {
+        "name": "footprint_inside_paper",
+        "state": "unknown",
+        "reason": "Paper boundary is unavailable.",
+        "correction": "Show the complete drawing paper."
+      },
+      "expected_reference_presence": null,
+      "reference_logic_disagreement": false,
+      "note": "Component-only offline replay; timestamp placeholder is not live freshness evidence. Reference replay is not a detector evaluation; actual missing inputs remain unknown."
     }
   ],
   "reference_logic_disagreements": [],
@@ -1622,7 +1730,7 @@
   "viewpoint_invariance": "untested; views captured, no cross-view calibrated evaluation",
   "live_gate_wiring": false,
   "gaps": [
-    "No real marker/robot registration accepted; S12 nominal/refined fits failed.",
+    "No real marker/robot registration accepted; S12 nominal/refined fits failed. Measured v2 corners 1-4 / held-out 5-9 also fails: max 2.955px > 2px; robot linkage unknown.",
     "Quantitative out-of-paper footprint and robot registration unvalidated; qualitative placement labels do not substitute.",
     "Presence outputs from an image recognizer absent; references are human-reviewed only.",
     "Paper masks available only for the one S03 SAM diagnostic, not the whole batch.",

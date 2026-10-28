@@ -44,7 +44,9 @@ def main():
         {'type': 'input_text', 'text': args.prompt},
         {'type': 'input_image', 'image_url': 'data:image/jpeg;base64,' + base64.b64encode(image).decode()}]}],
         'stream': True, 'metadata': {'mask_encoding': 'one_bit'}}
-    request = urllib.request.Request('https://api.meta.ai/v1/responses', data=json.dumps(payload).encode(),
+    request_bytes = json.dumps(payload).encode()
+    (args.output / 'request.json').write_bytes(request_bytes)
+    request = urllib.request.Request('https://api.meta.ai/v1/responses', data=request_bytes,
                                     headers={'Authorization': 'Bearer ' + key, 'Content-Type': 'application/json'})
     events, types, output, completed = [], [], [], False
     try:

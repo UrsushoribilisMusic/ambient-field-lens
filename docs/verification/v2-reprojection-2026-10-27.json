@@ -1,0 +1,311 @@
+{
+  "measurement_record": {
+    "source_frame": "reolink-wide-frame-v2-2026-10-27.jpg",
+    "source_frame_sha256": "e652486ba24cfa28bff42725f2f070d52c0cda9aacf7627b5d85ef4a69fd3dda",
+    "physical_measurements": "markers-2026-10-27.txt",
+    "physical_measurements_sha256": "c734554d797614b08d23f073c53a4e41e7199e3d65683425c1119dc663c3dc9d",
+    "image_size_px": [
+      896,
+      512
+    ],
+    "method": "Manual visual reading of green ring centres on nearest-neighbour enlarged original crops. Original pixels, x right y down. No automated centroid fitting. Recorded before computing residuals.",
+    "reading_precision_note": "Half-pixel notation is a reading convention, not subpixel accuracy; blurred thick rings permit roughly 1-2 px centre ambiguity, unquantified.",
+    "fit_ids": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "validation_ids": [
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "acceptance_bar_px": 2.0,
+    "points": [
+      {
+        "id": 1,
+        "plane_mm": [
+          0,
+          0
+        ],
+        "image_px": [
+          309,
+          425.5
+        ]
+      },
+      {
+        "id": 2,
+        "plane_mm": [
+          120,
+          0
+        ],
+        "image_px": [
+          437,
+          399.5
+        ]
+      },
+      {
+        "id": 3,
+        "plane_mm": [
+          0,
+          120
+        ],
+        "image_px": [
+          355.5,
+          505
+        ]
+      },
+      {
+        "id": 4,
+        "plane_mm": [
+          120,
+          120
+        ],
+        "image_px": [
+          502.5,
+          466
+        ]
+      },
+      {
+        "id": 5,
+        "plane_mm": [
+          55,
+          120
+        ],
+        "image_px": [
+          426.5,
+          488
+        ]
+      },
+      {
+        "id": 6,
+        "plane_mm": [
+          55,
+          0
+        ],
+        "image_px": [
+          373,
+          413
+        ]
+      },
+      {
+        "id": 7,
+        "plane_mm": [
+          120,
+          65
+        ],
+        "image_px": [
+          468.5,
+          433
+        ]
+      },
+      {
+        "id": 8,
+        "plane_mm": [
+          0,
+          65
+        ],
+        "image_px": [
+          331,
+          465
+        ]
+      },
+      {
+        "id": 9,
+        "plane_mm": [
+          80,
+          90
+        ],
+        "image_px": [
+          440,
+          461
+        ]
+      }
+    ],
+    "robot_coordinate_linkage": "unknown; operator paper-plane coordinates only"
+  },
+  "homography_paper_mm_to_image_px": [
+    [
+      0.002685528752607565,
+      -0.0002294619314719947,
+      0.5876029910021248
+    ],
+    [
+      0.00018871689537318566,
+      -0.00011289469193026771,
+      0.8091426300045439
+    ],
+    [
+      1.5037202818580502e-06,
+      -2.718263586435711e-06,
+      0.0019016278025958727
+    ]
+  ],
+  "residuals": [
+    {
+      "id": 1,
+      "split": "fit",
+      "observed_px": [
+        309,
+        425.5
+      ],
+      "projected_px": [
+        309.00000000000006,
+        425.50000000000006
+      ],
+      "residual_xy_px": [
+        5.684341886080802e-14,
+        5.684341886080802e-14
+      ],
+      "error_px": 8.038873388460929e-14
+    },
+    {
+      "id": 2,
+      "split": "fit",
+      "observed_px": [
+        437,
+        399.5
+      ],
+      "projected_px": [
+        437.00000000000006,
+        399.50000000000006
+      ],
+      "residual_xy_px": [
+        5.684341886080802e-14,
+        5.684341886080802e-14
+      ],
+      "error_px": 8.038873388460929e-14
+    },
+    {
+      "id": 3,
+      "split": "fit",
+      "observed_px": [
+        355.5,
+        505
+      ],
+      "projected_px": [
+        355.50000000000006,
+        505.00000000000006
+      ],
+      "residual_xy_px": [
+        5.684341886080802e-14,
+        5.684341886080802e-14
+      ],
+      "error_px": 8.038873388460929e-14
+    },
+    {
+      "id": 4,
+      "split": "fit",
+      "observed_px": [
+        502.5,
+        466
+      ],
+      "projected_px": [
+        502.5,
+        466.00000000000006
+      ],
+      "residual_xy_px": [
+        0.0,
+        5.684341886080802e-14
+      ],
+      "error_px": 5.684341886080802e-14
+    },
+    {
+      "id": 5,
+      "split": "validation",
+      "observed_px": [
+        426.5,
+        488
+      ],
+      "projected_px": [
+        426.8465294733171,
+        486.0713289152425
+      ],
+      "residual_xy_px": [
+        0.34652947331710493,
+        -1.928671084757525
+      ],
+      "error_px": 1.9595547527581867
+    },
+    {
+      "id": 6,
+      "split": "validation",
+      "observed_px": [
+        373,
+        413
+      ],
+      "projected_px": [
+        370.5563975517342,
+        412.99635674730405
+      ],
+      "residual_xy_px": [
+        -2.4436024482657785,
+        -0.00364325269595156
+      ],
+      "error_px": 2.4436051641909566
+    },
+    {
+      "id": 7,
+      "split": "validation",
+      "observed_px": [
+        468.5,
+        433
+      ],
+      "projected_px": [
+        469.695325542571,
+        432.6944908180301
+      ],
+      "residual_xy_px": [
+        1.1953255425710267,
+        -0.30550918196991006
+      ],
+      "error_px": 1.2337499799354175
+    },
+    {
+      "id": 8,
+      "split": "validation",
+      "observed_px": [
+        331,
+        465
+      ],
+      "projected_px": [
+        332.0044425817268,
+        464.8301760268232
+      ],
+      "residual_xy_px": [
+        1.004442581726778,
+        -0.16982397317678988
+      ],
+      "error_px": 1.018697738218509
+    },
+    {
+      "id": 9,
+      "split": "validation",
+      "observed_px": [
+        440,
+        461
+      ],
+      "projected_px": [
+        439.8817116823952,
+        458.0475105759844
+      ],
+      "residual_xy_px": [
+        -0.11828831760482217,
+        -2.952489424015596
+      ],
+      "error_px": 2.9548580211248265
+    }
+  ],
+  "held_out_rms_px": 2.0543675935608885,
+  "held_out_max_px": 2.9548580211248265,
+  "acceptance_bar_px": 2.0,
+  "network_calls": 0,
+  "gpu_used": false,
+  "robot_coordinate_linkage": "unknown",
+  "footprint_registration_accepted": false,
+  "paper_plane_validation": "FAIL",
+  "rejection": "Independent registration validation exceeds tolerance"
+}

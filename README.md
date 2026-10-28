@@ -27,9 +27,17 @@ Current evidence: [architecture](ARCHITECTURE.md),
 [drawing-readiness contract](docs/drawing-readiness-contract.md), and
 [CPU checkpoint / remaining overnight work](docs/drawing-readiness-progress.md).
 The [27 October CPU scene report](docs/verification/scene-batch-2026-10-27.md)
-inventories 42 image assets across coarse viewpoints and distinct stream profiles.
+inventories 45 image assets across coarse viewpoints and distinct stream profiles.
 Viewpoint invariance and metric containment remain unvalidated; human-reference
 logic replay is explicitly separate from actual image-model check outputs.
+The [actual Meta observation round](docs/verification/real-model-pipeline-2026-10-27.md)
+now connects Spark observations and SAM masks through one offline runner:
+six completed Spark scene responses, explicit missing-pen/covered-holder
+outcomes, and107 passing tests. Target association among SAM candidates remains
+unresolved; no Modal GPU or live green integration was started.
+The [measured v2 / adapter report](docs/verification/adapter-and-measured-v2-2026-10-27.md)
+records failed held-out geometry (maximum 2.955 px versus 2 px), archival S03
+adapter replay and the review-only next SAM batch. No live gate integration.
 
 ## Layout
 

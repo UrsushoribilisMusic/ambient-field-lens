@@ -1,6 +1,6 @@
 # Codi — CPU scene inventory, 27 October 2026
 
-Inventoried **42 image assets** with verified hashes, actual stream dimensions and coarse pose buckets.
+Inventoried **45 image assets** with verified hashes, actual stream dimensions and coarse pose buckets.
 
 **No autonomous presence accuracy, real containment pass or viewpoint-invariance result is claimed.**
 Reference observations are hand labels. Replaying them tests logic, not image recognition.
@@ -49,10 +49,13 @@ Reference observations are hand labels. Replaying them tests logic, not image re
 | S32-viewG-paper-return@0 / S32-before-return-t000.jpg | reolink-896x512-intrinsics-unknown | tripod-G-unmeasured | pass | unknown | unknown |
 | S32-viewG-paper-return / S32-viewG-paper-return.jpg | reolink-896x512-intrinsics-unknown | tripod-G-unmeasured | pass | unknown | unknown |
 | S33 / S33-viewG-paper-return-check.jpg | reolink-2880x1616-intrinsics-unknown | tripod-G-unmeasured | pass | unknown | unknown |
+| REG-V1 / reolink-registration-frame-2026-10-27.jpg | reolink-896x512-intrinsics-unknown | unassigned | unknown | unknown | unknown |
+| REG-WIDE-V1 / reolink-wide-frame-2026-10-27.jpg | reolink-896x512-intrinsics-unknown | unassigned | unknown | unknown | unknown |
+| REG-V2 / reolink-wide-frame-v2-2026-10-27.jpg | reolink-896x512-intrinsics-unknown | unassigned | unknown | unknown | unknown |
 
 ## Evidence gaps
 
-- No real marker/robot registration accepted; S12 nominal/refined fits failed.
+- No real marker/robot registration accepted; S12 nominal/refined fits failed. Measured v2 corners 1-4 / held-out 5-9 also fails: max 2.955px > 2px; robot linkage unknown.
 - Quantitative out-of-paper footprint and robot registration unvalidated; qualitative placement labels do not substitute.
 - Presence outputs from an image recognizer absent; references are human-reviewed only.
 - Paper masks available only for the one S03 SAM diagnostic, not the whole batch.

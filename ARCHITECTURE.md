@@ -74,13 +74,15 @@ disclosure; nothing vendored.
 | Confident-minus-uncertain predicts Ross answerability | Refuted (test AUROC 0.57, negative coefficient) |
 | Default-deny backend incapable of green steps | Proven (type-level) |
 | SAM reachable, accepts frames | Proven |
-| SAM mask output on a tripod frame | Proven for one S03 frame: one request, two manually box-prompted masks decoded and visually inspected; not automatic recognition |
+| SAM mask transport and scene candidates | Original S03 manual-box diagnostic proven; subsequent14Meta still calls completed. Pen masks returned on fitted scenes; graph-paper concept had zero matches, paper probe multiple candidates. Target association remains unresolved |
 | Offline readiness, planar geometry and presence functions | 29 synthetic CPU tests pass; not physical scene validation |
-| Scene inventory through 27 October | 42 image assets with verified digests, 3 stream/camera profiles and coarse pose buckets; 8 inventory regressions pass |
-| Separate observable pen/holder presence check | Implemented; human-reference replay 27 pass/3 fail/12 unknown. Image-model inputs absent, so actual check output remains unknown on all 42 assets |
-| Footprint check over inventoried frames | Executed, unknown on all 42: no accepted physical registration/footprint, paper masks only for S03 diagnostic |
-| Marker-derived surface coordinates on real frames | Pending; no measured marker correspondences or real footprint yet |
-| Viewpoint invariance | Explicitly untested; fixed tripod viewpoint only |
+| Scene inventory through 27 October | 45 image assets with verified digests, 3 stream/camera profiles and coarse pose buckets; 8 inventory regressions pass |
+| Separate observable pen/holder presence check | Implemented; earlier45-frame inventory used human references only. New six-frame actual Spark round gives4presence passes/2unknown; negative fitment on missing-pen scene. Not a validated accuracy benchmark |
+| Footprint check over inventoried frames | Executed, unknown on all 45: no accepted physical registration/footprint, paper masks only for S03 diagnostic |
+| Measured marker registration | Nine manual v2 readings, corners 1–4 fit / 5–9 validate: RMS2.054px/max2.955px fails2px. Robot linkage remains unknown |
+| Observation adapters / composition | Frame-bound provenance and strict archival/live separation; original S03 replay, six checks, presence-fail veto tested. Calibration/procedure adapters pending; no gate wiring |
+| Joined observation pipeline | Implemented offline: actual6scene Spark/SAM replay,107tests pass. Preserves original clocks, rejects invalid envelopes, retains role ambiguity, no product-green output |
+| Viewpoint invariance | Explicitly untested; multiple uncalibrated views do not prove robustness |
 | Paired multi-angle scenes (fault × viewpoint × evidence) | Multiple coarse views captured plus clear/covered/clear S27; complete calibrated fault/evidence grid still pending |
 | Grounding direction separates present-vs-removed passages | Pending (CPU analysis on paired set) |
 | Full Jacobian vs contrastive comparison | Pending (pre-GPU) |

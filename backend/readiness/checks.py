@@ -8,6 +8,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from enum import Enum
 from math import isfinite
+from .evidence import Provenance, REQUIRED_CHECK_NAMES
 
 
 class State(str, Enum):
@@ -46,6 +47,7 @@ class Mask:
     kind: str
     visible: bool | None
     ambiguous: bool = False
+    provenance: Provenance | None = None
 
 
 @dataclass(frozen=True)
@@ -54,6 +56,7 @@ class Fitment:
     tool: str
     fitted: bool | None
     visible: bool
+    provenance: Provenance | None = None
 
 
 @dataclass(frozen=True)
@@ -100,7 +103,9 @@ class Decision:
 
     @property
     def verdict(self) -> str:
-        return 'green' if len(self.checks) == 5 and all(c.state is State.PASS for c in self.checks) else 'amber'
+        names = tuple(c.name for c in self.checks)
+        complete = len(names) == len(REQUIRED_CHECK_NAMES) and set(names) == set(REQUIRED_CHECK_NAMES)
+        return 'green' if complete and all(c.state is State.PASS for c in self.checks) else 'amber'
 
 
 def _result(name, state, reason, correction):
@@ -124,6 +129,10 @@ def _mask(frame, mask, kind):
 
 
 def check_pen(frame, mask, fitment):
+    if (fitment is not None and fitment.frame_sha256 == frame.sha256
+            and fitment.tool == frame.tool and fitment.visible is True and fitment.fitted is False):
+        return _result('pen_fitted', State.FAIL, 'Visible fitment observation reports the intended pen is not fitted.',
+                       'Fit the intended pen in its holder and re-check.')
     observed = _mask(frame, mask, 'pen')
     if observed.state is not State.PASS:
         return observed
@@ -182,13 +191,16 @@ def check_procedure(selected, approved):
 
 
 def evaluate(frame, paper=None, pen=None, fitment=None, footprint=None, calibration=None,
-             selected_step=None, approved_procedure=None, *, now, max_frame_age=5.0):
-    names = ('paper_present', 'pen_fitted', 'footprint_inside_paper', 'calibration_ready', 'approved_current_step')
+             selected_step=None, approved_procedure=None, *, now, max_frame_age=5.0,
+             pen_observation=None, holder_observation=None):
+    from .presence import check_pen_holder_presence
+    names = REQUIRED_CHECK_NAMES
     if (not frame.sha256 or frame.width <= 0 or frame.height <= 0
             or not all(isfinite(v) for v in (now, frame.captured_at, max_frame_age))
             or max_frame_age <= 0 or not 0 <= now - frame.captured_at <= max_frame_age):
         return Decision(tuple(_result(n, State.UNKNOWN, 'Frame identity or freshness is invalid.',
                                       'Capture a fresh identified frame and re-check the setup.') for n in names))
-    return Decision((_mask(frame, paper, 'paper'), check_pen(frame, pen, fitment),
+    return Decision((_mask(frame, paper, 'paper'), check_pen_holder_presence(frame, pen_observation, holder_observation),
+                     check_pen(frame, pen, fitment),
                      check_footprint(frame, paper, footprint), check_calibration(frame, calibration, now),
                      check_procedure(selected_step, approved_procedure)))

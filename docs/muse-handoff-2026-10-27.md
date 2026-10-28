@@ -1,5 +1,128 @@
 # Codi — handoff for Muse, 27 October 2026
 
+## Current software round — after Meta API authorization
+
+Miguel explicitly authorized **Meta API calls** (Spark/SAM) while walking the
+dog. **Modal/GPU remains forbidden**; no instance was started. The paper fixture
+is frozen; operator priority is algorithm/model progress, not more marker work.
+
+The [real-model report](verification/real-model-pipeline-2026-10-27.md) supersedes
+earlier statements that no new API calls or real observation inputs exist.
+One offline runner now joins adapted raw model observations and masks into
+six checks, with separate historical image-component diagnostics.107tests pass.
+Seven Spark requests:6completed schema-valid scene responses,1incomplete token-
+budget failure. A deliberate low-reasoning revision fixed generation; opaque
+encrypted reasoning stays private and is never treated as observation text.
+Four of six component presence checks pass. Missing-pen scene says fitmentfalse
+but pen presenceunknown; covered holder isunknown, not relabelled as correct
+occlusionFAIL. Keep both disagreements. Clear/covered/clear sequence is
+pass/unknown/pass. A negative visible fitment can fail without a pen mask;
+positive fitment still needs an identified target pen mask.
+
+Fourteen SAM still requests completed: graph-paper6zero matches, pen6returns
+zero/one/multiple candidates; broadpaper probe8masktokens, specific relational
+paper probe0. No largest-mask shortcut. **Next algorithm unit: target association
+for the intended drawing paper and fitted pen.** Missing/ambiguous geometry
+staysunknown; controller/procedure/footing integrations remain separate.
+
+Estimated conservative Meta cost$0.0743445 using reported usage/published rates,
+not an invoice. Exact requests/responses, encrypted reasoning, receipts/images
+and executable replay manifests remain private inMovies. Private review page:
+`~/Movies/Ambient-Field-Lens/2026-10-27/drawing-readiness/model-observation-review.html`.
+PR4 contains reviewable code/reports; `/assist` untouched/default-deny. No new
+GPU window or confidence/geometry threshold change. No more physical changes
+requested of Miguel. Existing benchmark/reference disclosure boundary unchanged.
+
+## Earlier capture history — superseded where stated above
+
+## Evening update — supersedes the historical checkpoint below
+
+OPERATOR DIRECTION: Miguel reminds us Reolink is the development test camera,
+not the phone capture path, and requests proportional effort. Stop further
+physical sheet tweaks/precision chasing on Reolink. Freeze current evidence.
+The current native2px validation remains failed, with no green promotion; v2
+contract is unchanged pending review. Its application at2880px is3.21times
+stricter in image-width terms than at896px and should have been flagged earlier.
+Next geometry review should define a physical error budget and explicit camera
+profile/resolution, then validate on the intended phone capture path. Reolink
+manual-reading diagnostics do not validate or invalidate the phone mapping.
+Continue CPU replay/adapter work independently of this unaccepted geometry;
+missing footprint registration remains unknown. No new paid calls/GPU, no gate
+wiring. No further operator redrawing or recalibration requested for this test.
+
+Miguel also notes the actual drawing tool is a thick felt pen, producing broad
+strokes rather than detailed drafting. The proposed physical tolerance review
+should use measured stroke width, path clearance from paper edges, camera
+registration uncertainty and robot drawing error as separate budget components.
+Task success is observable setup readiness and a comfortably contained drawing,
+not precision plotting. Stroke width alone is not a validated error bound or a
+reason to relabel the current2px failure. No new acceptance number chosen yet.
+
+LATEST RULER FOLLOW-UP: rectangle120×120mm and centre lines60/60mm confirmed;
+cross9 approximately78.5/92mm. Frozen rectangle-frame pixels unchanged.
+[Latest report](verification/rectangle-ruler-confirmed-result-2026-10-27.md):
+errors5–9=1.010/3.062/1.043/1.631/4.954px; RMS2.781517/max4.953930px FAIL2px.
+Three validation points pass;6/9 fail. Physical approximation and1–3px manual
+reading ambiguity are unquantified. Requested no more sheet changes: next
+independently review image centres/measurement precision, not redraw to improve
+residuals. All previous hypotheses preserved. Centre10 hidden remains unknown;
+robot linkage and live gate still absent. No calls/GPU/motion/tolerance change.
+
+LATEST: Miguel discovers new sheet grid is4mm, not5mm. Grid-count-derived
+coordinates now unverified; no automatic80% rescaling. Rectangle/centrelines
+captured, native hand readings preserved, centre10 hidden by pen stays unknown.
+[Conditional result and clarification](verification/rectangle-centrelines-result-2026-10-27.md):
+nominal120/60 layout with9 at80/90 gives RMS3.694776/max7.356228px FAIL2px,
+but physical acceptance is UNKNOWN until ruler-only actual coordinates exist.
+Requested top span1→2 and left span1→3, no redrawing/motion/calibration. A unit
+rescale alone does not repair pixel errors; do not tune or infer coordinates.
+
+Follow-up to clean-sheet result: operator says cross9 actually85–90 (interpreted
+x85/y90). Preserved separate physical correction, no changed pixels/corners.
+Corrected diagnostic fails: cross9 18.569767px/RMS8.469682px. Confirm cross1
+intersection is the measurement origin before more changes; do not tune away
+operator measurements or image residuals. Prior clean-sheet80/90 result retained.
+
+Latest: operator replaced sheet with fine crosses using new60mm-midpoint layout.
+[Clean-sheet report](verification/clean-cross-sheet-result-2026-10-27.md): new
+2880×1616 frame, frozen manual intersections, same1–4/5–9 split and2px bar.
+Errors5–9=1.293/3.235/1.061/0.761/5.290px; RMS2.892333px/max5.290237px FAIL.
+Actual ruler positions not independently verified by agent; requested mark9
+x80/y90 check next, then midpoint6. Pad replacement is a new surface pose,
+no old calibration/robot mapping accepted. No GPU/calls/motion or gate change.
+
+After dinner: [new 2880×1616 geometry-only capture](verification/after-dinner-reprojection-2026-10-27.md)
+fits all nine marks in frame. Fresh manual centres, same split/bar: RMS5.915379px,
+max8.634428px FAIL. No scale transfer from v2. Requested physical centre-distance
+verification (mark6 at55mm from mark1 along top row; mark9 x80/y90), not another
+camera adjustment or residual-guided annotation. This new frame has no masks;
+presence/footprint unknown. Earlier45-frame inventory remains a separate batch.
+
+PR3 is now merged on main (`d9fbed4`). Contract v2 and the subsequent adapter /
+measured-marker work are in [draft PR4](https://github.com/UrsushoribilisMusic/ambient-field-lens/pull/4),
+implementation commit `c216eb6`, still on `codi/drawing-readiness-cpu`.
+
+The [evening report](verification/adapter-and-measured-v2-2026-10-27.md) records
+all nine original-pixel manual readings and the declared split. Fit1–4,
+validate5–9: errors1.959555/2.443605/1.233750/1.018698/2.954858px,
+RMS2.054368px. **FAIL against2px**, no refit or tolerance change; paper-plane
+and robot-coordinate geometry are not accepted. Source positions are Miguel's
+`markers-2026-10-27.txt`; no nominal S12 coordinates were substituted.
+
+Frame-bound adapters and exact-six-check veto composition are implemented.
+86 CPU tests pass, including six real S03 replay integrations. S03 remains
+archival/stale, request age205.631s, two masks and no structured presence/fitment.
+Inventory45 frames, actual presence/footprint45 unknown. A six-frame paper-mask
+batch is prepared only, not approved or executed. No GPU/new paid calls, live
+gate changes or robot commands. Calibration/procedure adapters remain separate.
+
+Next film a sharper native nine-mark frame, keep the taped pad fixed, reread
+all native centres before calculating residuals, repeat the same split/bar,
+then establish robot-frame linkage if it passes. More camera angles alone do
+not resolve current geometry or missing input evidence. Proper review pending.
+
+## Historical checkpoint
+
 ## Reviewable state
 
 - [Draft PR3](https://github.com/UrsushoribilisMusic/ambient-field-lens/pull/3),
