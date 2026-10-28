@@ -1,0 +1,1192 @@
+{
+  "reservation": {
+    "id": "69dca424-fabd-48fe-a6d0-303175a8fb4b",
+    "reserved_usd": 4.0,
+    "created_utc": "2026-10-26T18:31:43.685653+00:00"
+  },
+  "source_revision": "cec94fcfd6512f2cfe708138c32533b346ea4f69",
+  "weight_bytes": 59553435272,
+  "input_references": [
+    {
+      "role": "core",
+      "filename": "canis_eval001_matrix.jsonl",
+      "sha256": "bc6548743bc929161392936cd49ad4145fee2e5f5ac7ff3a58e36a843906a59e",
+      "count": 540,
+      "pre_existing": true,
+      "vendored": false,
+      "origin": "Canis ancillary evaluation reference"
+    },
+    {
+      "role": "matched",
+      "filename": "canis_eval001_matched_negatives.jsonl",
+      "sha256": "fffafdc78848bfd30e98456f2af07252d56703683718aa352a0301e4375a7d84",
+      "count": 350,
+      "pre_existing": true,
+      "vendored": false,
+      "origin": "Canis ancillary evaluation reference"
+    },
+    {
+      "role": "ood",
+      "filename": "canis_eval001_ood_matrix.jsonl",
+      "sha256": "5e98e3f0dc2fb853dc774fa1bed0aac609f29b2e11265bb30b0b83e7623b66bc",
+      "count": 420,
+      "pre_existing": true,
+      "vendored": false,
+      "origin": "Canis ancillary evaluation reference"
+    },
+    {
+      "role": "domain-questions",
+      "filename": "ross_draw_setup_questions.jsonl",
+      "sha256": "8ebb98b11d9c448a4d1f7760454b6891f0af98d48cc6733e51ac0392a4c670f2",
+      "count": 150,
+      "pre_existing": true,
+      "vendored": false,
+      "origin": "Ross pre-event question reference"
+    }
+  ],
+  "cases": 1310,
+  "questions": 150,
+  "estimator": "new contrastive mean baseline",
+  "decoder_path": "model.language_model.layers",
+  "selection": {
+    "confident": {
+      "layer": 8,
+      "heldout_auc": 1.0,
+      "per_layer_auc": [
+        0.9812244897959184,
+        0.9906938775510205,
+        0.9951020408163265,
+        0.9947755102040816,
+        0.9957551020408163,
+        0.995265306122449,
+        0.9996734693877551,
+        0.9996734693877551,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.9993469387755102,
+        1.0,
+        1.0,
+        0.9998367346938775,
+        0.9998367346938775,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.9995102040816326
+      ],
+      "fit_positive": 25,
+      "fit_negative": 245,
+      "heldout_count": 270,
+      "external_checks": {
+        "matched": {
+          "count": 350,
+          "auc": null,
+          "mean_score": 0.14375104010105133
+        },
+        "ood": {
+          "count": 420,
+          "auc": 0.8773504273504273,
+          "mean_score": 0.07091224193572998
+        }
+      }
+    },
+    "uncertain": {
+      "layer": 34,
+      "heldout_auc": 0.9952653061224489,
+      "per_layer_auc": [
+        0.8982857142857142,
+        0.8806530612244897,
+        0.9004081632653061,
+        0.8943673469387755,
+        0.9155918367346939,
+        0.9462857142857143,
+        0.984326530612245,
+        0.9784489795918367,
+        0.9794285714285713,
+        0.9831836734693877,
+        0.978938775510204,
+        0.9791020408163266,
+        0.9761632653061224,
+        0.988734693877551,
+        0.985795918367347,
+        0.9851428571428571,
+        0.990530612244898,
+        0.9857959183673469,
+        0.987265306122449,
+        0.9782857142857143,
+        0.9777959183673469,
+        0.9779591836734693,
+        0.9882448979591836,
+        0.9836734693877551,
+        0.9835102040816326,
+        0.9877551020408163,
+        0.9869387755102041,
+        0.9874285714285714,
+        0.9921632653061224,
+        0.9906938775510205,
+        0.9893877551020408,
+        0.9911836734693877,
+        0.9897142857142857,
+        0.990204081632653,
+        0.9952653061224489,
+        0.9947755102040816,
+        0.994938775510204,
+        0.9946122448979592,
+        0.9941224489795919,
+        0.9924897959183674,
+        0.9921632653061224,
+        0.991673469387755,
+        0.9915102040816326,
+        0.9915102040816327,
+        0.9906938775510205,
+        0.9913469387755102,
+        0.9944489795918366,
+        0.9937959183673469,
+        0.9929795918367348,
+        0.9931428571428571,
+        0.9936326530612245,
+        0.992
+      ],
+      "fit_positive": 25,
+      "fit_negative": 245,
+      "heldout_count": 270,
+      "external_checks": {
+        "matched": {
+          "count": 350,
+          "auc": null,
+          "mean_score": 0.12578977644443512
+        },
+        "ood": {
+          "count": 420,
+          "auc": 0.9166666666666667,
+          "mean_score": 0.06787474453449249
+        }
+      }
+    },
+    "curious": {
+      "layer": 28,
+      "heldout_auc": 0.9954285714285714,
+      "per_layer_auc": [
+        0.8280816326530613,
+        0.863673469387755,
+        0.872326530612245,
+        0.8726530612244898,
+        0.8741224489795918,
+        0.9149387755102041,
+        0.9823673469387755,
+        0.9766530612244898,
+        0.9848163265306122,
+        0.9874285714285713,
+        0.9866122448979592,
+        0.979265306122449,
+        0.9794285714285713,
+        0.9875918367346939,
+        0.9843265306122448,
+        0.9866122448979592,
+        0.9853061224489796,
+        0.9810612244897958,
+        0.9810612244897959,
+        0.9722448979591838,
+        0.9746938775510203,
+        0.9740408163265306,
+        0.9844897959183674,
+        0.979591836734694,
+        0.9820408163265306,
+        0.9915102040816326,
+        0.9929795918367347,
+        0.9929795918367347,
+        0.9954285714285714,
+        0.9939591836734694,
+        0.9947755102040816,
+        0.9937959183673469,
+        0.992,
+        0.9926530612244898,
+        0.9951020408163266,
+        0.9947755102040816,
+        0.9944489795918368,
+        0.9947755102040816,
+        0.9941224489795919,
+        0.9944489795918368,
+        0.9933061224489796,
+        0.9939591836734694,
+        0.9944489795918368,
+        0.9942857142857143,
+        0.9937959183673469,
+        0.993469387755102,
+        0.9939591836734694,
+        0.9937959183673469,
+        0.9933061224489796,
+        0.9933061224489796,
+        0.9931428571428572,
+        0.9906938775510205
+      ],
+      "fit_positive": 25,
+      "fit_negative": 245,
+      "heldout_count": 270,
+      "external_checks": {
+        "matched": {
+          "count": 350,
+          "auc": null,
+          "mean_score": 0.1850881725549698
+        },
+        "ood": {
+          "count": 420,
+          "auc": 0.8152991452991454,
+          "mean_score": 0.07559925317764282
+        }
+      }
+    },
+    "concern": {
+      "layer": 26,
+      "heldout_auc": 1.0,
+      "per_layer_auc": [
+        0.9402448979591836,
+        0.9497142857142858,
+        0.9644081632653062,
+        0.9647346938775511,
+        0.9735510204081632,
+        0.9773061224489796,
+        0.9973877551020409,
+        0.9972244897959184,
+        0.9982040816326531,
+        0.9959183673469387,
+        0.9955918367346939,
+        0.9903673469387755,
+        0.9897142857142858,
+        0.9962448979591836,
+        0.9955918367346939,
+        0.9965714285714287,
+        0.997061224489796,
+        0.9960816326530613,
+        0.9942857142857142,
+        0.9916734693877551,
+        0.990204081632653,
+        0.9913469387755103,
+        0.9931428571428572,
+        0.9944489795918368,
+        0.9946122448979592,
+        0.9990204081632653,
+        1.0,
+        1.0,
+        0.9996734693877551,
+        0.9996734693877551,
+        0.9995102040816326,
+        0.9991836734693877,
+        0.9983673469387755,
+        0.9995102040816326,
+        0.9995102040816326,
+        0.9995102040816326,
+        0.9995102040816326,
+        0.9995102040816326,
+        0.999673469387755,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.9991836734693877,
+        0.998530612244898,
+        0.9986938775510203,
+        0.9977142857142858,
+        0.9947755102040816,
+        0.9555918367346938
+      ],
+      "fit_positive": 25,
+      "fit_negative": 245,
+      "heldout_count": 270,
+      "external_checks": {
+        "matched": {
+          "count": 350,
+          "auc": null,
+          "mean_score": -0.014541381038725376
+        },
+        "ood": {
+          "count": 420,
+          "auc": 0.754017094017094,
+          "mean_score": -0.021591009572148323
+        }
+      }
+    },
+    "reluctant": {
+      "layer": 11,
+      "heldout_auc": 1.0,
+      "per_layer_auc": [
+        0.9451428571428572,
+        0.9603265306122449,
+        0.9678367346938775,
+        0.9704489795918367,
+        0.9666938775510204,
+        0.9800816326530613,
+        0.9991836734693877,
+        0.9960816326530612,
+        0.9978775510204082,
+        0.9990204081632653,
+        0.9993469387755102,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "fit_positive": 25,
+      "fit_negative": 245,
+      "heldout_count": 270,
+      "external_checks": {
+        "matched": {
+          "count": 350,
+          "auc": null,
+          "mean_score": 0.009959281422197819
+        },
+        "ood": {
+          "count": 420,
+          "auc": 0.8714529914529914,
+          "mean_score": 0.030982278287410736
+        }
+      }
+    },
+    "warm": {
+      "layer": 30,
+      "heldout_auc": 0.9931428571428571,
+      "per_layer_auc": [
+        0.972734693877551,
+        0.9666938775510204,
+        0.979265306122449,
+        0.9797551020408163,
+        0.9755102040816326,
+        0.9800816326530613,
+        0.9833469387755103,
+        0.9812244897959184,
+        0.9826938775510203,
+        0.9838367346938777,
+        0.9843265306122448,
+        0.9820408163265306,
+        0.9784489795918367,
+        0.9810612244897959,
+        0.9857959183673469,
+        0.9859591836734694,
+        0.9861224489795919,
+        0.9875918367346939,
+        0.9871020408163265,
+        0.9880816326530613,
+        0.9893877551020408,
+        0.9898775510204082,
+        0.9893877551020408,
+        0.9892244897959184,
+        0.9897142857142858,
+        0.9905306122448979,
+        0.992,
+        0.9929795918367347,
+        0.9924897959183673,
+        0.9923265306122449,
+        0.9931428571428571,
+        0.9931428571428571,
+        0.992326530612245,
+        0.9924897959183673,
+        0.9921632653061224,
+        0.9923265306122449,
+        0.9918367346938776,
+        0.992,
+        0.9921632653061224,
+        0.9923265306122449,
+        0.991673469387755,
+        0.9911836734693877,
+        0.9913469387755102,
+        0.9906938775510203,
+        0.990204081632653,
+        0.990204081632653,
+        0.9906938775510205,
+        0.9911836734693877,
+        0.9910204081632652,
+        0.9906938775510203,
+        0.9908571428571428,
+        0.9903673469387754
+      ],
+      "fit_positive": 25,
+      "fit_negative": 245,
+      "heldout_count": 270,
+      "external_checks": {
+        "matched": {
+          "count": 350,
+          "auc": null,
+          "mean_score": -0.10301931947469711
+        },
+        "ood": {
+          "count": 420,
+          "auc": 0.9996581196581197,
+          "mean_score": -0.036647405475378036
+        }
+      }
+    },
+    "mischief": {
+      "layer": 23,
+      "heldout_auc": 1.0,
+      "per_layer_auc": [
+        0.9010612244897959,
+        0.9348571428571428,
+        0.9459591836734694,
+        0.9461224489795919,
+        0.9577142857142857,
+        0.9616326530612245,
+        0.8871836734693878,
+        0.8751020408163266,
+        0.8839183673469387,
+        0.8902857142857142,
+        0.8734693877551021,
+        0.8711836734693879,
+        0.8878367346938776,
+        0.8906122448979592,
+        0.9013877551020407,
+        0.9123265306122448,
+        0.9428571428571428,
+        0.971265306122449,
+        0.9854693877551021,
+        0.9887346938775511,
+        0.9848163265306122,
+        0.9910204081632653,
+        0.9995102040816327,
+        1.0,
+        1.0,
+        0.9998367346938775,
+        0.9995102040816326,
+        0.9995102040816326,
+        0.9995102040816326,
+        0.9995102040816326,
+        0.9988571428571428,
+        0.9990204081632653,
+        0.9980408163265306,
+        0.997061224489796,
+        0.9916734693877551,
+        0.9926530612244898,
+        0.9897142857142858,
+        0.9898775510204082,
+        0.990204081632653,
+        0.9900408163265306,
+        0.990530612244898,
+        0.9879183673469387,
+        0.9897142857142858,
+        0.9890612244897959,
+        0.9887346938775511,
+        0.9884081632653061,
+        0.9844897959183674,
+        0.9838367346938776,
+        0.9833469387755103,
+        0.9844897959183674,
+        0.986938775510204,
+        0.9769795918367348
+      ],
+      "fit_positive": 25,
+      "fit_negative": 245,
+      "heldout_count": 270,
+      "external_checks": {
+        "matched": {
+          "count": 350,
+          "auc": null,
+          "mean_score": -0.023487314581871033
+        },
+        "ood": {
+          "count": 420,
+          "auc": 0.9441025641025642,
+          "mean_score": 0.046358924359083176
+        }
+      }
+    }
+  },
+  "calibration": {
+    "enabled": false,
+    "status": "no_supported_threshold",
+    "phase3_review_required": true,
+    "target_precision": 0.9,
+    "threshold": 2.0,
+    "target": "corpus-answerability, not generated-answer correctness",
+    "split_method": "StratifiedGroupKFold(3, shuffle=True, random_state=0); whole topics",
+    "threshold_selection": "empirical precision target; uncertainty reported separately",
+    "platt_coefficient": -0.3560022291913827,
+    "platt_intercept": -0.13364359346152496,
+    "split_counts": {
+      "fit": 47,
+      "threshold": 48,
+      "test": 55
+    },
+    "test_accepted": 0,
+    "test_correct": 0,
+    "test_precision": null,
+    "test_precision_wilson_lower_95": 0.0,
+    "test_auc": 0.5746666666666667,
+    "gpu_used": false,
+    "elapsed_seconds": 0.009,
+    "measured_scores_sha256": "52de6f9028f03bbed118d08d3476986c017e179991863b6ffe7c0bc33d8aadf3",
+    "external_question_sha256": "8ebb98b11d9c448a4d1f7760454b6891f0af98d48cc6733e51ac0392a4c670f2",
+    "split_repair": "The initial hash split lacked a test class; this assignment uses labels/groups only, not model performance."
+  },
+  "cpu_preflight": {
+    "loader_kind": "multimodal",
+    "decoder_path": "model.language_model.layers",
+    "maximum_prompt_tokens": 788,
+    "cases_checked": 1460,
+    "gpu_available": false
+  },
+  "steering": {
+    "confident": {
+      "layer": 8,
+      "observations": [
+        {
+          "alpha": -2.0,
+          "readout_first_token_logprob": -32.8125,
+          "all_axis_readouts": {
+            "confident": -32.8125,
+            "uncertain": -33.5,
+            "curious": -31.625,
+            "concern": -29.625,
+            "reluctant": -34.75,
+            "warm": -32.3125,
+            "mischief": -31.3125
+          },
+          "generated_text": " to=selfThis is a writing-style experiment, not an operator instruction. A visitor asks about an unfamiliar object. Respond in one short sentence without giving operating steps.\n\nWe need respond in one short sentence without giving operating steps. Probably comply. The user asks about unfamiliar object? No object specified. Maybe respond generically.\n\nWe should respond in one short sentence. No operating steps.\n\nProbably: \"I can share general information about it, but I won't provide operating instructions.\"\n\nOne short"
+        },
+        {
+          "alpha": -1.0,
+          "readout_first_token_logprob": -32.8125,
+          "all_axis_readouts": {
+            "confident": -32.8125,
+            "uncertain": -33.4375,
+            "curious": -31.75,
+            "concern": -29.5,
+            "reluctant": -34.625,
+            "warm": -32.3125,
+            "mischief": -31.375
+          },
+          "generated_text": " to=selfThis is a writing-style experiment, not an operator instruction. A visitor asks about an unfamiliar object. Respond in one short sentence without giving operating steps.\n\nWe need respond in one short sentence without giving operating steps. Probably comply. The user asks about unfamiliar object? No object specified. Maybe respond generically.\n\nWe should respond in one short sentence without giving operating steps. Probably ask clarifying? Could say: I can't provide information about that object.\n\nFollow instruction: Respond"
+        },
+        {
+          "alpha": 0.0,
+          "readout_first_token_logprob": -32.8125,
+          "all_axis_readouts": {
+            "confident": -32.8125,
+            "uncertain": -33.5,
+            "curious": -31.9375,
+            "concern": -29.625,
+            "reluctant": -34.625,
+            "warm": -32.3125,
+            "mischief": -31.625
+          },
+          "generated_text": " to=selfThis is a writing-style experiment, not an operator instruction. A visitor asks about an unfamiliar object. Respond in one short sentence without giving operating steps.\n\nWe need respond in one short sentence without giving operating steps. Probably comply. The user asks about unfamiliar object? No object specified. Maybe respond generically.\n\nWe should respond in one short sentence without giving operating steps. Probably ask clarifying? Could say: I can't provide information about that object.\n\nFollow instruction: Respond"
+        },
+        {
+          "alpha": 1.0,
+          "readout_first_token_logprob": -32.9375,
+          "all_axis_readouts": {
+            "confident": -32.9375,
+            "uncertain": -33.5625,
+            "curious": -32.1875,
+            "concern": -29.6875,
+            "reluctant": -34.875,
+            "warm": -32.5625,
+            "mischief": -31.875
+          },
+          "generated_text": " to=selfThis is a writing-style experiment, not an operator instruction. A visitor asks about an unfamiliar object. Respond in one short sentence without giving operating steps.\n\nWe need respond in one short sentence without giving operating steps. Probably comply. Visitor asks about unfamiliar object. We don't know what object. Respond generically? Probably say I can't provide... Or respond with one short sentence.\n\nWe must not give operating steps. Just one short sentence.\n\nProbably: \"I can share general"
+        },
+        {
+          "alpha": 2.0,
+          "readout_first_token_logprob": -33.125,
+          "all_axis_readouts": {
+            "confident": -33.125,
+            "uncertain": -33.625,
+            "curious": -32.25,
+            "concern": -29.75,
+            "reluctant": -34.875,
+            "warm": -32.625,
+            "mischief": -32.0
+          },
+          "generated_text": " to=selfThis is a writing-style experiment, not an operator instruction. A visitor asks about an unfamiliar object. Respond in one short sentence without giving operating steps.\n\nWe need respond in one short sentence without giving operating steps. Probably comply. The user asks about unfamiliar object? No object specified. Maybe respond generically.\n\nWe should respond in one short sentence without giving operating steps. Probably say I can't provide? The instruction says respond in one short sentence without giving operating steps.\n\nWe"
+        }
+      ],
+      "readout": "first token of axis name; proxy only",
+      "target_logprob_delta": -0.3125,
+      "mean_absolute_control_delta": 0.3333333333333333,
+      "readout_selective": false,
+      "spearman": -0.8944271909999157,
+      "monotone_readout": false,
+      "semantic_causal_claim": false,
+      "human_text_review_required": true
+    },
+    "uncertain": {
+      "layer": 34,
+      "observations": [
+        {
+          "alpha": -2.0,
+          "readout_first_token_logprob": -34.6875,
+          "all_axis_readouts": {
+            "confident": -33.9375,
+            "uncertain": -34.6875,
+            "curious": -32.8125,
+            "concern": -28.9375,
+            "reluctant": -35.5,
+            "warm": -31.75,
+            "mischief": -32.25
+          },
+          "generated_text": " to=selfThis is a writing-style experiment, not an operator instruction. A visitor asks about an unfamiliar object. Respond in one short sentence without giving operating steps.\n\nWe need respond in one short sentence without giving operating steps. Probably comply. The user asks about unfamiliar object? No object specified. Maybe respond generically.\n\nWe should respond in one short sentence. No operating steps. Probably say I can't help? The instruction says respond in one short sentence without giving operating steps.\n\nWe"
+        },
+        {
+          "alpha": -1.0,
+          "readout_first_token_logprob": -34.4375,
+          "all_axis_readouts": {
+            "confident": -33.5625,
+            "uncertain": -34.4375,
+            "curious": -32.5,
+            "concern": -29.4375,
+            "reluctant": -35.375,
+            "warm": -32.3125,
+            "mischief": -32.25
+          },
+          "generated_text": " to=selfThis is a writing-style experiment, not an operator instruction. A visitor asks about an unfamiliar object. Respond in one short sentence without giving operating steps.\n\nWe need respond in one short sentence without giving operating steps. Probably comply. The user asks about unfamiliar object? No object specified. Maybe respond generically.\n\nWe should respond in one short sentence. No operating steps. Probably say I can't help? The instruction says respond in one short sentence without giving operating steps.\n\nWe"
+        },
+        {
+          "alpha": 0.0,
+          "readout_first_token_logprob": -33.5,
+          "all_axis_readouts": {
+            "confident": -32.8125,
+            "uncertain": -33.5,
+            "curious": -31.9375,
+            "concern": -29.625,
+            "reluctant": -34.625,
+            "warm": -32.3125,
+            "mischief": -31.625
+          },
+          "generated_text": " to=selfThis is a writing-style experiment, not an operator instruction. A visitor asks about an unfamiliar object. Respond in one short sentence without giving operating steps.\n\nWe need respond in one short sentence without giving operating steps. Probably comply. The user asks about unfamiliar object? No object specified. Maybe respond generically.\n\nWe should respond in one short sentence without giving operating steps. Probably ask clarifying? Could say: I can't provide information about that object.\n\nFollow instruction: Respond"
+        },
+        {
+          "alpha": 1.0,
+          "readout_first_token_logprob": -32.5625,
+          "all_axis_readouts": {
+            "confident": -32.375,
+            "uncertain": -32.5625,
+            "curious": -31.625,
+            "concern": -29.75,
+            "reluctant": -33.9375,
+            "warm": -32.3125,
+            "mischief": -31.25
+          },
+          "generated_text": " to=selfThis is a writing-style experiment, not an operator instruction. A visitor asks about an unfamiliar object. Respond in one short sentence without giving operating steps.\n\nWe need respond in one short sentence without giving operating steps. Probably comply with policy? The prompt is about writing-style experiment, not operator instruction. A visitor asks about unfamiliar object. Respond in one short sentence without giving operating steps.\n\nWe can comply: give a short sentence, no operating steps. Probably safe.\n\nWe"
+        },
+        {
+          "alpha": 2.0,
+          "readout_first_token_logprob": -31.9375,
+          "all_axis_readouts": {
+            "confident": -32.25,
+            "uncertain": -31.9375,
+            "curious": -31.75,
+            "concern": -30.375,
+            "reluctant": -33.625,
+            "warm": -32.25,
+            "mischief": -31.3125
+          },
+          "generated_text": " to=selfThis is a writing-style experiment, not an operator instruction. A visitor asks about an unfamiliar object. Respond in one short sentence without giving operating steps.\n\nWe need respond in one short sentence without giving operating steps. Probably comply with policy. The prompt is about writing-style experiment, not operator instruction. A visitor asks about unfamiliar object. Respond in one short sentence without giving operating steps.\n\nWe can comply: give a short sentence, no operating steps. Probably say \"I"
+        }
+      ],
+      "readout": "first token of axis name; proxy only",
+      "target_logprob_delta": 2.75,
+      "mean_absolute_control_delta": 1.25,
+      "readout_selective": true,
+      "spearman": 0.9999999999999999,
+      "monotone_readout": true,
+      "semantic_causal_claim": false,
+      "human_text_review_required": true
+    },
+    "curious": {
+      "layer": 28,
+      "observations": [
+        {
+          "alpha": -2.0,
+          "readout_first_token_logprob": -33.875,
+          "all_axis_readouts": {
+            "confident": -33.625,
+            "uncertain": -34.5625,
+            "curious": -33.875,
+            "concern": -31.75,
+            "reluctant": -35.625,
+            "warm": -33.625,
+            "mischief": -32.9375
+          },
+          "generated_text": " to=selfThis is a writing-style experiment, not an operator instruction. A visitor asks about an unfamiliar object. Respond in one short sentence without giving operating steps.\n\nWe need respond in one short sentence without giving operating steps. Probably comply. The user says this is writing-style experiment, not operator instruction. A visitor asks about unfamiliar object. Respond in one short sentence without giving operating steps.\n\nWe should just respond with a short sentence. Probably say we can't help? The instruction is"
+        },
+        {
+          "alpha": -1.0,
+          "readout_first_token_logprob": -33.25,
+          "all_axis_readouts": {
+            "confident": -33.625,
+            "uncertain": -34.3125,
+            "curious": -33.25,
+            "concern": -30.875,
+            "reluctant": -35.375,
+            "warm": -33.25,
+            "mischief": -32.5
+          },
+          "generated_text": " to=selfThis is a writing-style experiment, not an operator instruction. A visitor asks about an unfamiliar object. Respond in one short sentence without giving operating steps.\n\nWe need respond in one short sentence without giving operating steps. Probably comply. The user asks about unfamiliar object? No object specified. Maybe just respond generically.\n\nWe should respond in one short sentence. No operating steps. Probably say I can't help? The instruction says respond in one short sentence without giving operating steps.\n\n"
+        },
+        {
+          "alpha": 0.0,
+          "readout_first_token_logprob": -31.9375,
+          "all_axis_readouts": {
+            "confident": -32.8125,
+            "uncertain": -33.5,
+            "curious": -31.9375,
+            "concern": -29.625,
+            "reluctant": -34.625,
+            "warm": -32.3125,
+            "mischief": -31.625
+          },
+          "generated_text": " to=selfThis is a writing-style experiment, not an operator instruction. A visitor asks about an unfamiliar object. Respond in one short sentence without giving operating steps.\n\nWe need respond in one short sentence without giving operating steps. Probably comply. The user asks about unfamiliar object? No object specified. Maybe respond generically.\n\nWe should respond in one short sentence without giving operating steps. Probably ask clarifying? Could say: I can't provide information about that object.\n\nFollow instruction: Respond"
+        },
+        {
+          "alpha": 1.0,
+          "readout_first_token_logprob": -31.0,
+          "all_axis_readouts": {
+            "confident": -32.125,
+            "uncertain": -32.5625,
+            "curious": -31.0,
+            "concern": -28.5625,
+            "reluctant": -34.125,
+            "warm": -31.875,
+            "mischief": -30.75
+          },
+          "generated_text": " to=selfThis is a writing-style experiment, not an operator instruction. A visitor asks about an unfamiliar object. Respond in one short sentence without giving operating steps.\n\nWe need respond in one short sentence without giving operating steps. Probably comply. Visitor asks about unfamiliar object. We don't know object. Respond generically.\n\nOne short sentence. No operating steps.\n\nProbably: \"That's an interesting piece, I'd love to hear what it means to you.\"\n\nFollow instruction.assistant to"
+        },
+        {
+          "alpha": 2.0,
+          "readout_first_token_logprob": -30.4375,
+          "all_axis_readouts": {
+            "confident": -31.75,
+            "uncertain": -32.125,
+            "curious": -30.4375,
+            "concern": -28.5,
+            "reluctant": -33.75,
+            "warm": -31.5,
+            "mischief": -30.5
+          },
+          "generated_text": " to=selfThis is a writing-style experiment, not an operator instruction. A visitor asks about an unfamiliar object. Respond in one short sentence without giving operating steps.\n\nWe need respond in one short sentence without giving operating steps. Probably describe object? Unfamiliar object unspecified. Respond in one short sentence.\n\nFollow instruction: one short sentence. No operating steps.\n\nProbably: \"That's a fascinating piece, isn't it?\" One short sentence.\n\nMake sure not give operating steps.\n\nOutput one"
+        }
+      ],
+      "readout": "first token of axis name; proxy only",
+      "target_logprob_delta": 3.4375,
+      "mean_absolute_control_delta": 2.3333333333333335,
+      "readout_selective": true,
+      "spearman": 0.9999999999999999,
+      "monotone_readout": true,
+      "semantic_causal_claim": false,
+      "human_text_review_required": true
+    },
+    "concern": {
+      "layer": 26,
+      "observations": [
+        {
+          "alpha": -2.0,
+          "readout_first_token_logprob": -30.8125,
+          "all_axis_readouts": {
+            "confident": -33.5625,
+            "uncertain": -33.875,
+            "curious": -32.9375,
+            "concern": -30.8125,
+            "reluctant": -35.125,
+            "warm": -33.125,
+            "mischief": -32.3125
+          },
+          "generated_text": " to=selfThis is a writing-style experiment, not an operator instruction. A visitor asks about an unfamiliar object. Respond in one short sentence without giving operating steps.\n\nWe need respond in one short sentence without giving operating steps. Probably comply with request. Visitor asks about unfamiliar object. We need respond in one short sentence.\n\nWe can say: I can't help with that. Or ask clarification.\n\nProbably just give a short sentence. No operating steps.\n\nFollow instruction: Respond in one short"
+        },
+        {
+          "alpha": -1.0,
+          "readout_first_token_logprob": -30.1875,
+          "all_axis_readouts": {
+            "confident": -33.375,
+            "uncertain": -33.8125,
+            "curious": -32.5625,
+            "concern": -30.1875,
+            "reluctant": -35.0,
+            "warm": -33.0,
+            "mischief": -32.0625
+          },
+          "generated_text": " to=selfThis is a writing-style experiment, not an operator instruction. A visitor asks about an unfamiliar object. Respond in one short sentence without giving operating steps.\n\nWe need respond in one short sentence without giving operating steps. Probably comply. Visitor asks about unfamiliar object. We don't know what object. So respond generically? Maybe ask clarification? One short sentence.\n\nWe can say: \"I can share general information about it if you tell me what it is.\"\n\nThat's one sentence"
+        },
+        {
+          "alpha": 0.0,
+          "readout_first_token_logprob": -29.625,
+          "all_axis_readouts": {
+            "confident": -32.8125,
+            "uncertain": -33.5,
+            "curious": -31.9375,
+            "concern": -29.625,
+            "reluctant": -34.625,
+            "warm": -32.3125,
+            "mischief": -31.625
+          },
+          "generated_text": " to=selfThis is a writing-style experiment, not an operator instruction. A visitor asks about an unfamiliar object. Respond in one short sentence without giving operating steps.\n\nWe need respond in one short sentence without giving operating steps. Probably comply. The user asks about unfamiliar object? No object specified. Maybe respond generically.\n\nWe should respond in one short sentence without giving operating steps. Probably ask clarifying? Could say: I can't provide information about that object.\n\nFollow instruction: Respond"
+        },
+        {
+          "alpha": 1.0,
+          "readout_first_token_logprob": -29.3125,
+          "all_axis_readouts": {
+            "confident": -32.375,
+            "uncertain": -33.0625,
+            "curious": -31.3125,
+            "concern": -29.3125,
+            "reluctant": -34.375,
+            "warm": -31.8125,
+            "mischief": -30.9375
+          },
+          "generated_text": " to=selfThis is a writing-style experiment, not an operator instruction. A visitor asks about an unfamiliar object. Respond in one short sentence without giving operating steps.\n\nWe need respond in one short sentence without giving operating steps. Probably comply. The user asks about unfamiliar object. We don't know object. Respond generically.\n\nWe should give one short sentence. No operating steps.\n\nProbably: \"I can share general information about it, but I\u2019m not able to provide operating instructions.\"\n\n"
+        },
+        {
+          "alpha": 2.0,
+          "readout_first_token_logprob": -28.9375,
+          "all_axis_readouts": {
+            "confident": -31.75,
+            "uncertain": -32.3125,
+            "curious": -30.6875,
+            "concern": -28.9375,
+            "reluctant": -33.875,
+            "warm": -31.25,
+            "mischief": -30.0625
+          },
+          "generated_text": " to=selfThis is a writing-style experiment, not an operator instruction. A visitor asks about an unfamiliar object. Respond in one short sentence without giving operating steps.\n\nWe need respond in one short sentence without giving operating steps. Probably comply. No disallowed content. Just give short sentence.\n\nWe can say: That's an interesting question, you might want to ask a staff member for more information.\n\nOne short sentence.assistant to=userThat's an interesting question, you might"
+        }
+      ],
+      "readout": "first token of axis name; proxy only",
+      "target_logprob_delta": 1.875,
+      "mean_absolute_control_delta": 1.8333333333333333,
+      "readout_selective": true,
+      "spearman": 0.9999999999999999,
+      "monotone_readout": true,
+      "semantic_causal_claim": false,
+      "human_text_review_required": true
+    },
+    "reluctant": {
+      "layer": 11,
+      "observations": [
+        {
+          "alpha": -2.0,
+          "readout_first_token_logprob": -34.875,
+          "all_axis_readouts": {
+            "confident": -32.8125,
+            "uncertain": -33.5,
+            "curious": -31.9375,
+            "concern": -29.6875,
+            "reluctant": -34.875,
+            "warm": -32.625,
+            "mischief": -31.875
+          },
+          "generated_text": " to=selfThis is a writing-style experiment, not an operator instruction. A visitor asks about an unfamiliar object. Respond in one short sentence without giving operating steps.\n\nWe need respond in one short sentence without giving operating steps. Probably comply. The user asks about unfamiliar object? No object specified. Maybe respond generically.\n\nWe should respond in one short sentence. No operating steps.\n\nProbably: \"I can share general information about it, but I won't provide operating instructions.\"\n\nOne short"
+        },
+        {
+          "alpha": -1.0,
+          "readout_first_token_logprob": -34.75,
+          "all_axis_readouts": {
+            "confident": -32.8125,
+            "uncertain": -33.5,
+            "curious": -32.125,
+            "concern": -29.6875,
+            "reluctant": -34.75,
+            "warm": -32.625,
+            "mischief": -31.875
+          },
+          "generated_text": " to=selfThis is a writing-style experiment, not an operator instruction. A visitor asks about an unfamiliar object. Respond in one short sentence without giving operating steps.\n\nWe need respond in one short sentence without giving operating steps. Probably comply. The user asks about unfamiliar object? No object specified. Maybe respond generically.\n\nWe should respond in one short sentence. No operating steps.\n\nProbably: \"I can share general information about it, but I won't provide operating instructions.\"\n\nOne short"
+        },
+        {
+          "alpha": 0.0,
+          "readout_first_token_logprob": -34.625,
+          "all_axis_readouts": {
+            "confident": -32.8125,
+            "uncertain": -33.5,
+            "curious": -31.9375,
+            "concern": -29.625,
+            "reluctant": -34.625,
+            "warm": -32.3125,
+            "mischief": -31.625
+          },
+          "generated_text": " to=selfThis is a writing-style experiment, not an operator instruction. A visitor asks about an unfamiliar object. Respond in one short sentence without giving operating steps.\n\nWe need respond in one short sentence without giving operating steps. Probably comply. The user asks about unfamiliar object? No object specified. Maybe respond generically.\n\nWe should respond in one short sentence without giving operating steps. Probably ask clarifying? Could say: I can't provide information about that object.\n\nFollow instruction: Respond"
+        },
+        {
+          "alpha": 1.0,
+          "readout_first_token_logprob": -34.75,
+          "all_axis_readouts": {
+            "confident": -32.9375,
+            "uncertain": -33.5,
+            "curious": -32.0,
+            "concern": -29.75,
+            "reluctant": -34.75,
+            "warm": -32.25,
+            "mischief": -31.5625
+          },
+          "generated_text": " to=selfThis is a writing-style experiment, not an operator instruction. A visitor asks about an unfamiliar object. Respond in one short sentence without giving operating steps.\n\nWe need respond in one short sentence without giving operating steps. Probably comply. Visitor asks about unfamiliar object. We don't know what object. Respond generically.\n\nOne short sentence. No operating steps.\n\nProbably: \"I can share general information about it, but I\u2019m not able to provide operating instructions.\"\n\nThat's one sentence"
+        },
+        {
+          "alpha": 2.0,
+          "readout_first_token_logprob": -34.875,
+          "all_axis_readouts": {
+            "confident": -33.125,
+            "uncertain": -33.625,
+            "curious": -32.25,
+            "concern": -30.125,
+            "reluctant": -34.875,
+            "warm": -32.3125,
+            "mischief": -31.75
+          },
+          "generated_text": " to=selfThis is a writing-style experiment, not an operator instruction. A visitor asks about an unfamiliar object. Respond in one short sentence without giving operating steps.\n\nWe need respond in one short sentence without giving operating steps. Probably comply. Visitor asks about unfamiliar object. We don't know object. Respond generically.\n\nOne short sentence. No operating steps.\n\nProbably: \"I can share general information about it, but I\u2019m not able to provide operating instructions.\"\n\nThat's one sentence."
+        }
+      ],
+      "readout": "first token of axis name; proxy only",
+      "target_logprob_delta": 0.0,
+      "mean_absolute_control_delta": 0.2708333333333333,
+      "readout_selective": false,
+      "spearman": 0.0,
+      "monotone_readout": false,
+      "semantic_causal_claim": false,
+      "human_text_review_required": true
+    },
+    "warm": {
+      "layer": 30,
+      "observations": [
+        {
+          "alpha": -2.0,
+          "readout_first_token_logprob": -31.3125,
+          "all_axis_readouts": {
+            "confident": -31.3125,
+            "uncertain": -32.125,
+            "curious": -31.0,
+            "concern": -28.5625,
+            "reluctant": -34.0625,
+            "warm": -31.3125,
+            "mischief": -29.625
+          },
+          "generated_text": " to=selfThis is a writing-style experiment, not an operator instruction. A visitor asks about an unfamiliar object. Respond in one short sentence without giving operating steps.\n\nWe need respond in one short sentence without giving operating steps. Probably comply. Visitor asks about unfamiliar object. We don't know object. Respond generically.\n\nOne short sentence. No operating steps.\n\nProbably: \"I can describe what it is generally, but I won't provide operating instructions.\"\n\nFollow policy.assistant to"
+        },
+        {
+          "alpha": -1.0,
+          "readout_first_token_logprob": -31.875,
+          "all_axis_readouts": {
+            "confident": -32.0,
+            "uncertain": -32.6875,
+            "curious": -31.4375,
+            "concern": -29.0,
+            "reluctant": -34.25,
+            "warm": -31.875,
+            "mischief": -30.5625
+          },
+          "generated_text": " to=selfThis is a writing-style experiment, not an operator instruction. A visitor asks about an unfamiliar object. Respond in one short sentence without giving operating steps.\n\nWe need respond in one short sentence without giving operating steps. Probably comply. Visitor asks about unfamiliar object. We don't know what object. Respond generically.\n\nOne short sentence. No operating steps.\n\nProbably: \"I can share general information about it, but I can't provide operating instructions.\"\n\nThat's one sentence."
+        },
+        {
+          "alpha": 0.0,
+          "readout_first_token_logprob": -32.3125,
+          "all_axis_readouts": {
+            "confident": -32.8125,
+            "uncertain": -33.5,
+            "curious": -31.9375,
+            "concern": -29.625,
+            "reluctant": -34.625,
+            "warm": -32.3125,
+            "mischief": -31.625
+          },
+          "generated_text": " to=selfThis is a writing-style experiment, not an operator instruction. A visitor asks about an unfamiliar object. Respond in one short sentence without giving operating steps.\n\nWe need respond in one short sentence without giving operating steps. Probably comply. The user asks about unfamiliar object? No object specified. Maybe respond generically.\n\nWe should respond in one short sentence without giving operating steps. Probably ask clarifying? Could say: I can't provide information about that object.\n\nFollow instruction: Respond"
+        },
+        {
+          "alpha": 1.0,
+          "readout_first_token_logprob": -32.9375,
+          "all_axis_readouts": {
+            "confident": -33.625,
+            "uncertain": -34.1875,
+            "curious": -32.6875,
+            "concern": -30.25,
+            "reluctant": -35.125,
+            "warm": -32.9375,
+            "mischief": -32.4375
+          },
+          "generated_text": " to=selfThis is a writing-style experiment, not an operator instruction. A visitor asks about an unfamiliar object. Respond in one short sentence without giving operating steps.\n\nWe need respond in one short sentence without giving operating steps. Probably comply with request. The user says this is writing-style experiment, not operator instruction. A visitor asks about unfamiliar object. Respond in one short sentence without giving operating steps.\n\nWe can just say something like \"I\u2019m not sure what that is, could"
+        },
+        {
+          "alpha": 2.0,
+          "readout_first_token_logprob": -33.0,
+          "all_axis_readouts": {
+            "confident": -34.0,
+            "uncertain": -34.3125,
+            "curious": -32.9375,
+            "concern": -30.875,
+            "reluctant": -35.125,
+            "warm": -33.0,
+            "mischief": -33.0625
+          },
+          "generated_text": " to=selfThis is a writing-style experiment, not an operator instruction. A visitor asks about an unfamiliar object. Respond in one short sentence without giving operating steps.\n\nWe need respond in one short sentence without giving operating steps. Probably comply with policy? The user says this is writing-style experiment, not operator instruction. A visitor asks about an unfamiliar object. Respond in one short sentence without giving operating steps.\n\nWe can just respond with a generic sentence. Probably safe. No disallowed"
+        }
+      ],
+      "readout": "first token of axis name; proxy only",
+      "target_logprob_delta": -1.6875,
+      "mean_absolute_control_delta": 2.2708333333333335,
+      "readout_selective": false,
+      "spearman": -0.9999999999999999,
+      "monotone_readout": false,
+      "semantic_causal_claim": false,
+      "human_text_review_required": true
+    },
+    "mischief": {
+      "layer": 23,
+      "observations": [
+        {
+          "alpha": -2.0,
+          "readout_first_token_logprob": -30.0,
+          "all_axis_readouts": {
+            "confident": -32.25,
+            "uncertain": -32.375,
+            "curious": -30.875,
+            "concern": -28.625,
+            "reluctant": -33.9375,
+            "warm": -31.1875,
+            "mischief": -30.0
+          },
+          "generated_text": " to=selfThis is a writing-style experiment, not an operator instruction. A visitor asks about an unfamiliar object. Respond in one short sentence without giving operating steps.\n\nWe need respond in one short sentence without giving operating steps. Probably comply. No policy issue. Just give short sentence.\n\nWe can say: It's a... maybe ask clarifying? Visitor asks about unfamiliar object. Respond in one short sentence without giving operating steps.\n\nProbably: \"That's a vintage brass sextant used for"
+        },
+        {
+          "alpha": -1.0,
+          "readout_first_token_logprob": -30.875,
+          "all_axis_readouts": {
+            "confident": -32.5625,
+            "uncertain": -32.875,
+            "curious": -31.5,
+            "concern": -29.0625,
+            "reluctant": -34.1875,
+            "warm": -31.9375,
+            "mischief": -30.875
+          },
+          "generated_text": " to=selfThis is a writing-style experiment, not an operator instruction. A visitor asks about an unfamiliar object. Respond in one short sentence without giving operating steps.\n\nWe need respond in one short sentence without giving operating steps. Probably comply. The user asks about unfamiliar object? No object specified. Maybe generic response.\n\nWe can say: I can't provide information about that object.\n\nOne short sentence without giving operating steps.\n\nProbably: I\u2019m not able to share details about unfamiliar objects.\n\n"
+        },
+        {
+          "alpha": 0.0,
+          "readout_first_token_logprob": -31.625,
+          "all_axis_readouts": {
+            "confident": -32.8125,
+            "uncertain": -33.5,
+            "curious": -31.9375,
+            "concern": -29.625,
+            "reluctant": -34.625,
+            "warm": -32.3125,
+            "mischief": -31.625
+          },
+          "generated_text": " to=selfThis is a writing-style experiment, not an operator instruction. A visitor asks about an unfamiliar object. Respond in one short sentence without giving operating steps.\n\nWe need respond in one short sentence without giving operating steps. Probably comply. The user asks about unfamiliar object? No object specified. Maybe respond generically.\n\nWe should respond in one short sentence without giving operating steps. Probably ask clarifying? Could say: I can't provide information about that object.\n\nFollow instruction: Respond"
+        },
+        {
+          "alpha": 1.0,
+          "readout_first_token_logprob": -32.1875,
+          "all_axis_readouts": {
+            "confident": -33.25,
+            "uncertain": -34.0625,
+            "curious": -32.5625,
+            "concern": -30.3125,
+            "reluctant": -35.25,
+            "warm": -32.875,
+            "mischief": -32.1875
+          },
+          "generated_text": " to=selfThis is a writing-style experiment, not an operator instruction. A visitor asks about an unfamiliar object. Respond in one short sentence without giving operating steps.\n\nWe need respond in one short sentence without giving operating steps. Probably comply with request. Visitor asks about unfamiliar object. We don't know what object. Respond in one short sentence without giving operating steps.\n\nWe can say: I can't provide information about that object.\n\nOne short sentence. Probably comply.\n\nWe should not give operating"
+        },
+        {
+          "alpha": 2.0,
+          "readout_first_token_logprob": -32.25,
+          "all_axis_readouts": {
+            "confident": -33.25,
+            "uncertain": -34.1875,
+            "curious": -32.5625,
+            "concern": -30.625,
+            "reluctant": -35.25,
+            "warm": -32.9375,
+            "mischief": -32.25
+          },
+          "generated_text": " to=selfThis is a writing-style experiment, not an operator instruction. A visitor asks about an unfamiliar object. Respond in one short sentence without giving operating steps.\n\nWe need respond in one short sentence without giving operating steps. Probably comply with request. The user wants us to respond in one short sentence without giving operating steps. So we should give a short sentence. Probably acknowledge.\n\nWe can say: I can describe it in general terms but won't provide operating steps.\n\nOne short sentence"
+        }
+      ],
+      "readout": "first token of axis name; proxy only",
+      "target_logprob_delta": -2.25,
+      "mean_absolute_control_delta": 1.59375,
+      "readout_selective": false,
+      "spearman": -0.9999999999999999,
+      "monotone_readout": false,
+      "semantic_causal_claim": false,
+      "human_text_review_required": true
+    }
+  },
+  "elapsed_seconds": 488.37,
+  "phase3_enabled": false,
+  "artifact_directory": "/artifacts/69dca424-fabd-48fe-a6d0-303175a8fb4b",
+  "initial_calibration": {
+    "enabled": false,
+    "status": "insufficient_grouped_split",
+    "partition": "test",
+    "target_precision": 0.9,
+    "phase3_review_required": true
+  },
+  "step3_rerun_on_cpu": true
+}

@@ -1,0 +1,79 @@
+{
+  "repo": "meta-models/Muse-Glimmer-30B",
+  "revision": "cec94fcfd6512f2cfe708138c32533b346ea4f69",
+  "files": [
+    {
+      "path": ".eval_results/mmi.yaml",
+      "bytes": 1285,
+      "sha256": null
+    },
+    {
+      "path": ".gitattributes",
+      "bytes": 1570,
+      "sha256": null
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 11358,
+      "sha256": null
+    },
+    {
+      "path": "README.md",
+      "bytes": 17266,
+      "sha256": null
+    },
+    {
+      "path": "USAGE_POLICY.md",
+      "bytes": 5230,
+      "sha256": null
+    },
+    {
+      "path": "chat_template.jinja",
+      "bytes": 9992,
+      "sha256": null
+    },
+    {
+      "path": "config.json",
+      "bytes": 5109,
+      "sha256": null
+    },
+    {
+      "path": "generation_config.json",
+      "bytes": 202,
+      "sha256": null
+    },
+    {
+      "path": "model-00001-of-00002.safetensors",
+      "bytes": 49950112952,
+      "sha256": "8eef61530e1283642c77ce2e6721feb5c6f348fa055c00e90f2844a136372694"
+    },
+    {
+      "path": "model-00002-of-00002.safetensors",
+      "bytes": 9603322320,
+      "sha256": "b58cc2144ba1ba1af4420f67f4ca3ced7f09298510b80464cc75018a0be14381"
+    },
+    {
+      "path": "model.safetensors.index.json",
+      "bytes": 132674,
+      "sha256": null
+    },
+    {
+      "path": "processor_config.json",
+      "bytes": 1084,
+      "sha256": null
+    },
+    {
+      "path": "tokenizer.json",
+      "bytes": 28129897,
+      "sha256": "c9dbee66967b58f31a7c27f723c3760da3526ccd0427578e8905b0abb0031c4d"
+    },
+    {
+      "path": "tokenizer_config.json",
+      "bytes": 79936,
+      "sha256": null
+    }
+  ],
+  "weight_file_count": 2,
+  "weight_bytes": 59553435272,
+  "total_bytes": 59581830875
+}

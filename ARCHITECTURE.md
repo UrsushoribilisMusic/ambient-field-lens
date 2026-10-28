@@ -159,3 +159,12 @@ Conceptual references are the disclosed Flotilla fail-closed validation and
 cooldown patterns. This implementation was written in this repository during
 the event; no Flotilla code was vendored. No code/data was copied from
 `ambient-field-lens-test`, Canis matrices or Sovereign Mind chunkers.
+The stale HUD verdict on transport errors was cleared by the client change
+`49efbf9`. Phase 1 cannot produce a green verdict.
+
+## Offline research
+
+`backend/recal/` contains separate Modal staging, corpus ingestion and finite
+research jobs. It does not participate in `/assist`. Its threshold artefacts
+remain disabled and require Phase 3 review. See `docs/recalibration-results.md`
+for measured results, external-input disclosures and execution limits.

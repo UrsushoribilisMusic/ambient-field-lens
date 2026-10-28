@@ -1,0 +1,5 @@
+modal==1.6.2
+numpy==2.5.4
+scikit-learn==1.9.1
+scipy==1.18.1
+meta-sam-parser==0.1.0
