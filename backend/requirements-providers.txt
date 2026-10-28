@@ -1,0 +1,4 @@
+# Local runtime provider facade; remote model/container packages live in modal_runtime.py.
+-r requirements-readiness.txt
+modal==1.6.2
+scipy==1.18.1

@@ -220,3 +220,15 @@ Meta overflow. Runtime vault credentials, private exact receipts and a shared
 per-call hosted-API ledger; missing usage is unknown, not zero. This authoring
 tool does not change frozen labels, scoring, SAM, `/assist` or GPU windows. SAM
 stays on Meta; probes and all internal-state readouts stay on Modal Glimmer.
+
+## Live demo providers (28 October integration)
+
+`backend/providers/` supplies deployed Ross Chroma retrieval, Meta SAM current-frame
+mask decoding, and Modal Glimmer frozen layer27 true-prefill scoring. Calls carry
+frame/context/source hashes and private receipts; GPU admission is window-bound,
+max1 worker, scale-to-zero, with grant reservations. Signed containment clearance
+uses measured mm errors and reading uncertainty rather than an inherited2px cutoff.
+The real displaced-paper phone control is still required before shipment. Muse
+owns the reviewed `/assist` admission contract and iOS integration; provider raw
+scores alone never authorize a step. [Interfaces, proof and remaining integration
+requirements](docs/live-provider-handoff.md).

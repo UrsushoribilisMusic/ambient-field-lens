@@ -1,39 +1,72 @@
-# Codi — Baseten wording generation routing, 2026-10-28
+# Codi — live demo providers, 2026-10-28
 
-User authorizes Baseten for wording jobs: pair phrasings, step text, review copy.
-Exact model meta-models/muse-spark-open-1026, endpoint https://inference.baseten.co/v1.
-Runtime vault fetch BASETEN_API_KEY only; never print/store credentials. Meta
-retains SAM and explicitly selected generation overflow. Modal Glimmer alone
-retains probes/readouts. No hidden-state requests to hosted APIs.
+Director brief, relayed and confirmed by Muse/Miguel, supersedes further offline
+research. Providers only: frozen-contrastive true-prefill Glimmer scoring on
+Modal, live-frame Meta SAM paper mask, Ross Chroma retrieval, millimetre-based
+containment clearance and response receipts. Muse owns /assist contract and iOS.
+Displaced paper must fail containment and carry no step; a readout never vetoes
+a physical failure. No new corpus, labels, folds, trajectory or benchmark round.
 
-Plan: add an offline generation CLI with default Baseten routing, explicit Meta
-overflow, finite text/token caps, no automatic retries, exact private request /
-response receipts and per-attempt append-only JSONL ledger shared by providers.
-Publish pricing basis and distinguish reported usage from conservative token
-cost estimates; missing usage is unknown, never free. Save attempt before send.
-No live backend, fixtures, frozen labels, evaluation inputs or GPU modifications.
-Test offline with fake transport including error, missing usage, truncation,
-wrong model, routing, credential redaction and duplicate-attempt prevention.
-Document usage and handoff; commit/push draft PR. No paid call just to prove a
-connection; next authorized wording task uses this tool and records its usage.
+Implement runtime provider interfaces reusable by Muse, deploy bounded endpoints
+only within receipted windows; no idle GPU reservation. Reuse frozen layer27
+contrastive direction and exact fit records/template, not the failed Platt proxy.
+Export existing direction from saved residuals and verify saved control scores
+without refitting or scoring a new corpus. Existing research results unchanged.
+Threshold acceptance belongs to Muse's reviewed evidence contract. Providers
+return raw finite scores and provenance; cannot authorize a green step themselves.
 
-## Implemented and CPU-verified
+SAM consumes actual incoming JPEG and returns decoded frame-bound paper mask;
+retrieval uses existing Ross collection and returns real chunk IDs/source hashes.
+Containment reports signed clearance, registration error, reading uncertainty
+in mm (and any robot/tool allowance). Unmeasured geometry stays unknown; no
+fabrication of marker points or source-to-robot coordinates. Exact runtime
+receipts and all paid attempts recorded, including failed attempts. Scale to
+zero outside short grant-ledger windows. Test failure/control behavior and
+publish integration handoff. Do not overwrite Muse's server/iOS work.
 
-Added `backend/generation/wording.py` (default Baseten exact pinned model,
-explicit Meta overflow), and `generation/import_meta.py` for historical receipt
-consolidation. All three permitted wording purposes use private exact request /
-response receipts, pre-send durable attempts, locked append-only hosted-API
-ledger, usage-based uncached estimates, no retries or automatic fallbacks.
-Unknown usage/cost remains null, and incomplete output is not published as a
-usable draft. Runtime vault only; redirects rejected; no secret/error text output.
+## Runtime implementation checkpoint
 
-Seven new fake-transport tests pass. Full backend suite114 tests,107 pass and7
-expected private-archive skips. No scoring/research/provider tests require paid
-calls. Existing `/assist`, SAM tools, fixtures and Modal modules untouched.
-Imported22 historical attempts:7 Spark and15 SAM, all with token usage. Known
-Spark uncached estimates total$0.0393445; SAM token-rate cost remains unknown,
-not zero. Import makes no calls, is idempotent and does not modify originals.
-Modal grant ledger remains separate. No Baseten/Meta calls, model sampling,
-GPU windows or hardware activity during this implementation. Baseten configured
-but not live-tested here; next authorized wording job produces its first receipt.
-PR review required; pending visual labels remain pending.
+Implemented provider facade, receipted SAM current-frame segmentation, frozen
+Modal runtime + authenticated HTTP/RPC entry points, existing Ross retrieval,
+and dense-mask signed-clearance check. Six provider tests pass, including
+outside-paper control, internal mask holes, insufficient clearance and missing
+uncertainty. Unknown physical inputs cannot pass. All three requested mm
+quantities plus robot/raster allowances are returned; no step is produced here.
+
+CPU serving-prefix verification rejected add_generation_prompt: it differs
+from the saved continue-final-message prefix. Replaced it with the exact frozen
+template followed by an explicit candidate-boundary cut (zero candidate tokens
+passed to the model). CPU re-verification in progress; no GPU started yet.
+First CPU launch failed image build ordering, second caught prefix mismatch;
+both ledgered, no GPU. Existing comparison numbers and labels untouched.
+
+Miguel supplied independent visual review: manifest digest matches; VG01/VG02/
+VG04 accepted, VG03 contact unknown in both images (only ink mark establishes
+past contact). Preserved original privately and review summary in docs. Whole
+old research set remains blocked; no replacement or new research run planned.
+
+## Live provider verification completed
+
+CPU export reproduces saved84 scores (max difference3.816e-17), six native
+prefix controls match. No new research scores/cases. Deployed authenticated
+HTTP+SDK provider app. New Reolink frame returned one usable paper mask from
+explicit ROI; overlay visually checked. Ross query returned real chunk IDs.
+
+A100-only request queued with0 GPU workers; stopped deployment rather than leave
+it queued. Added240s inclusive wait/cancellation and expiry check before model
+load. Same BF16 model/readout permits H100 fallback within checked$4 envelope.
+Second reserved window served real score -0.024460947181109742,861prefix tokens,
+zero candidate tokens, one forward, H100. Forward3.033s vs client roundtrip62.216s
+including cold start. Window closed. Final container list[]. Total grant
+reservations$30 including prior$22; not actual spend. SAM cost unknown (one image,
+provider reports0text tokens); usage preserved, not called free. Every attempt
+retained, no automatic retry or new GPU/corpus research round.
+
+Seven provider/control tests; full backend121 tests,114 pass /7 expected private
+archive skips. New mapping helper returns mm residual without 2px acceptance;
+real geometry/reading uncertainty/robot linkage remain Muse-contract inputs.
+Outside-paper and hole controls fail with no step; no threshold/green enabled.
+Handoff docs include cold-start latency, explicit ROI assumption, capture/pose
+freshness, exact procedure requirements, receipt bundle and actual-phone
+well-placed/displaced acceptance still required. No code changes in Muse's
+service/iOS lane. Original human review remains preserved, pen contact unknown.
