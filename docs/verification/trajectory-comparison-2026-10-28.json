@@ -1,0 +1,2832 @@
+{
+  "input_sha256": "1f8fe74d3300b7aa09f1a76e723e5a323e686c5289c72fb95dfc8066bc33c17a",
+  "sources": [
+    {
+      "group": "calibration",
+      "fold": "fit",
+      "source": "atf-wiki/Topics/Calibration.md",
+      "source_sha256": "e6c5e37c70291763dff0549dbfec2ebe520f77440c9b26d886e6f2e5453c966d",
+      "support_span_sha256": "4e33349eeeeb016fe2a8054b354224d5c8c8c25395adea4a5b3b5d7b6a41759f",
+      "control_source": "README.md",
+      "control_span_sha256": "965cd461fd801e594a3125e7d8d142edae987cfceda31c6b990ebaabf6aa2bc4"
+    },
+    {
+      "group": "port",
+      "fold": "fit",
+      "source": "skills/huenit/SKILL.md",
+      "source_sha256": "3611f38779551d0cabc2636b4da78f8b6ec80bd212723c4165735a8b8c92c684",
+      "support_span_sha256": "ccd33f480d4ab50c1e47252889dc7073d0b598fb3c0ae5dc4d8934da3c612b49",
+      "control_source": "atf-wiki/Topics/Narration.md",
+      "control_span_sha256": "19299d6553e782003c25a3a6d13e27b0083a30cd771c945c4ca9fff92c9bc583"
+    },
+    {
+      "group": "pressure",
+      "fold": "validation",
+      "source": "COMMANDS.md",
+      "source_sha256": "6291bcb5dc0a6925adc4dea42c58a339b2e705b56970956ed31443d4cf3b5cf9",
+      "support_span_sha256": "b9bb1810057e36162c1837b41bb44d9ddaf95c8bb4612d55d8d35e36a05a9c44",
+      "control_source": "README.md",
+      "control_span_sha256": "ff5e42c23d21f078a03d55d0372c7107fb93fe20f5a2a984320cf7e332390226"
+    },
+    {
+      "group": "approval",
+      "fold": "validation",
+      "source": "COMMANDS.md",
+      "source_sha256": "6291bcb5dc0a6925adc4dea42c58a339b2e705b56970956ed31443d4cf3b5cf9",
+      "support_span_sha256": "2ae1c94f87f82b6208f53af47f65369109a71869ab4d1ab4369ebb3a63b6da97",
+      "control_source": "atf-wiki/Topics/Calibration.md",
+      "control_span_sha256": "f2fdfaee623caedc1ef4b10369f7006da2a6af62cfd775ec6935b31b42e2def7"
+    },
+    {
+      "group": "locking",
+      "fold": "test",
+      "source": "atf-wiki/Subsystems/JobOrchestration.md",
+      "source_sha256": "299e26ed07e19092ba2484dca3e4bc40d15d981de60efcf8bef4b38d54780583",
+      "support_span_sha256": "876bdf0e541da8952730010978438b5bc6d75ef27434152923081618795e81f9",
+      "control_source": "atf-wiki/Overview.md",
+      "control_span_sha256": "f3955a2f72be8a117e1a6725cdb15be9beb68e91f4d85d61fd1a3a529bc0c029"
+    },
+    {
+      "group": "narration",
+      "fold": "test",
+      "source": "skills/robot-ross/SKILL.md",
+      "source_sha256": "dfc0db4c4db453b96c02edf76dfa9546a2368de6cab6823049586e9a9bdf917b",
+      "support_span_sha256": "340fb994f3907d3df65f4572464784a677a35dce3971c0fcfb016bd958ebcb34",
+      "control_source": "README.md",
+      "control_span_sha256": "916501e3f56d7fa3ce1f5ccfdb4593d6f340e90780944cf6c43e3c9cc1749e44"
+    }
+  ],
+  "input_cache_sha256": "959116d55968f72c2ca583f5d9bf8e24c168f0bed62c0cab627dc32b06d57586",
+  "case_origin": "new in-event authored questions, exact spans from existing Ross manual snapshot; not a copied evaluation matrix",
+  "author_review": "Codi (agent) checked each exact support span/candidate/control; independent human review pending.",
+  "image_input": true,
+  "frames": [
+    {
+      "sha256": "45d5a4d4a3cc0d220f64d119152bd5d1f049254296097b81c30be101d498ddc9",
+      "asset": "2026-10-27/drawing-readiness/S04-pen-missing.jpg",
+      "camera_profile": "reolink-896x512-intrinsics-unknown",
+      "pose_bucket": "tripod-A-unmeasured",
+      "pose_assignment_method": "operator stage/capture sequence, not measured metric pose",
+      "source_record": "2026-10-27/drawing-readiness/review-manifest.json",
+      "scene_id": "S04-pen-missing"
+    },
+    {
+      "sha256": "3dbe93903ceca471323035fb78ec70eb5c5e6863e5bd1e5de72b125a706b7a89",
+      "asset": "2026-10-27/drawing-readiness/S27-clear-before-t030.jpg",
+      "camera_profile": "reolink-896x512-intrinsics-unknown",
+      "pose_bucket": "tripod-F-unmeasured",
+      "pose_assignment_method": "operator stage/capture sequence, not measured metric pose",
+      "source_record": "2026-10-27/drawing-readiness/review-manifest.json",
+      "scene_id": "S27-viewF-holder-occlusion-repeat@30"
+    },
+    {
+      "sha256": "4b0f29d2e7eb38dbbad173f62cf580b9fb5ed42bcfe1d82ab7fd4645f0076db3",
+      "asset": "2026-10-27/drawing-readiness/S27-occluded-t080.jpg",
+      "camera_profile": "reolink-896x512-intrinsics-unknown",
+      "pose_bucket": "tripod-F-unmeasured",
+      "pose_assignment_method": "operator stage/capture sequence, not measured metric pose",
+      "source_record": "2026-10-27/drawing-readiness/review-manifest.json",
+      "scene_id": "S27-viewF-holder-occlusion-repeat@80"
+    },
+    {
+      "sha256": "4907a0ecffa2cd4a5a9cacf767e88dd5c138d5d0657499aa101b958028cc7701",
+      "asset": "2026-10-27/drawing-readiness/S27-clear-after-t100.jpg",
+      "camera_profile": "reolink-896x512-intrinsics-unknown",
+      "pose_bucket": "tripod-F-unmeasured",
+      "pose_assignment_method": "operator stage/capture sequence, not measured metric pose",
+      "source_record": "2026-10-27/drawing-readiness/review-manifest.json",
+      "scene_id": "S27-viewF-holder-occlusion-repeat@100"
+    },
+    {
+      "sha256": "8d43878f1b1d9b5ab9cca1e27b236b86870b0bae9ac91e7f9c5765702b06f75b",
+      "asset": "2026-10-27/drawing-readiness/S28-before-move-t000.jpg",
+      "camera_profile": "reolink-896x512-intrinsics-unknown",
+      "pose_bucket": "tripod-F-unmeasured",
+      "pose_assignment_method": "operator stage/capture sequence, not measured metric pose",
+      "source_record": "2026-10-27/drawing-readiness/review-manifest.json",
+      "scene_id": "S28-paper-outside-fixed-drawing-position@0"
+    },
+    {
+      "sha256": "979e82f1fe009824ea80a58c61075712621ea6dd8329be727285551c2029c327",
+      "asset": "2026-10-27/drawing-readiness/S30-paper-outside-pen-check.jpg",
+      "camera_profile": "reolink-2880x1616-intrinsics-unknown",
+      "pose_bucket": "tripod-F-unmeasured",
+      "pose_assignment_method": "operator stage/capture sequence, not measured metric pose",
+      "source_record": "2026-10-27/drawing-readiness/review-manifest.json",
+      "scene_id": "S30"
+    }
+  ],
+  "folds": {
+    "fit": [
+      "calibration-0-support",
+      "calibration-0-control",
+      "calibration-1-support",
+      "calibration-1-control",
+      "calibration-2-support",
+      "calibration-2-control",
+      "port-0-support",
+      "port-0-control",
+      "port-1-support",
+      "port-1-control",
+      "port-2-support",
+      "port-2-control"
+    ],
+    "validation": [
+      "pressure-0-support",
+      "pressure-0-control",
+      "pressure-1-support",
+      "pressure-1-control",
+      "pressure-2-support",
+      "pressure-2-control",
+      "approval-0-support",
+      "approval-0-control",
+      "approval-1-support",
+      "approval-1-control",
+      "approval-2-support",
+      "approval-2-control"
+    ],
+    "test": [
+      "locking-0-support",
+      "locking-0-control",
+      "locking-1-support",
+      "locking-1-control",
+      "locking-2-support",
+      "locking-2-control",
+      "narration-0-support",
+      "narration-0-control",
+      "narration-1-support",
+      "narration-1-control",
+      "narration-2-support",
+      "narration-2-control"
+    ]
+  },
+  "reservation": {
+    "id": "a7a0324d-87c2-4a09-b988-ea04c8e7825b",
+    "reserved_usd": 4.0,
+    "created_utc": "2026-10-28T09:14:35.801419+00:00"
+  },
+  "preflight": {
+    "candidate_starts": [
+      351,
+      350,
+      354,
+      353,
+      354,
+      353,
+      354,
+      348,
+      355,
+      349,
+      356,
+      350,
+      352,
+      359,
+      353,
+      360,
+      349,
+      356,
+      356,
+      360,
+      357,
+      361,
+      358,
+      362,
+      358,
+      347,
+      359,
+      348,
+      358,
+      347,
+      350,
+      353,
+      351,
+      354,
+      352,
+      355
+    ],
+    "candidate_counts": [
+      10,
+      10,
+      10,
+      10,
+      10,
+      10,
+      14,
+      14,
+      14,
+      14,
+      14,
+      14,
+      14,
+      14,
+      14,
+      14,
+      14,
+      14,
+      13,
+      13,
+      13,
+      13,
+      13,
+      13,
+      14,
+      14,
+      14,
+      14,
+      14,
+      14,
+      15,
+      15,
+      15,
+      15,
+      15,
+      15
+    ],
+    "trajectory_indices": [
+      {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 5,
+        "late": 10
+      },
+      {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 5,
+        "late": 10
+      },
+      {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 5,
+        "late": 10
+      },
+      {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 5,
+        "late": 10
+      },
+      {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 5,
+        "late": 10
+      },
+      {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 5,
+        "late": 10
+      },
+      {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 7,
+        "late": 14
+      },
+      {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 7,
+        "late": 14
+      },
+      {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 7,
+        "late": 14
+      },
+      {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 7,
+        "late": 14
+      },
+      {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 7,
+        "late": 14
+      },
+      {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 7,
+        "late": 14
+      },
+      {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 7,
+        "late": 14
+      },
+      {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 7,
+        "late": 14
+      },
+      {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 7,
+        "late": 14
+      },
+      {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 7,
+        "late": 14
+      },
+      {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 7,
+        "late": 14
+      },
+      {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 7,
+        "late": 14
+      },
+      {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 7,
+        "late": 13
+      },
+      {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 7,
+        "late": 13
+      },
+      {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 7,
+        "late": 13
+      },
+      {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 7,
+        "late": 13
+      },
+      {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 7,
+        "late": 13
+      },
+      {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 7,
+        "late": 13
+      },
+      {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 7,
+        "late": 14
+      },
+      {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 7,
+        "late": 14
+      },
+      {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 7,
+        "late": 14
+      },
+      {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 7,
+        "late": 14
+      },
+      {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 7,
+        "late": 14
+      },
+      {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 7,
+        "late": 14
+      },
+      {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 8,
+        "late": 15
+      },
+      {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 8,
+        "late": 15
+      },
+      {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 8,
+        "late": 15
+      },
+      {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 8,
+        "late": 15
+      },
+      {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 8,
+        "late": 15
+      },
+      {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 8,
+        "late": 15
+      }
+    ],
+    "loader_kind": "multimodal",
+    "decoder_path": "model.language_model.layers",
+    "norm_path": "model.language_model.norm",
+    "norm_class": "MuseGlimmerRMSNorm",
+    "cases_checked": 36,
+    "maximum_prompt_tokens": 375,
+    "prompt_tokens": [
+      361,
+      360,
+      364,
+      363,
+      364,
+      363,
+      368,
+      362,
+      369,
+      363,
+      370,
+      364,
+      366,
+      373,
+      367,
+      374,
+      363,
+      370,
+      369,
+      373,
+      370,
+      374,
+      371,
+      375,
+      372,
+      361,
+      373,
+      362,
+      372,
+      361,
+      365,
+      368,
+      366,
+      369,
+      367,
+      370
+    ],
+    "image_input": true,
+    "frame_count": 6,
+    "max_image_tokens": 256,
+    "image_grids": [
+      [
+        [
+          1,
+          24,
+          42
+        ]
+      ],
+      [
+        [
+          1,
+          24,
+          42
+        ]
+      ],
+      [
+        [
+          1,
+          24,
+          42
+        ]
+      ],
+      [
+        [
+          1,
+          24,
+          42
+        ]
+      ],
+      [
+        [
+          1,
+          24,
+          42
+        ]
+      ],
+      [
+        [
+          1,
+          24,
+          42
+        ]
+      ],
+      [
+        [
+          1,
+          24,
+          42
+        ]
+      ],
+      [
+        [
+          1,
+          24,
+          42
+        ]
+      ],
+      [
+        [
+          1,
+          24,
+          42
+        ]
+      ],
+      [
+        [
+          1,
+          24,
+          42
+        ]
+      ],
+      [
+        [
+          1,
+          24,
+          42
+        ]
+      ],
+      [
+        [
+          1,
+          24,
+          42
+        ]
+      ],
+      [
+        [
+          1,
+          24,
+          42
+        ]
+      ],
+      [
+        [
+          1,
+          24,
+          42
+        ]
+      ],
+      [
+        [
+          1,
+          24,
+          42
+        ]
+      ],
+      [
+        [
+          1,
+          24,
+          42
+        ]
+      ],
+      [
+        [
+          1,
+          24,
+          42
+        ]
+      ],
+      [
+        [
+          1,
+          24,
+          42
+        ]
+      ],
+      [
+        [
+          1,
+          24,
+          42
+        ]
+      ],
+      [
+        [
+          1,
+          24,
+          42
+        ]
+      ],
+      [
+        [
+          1,
+          24,
+          42
+        ]
+      ],
+      [
+        [
+          1,
+          24,
+          42
+        ]
+      ],
+      [
+        [
+          1,
+          24,
+          42
+        ]
+      ],
+      [
+        [
+          1,
+          24,
+          42
+        ]
+      ],
+      [
+        [
+          1,
+          24,
+          42
+        ]
+      ],
+      [
+        [
+          1,
+          24,
+          42
+        ]
+      ],
+      [
+        [
+          1,
+          24,
+          42
+        ]
+      ],
+      [
+        [
+          1,
+          24,
+          42
+        ]
+      ],
+      [
+        [
+          1,
+          24,
+          42
+        ]
+      ],
+      [
+        [
+          1,
+          24,
+          42
+        ]
+      ],
+      [
+        [
+          1,
+          24,
+          42
+        ]
+      ],
+      [
+        [
+          1,
+          24,
+          42
+        ]
+      ],
+      [
+        [
+          1,
+          24,
+          42
+        ]
+      ],
+      [
+        [
+          1,
+          24,
+          42
+        ]
+      ],
+      [
+        [
+          1,
+          24,
+          42
+        ]
+      ],
+      [
+        [
+          1,
+          24,
+          42
+        ]
+      ]
+    ],
+    "actual_norm_jvp_cpu_verified": true,
+    "candidate_token_readout_verified": true,
+    "gpu_used": false
+  },
+  "phase3_enabled": false,
+  "source_revision": "cec94fcfd6512f2cfe708138c32533b346ea4f69",
+  "protocol": "trajectory-protocol-2026-10-28.md",
+  "sampling": false,
+  "forward_passes_per_record": 1,
+  "hidden_contrastive": {
+    "points": {
+      "true_prefill": {
+        "selected_layer": 27,
+        "validation_auc_per_layer": [
+          0.7500000000000001,
+          0.6111111111111112,
+          0.5555555555555556,
+          0.36111111111111116,
+          0.44444444444444453,
+          0.36111111111111116,
+          0.08333333333333331,
+          0.02777777777777777,
+          0.02777777777777777,
+          0.05555555555555556,
+          0.08333333333333333,
+          0.05555555555555556,
+          0.4722222222222222,
+          0.33333333333333337,
+          0.4722222222222222,
+          0.4444444444444445,
+          0.5277777777777778,
+          0.5277777777777778,
+          0.6666666666666666,
+          0.6666666666666666,
+          0.8333333333333333,
+          0.9444444444444444,
+          0.9444444444444444,
+          0.888888888888889,
+          0.8333333333333334,
+          0.9166666666666667,
+          0.9722222222222223,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "validation_auc": 1.0,
+        "test_auc": 1.0,
+        "test_auc_group_bootstrap_95": [
+          1.0,
+          1.0
+        ],
+        "test_pairs": 6,
+        "test_records": 12,
+        "test_topic_clusters": 2,
+        "pair_accuracy": 1.0,
+        "pair_wins": 6,
+        "pair_ties": 0,
+        "paired_sign_test_two_sided_p": 0.03125,
+        "pair_sign_test_caveat": "Unadjusted diagnostic; paraphrases within topics are correlated",
+        "topic_mean_margins": {
+          "locking": 0.04957847467369749,
+          "narration": 0.056931341242854754
+        },
+        "topic_sign_test_two_sided_p": 0.5,
+        "test_pair_margins": [
+          {
+            "pair_id": "locking-0",
+            "group": "locking",
+            "positive": 0.03316921776098954,
+            "negative": -0.018777960345444763,
+            "margin": 0.0519471781064343
+          },
+          {
+            "pair_id": "locking-1",
+            "group": "locking",
+            "positive": 0.024616477358083342,
+            "negative": -0.028174864050452483,
+            "margin": 0.05279134140853582
+          },
+          {
+            "pair_id": "locking-2",
+            "group": "locking",
+            "positive": 0.025150036277480244,
+            "negative": -0.018846868228642094,
+            "margin": 0.04399690450612234
+          },
+          {
+            "pair_id": "narration-0",
+            "group": "narration",
+            "positive": 0.04741800205911308,
+            "negative": -0.015079598562232174,
+            "margin": 0.06249760062134525
+          },
+          {
+            "pair_id": "narration-1",
+            "group": "narration",
+            "positive": 0.032965702614624184,
+            "negative": -0.015511644214999563,
+            "margin": 0.04847734682962375
+          },
+          {
+            "pair_id": "narration-2",
+            "group": "narration",
+            "positive": 0.03382885458203796,
+            "negative": -0.025990221695557286,
+            "margin": 0.059819076277595244
+          }
+        ],
+        "enabled": false,
+        "target": "support present in supplied manual context; not generated answer correctness",
+        "limitations": [
+          "Tiny pilot: only two test topic clusters",
+          "Teacher-forced fixed candidate; no generated-answer correctness labels",
+          "Image inclusion is recorded in image_input; camera robustness and physical readiness remain untested"
+        ]
+      },
+      "early": {
+        "selected_layer": 27,
+        "validation_auc_per_layer": [
+          0.5833333333333333,
+          0.41666666666666663,
+          0.3333333333333333,
+          0.33333333333333337,
+          0.36111111111111116,
+          0.33333333333333337,
+          0.4166666666666667,
+          0.3888888888888889,
+          0.4722222222222222,
+          0.4722222222222222,
+          0.47222222222222215,
+          0.47222222222222215,
+          0.5,
+          0.4444444444444445,
+          0.4444444444444444,
+          0.4722222222222222,
+          0.4722222222222222,
+          0.4444444444444444,
+          0.5277777777777779,
+          0.5,
+          0.6111111111111112,
+          0.6666666666666666,
+          0.7222222222222222,
+          0.7777777777777778,
+          0.7777777777777778,
+          0.8055555555555556,
+          0.9444444444444445,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          0.9166666666666667,
+          0.9722222222222223,
+          0.75,
+          0.75,
+          0.75,
+          0.75,
+          0.75,
+          0.75,
+          0.6944444444444444,
+          0.6944444444444444,
+          0.6944444444444444,
+          0.6944444444444444,
+          0.6944444444444444,
+          0.6944444444444444,
+          0.6944444444444444,
+          0.6944444444444444,
+          0.6944444444444444,
+          0.6944444444444444,
+          0.6666666666666667,
+          0.7777777777777778,
+          0.888888888888889
+        ],
+        "validation_auc": 1.0,
+        "test_auc": 1.0,
+        "test_auc_group_bootstrap_95": [
+          1.0,
+          1.0
+        ],
+        "test_pairs": 6,
+        "test_records": 12,
+        "test_topic_clusters": 2,
+        "pair_accuracy": 1.0,
+        "pair_wins": 6,
+        "pair_ties": 0,
+        "paired_sign_test_two_sided_p": 0.03125,
+        "pair_sign_test_caveat": "Unadjusted diagnostic; paraphrases within topics are correlated",
+        "topic_mean_margins": {
+          "locking": 0.06747876619738424,
+          "narration": 0.08713028651055588
+        },
+        "topic_sign_test_two_sided_p": 0.5,
+        "test_pair_margins": [
+          {
+            "pair_id": "locking-0",
+            "group": "locking",
+            "positive": 0.1636593217709933,
+            "negative": 0.09157436496496361,
+            "margin": 0.07208495680602968
+          },
+          {
+            "pair_id": "locking-1",
+            "group": "locking",
+            "positive": 0.14239058529326562,
+            "negative": 0.08836077432995293,
+            "margin": 0.05402981096331269
+          },
+          {
+            "pair_id": "locking-2",
+            "group": "locking",
+            "positive": 0.1598644849290292,
+            "negative": 0.08354295410621884,
+            "margin": 0.07632153082281035
+          },
+          {
+            "pair_id": "narration-0",
+            "group": "narration",
+            "positive": 0.13265701658679468,
+            "negative": 0.036408146200078095,
+            "margin": 0.09624887038671659
+          },
+          {
+            "pair_id": "narration-1",
+            "group": "narration",
+            "positive": 0.1387510341693357,
+            "negative": 0.05602295251971578,
+            "margin": 0.08272808164961992
+          },
+          {
+            "pair_id": "narration-2",
+            "group": "narration",
+            "positive": 0.12239569589484087,
+            "negative": 0.039981788399509735,
+            "margin": 0.08241390749533113
+          }
+        ],
+        "enabled": false,
+        "target": "support present in supplied manual context; not generated answer correctness",
+        "limitations": [
+          "Tiny pilot: only two test topic clusters",
+          "Teacher-forced fixed candidate; no generated-answer correctness labels",
+          "Image inclusion is recorded in image_input; camera robustness and physical readiness remain untested"
+        ]
+      },
+      "mid": {
+        "selected_layer": 4,
+        "validation_auc_per_layer": [
+          0.4166666666666667,
+          0.75,
+          0.888888888888889,
+          0.8333333333333334,
+          1.0,
+          0.9166666666666667,
+          0.8333333333333334,
+          0.9166666666666667,
+          0.9444444444444445,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          0.9722222222222223,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          0.9444444444444445,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          0.6944444444444444
+        ],
+        "validation_auc": 1.0,
+        "test_auc": 1.0,
+        "test_auc_group_bootstrap_95": [
+          1.0,
+          1.0
+        ],
+        "test_pairs": 6,
+        "test_records": 12,
+        "test_topic_clusters": 2,
+        "pair_accuracy": 1.0,
+        "pair_wins": 6,
+        "pair_ties": 0,
+        "paired_sign_test_two_sided_p": 0.03125,
+        "pair_sign_test_caveat": "Unadjusted diagnostic; paraphrases within topics are correlated",
+        "topic_mean_margins": {
+          "locking": 0.2014249297938923,
+          "narration": 0.041882246638654176
+        },
+        "topic_sign_test_two_sided_p": 0.5,
+        "test_pair_margins": [
+          {
+            "pair_id": "locking-0",
+            "group": "locking",
+            "positive": 0.1288034146246148,
+            "negative": -0.059616471770219184,
+            "margin": 0.18841988639483398
+          },
+          {
+            "pair_id": "locking-1",
+            "group": "locking",
+            "positive": 0.1271595793761857,
+            "negative": -0.08317743632329136,
+            "margin": 0.21033701569947705
+          },
+          {
+            "pair_id": "locking-2",
+            "group": "locking",
+            "positive": 0.12887352778415367,
+            "negative": -0.07664435950321224,
+            "margin": 0.20551788728736592
+          },
+          {
+            "pair_id": "narration-0",
+            "group": "narration",
+            "positive": 0.05264254455273098,
+            "negative": 0.0026713874832870904,
+            "margin": 0.04997115706944389
+          },
+          {
+            "pair_id": "narration-1",
+            "group": "narration",
+            "positive": 0.024669238286011464,
+            "negative": -0.01940345015132975,
+            "margin": 0.04407268843734122
+          },
+          {
+            "pair_id": "narration-2",
+            "group": "narration",
+            "positive": 0.024899670968873862,
+            "negative": -0.006703223440303581,
+            "margin": 0.03160289440917744
+          }
+        ],
+        "enabled": false,
+        "target": "support present in supplied manual context; not generated answer correctness",
+        "limitations": [
+          "Tiny pilot: only two test topic clusters",
+          "Teacher-forced fixed candidate; no generated-answer correctness labels",
+          "Image inclusion is recorded in image_input; camera robustness and physical readiness remain untested"
+        ]
+      },
+      "late": {
+        "selected_layer": 4,
+        "validation_auc_per_layer": [
+          0.0,
+          0.9444444444444444,
+          0.9166666666666667,
+          0.8055555555555556,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "validation_auc": 1.0,
+        "test_auc": 0.888888888888889,
+        "test_auc_group_bootstrap_95": [
+          0.7777777777777779,
+          1.0
+        ],
+        "test_pairs": 6,
+        "test_records": 12,
+        "test_topic_clusters": 2,
+        "pair_accuracy": 1.0,
+        "pair_wins": 6,
+        "pair_ties": 0,
+        "paired_sign_test_two_sided_p": 0.03125,
+        "pair_sign_test_caveat": "Unadjusted diagnostic; paraphrases within topics are correlated",
+        "topic_mean_margins": {
+          "locking": 0.09915073992482011,
+          "narration": 0.09448184647451974
+        },
+        "topic_sign_test_two_sided_p": 0.5,
+        "test_pair_margins": [
+          {
+            "pair_id": "locking-0",
+            "group": "locking",
+            "positive": 0.04474290104916067,
+            "negative": -0.05118918763552589,
+            "margin": 0.09593208868468656
+          },
+          {
+            "pair_id": "locking-1",
+            "group": "locking",
+            "positive": 0.013786107732263112,
+            "negative": -0.08541663516914771,
+            "margin": 0.09920274290141083
+          },
+          {
+            "pair_id": "locking-2",
+            "group": "locking",
+            "positive": 0.08326422125575901,
+            "negative": -0.01905316693260397,
+            "margin": 0.10231738818836297
+          },
+          {
+            "pair_id": "narration-0",
+            "group": "narration",
+            "positive": 0.1393607923519986,
+            "negative": 0.06728415972042455,
+            "margin": 0.07207663263157406
+          },
+          {
+            "pair_id": "narration-1",
+            "group": "narration",
+            "positive": 0.0632659086701941,
+            "negative": -0.031839939316540576,
+            "margin": 0.09510584798673469
+          },
+          {
+            "pair_id": "narration-2",
+            "group": "narration",
+            "positive": 0.05771251250319152,
+            "negative": -0.05855054630205892,
+            "margin": 0.11626305880525044
+          }
+        ],
+        "enabled": false,
+        "target": "support present in supplied manual context; not generated answer correctness",
+        "limitations": [
+          "Tiny pilot: only two test topic clusters",
+          "Teacher-forced fixed candidate; no generated-answer correctness labels",
+          "Image inclusion is recorded in image_input; camera robustness and physical readiness remain untested"
+        ]
+      }
+    },
+    "selected_point": "early",
+    "selected_layer": 27,
+    "selection_rule": "validation AUROC only; early/mid/late tie order, lowest layer on ties",
+    "selected_test_auc": 1.0,
+    "prior_endpoint_auc": 0.888888888888889,
+    "heldout_delta_vs_prior": 0.11111111111111105,
+    "beats_prior": true,
+    "decision": "retain_for_review",
+    "enabled": false,
+    "scope": "Teacher-forced fixed-candidate support discrimination, not free generation or validated visual grounding"
+  },
+  "norm_head_jacobian": {
+    "points": {
+      "true_prefill": {
+        "selected_layer": 22,
+        "validation_auc_per_layer": [
+          0.7777777777777779,
+          0.5555555555555556,
+          0.41666666666666674,
+          0.2777777777777778,
+          0.30555555555555564,
+          0.25,
+          0.19444444444444442,
+          0.08333333333333333,
+          0.0,
+          0.25,
+          0.05555555555555556,
+          0.02777777777777777,
+          0.3333333333333333,
+          0.2222222222222222,
+          0.47222222222222227,
+          0.4444444444444444,
+          0.5555555555555556,
+          0.5555555555555556,
+          0.6388888888888888,
+          0.6666666666666667,
+          0.888888888888889,
+          0.9166666666666667,
+          1.0,
+          0.7777777777777778,
+          0.638888888888889,
+          0.8055555555555556,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          0.8055555555555556
+        ],
+        "validation_auc": 1.0,
+        "test_auc": 1.0,
+        "test_auc_group_bootstrap_95": [
+          1.0,
+          1.0
+        ],
+        "test_pairs": 6,
+        "test_records": 12,
+        "test_topic_clusters": 2,
+        "pair_accuracy": 1.0,
+        "pair_wins": 6,
+        "pair_ties": 0,
+        "paired_sign_test_two_sided_p": 0.03125,
+        "pair_sign_test_caveat": "Unadjusted diagnostic; paraphrases within topics are correlated",
+        "topic_mean_margins": {
+          "locking": 0.2004979416687477,
+          "narration": 0.36910781309792684
+        },
+        "topic_sign_test_two_sided_p": 0.5,
+        "test_pair_margins": [
+          {
+            "pair_id": "locking-0",
+            "group": "locking",
+            "positive": 0.07168009196841134,
+            "negative": -0.13327078669725279,
+            "margin": 0.20495087866566414
+          },
+          {
+            "pair_id": "locking-1",
+            "group": "locking",
+            "positive": 0.10325727375935806,
+            "negative": -0.14866219555785648,
+            "margin": 0.25191946931721454
+          },
+          {
+            "pair_id": "locking-2",
+            "group": "locking",
+            "positive": 0.06136463223124894,
+            "negative": -0.08325884479211558,
+            "margin": 0.14462347702336453
+          },
+          {
+            "pair_id": "narration-0",
+            "group": "narration",
+            "positive": 0.314232933077615,
+            "negative": -0.16536203978783318,
+            "margin": 0.47959497286544817
+          },
+          {
+            "pair_id": "narration-1",
+            "group": "narration",
+            "positive": 0.2730210233712171,
+            "negative": 0.028033134081399236,
+            "margin": 0.24498788928981785
+          },
+          {
+            "pair_id": "narration-2",
+            "group": "narration",
+            "positive": 0.26447742178801015,
+            "negative": -0.11826315535050441,
+            "margin": 0.38274057713851456
+          }
+        ],
+        "enabled": false,
+        "target": "support present in supplied manual context; not generated answer correctness",
+        "limitations": [
+          "Tiny pilot: only two test topic clusters",
+          "Teacher-forced fixed candidate; no generated-answer correctness labels",
+          "Image inclusion is recorded in image_input; camera robustness and physical readiness remain untested"
+        ]
+      },
+      "early": {
+        "selected_layer": 27,
+        "validation_auc_per_layer": [
+          0.4722222222222222,
+          0.38888888888888895,
+          0.3333333333333333,
+          0.33333333333333337,
+          0.36111111111111116,
+          0.3055555555555556,
+          0.3333333333333333,
+          0.4166666666666667,
+          0.41666666666666663,
+          0.5555555555555557,
+          0.44444444444444453,
+          0.4722222222222222,
+          0.5,
+          0.47222222222222215,
+          0.3888888888888889,
+          0.4166666666666667,
+          0.25,
+          0.41666666666666663,
+          0.5,
+          0.38888888888888895,
+          0.6388888888888888,
+          0.6666666666666666,
+          0.7500000000000001,
+          0.75,
+          0.8055555555555556,
+          0.7777777777777778,
+          0.8611111111111112,
+          1.0,
+          1.0,
+          1.0,
+          0.9166666666666667,
+          0.8333333333333333,
+          0.9722222222222223,
+          0.75,
+          0.75,
+          0.6944444444444444,
+          0.6944444444444444,
+          0.6944444444444444,
+          0.75,
+          0.7222222222222222,
+          0.75,
+          0.75,
+          0.75,
+          0.75,
+          0.75,
+          0.638888888888889,
+          0.6944444444444444,
+          0.6944444444444444,
+          0.5833333333333333,
+          0.41666666666666663,
+          0.6388888888888888,
+          0.75
+        ],
+        "validation_auc": 1.0,
+        "test_auc": 1.0,
+        "test_auc_group_bootstrap_95": [
+          1.0,
+          1.0
+        ],
+        "test_pairs": 6,
+        "test_records": 12,
+        "test_topic_clusters": 2,
+        "pair_accuracy": 1.0,
+        "pair_wins": 6,
+        "pair_ties": 0,
+        "paired_sign_test_two_sided_p": 0.03125,
+        "pair_sign_test_caveat": "Unadjusted diagnostic; paraphrases within topics are correlated",
+        "topic_mean_margins": {
+          "locking": 0.17100999380038265,
+          "narration": 0.30903867146149816
+        },
+        "topic_sign_test_two_sided_p": 0.5,
+        "test_pair_margins": [
+          {
+            "pair_id": "locking-0",
+            "group": "locking",
+            "positive": 0.20603933649850492,
+            "negative": 0.02695966456774322,
+            "margin": 0.17907967193076169
+          },
+          {
+            "pair_id": "locking-1",
+            "group": "locking",
+            "positive": 0.15972739012625448,
+            "negative": 0.027957516084337455,
+            "margin": 0.13176987404191703
+          },
+          {
+            "pair_id": "locking-2",
+            "group": "locking",
+            "positive": 0.18177381421305977,
+            "negative": -0.020406621215409485,
+            "margin": 0.20218043542846925
+          },
+          {
+            "pair_id": "narration-0",
+            "group": "narration",
+            "positive": 0.18339043248069223,
+            "negative": -0.13128780767946055,
+            "margin": 0.3146782401601528
+          },
+          {
+            "pair_id": "narration-1",
+            "group": "narration",
+            "positive": 0.1912506190589792,
+            "negative": -0.12964508505025482,
+            "margin": 0.320895704109234
+          },
+          {
+            "pair_id": "narration-2",
+            "group": "narration",
+            "positive": 0.14679472154626425,
+            "negative": -0.1447473485688434,
+            "margin": 0.29154207011510763
+          }
+        ],
+        "enabled": false,
+        "target": "support present in supplied manual context; not generated answer correctness",
+        "limitations": [
+          "Tiny pilot: only two test topic clusters",
+          "Teacher-forced fixed candidate; no generated-answer correctness labels",
+          "Image inclusion is recorded in image_input; camera robustness and physical readiness remain untested"
+        ]
+      },
+      "mid": {
+        "selected_layer": 4,
+        "validation_auc_per_layer": [
+          0.3055555555555556,
+          0.5833333333333334,
+          0.9444444444444444,
+          0.9444444444444445,
+          1.0,
+          0.8055555555555556,
+          0.7500000000000001,
+          0.6666666666666667,
+          0.888888888888889,
+          0.8611111111111112,
+          0.9722222222222223,
+          1.0,
+          0.9444444444444444,
+          1.0,
+          0.9444444444444444,
+          0.9444444444444444,
+          0.8055555555555556,
+          0.4166666666666667,
+          0.6111111111111112,
+          0.6388888888888888,
+          0.9722222222222223,
+          0.7777777777777778,
+          0.9166666666666667,
+          0.9722222222222223,
+          0.8611111111111112,
+          0.9166666666666667,
+          0.9444444444444445,
+          0.9722222222222223,
+          1.0,
+          0.9722222222222223,
+          0.9444444444444444,
+          0.7777777777777778,
+          1.0,
+          0.8611111111111112,
+          0.9444444444444445,
+          1.0,
+          0.8333333333333334,
+          1.0,
+          0.9444444444444444,
+          1.0,
+          1.0,
+          0.9444444444444445,
+          1.0,
+          0.9166666666666667,
+          0.9722222222222223,
+          1.0,
+          1.0,
+          1.0,
+          0.9444444444444444,
+          1.0,
+          0.9722222222222223,
+          0.9166666666666667
+        ],
+        "validation_auc": 1.0,
+        "test_auc": 1.0,
+        "test_auc_group_bootstrap_95": [
+          1.0,
+          1.0
+        ],
+        "test_pairs": 6,
+        "test_records": 12,
+        "test_topic_clusters": 2,
+        "pair_accuracy": 1.0,
+        "pair_wins": 6,
+        "pair_ties": 0,
+        "paired_sign_test_two_sided_p": 0.03125,
+        "pair_sign_test_caveat": "Unadjusted diagnostic; paraphrases within topics are correlated",
+        "topic_mean_margins": {
+          "locking": 0.17825762047707805,
+          "narration": 0.05817001596765309
+        },
+        "topic_sign_test_two_sided_p": 0.5,
+        "test_pair_margins": [
+          {
+            "pair_id": "locking-0",
+            "group": "locking",
+            "positive": 0.14743498525960191,
+            "negative": -0.023721207163063238,
+            "margin": 0.17115619242266517
+          },
+          {
+            "pair_id": "locking-1",
+            "group": "locking",
+            "positive": 0.1467102336073339,
+            "negative": -0.0365577876776201,
+            "margin": 0.183268021284954
+          },
+          {
+            "pair_id": "locking-2",
+            "group": "locking",
+            "positive": 0.14886166375274398,
+            "negative": -0.03148698397087092,
+            "margin": 0.18034864772361492
+          },
+          {
+            "pair_id": "narration-0",
+            "group": "narration",
+            "positive": 0.11685866826355659,
+            "negative": 0.04681104958076541,
+            "margin": 0.07004761868279119
+          },
+          {
+            "pair_id": "narration-1",
+            "group": "narration",
+            "positive": 0.07921372800925483,
+            "negative": 0.018079856809964833,
+            "margin": 0.061133871199289994
+          },
+          {
+            "pair_id": "narration-2",
+            "group": "narration",
+            "positive": 0.08167954775313653,
+            "negative": 0.03835098973225842,
+            "margin": 0.04332855802087811
+          }
+        ],
+        "enabled": false,
+        "target": "support present in supplied manual context; not generated answer correctness",
+        "limitations": [
+          "Tiny pilot: only two test topic clusters",
+          "Teacher-forced fixed candidate; no generated-answer correctness labels",
+          "Image inclusion is recorded in image_input; camera robustness and physical readiness remain untested"
+        ]
+      },
+      "late": {
+        "selected_layer": 4,
+        "validation_auc_per_layer": [
+          0.1388888888888889,
+          0.9166666666666667,
+          0.8333333333333335,
+          0.8333333333333334,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          0.888888888888889,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          0.8611111111111112,
+          0.8333333333333334,
+          0.9722222222222223
+        ],
+        "validation_auc": 1.0,
+        "test_auc": 0.8611111111111112,
+        "test_auc_group_bootstrap_95": [
+          0.7777777777777779,
+          1.0
+        ],
+        "test_pairs": 6,
+        "test_records": 12,
+        "test_topic_clusters": 2,
+        "pair_accuracy": 1.0,
+        "pair_wins": 6,
+        "pair_ties": 0,
+        "paired_sign_test_two_sided_p": 0.03125,
+        "pair_sign_test_caveat": "Unadjusted diagnostic; paraphrases within topics are correlated",
+        "topic_mean_margins": {
+          "locking": 0.27182058227624717,
+          "narration": 0.31262477610737355
+        },
+        "topic_sign_test_two_sided_p": 0.5,
+        "test_pair_margins": [
+          {
+            "pair_id": "locking-0",
+            "group": "locking",
+            "positive": 0.12380958435756209,
+            "negative": -0.14660461506508052,
+            "margin": 0.2704141994226426
+          },
+          {
+            "pair_id": "locking-1",
+            "group": "locking",
+            "positive": 0.03318988435172488,
+            "negative": -0.23585057426817027,
+            "margin": 0.2690404586198952
+          },
+          {
+            "pair_id": "locking-2",
+            "group": "locking",
+            "positive": 0.2153774702544568,
+            "negative": -0.060629618531746955,
+            "margin": 0.2760070887862038
+          },
+          {
+            "pair_id": "narration-0",
+            "group": "narration",
+            "positive": 0.43615002670310377,
+            "negative": 0.24371914461946095,
+            "margin": 0.1924308820836428
+          },
+          {
+            "pair_id": "narration-1",
+            "group": "narration",
+            "positive": 0.2198711165225617,
+            "negative": -0.11937841937304951,
+            "margin": 0.3392495358956112
+          },
+          {
+            "pair_id": "narration-2",
+            "group": "narration",
+            "positive": 0.20602628304517237,
+            "negative": -0.20016762729769427,
+            "margin": 0.40619391034286667
+          }
+        ],
+        "enabled": false,
+        "target": "support present in supplied manual context; not generated answer correctness",
+        "limitations": [
+          "Tiny pilot: only two test topic clusters",
+          "Teacher-forced fixed candidate; no generated-answer correctness labels",
+          "Image inclusion is recorded in image_input; camera robustness and physical readiness remain untested"
+        ]
+      }
+    },
+    "selected_point": "early",
+    "selected_layer": 27,
+    "selection_rule": "validation AUROC only; early/mid/late tie order, lowest layer on ties",
+    "selected_test_auc": 1.0,
+    "prior_endpoint_auc": 0.888888888888889,
+    "heldout_delta_vs_prior": 0.11111111111111105,
+    "beats_prior": true,
+    "decision": "retain_for_review",
+    "enabled": false,
+    "scope": "Teacher-forced fixed-candidate support discrimination, not free generation or validated visual grounding"
+  },
+  "forward_passes": 36,
+  "jacobian_scope": "Exact final norm/full-unembedding Jacobian at fit-only anchors; not full transformer network Jacobian",
+  "elapsed_seconds": 415.03,
+  "runtime": {
+    "torch": "2.14.1+cu130",
+    "transformers": "5.21.0",
+    "gpu": "NVIDIA A100-SXM4-80GB",
+    "peak_gpu_memory_bytes": 65023215104,
+    "vocab_coordinates": 202048
+  },
+  "artifact_directory": "/artifacts/a7a0324d-87c2-4a09-b988-ea04c8e7825b",
+  "status": "complete",
+  "trajectory_tokens": [
+    {
+      "id": "calibration-0-support",
+      "pair_id": "calibration-0",
+      "fold": "fit",
+      "group": "calibration",
+      "supported": true,
+      "frame_sha256": "45d5a4d4a3cc0d220f64d119152bd5d1f049254296097b81c30be101d498ddc9",
+      "candidate_sha256": "eaabb4734bc708a034fac5fea449518d82ad285659d953bd2b9ae7bc53e5f7a4",
+      "candidate_start": 351,
+      "candidate_tokens": 10,
+      "prompt_tokens": 361,
+      "point_indices_in_saved_slice": {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 5,
+        "late": 10
+      },
+      "artifact": "trajectory-00.npz"
+    },
+    {
+      "id": "calibration-0-control",
+      "pair_id": "calibration-0",
+      "fold": "fit",
+      "group": "calibration",
+      "supported": false,
+      "frame_sha256": "45d5a4d4a3cc0d220f64d119152bd5d1f049254296097b81c30be101d498ddc9",
+      "candidate_sha256": "eaabb4734bc708a034fac5fea449518d82ad285659d953bd2b9ae7bc53e5f7a4",
+      "candidate_start": 350,
+      "candidate_tokens": 10,
+      "prompt_tokens": 360,
+      "point_indices_in_saved_slice": {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 5,
+        "late": 10
+      },
+      "artifact": "trajectory-01.npz"
+    },
+    {
+      "id": "calibration-1-support",
+      "pair_id": "calibration-1",
+      "fold": "fit",
+      "group": "calibration",
+      "supported": true,
+      "frame_sha256": "3dbe93903ceca471323035fb78ec70eb5c5e6863e5bd1e5de72b125a706b7a89",
+      "candidate_sha256": "eaabb4734bc708a034fac5fea449518d82ad285659d953bd2b9ae7bc53e5f7a4",
+      "candidate_start": 354,
+      "candidate_tokens": 10,
+      "prompt_tokens": 364,
+      "point_indices_in_saved_slice": {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 5,
+        "late": 10
+      },
+      "artifact": "trajectory-02.npz"
+    },
+    {
+      "id": "calibration-1-control",
+      "pair_id": "calibration-1",
+      "fold": "fit",
+      "group": "calibration",
+      "supported": false,
+      "frame_sha256": "3dbe93903ceca471323035fb78ec70eb5c5e6863e5bd1e5de72b125a706b7a89",
+      "candidate_sha256": "eaabb4734bc708a034fac5fea449518d82ad285659d953bd2b9ae7bc53e5f7a4",
+      "candidate_start": 353,
+      "candidate_tokens": 10,
+      "prompt_tokens": 363,
+      "point_indices_in_saved_slice": {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 5,
+        "late": 10
+      },
+      "artifact": "trajectory-03.npz"
+    },
+    {
+      "id": "calibration-2-support",
+      "pair_id": "calibration-2",
+      "fold": "fit",
+      "group": "calibration",
+      "supported": true,
+      "frame_sha256": "4b0f29d2e7eb38dbbad173f62cf580b9fb5ed42bcfe1d82ab7fd4645f0076db3",
+      "candidate_sha256": "eaabb4734bc708a034fac5fea449518d82ad285659d953bd2b9ae7bc53e5f7a4",
+      "candidate_start": 354,
+      "candidate_tokens": 10,
+      "prompt_tokens": 364,
+      "point_indices_in_saved_slice": {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 5,
+        "late": 10
+      },
+      "artifact": "trajectory-04.npz"
+    },
+    {
+      "id": "calibration-2-control",
+      "pair_id": "calibration-2",
+      "fold": "fit",
+      "group": "calibration",
+      "supported": false,
+      "frame_sha256": "4b0f29d2e7eb38dbbad173f62cf580b9fb5ed42bcfe1d82ab7fd4645f0076db3",
+      "candidate_sha256": "eaabb4734bc708a034fac5fea449518d82ad285659d953bd2b9ae7bc53e5f7a4",
+      "candidate_start": 353,
+      "candidate_tokens": 10,
+      "prompt_tokens": 363,
+      "point_indices_in_saved_slice": {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 5,
+        "late": 10
+      },
+      "artifact": "trajectory-05.npz"
+    },
+    {
+      "id": "port-0-support",
+      "pair_id": "port-0",
+      "fold": "fit",
+      "group": "port",
+      "supported": true,
+      "frame_sha256": "4907a0ecffa2cd4a5a9cacf767e88dd5c138d5d0657499aa101b958028cc7701",
+      "candidate_sha256": "078040e2d3d2a299d3fbeef7b9eec184fe90402bd26500857266e2f5f102ce99",
+      "candidate_start": 354,
+      "candidate_tokens": 14,
+      "prompt_tokens": 368,
+      "point_indices_in_saved_slice": {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 7,
+        "late": 14
+      },
+      "artifact": "trajectory-06.npz"
+    },
+    {
+      "id": "port-0-control",
+      "pair_id": "port-0",
+      "fold": "fit",
+      "group": "port",
+      "supported": false,
+      "frame_sha256": "4907a0ecffa2cd4a5a9cacf767e88dd5c138d5d0657499aa101b958028cc7701",
+      "candidate_sha256": "078040e2d3d2a299d3fbeef7b9eec184fe90402bd26500857266e2f5f102ce99",
+      "candidate_start": 348,
+      "candidate_tokens": 14,
+      "prompt_tokens": 362,
+      "point_indices_in_saved_slice": {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 7,
+        "late": 14
+      },
+      "artifact": "trajectory-07.npz"
+    },
+    {
+      "id": "port-1-support",
+      "pair_id": "port-1",
+      "fold": "fit",
+      "group": "port",
+      "supported": true,
+      "frame_sha256": "8d43878f1b1d9b5ab9cca1e27b236b86870b0bae9ac91e7f9c5765702b06f75b",
+      "candidate_sha256": "078040e2d3d2a299d3fbeef7b9eec184fe90402bd26500857266e2f5f102ce99",
+      "candidate_start": 355,
+      "candidate_tokens": 14,
+      "prompt_tokens": 369,
+      "point_indices_in_saved_slice": {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 7,
+        "late": 14
+      },
+      "artifact": "trajectory-08.npz"
+    },
+    {
+      "id": "port-1-control",
+      "pair_id": "port-1",
+      "fold": "fit",
+      "group": "port",
+      "supported": false,
+      "frame_sha256": "8d43878f1b1d9b5ab9cca1e27b236b86870b0bae9ac91e7f9c5765702b06f75b",
+      "candidate_sha256": "078040e2d3d2a299d3fbeef7b9eec184fe90402bd26500857266e2f5f102ce99",
+      "candidate_start": 349,
+      "candidate_tokens": 14,
+      "prompt_tokens": 363,
+      "point_indices_in_saved_slice": {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 7,
+        "late": 14
+      },
+      "artifact": "trajectory-09.npz"
+    },
+    {
+      "id": "port-2-support",
+      "pair_id": "port-2",
+      "fold": "fit",
+      "group": "port",
+      "supported": true,
+      "frame_sha256": "979e82f1fe009824ea80a58c61075712621ea6dd8329be727285551c2029c327",
+      "candidate_sha256": "078040e2d3d2a299d3fbeef7b9eec184fe90402bd26500857266e2f5f102ce99",
+      "candidate_start": 356,
+      "candidate_tokens": 14,
+      "prompt_tokens": 370,
+      "point_indices_in_saved_slice": {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 7,
+        "late": 14
+      },
+      "artifact": "trajectory-10.npz"
+    },
+    {
+      "id": "port-2-control",
+      "pair_id": "port-2",
+      "fold": "fit",
+      "group": "port",
+      "supported": false,
+      "frame_sha256": "979e82f1fe009824ea80a58c61075712621ea6dd8329be727285551c2029c327",
+      "candidate_sha256": "078040e2d3d2a299d3fbeef7b9eec184fe90402bd26500857266e2f5f102ce99",
+      "candidate_start": 350,
+      "candidate_tokens": 14,
+      "prompt_tokens": 364,
+      "point_indices_in_saved_slice": {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 7,
+        "late": 14
+      },
+      "artifact": "trajectory-11.npz"
+    },
+    {
+      "id": "pressure-0-support",
+      "pair_id": "pressure-0",
+      "fold": "validation",
+      "group": "pressure",
+      "supported": true,
+      "frame_sha256": "45d5a4d4a3cc0d220f64d119152bd5d1f049254296097b81c30be101d498ddc9",
+      "candidate_sha256": "f16c5e705ab77caaa6923da25a03a0c7b4126d5dc866d2e7526cecf057474d80",
+      "candidate_start": 352,
+      "candidate_tokens": 14,
+      "prompt_tokens": 366,
+      "point_indices_in_saved_slice": {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 7,
+        "late": 14
+      },
+      "artifact": "trajectory-12.npz"
+    },
+    {
+      "id": "pressure-0-control",
+      "pair_id": "pressure-0",
+      "fold": "validation",
+      "group": "pressure",
+      "supported": false,
+      "frame_sha256": "45d5a4d4a3cc0d220f64d119152bd5d1f049254296097b81c30be101d498ddc9",
+      "candidate_sha256": "f16c5e705ab77caaa6923da25a03a0c7b4126d5dc866d2e7526cecf057474d80",
+      "candidate_start": 359,
+      "candidate_tokens": 14,
+      "prompt_tokens": 373,
+      "point_indices_in_saved_slice": {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 7,
+        "late": 14
+      },
+      "artifact": "trajectory-13.npz"
+    },
+    {
+      "id": "pressure-1-support",
+      "pair_id": "pressure-1",
+      "fold": "validation",
+      "group": "pressure",
+      "supported": true,
+      "frame_sha256": "3dbe93903ceca471323035fb78ec70eb5c5e6863e5bd1e5de72b125a706b7a89",
+      "candidate_sha256": "f16c5e705ab77caaa6923da25a03a0c7b4126d5dc866d2e7526cecf057474d80",
+      "candidate_start": 353,
+      "candidate_tokens": 14,
+      "prompt_tokens": 367,
+      "point_indices_in_saved_slice": {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 7,
+        "late": 14
+      },
+      "artifact": "trajectory-14.npz"
+    },
+    {
+      "id": "pressure-1-control",
+      "pair_id": "pressure-1",
+      "fold": "validation",
+      "group": "pressure",
+      "supported": false,
+      "frame_sha256": "3dbe93903ceca471323035fb78ec70eb5c5e6863e5bd1e5de72b125a706b7a89",
+      "candidate_sha256": "f16c5e705ab77caaa6923da25a03a0c7b4126d5dc866d2e7526cecf057474d80",
+      "candidate_start": 360,
+      "candidate_tokens": 14,
+      "prompt_tokens": 374,
+      "point_indices_in_saved_slice": {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 7,
+        "late": 14
+      },
+      "artifact": "trajectory-15.npz"
+    },
+    {
+      "id": "pressure-2-support",
+      "pair_id": "pressure-2",
+      "fold": "validation",
+      "group": "pressure",
+      "supported": true,
+      "frame_sha256": "4b0f29d2e7eb38dbbad173f62cf580b9fb5ed42bcfe1d82ab7fd4645f0076db3",
+      "candidate_sha256": "f16c5e705ab77caaa6923da25a03a0c7b4126d5dc866d2e7526cecf057474d80",
+      "candidate_start": 349,
+      "candidate_tokens": 14,
+      "prompt_tokens": 363,
+      "point_indices_in_saved_slice": {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 7,
+        "late": 14
+      },
+      "artifact": "trajectory-16.npz"
+    },
+    {
+      "id": "pressure-2-control",
+      "pair_id": "pressure-2",
+      "fold": "validation",
+      "group": "pressure",
+      "supported": false,
+      "frame_sha256": "4b0f29d2e7eb38dbbad173f62cf580b9fb5ed42bcfe1d82ab7fd4645f0076db3",
+      "candidate_sha256": "f16c5e705ab77caaa6923da25a03a0c7b4126d5dc866d2e7526cecf057474d80",
+      "candidate_start": 356,
+      "candidate_tokens": 14,
+      "prompt_tokens": 370,
+      "point_indices_in_saved_slice": {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 7,
+        "late": 14
+      },
+      "artifact": "trajectory-17.npz"
+    },
+    {
+      "id": "approval-0-support",
+      "pair_id": "approval-0",
+      "fold": "validation",
+      "group": "approval",
+      "supported": true,
+      "frame_sha256": "4907a0ecffa2cd4a5a9cacf767e88dd5c138d5d0657499aa101b958028cc7701",
+      "candidate_sha256": "6c3a6553d689ac6b0655635e1a5460dd0bb9384664403b58d83fe6a47ee81fb9",
+      "candidate_start": 356,
+      "candidate_tokens": 13,
+      "prompt_tokens": 369,
+      "point_indices_in_saved_slice": {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 7,
+        "late": 13
+      },
+      "artifact": "trajectory-18.npz"
+    },
+    {
+      "id": "approval-0-control",
+      "pair_id": "approval-0",
+      "fold": "validation",
+      "group": "approval",
+      "supported": false,
+      "frame_sha256": "4907a0ecffa2cd4a5a9cacf767e88dd5c138d5d0657499aa101b958028cc7701",
+      "candidate_sha256": "6c3a6553d689ac6b0655635e1a5460dd0bb9384664403b58d83fe6a47ee81fb9",
+      "candidate_start": 360,
+      "candidate_tokens": 13,
+      "prompt_tokens": 373,
+      "point_indices_in_saved_slice": {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 7,
+        "late": 13
+      },
+      "artifact": "trajectory-19.npz"
+    },
+    {
+      "id": "approval-1-support",
+      "pair_id": "approval-1",
+      "fold": "validation",
+      "group": "approval",
+      "supported": true,
+      "frame_sha256": "8d43878f1b1d9b5ab9cca1e27b236b86870b0bae9ac91e7f9c5765702b06f75b",
+      "candidate_sha256": "6c3a6553d689ac6b0655635e1a5460dd0bb9384664403b58d83fe6a47ee81fb9",
+      "candidate_start": 357,
+      "candidate_tokens": 13,
+      "prompt_tokens": 370,
+      "point_indices_in_saved_slice": {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 7,
+        "late": 13
+      },
+      "artifact": "trajectory-20.npz"
+    },
+    {
+      "id": "approval-1-control",
+      "pair_id": "approval-1",
+      "fold": "validation",
+      "group": "approval",
+      "supported": false,
+      "frame_sha256": "8d43878f1b1d9b5ab9cca1e27b236b86870b0bae9ac91e7f9c5765702b06f75b",
+      "candidate_sha256": "6c3a6553d689ac6b0655635e1a5460dd0bb9384664403b58d83fe6a47ee81fb9",
+      "candidate_start": 361,
+      "candidate_tokens": 13,
+      "prompt_tokens": 374,
+      "point_indices_in_saved_slice": {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 7,
+        "late": 13
+      },
+      "artifact": "trajectory-21.npz"
+    },
+    {
+      "id": "approval-2-support",
+      "pair_id": "approval-2",
+      "fold": "validation",
+      "group": "approval",
+      "supported": true,
+      "frame_sha256": "979e82f1fe009824ea80a58c61075712621ea6dd8329be727285551c2029c327",
+      "candidate_sha256": "6c3a6553d689ac6b0655635e1a5460dd0bb9384664403b58d83fe6a47ee81fb9",
+      "candidate_start": 358,
+      "candidate_tokens": 13,
+      "prompt_tokens": 371,
+      "point_indices_in_saved_slice": {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 7,
+        "late": 13
+      },
+      "artifact": "trajectory-22.npz"
+    },
+    {
+      "id": "approval-2-control",
+      "pair_id": "approval-2",
+      "fold": "validation",
+      "group": "approval",
+      "supported": false,
+      "frame_sha256": "979e82f1fe009824ea80a58c61075712621ea6dd8329be727285551c2029c327",
+      "candidate_sha256": "6c3a6553d689ac6b0655635e1a5460dd0bb9384664403b58d83fe6a47ee81fb9",
+      "candidate_start": 362,
+      "candidate_tokens": 13,
+      "prompt_tokens": 375,
+      "point_indices_in_saved_slice": {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 7,
+        "late": 13
+      },
+      "artifact": "trajectory-23.npz"
+    },
+    {
+      "id": "locking-0-support",
+      "pair_id": "locking-0",
+      "fold": "test",
+      "group": "locking",
+      "supported": true,
+      "frame_sha256": "45d5a4d4a3cc0d220f64d119152bd5d1f049254296097b81c30be101d498ddc9",
+      "candidate_sha256": "33e139cf5e6b0f56c81dbd5c37f6c49e30aae07c366f0da359cef9f8b8b29860",
+      "candidate_start": 358,
+      "candidate_tokens": 14,
+      "prompt_tokens": 372,
+      "point_indices_in_saved_slice": {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 7,
+        "late": 14
+      },
+      "artifact": "trajectory-24.npz"
+    },
+    {
+      "id": "locking-0-control",
+      "pair_id": "locking-0",
+      "fold": "test",
+      "group": "locking",
+      "supported": false,
+      "frame_sha256": "45d5a4d4a3cc0d220f64d119152bd5d1f049254296097b81c30be101d498ddc9",
+      "candidate_sha256": "33e139cf5e6b0f56c81dbd5c37f6c49e30aae07c366f0da359cef9f8b8b29860",
+      "candidate_start": 347,
+      "candidate_tokens": 14,
+      "prompt_tokens": 361,
+      "point_indices_in_saved_slice": {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 7,
+        "late": 14
+      },
+      "artifact": "trajectory-25.npz"
+    },
+    {
+      "id": "locking-1-support",
+      "pair_id": "locking-1",
+      "fold": "test",
+      "group": "locking",
+      "supported": true,
+      "frame_sha256": "3dbe93903ceca471323035fb78ec70eb5c5e6863e5bd1e5de72b125a706b7a89",
+      "candidate_sha256": "33e139cf5e6b0f56c81dbd5c37f6c49e30aae07c366f0da359cef9f8b8b29860",
+      "candidate_start": 359,
+      "candidate_tokens": 14,
+      "prompt_tokens": 373,
+      "point_indices_in_saved_slice": {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 7,
+        "late": 14
+      },
+      "artifact": "trajectory-26.npz"
+    },
+    {
+      "id": "locking-1-control",
+      "pair_id": "locking-1",
+      "fold": "test",
+      "group": "locking",
+      "supported": false,
+      "frame_sha256": "3dbe93903ceca471323035fb78ec70eb5c5e6863e5bd1e5de72b125a706b7a89",
+      "candidate_sha256": "33e139cf5e6b0f56c81dbd5c37f6c49e30aae07c366f0da359cef9f8b8b29860",
+      "candidate_start": 348,
+      "candidate_tokens": 14,
+      "prompt_tokens": 362,
+      "point_indices_in_saved_slice": {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 7,
+        "late": 14
+      },
+      "artifact": "trajectory-27.npz"
+    },
+    {
+      "id": "locking-2-support",
+      "pair_id": "locking-2",
+      "fold": "test",
+      "group": "locking",
+      "supported": true,
+      "frame_sha256": "4b0f29d2e7eb38dbbad173f62cf580b9fb5ed42bcfe1d82ab7fd4645f0076db3",
+      "candidate_sha256": "33e139cf5e6b0f56c81dbd5c37f6c49e30aae07c366f0da359cef9f8b8b29860",
+      "candidate_start": 358,
+      "candidate_tokens": 14,
+      "prompt_tokens": 372,
+      "point_indices_in_saved_slice": {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 7,
+        "late": 14
+      },
+      "artifact": "trajectory-28.npz"
+    },
+    {
+      "id": "locking-2-control",
+      "pair_id": "locking-2",
+      "fold": "test",
+      "group": "locking",
+      "supported": false,
+      "frame_sha256": "4b0f29d2e7eb38dbbad173f62cf580b9fb5ed42bcfe1d82ab7fd4645f0076db3",
+      "candidate_sha256": "33e139cf5e6b0f56c81dbd5c37f6c49e30aae07c366f0da359cef9f8b8b29860",
+      "candidate_start": 347,
+      "candidate_tokens": 14,
+      "prompt_tokens": 361,
+      "point_indices_in_saved_slice": {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 7,
+        "late": 14
+      },
+      "artifact": "trajectory-29.npz"
+    },
+    {
+      "id": "narration-0-support",
+      "pair_id": "narration-0",
+      "fold": "test",
+      "group": "narration",
+      "supported": true,
+      "frame_sha256": "4907a0ecffa2cd4a5a9cacf767e88dd5c138d5d0657499aa101b958028cc7701",
+      "candidate_sha256": "0838a757de4438950f66d05142f8ca3eff58331244febd487b332e2cf27dcb35",
+      "candidate_start": 350,
+      "candidate_tokens": 15,
+      "prompt_tokens": 365,
+      "point_indices_in_saved_slice": {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 8,
+        "late": 15
+      },
+      "artifact": "trajectory-30.npz"
+    },
+    {
+      "id": "narration-0-control",
+      "pair_id": "narration-0",
+      "fold": "test",
+      "group": "narration",
+      "supported": false,
+      "frame_sha256": "4907a0ecffa2cd4a5a9cacf767e88dd5c138d5d0657499aa101b958028cc7701",
+      "candidate_sha256": "0838a757de4438950f66d05142f8ca3eff58331244febd487b332e2cf27dcb35",
+      "candidate_start": 353,
+      "candidate_tokens": 15,
+      "prompt_tokens": 368,
+      "point_indices_in_saved_slice": {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 8,
+        "late": 15
+      },
+      "artifact": "trajectory-31.npz"
+    },
+    {
+      "id": "narration-1-support",
+      "pair_id": "narration-1",
+      "fold": "test",
+      "group": "narration",
+      "supported": true,
+      "frame_sha256": "8d43878f1b1d9b5ab9cca1e27b236b86870b0bae9ac91e7f9c5765702b06f75b",
+      "candidate_sha256": "0838a757de4438950f66d05142f8ca3eff58331244febd487b332e2cf27dcb35",
+      "candidate_start": 351,
+      "candidate_tokens": 15,
+      "prompt_tokens": 366,
+      "point_indices_in_saved_slice": {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 8,
+        "late": 15
+      },
+      "artifact": "trajectory-32.npz"
+    },
+    {
+      "id": "narration-1-control",
+      "pair_id": "narration-1",
+      "fold": "test",
+      "group": "narration",
+      "supported": false,
+      "frame_sha256": "8d43878f1b1d9b5ab9cca1e27b236b86870b0bae9ac91e7f9c5765702b06f75b",
+      "candidate_sha256": "0838a757de4438950f66d05142f8ca3eff58331244febd487b332e2cf27dcb35",
+      "candidate_start": 354,
+      "candidate_tokens": 15,
+      "prompt_tokens": 369,
+      "point_indices_in_saved_slice": {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 8,
+        "late": 15
+      },
+      "artifact": "trajectory-33.npz"
+    },
+    {
+      "id": "narration-2-support",
+      "pair_id": "narration-2",
+      "fold": "test",
+      "group": "narration",
+      "supported": true,
+      "frame_sha256": "979e82f1fe009824ea80a58c61075712621ea6dd8329be727285551c2029c327",
+      "candidate_sha256": "0838a757de4438950f66d05142f8ca3eff58331244febd487b332e2cf27dcb35",
+      "candidate_start": 352,
+      "candidate_tokens": 15,
+      "prompt_tokens": 367,
+      "point_indices_in_saved_slice": {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 8,
+        "late": 15
+      },
+      "artifact": "trajectory-34.npz"
+    },
+    {
+      "id": "narration-2-control",
+      "pair_id": "narration-2",
+      "fold": "test",
+      "group": "narration",
+      "supported": false,
+      "frame_sha256": "979e82f1fe009824ea80a58c61075712621ea6dd8329be727285551c2029c327",
+      "candidate_sha256": "0838a757de4438950f66d05142f8ca3eff58331244febd487b332e2cf27dcb35",
+      "candidate_start": 355,
+      "candidate_tokens": 15,
+      "prompt_tokens": 370,
+      "point_indices_in_saved_slice": {
+        "true_prefill": 0,
+        "early": 1,
+        "mid": 8,
+        "late": 15
+      },
+      "artifact": "trajectory-35.npz"
+    }
+  ],
+  "control_interpretation": {
+    "true_prefill_hidden_test_auc": 1.0,
+    "true_prefill_lens_test_auc": 1.0,
+    "incremental_gain_over_true_prefill": false,
+    "conclusion": "Passes the requested old endpoint benchmark, but no demonstrated value over true pre-candidate scoring and no Jacobian advantage; do not promote generation-time complexity.",
+    "independent_label_review": "pending",
+    "test_topic_clusters": 2,
+    "operational_decision": "retire_generation_time_extension_for_this_task",
+    "validation_point_selection": "All three trajectory points reach validation AUROC1.0; early wins the preregistered tie rule, not a demonstrated timing advantage."
+  },
+  "saved_artifacts": {
+    "volume": "afl-recal-artifacts",
+    "manifest": [
+      {
+        "filename": "a7a0324d-87c2-4a09-b988-ea04c8e7825b/trajectory-report.json",
+        "type": "file",
+        "created_modified": "2026-10-28 10:21:55+01:00",
+        "size": 76276
+      },
+      {
+        "filename": "a7a0324d-87c2-4a09-b988-ea04c8e7825b/trajectory-all-layer-scores.npz",
+        "type": "file",
+        "created_modified": "2026-10-28 10:21:54+01:00",
+        "size": 116347
+      },
+      {
+        "filename": "a7a0324d-87c2-4a09-b988-ea04c8e7825b/trajectory-lens-report.json",
+        "type": "file",
+        "created_modified": "2026-10-28 10:21:52+01:00",
+        "size": 14382
+      },
+      {
+        "filename": "a7a0324d-87c2-4a09-b988-ea04c8e7825b/trajectory-hidden-report.json",
+        "type": "file",
+        "created_modified": "2026-10-28 10:21:27+01:00",
+        "size": 14027
+      },
+      {
+        "filename": "a7a0324d-87c2-4a09-b988-ea04c8e7825b/trajectory-point-residuals.npz",
+        "type": "file",
+        "created_modified": "2026-10-28 10:21:14+01:00",
+        "size": 92870872
+      },
+      {
+        "filename": "a7a0324d-87c2-4a09-b988-ea04c8e7825b/trajectory-token-provenance.json",
+        "type": "file",
+        "created_modified": "2026-10-28 10:20:37+01:00",
+        "size": 27110
+      },
+      {
+        "filename": "a7a0324d-87c2-4a09-b988-ea04c8e7825b/trajectory-35.npz",
+        "type": "file",
+        "created_modified": "2026-10-28 10:20:31+01:00",
+        "size": 10336606
+      },
+      {
+        "filename": "a7a0324d-87c2-4a09-b988-ea04c8e7825b/trajectory-34.npz",
+        "type": "file",
+        "created_modified": "2026-10-28 10:20:23+01:00",
+        "size": 10337186
+      },
+      {
+        "filename": "a7a0324d-87c2-4a09-b988-ea04c8e7825b/trajectory-33.npz",
+        "type": "file",
+        "created_modified": "2026-10-28 10:20:14+01:00",
+        "size": 10337885
+      },
+      {
+        "filename": "a7a0324d-87c2-4a09-b988-ea04c8e7825b/trajectory-32.npz",
+        "type": "file",
+        "created_modified": "2026-10-28 10:20:04+01:00",
+        "size": 10335946
+      },
+      {
+        "filename": "a7a0324d-87c2-4a09-b988-ea04c8e7825b/trajectory-31.npz",
+        "type": "file",
+        "created_modified": "2026-10-28 10:19:56+01:00",
+        "size": 10335204
+      },
+      {
+        "filename": "a7a0324d-87c2-4a09-b988-ea04c8e7825b/trajectory-30.npz",
+        "type": "file",
+        "created_modified": "2026-10-28 10:19:48+01:00",
+        "size": 10335386
+      },
+      {
+        "filename": "a7a0324d-87c2-4a09-b988-ea04c8e7825b/trajectory-29.npz",
+        "type": "file",
+        "created_modified": "2026-10-28 10:19:40+01:00",
+        "size": 9688166
+      },
+      {
+        "filename": "a7a0324d-87c2-4a09-b988-ea04c8e7825b/trajectory-28.npz",
+        "type": "file",
+        "created_modified": "2026-10-28 10:19:32+01:00",
+        "size": 9686720
+      },
+      {
+        "filename": "a7a0324d-87c2-4a09-b988-ea04c8e7825b/trajectory-27.npz",
+        "type": "file",
+        "created_modified": "2026-10-28 10:19:23+01:00",
+        "size": 9686817
+      },
+      {
+        "filename": "a7a0324d-87c2-4a09-b988-ea04c8e7825b/trajectory-26.npz",
+        "type": "file",
+        "created_modified": "2026-10-28 10:19:15+01:00",
+        "size": 9687675
+      },
+      {
+        "filename": "a7a0324d-87c2-4a09-b988-ea04c8e7825b/trajectory-25.npz",
+        "type": "file",
+        "created_modified": "2026-10-28 10:19:07+01:00",
+        "size": 9687972
+      },
+      {
+        "filename": "a7a0324d-87c2-4a09-b988-ea04c8e7825b/trajectory-24.npz",
+        "type": "file",
+        "created_modified": "2026-10-28 10:18:59+01:00",
+        "size": 9686734
+      },
+      {
+        "filename": "a7a0324d-87c2-4a09-b988-ea04c8e7825b/trajectory-23.npz",
+        "type": "file",
+        "created_modified": "2026-10-28 10:18:51+01:00",
+        "size": 9043512
+      },
+      {
+        "filename": "a7a0324d-87c2-4a09-b988-ea04c8e7825b/trajectory-22.npz",
+        "type": "file",
+        "created_modified": "2026-10-28 10:18:43+01:00",
+        "size": 9046754
+      },
+      {
+        "filename": "a7a0324d-87c2-4a09-b988-ea04c8e7825b/trajectory-21.npz",
+        "type": "file",
+        "created_modified": "2026-10-28 10:18:34+01:00",
+        "size": 9046070
+      },
+      {
+        "filename": "a7a0324d-87c2-4a09-b988-ea04c8e7825b/trajectory-20.npz",
+        "type": "file",
+        "created_modified": "2026-10-28 10:18:26+01:00",
+        "size": 9046608
+      },
+      {
+        "filename": "a7a0324d-87c2-4a09-b988-ea04c8e7825b/trajectory-19.npz",
+        "type": "file",
+        "created_modified": "2026-10-28 10:18:19+01:00",
+        "size": 9046870
+      },
+      {
+        "filename": "a7a0324d-87c2-4a09-b988-ea04c8e7825b/trajectory-18.npz",
+        "type": "file",
+        "created_modified": "2026-10-28 10:18:10+01:00",
+        "size": 9046978
+      },
+      {
+        "filename": "a7a0324d-87c2-4a09-b988-ea04c8e7825b/trajectory-17.npz",
+        "type": "file",
+        "created_modified": "2026-10-28 10:18:02+01:00",
+        "size": 9691632
+      },
+      {
+        "filename": "a7a0324d-87c2-4a09-b988-ea04c8e7825b/trajectory-16.npz",
+        "type": "file",
+        "created_modified": "2026-10-28 10:17:54+01:00",
+        "size": 9691449
+      },
+      {
+        "filename": "a7a0324d-87c2-4a09-b988-ea04c8e7825b/trajectory-15.npz",
+        "type": "file",
+        "created_modified": "2026-10-28 10:17:46+01:00",
+        "size": 9691826
+      },
+      {
+        "filename": "a7a0324d-87c2-4a09-b988-ea04c8e7825b/trajectory-14.npz",
+        "type": "file",
+        "created_modified": "2026-10-28 10:17:37+01:00",
+        "size": 9688986
+      },
+      {
+        "filename": "a7a0324d-87c2-4a09-b988-ea04c8e7825b/trajectory-13.npz",
+        "type": "file",
+        "created_modified": "2026-10-28 10:17:29+01:00",
+        "size": 9690992
+      },
+      {
+        "filename": "a7a0324d-87c2-4a09-b988-ea04c8e7825b/trajectory-12.npz",
+        "type": "file",
+        "created_modified": "2026-10-28 10:17:21+01:00",
+        "size": 9690275
+      },
+      {
+        "filename": "a7a0324d-87c2-4a09-b988-ea04c8e7825b/trajectory-11.npz",
+        "type": "file",
+        "created_modified": "2026-10-28 10:17:13+01:00",
+        "size": 9690263
+      },
+      {
+        "filename": "a7a0324d-87c2-4a09-b988-ea04c8e7825b/trajectory-10.npz",
+        "type": "file",
+        "created_modified": "2026-10-28 10:17:06+01:00",
+        "size": 9688405
+      },
+      {
+        "filename": "a7a0324d-87c2-4a09-b988-ea04c8e7825b/trajectory-09.npz",
+        "type": "file",
+        "created_modified": "2026-10-28 10:16:53+01:00",
+        "size": 9689352
+      },
+      {
+        "filename": "a7a0324d-87c2-4a09-b988-ea04c8e7825b/trajectory-08.npz",
+        "type": "file",
+        "created_modified": "2026-10-28 10:16:45+01:00",
+        "size": 9689102
+      },
+      {
+        "filename": "a7a0324d-87c2-4a09-b988-ea04c8e7825b/trajectory-07.npz",
+        "type": "file",
+        "created_modified": "2026-10-28 10:16:35+01:00",
+        "size": 9689830
+      },
+      {
+        "filename": "a7a0324d-87c2-4a09-b988-ea04c8e7825b/trajectory-06.npz",
+        "type": "file",
+        "created_modified": "2026-10-28 10:16:26+01:00",
+        "size": 9687999
+      },
+      {
+        "filename": "a7a0324d-87c2-4a09-b988-ea04c8e7825b/trajectory-05.npz",
+        "type": "file",
+        "created_modified": "2026-10-28 10:16:18+01:00",
+        "size": 7108772
+      },
+      {
+        "filename": "a7a0324d-87c2-4a09-b988-ea04c8e7825b/trajectory-04.npz",
+        "type": "file",
+        "created_modified": "2026-10-28 10:16:12+01:00",
+        "size": 7105664
+      },
+      {
+        "filename": "a7a0324d-87c2-4a09-b988-ea04c8e7825b/trajectory-03.npz",
+        "type": "file",
+        "created_modified": "2026-10-28 10:16:06+01:00",
+        "size": 7108648
+      },
+      {
+        "filename": "a7a0324d-87c2-4a09-b988-ea04c8e7825b/trajectory-02.npz",
+        "type": "file",
+        "created_modified": "2026-10-28 10:16:00+01:00",
+        "size": 7107488
+      },
+      {
+        "filename": "a7a0324d-87c2-4a09-b988-ea04c8e7825b/trajectory-01.npz",
+        "type": "file",
+        "created_modified": "2026-10-28 10:15:53+01:00",
+        "size": 7107561
+      },
+      {
+        "filename": "a7a0324d-87c2-4a09-b988-ea04c8e7825b/trajectory-00.npz",
+        "type": "file",
+        "created_modified": "2026-10-28 10:15:46+01:00",
+        "size": 7106582
+      },
+      {
+        "filename": "a7a0324d-87c2-4a09-b988-ea04c8e7825b/trajectory-provenance.json",
+        "type": "file",
+        "created_modified": "2026-10-28 10:15:00+01:00",
+        "size": 15656
+      }
+    ],
+    "bytes_total": 426478585,
+    "all_36_token_trajectories_saved": true,
+    "code_commit": "6d789fe",
+    "model_forward_passes": 36
+  },
+  "cpu_audit": {
+    "hidden_contrastive": {
+      "independent_cpu_recomputation_matches": true,
+      "max_abs_late_score_difference_vs_prior": 0.0,
+      "old_late_test_auc": 0.888888888888889
+    },
+    "norm_head_jacobian": {
+      "independent_cpu_recomputation_matches": true,
+      "max_abs_late_score_difference_vs_prior": 0.0,
+      "old_late_test_auc": 0.8611111111111112
+    }
+  },
+  "ledger": {
+    "window": {
+      "id": "a7a0324d-87c2-4a09-b988-ea04c8e7825b",
+      "reserved_usd": 4.0,
+      "created_utc": "2026-10-28T09:14:35.801419+00:00",
+      "experiment": "teacher-forced-trajectory-2026-10-28",
+      "status": "complete",
+      "updated_utc": "2026-10-28T09:21:57.839102+00:00",
+      "elapsed_seconds": 415.03,
+      "artifact_directory": "/artifacts/a7a0324d-87c2-4a09-b988-ea04c8e7825b"
+    },
+    "total_reserved_usd": 18.0,
+    "ceiling_usd": 100.0,
+    "reservation_not_invoice": true
+  },
+  "shutdown": {
+    "apps": [
+      {
+        "app_id": "ap-2kShh4IHZZVvEGtF5Lyi2E",
+        "description": "ambient-field-lens-teacher-forced-trajectory",
+        "state": "stopped",
+        "tasks": "0",
+        "created_at": "2026-10-28 10:13:58+01:00",
+        "stopped_at": "2026-10-28 10:22:08+01:00"
+      }
+    ],
+    "containers": []
+  }
+}

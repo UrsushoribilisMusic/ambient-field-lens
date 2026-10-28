@@ -1,40 +1,45 @@
-# Codi — paired grounding/J-space comparison (2026-10-28)
+# Codi — bounded teacher-forced trajectory round, 2026-10-28
 
-Miguel confirmed the $100 Modal hackathon grant on workspace miguel-40686,
-expiring 2027-10-31. This supersedes the prior $20 authorization; it does not
-relax experiment or shutdown discipline. No active Modal containers at start.
+User authorizes exactly one new $4 Modal window, same frozen 18 pairs, folds,
+checkpoint, camera payload and ledger. No sampling: one causal forward per
+record captures every candidate-token residual at all 52 decoder layers.
 
-1. Declare paired present/removed manual-evidence cases and fixed topic folds,
-   using external Ross question references and the already-ingested manual
-   snapshot. Define both estimators before model scores. No old matrices,
-   vectors, extraction code or chunkers are copied into this repository.
-2. Write fresh forward-only J-space/logit-lens extraction and contrastive
-   baseline on exactly the same activations/cases/folds. State precisely which
-   Jacobian approximation is measured; do not call a last-layer shortcut the
-   full network Jacobian. Report paired sensitivity and held-out discrimination.
-3. CPU tests and token/checkpoint preflight, then a finite reserved A100-80GB
-   window, no retries, one container, scale to zero. Persist artifacts after
-   each stage; ledger every attempt even failure. Check live containers after.
-4. Publish small provenance/results reports, preserve failed earlier certainty
-   results, and update daily. /assist untouched, no green wiring, fixture frozen.
+1. Freeze protocol and meaningful CPU tests before allocation. Define first,
+middle and last candidate token, plus true pre-candidate control. The old 0.889
+"prefill" baseline was actually the final teacher-forced candidate token.
+2. Reuse fit-only contrastive and full-vocabulary norm/head Jacobian estimators;
+choose layer and trajectory point using validation only. Compare selected
+held-out AUROC strictly against 0.888888888888889; no test-driven sweep.
+3. CPU checkpoint/token-boundary preflight, reserve exactly one $4 attempt,
+persist per-record trajectories and score reports. No sampling or execution,
+no retries or extra GPU windows, scale to zero and verify shutdown.
+4. If the validation-selected trajectory fails to beat the prior endpoint,
+retire it. Report limitations, ledger, independent CPU audit and merge state.
 
-Branch is based on the existing clean-room recalibration PR #2 checkpoint;
-this comparison is a separate reviewable unit and does not require /assist
-integration or any physical robot motion.
+PR4, PR2 (negative Platt line included), PR5 were merged by the concurrent
+fleet session in that order (9396cbf, d1dfe4d, 31e73d6). This branch starts from
+main 31e73d6; it does not carry those changes through a stacked PR. Duplicate local documentation-only work from the concurrent update was retained
+on a local backup branch, then the recal worktree was aligned to its merged
+remote branch. No teammate changes were removed.
 
-## Complete — pending independent review
+Fixture frozen. /assist default-deny. No green wiring, new filming, Meta calls,
+model sampling, threshold changes or hardware commands.
 
-Text smoke and real-camera paired rounds completed; measured results and CPU
-recomputation are in docs/verification/paired-comparison-2026-10-28.md/.json.
-Hidden test AUROC0.889, norm/head Jacobian0.861 in both rounds; no lens advantage.
-Two independent held-out topic clusters only.16research/preflight and19backend
-regressions covered. $8new GPU reservations, $14total including prior and CPU;
-all five launch apps stopped and final container inventory empty. No queued
-GPU work, no automatic follow-up window. Fixture and /assist unchanged.
+## Completed — independent review pending
 
-Draft PR5: https://github.com/UrsushoribilisMusic/ambient-field-lens/pull/5
-stacked on PR2. Do not repeat these runs because the first client's TorchVersion
-transfer failed: all artifacts were recovered and independently audited.
-Next work is human label review and genuinely camera-dependent held-out cases,
-not another sweep or a lower confidence threshold. Local private review page:
-~/Movies/Ambient-Field-Lens/2026-10-28/paired-comparison/review.html .
+One $4 attempt a7a0324d-87c2-4a09-b988-ea04c8e7825b ran415.03s,36 forwards.
+Every candidate-token residual at all52 layers saved in36 private volume files;
+43 artifacts total. Early/mid AUROC1.000 in both methods; final endpoint exactly
+reproduces0.889 hidden /0.861 lens at every saved layer-score coordinate.
+Validation selects early/layer27 by the declared ties. True pre-candidate control
+also scores1.000: no incremental generation-time value or Jacobian advantage.
+Old-endpoint criterion passes; retire the extra trajectory extension for this
+task rather than promote its complexity. Only two held-out topics, no safety
+or camera-grounding validation. Independent CPU score audit exactly matches.
+
+22 research tests covered across CPU environments;107 backend tests,7 expected
+private-media skips. App ap-2kShh4IHZZVvEGtF5Lyi2E stopped, inventory empty.
+$18 total reserved including earlier attempts/CPU, not invoiced spend.
+No additional calls/windows queued. Draft PR6 targets main for independent review.
+Report: docs/verification/trajectory-comparison-2026-10-28.md/.json.
+Private overview: ~/Movies/Ambient-Field-Lens/2026-10-28/trajectory-comparison/review.html.

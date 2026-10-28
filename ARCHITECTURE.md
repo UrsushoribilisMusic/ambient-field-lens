@@ -178,3 +178,13 @@ uses identical paired manual-context cases, activations and grouped folds.
 See [protocol](docs/paired-comparison-protocol.md). No world check, geometry,
 calibration or procedure evidence can be overridden by the readout. This branch
 does not change the live /assist path or make any green result admissible.
+
+
+## Offline teacher-forced trajectory comparison
+
+`backend/recal/trajectory_window.py` captures all candidate-token residuals in
+one causal pass per frozen record. Pure CPU analysis selects predefined points
+and layers using validation only. Results and the true pre-candidate control
+are in `docs/verification/trajectory-comparison-2026-10-28.md`: both score1.000
+on this tiny test, so extra trajectory scoring adds no demonstrated value.
+This remains an offline research unit, not a live generation or /assist adapter.
