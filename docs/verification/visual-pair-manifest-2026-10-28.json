@@ -1,0 +1,348 @@
+{
+  "schema": "visual-grounding-review-v1",
+  "status": "human_review_pending",
+  "origin_main": "9e55904",
+  "authored_by": "Codi (agent), proposed labels only; no human approval claimed",
+  "created_utc": "2026-10-28T16:21:22.910089+00:00",
+  "role": "Four-pair seed review, not a meaningful accuracy/calibration benchmark",
+  "human_reviewer": null,
+  "scoring_enabled": false,
+  "gpu_authorized": false,
+  "new_filming": false,
+  "image_required": true,
+  "labels_frozen": false,
+  "pairs": [
+    {
+      "id": "VG01",
+      "check": "paper_position",
+      "capture_group": "paper-displacement-S28",
+      "fold": "fit",
+      "question": "Is the white drawing paper positioned beneath the robot pen tip, rather than leaving the tip above bare desk?",
+      "candidate": "The white drawing paper is positioned under the pen tip.",
+      "scope": "Qualitative visible paper placement relative to the fixed tip; no metric robot registration or dimensional pass.",
+      "members": [
+        {
+          "id": "VG01-A",
+          "image_asset": "/Users/miguelrodriguez/Movies/Ambient-Field-Lens/2026-10-28/visual-grounding-review/frames/placement-after.png",
+          "image_sha256": "cb79a34dac643c4dbb6cced22e5998741f2ff45a6f2c487b08cb29a39e8ebdce",
+          "width": 430,
+          "height": 225,
+          "archived_source": "/Users/miguelrodriguez/Movies/Ambient-Field-Lens/2026-10-27/drawing-readiness/S28-paper-outside-fixed-drawing-position.jpg",
+          "source_sha256": "13fd89b3dcfdf98bd9b602721a2f56b671c5b84649524fabe4f1518b90dcd5ae",
+          "source_frame_sha256": "13fd89b3dcfdf98bd9b602721a2f56b671c5b84649524fabe4f1518b90dcd5ae",
+          "source_dimensions": [
+            896,
+            512
+          ],
+          "source_seconds": null,
+          "crop_xyxy": [
+            220,
+            280,
+            650,
+            505
+          ],
+          "transformation": "Native-pixel crop only; no retouching, synthesis, sharpening or inferred content",
+          "archival": true,
+          "fresh_live_evidence": false,
+          "author_proposed_label": "fail",
+          "human_label": null,
+          "model_visible_metadata": []
+        },
+        {
+          "id": "VG01-B",
+          "image_asset": "/Users/miguelrodriguez/Movies/Ambient-Field-Lens/2026-10-28/visual-grounding-review/frames/placement-before.png",
+          "image_sha256": "cd4e56ac142b2c76aa70a8cd7be8f3e43a154495fae65aa0e008e3e52a69ce3b",
+          "width": 430,
+          "height": 225,
+          "archived_source": "/Users/miguelrodriguez/Movies/Ambient-Field-Lens/2026-10-27/drawing-readiness/S28-before-move-t000.jpg",
+          "source_sha256": "8d43878f1b1d9b5ab9cca1e27b236b86870b0bae9ac91e7f9c5765702b06f75b",
+          "source_frame_sha256": "8d43878f1b1d9b5ab9cca1e27b236b86870b0bae9ac91e7f9c5765702b06f75b",
+          "source_dimensions": [
+            896,
+            512
+          ],
+          "source_seconds": null,
+          "crop_xyxy": [
+            220,
+            280,
+            650,
+            505
+          ],
+          "transformation": "Native-pixel crop only; no retouching, synthesis, sharpening or inferred content",
+          "archival": true,
+          "fresh_live_evidence": false,
+          "author_proposed_label": "pass",
+          "human_label": null,
+          "model_visible_metadata": []
+        }
+      ],
+      "author_note": "The same camera/pen position is shown before and after the paper/book moves. Room/person/monitor are cropped out.",
+      "instruction": "Use only the supplied image and explicitly provided visual target. Report UNKNOWN if the requested state is not visually resolvable. Manual instructions describe norms, not the state of this archived scene.",
+      "manual_context": "",
+      "human_review_status": "pending",
+      "text_only_expected": "unknown",
+      "manual_only_answerable": null
+    },
+    {
+      "id": "VG02",
+      "check": "footprint_inside_paper",
+      "capture_group": "paper-displacement-S28",
+      "fold": "fit",
+      "question": "The cyan quadrilateral is a supplied proposed footprint in image coordinates. Does the entire footprint lie inside the white drawing paper boundary, rather than on the book or desk?",
+      "candidate": "The entire supplied footprint is contained by the white drawing paper.",
+      "scope": "Image-space containment of an explicitly supplied visual target ONLY; not an accepted robot-coordinate plan or recovered calibration.",
+      "visual_target": {
+        "kind": "provided_svg_polygon",
+        "coordinate_frame": "cropped_model_image",
+        "points_xy": [
+          [
+            130,
+            122
+          ],
+          [
+            157,
+            103
+          ],
+          [
+            194,
+            117
+          ],
+          [
+            165,
+            138
+          ]
+        ],
+        "stroke": "#00d9e8",
+        "stroke_width_pixels": 2,
+        "same_for_both_members": true,
+        "origin": "Hand-traced reference quadrilateral around the visible outline in archived before frame; fixed pixel coordinates in both images, not a projection from robot coordinates.",
+        "requires_human_scope_approval": true
+      },
+      "members": [
+        {
+          "id": "VG02-A",
+          "image_asset": "/Users/miguelrodriguez/Movies/Ambient-Field-Lens/2026-10-28/visual-grounding-review/frames/placement-before.png",
+          "image_sha256": "cd4e56ac142b2c76aa70a8cd7be8f3e43a154495fae65aa0e008e3e52a69ce3b",
+          "width": 430,
+          "height": 225,
+          "archived_source": "/Users/miguelrodriguez/Movies/Ambient-Field-Lens/2026-10-27/drawing-readiness/S28-before-move-t000.jpg",
+          "source_sha256": "8d43878f1b1d9b5ab9cca1e27b236b86870b0bae9ac91e7f9c5765702b06f75b",
+          "source_frame_sha256": "8d43878f1b1d9b5ab9cca1e27b236b86870b0bae9ac91e7f9c5765702b06f75b",
+          "source_dimensions": [
+            896,
+            512
+          ],
+          "source_seconds": null,
+          "crop_xyxy": [
+            220,
+            280,
+            650,
+            505
+          ],
+          "transformation": "Native-pixel crop only; no retouching, synthesis, sharpening or inferred content",
+          "archival": true,
+          "fresh_live_evidence": false,
+          "author_proposed_label": "pass",
+          "human_label": null,
+          "model_visible_metadata": [],
+          "review_svg_asset": "/Users/miguelrodriguez/Movies/Ambient-Field-Lens/2026-10-28/visual-grounding-review/frames/VG02-A-provided-target.svg",
+          "review_svg_sha256": "9a20222fb439ffed38862a3572034076127ceddd04dd3002710a9ced518a8809"
+        },
+        {
+          "id": "VG02-B",
+          "image_asset": "/Users/miguelrodriguez/Movies/Ambient-Field-Lens/2026-10-28/visual-grounding-review/frames/placement-after.png",
+          "image_sha256": "cb79a34dac643c4dbb6cced22e5998741f2ff45a6f2c487b08cb29a39e8ebdce",
+          "width": 430,
+          "height": 225,
+          "archived_source": "/Users/miguelrodriguez/Movies/Ambient-Field-Lens/2026-10-27/drawing-readiness/S28-paper-outside-fixed-drawing-position.jpg",
+          "source_sha256": "13fd89b3dcfdf98bd9b602721a2f56b671c5b84649524fabe4f1518b90dcd5ae",
+          "source_frame_sha256": "13fd89b3dcfdf98bd9b602721a2f56b671c5b84649524fabe4f1518b90dcd5ae",
+          "source_dimensions": [
+            896,
+            512
+          ],
+          "source_seconds": null,
+          "crop_xyxy": [
+            220,
+            280,
+            650,
+            505
+          ],
+          "transformation": "Native-pixel crop only; no retouching, synthesis, sharpening or inferred content",
+          "archival": true,
+          "fresh_live_evidence": false,
+          "author_proposed_label": "fail",
+          "human_label": null,
+          "model_visible_metadata": [],
+          "review_svg_asset": "/Users/miguelrodriguez/Movies/Ambient-Field-Lens/2026-10-28/visual-grounding-review/frames/VG02-B-provided-target.svg",
+          "review_svg_sha256": "010d01d62a44e63f55c95e19b7a6d1aeff57eca44cd3748f3c52043287963621"
+        }
+      ],
+      "author_note": "Raw frames contain no visible future robot footprint. This supplied cyan target makes the question visually defined. Reject this pair if the requested target must instead be a registered physical toolpath. No nominal mapping is invented.",
+      "instruction": "Use only the supplied image and explicitly provided visual target. Report UNKNOWN if the requested state is not visually resolvable. Manual instructions describe norms, not the state of this archived scene.",
+      "manual_context": "",
+      "human_review_status": "pending",
+      "text_only_expected": "unknown",
+      "manual_only_answerable": null
+    },
+    {
+      "id": "VG03",
+      "check": "pen_contact",
+      "capture_group": "contact-calibration-S06",
+      "fold": "validation",
+      "question": "Is the pen tip visibly touching the white drawing paper in this frame? If the gap or contact cannot be resolved, answer UNKNOWN.",
+      "candidate": "The pen tip is visibly in contact with the drawing paper.",
+      "scope": "Visible tip/surface relationship only; not contact force, controller readiness, successful writing or a substitution of pen presence for contact.",
+      "members": [
+        {
+          "id": "VG03-A",
+          "image_asset": "/Users/miguelrodriguez/Movies/Ambient-Field-Lens/2026-10-28/visual-grounding-review/frames/contact-low.png",
+          "image_sha256": "6e14f5702d235ad2a03da80cae7f436adb9bf4b875ef56cdb1784924b1905f72",
+          "width": 200,
+          "height": 150,
+          "archived_source": "/Users/miguelrodriguez/Movies/Ambient-Field-Lens/2026-10-27/drawing-readiness/S06-calibration-process.mp4",
+          "source_sha256": "e77d38ddc2b2233dc33cbdc7bf1fa12cfb310bb5b95f29df9e6486627b696fbe",
+          "source_frame_sha256": "d5015831c425c6ff1b281e7cbfda986d4c1aa037272c33ff66b458bd81c810a8",
+          "source_dimensions": [
+            896,
+            512
+          ],
+          "source_seconds": 30,
+          "crop_xyxy": [
+            170,
+            260,
+            370,
+            410
+          ],
+          "transformation": "Native-pixel crop only; no retouching, synthesis, sharpening or inferred content",
+          "archival": true,
+          "fresh_live_evidence": false,
+          "author_proposed_label": "pass",
+          "human_label": null,
+          "model_visible_metadata": []
+        },
+        {
+          "id": "VG03-B",
+          "image_asset": "/Users/miguelrodriguez/Movies/Ambient-Field-Lens/2026-10-28/visual-grounding-review/frames/contact-high.png",
+          "image_sha256": "4085c9e2006f677c33763b5512a80e48e397ce482ddd5cc4975258960d55f3ff",
+          "width": 200,
+          "height": 150,
+          "archived_source": "/Users/miguelrodriguez/Movies/Ambient-Field-Lens/2026-10-27/drawing-readiness/S06-calibration-process.mp4",
+          "source_sha256": "e77d38ddc2b2233dc33cbdc7bf1fa12cfb310bb5b95f29df9e6486627b696fbe",
+          "source_frame_sha256": "f8b49616fd944b6e9906d6a450d4e60ecc6478b947f209d041ccbace5546077a",
+          "source_dimensions": [
+            896,
+            512
+          ],
+          "source_seconds": 60,
+          "crop_xyxy": [
+            170,
+            260,
+            370,
+            410
+          ],
+          "transformation": "Native-pixel crop only; no retouching, synthesis, sharpening or inferred content",
+          "archival": true,
+          "fresh_live_evidence": false,
+          "author_proposed_label": "fail",
+          "human_label": null,
+          "model_visible_metadata": []
+        }
+      ],
+      "author_note": "Same archived calibration clip,30s and60s. Proposed contact at30s and visible gap at60s need Miguel confirmation at native-pixel detail; do not use controller flags or the action name as the answer.",
+      "instruction": "Use only the supplied image and explicitly provided visual target. Report UNKNOWN if the requested state is not visually resolvable. Manual instructions describe norms, not the state of this archived scene.",
+      "manual_context": "",
+      "human_review_status": "pending",
+      "text_only_expected": "unknown",
+      "manual_only_answerable": null
+    },
+    {
+      "id": "VG04",
+      "check": "drawing_has_no_blank_areas",
+      "capture_group": "outline-results-S19-S22",
+      "fold": "test",
+      "question": "Are the visible lower and right-hand edge strokes of the small central rectangular outline present, rather than missing? The unfilled interior is intentional; ignore handwritten labels.",
+      "candidate": "The visible lower and right-hand edges of the intended rectangular outline are drawn.",
+      "scope": "Missing requested outline strokes, not solid-fill coverage, dimensional accuracy or an assertion about occluded portions of the drawing.",
+      "members": [
+        {
+          "id": "VG04-A",
+          "image_asset": "/Users/miguelrodriguez/Movies/Ambient-Field-Lens/2026-10-28/visual-grounding-review/frames/outline-gap.png",
+          "image_sha256": "afef813911d48c6d57376465676d076840c95cfbaf2370996768b25ea5d9b0b5",
+          "width": 380,
+          "height": 200,
+          "archived_source": "/Users/miguelrodriguez/Movies/Ambient-Field-Lens/2026-10-27/drawing-readiness/S19-square-repeat-result.jpg",
+          "source_sha256": "0eb692eec0f95713f485340ccf4d976ce58a4a6bf39f9cdb7aed12739fb0932c",
+          "source_frame_sha256": "0eb692eec0f95713f485340ccf4d976ce58a4a6bf39f9cdb7aed12739fb0932c",
+          "source_dimensions": [
+            2880,
+            1616
+          ],
+          "source_seconds": null,
+          "crop_xyxy": [
+            1050,
+            1170,
+            1430,
+            1370
+          ],
+          "transformation": "Native-pixel crop only; no retouching, synthesis, sharpening or inferred content",
+          "archival": true,
+          "fresh_live_evidence": false,
+          "author_proposed_label": "fail",
+          "human_label": null,
+          "model_visible_metadata": []
+        },
+        {
+          "id": "VG04-B",
+          "image_asset": "/Users/miguelrodriguez/Movies/Ambient-Field-Lens/2026-10-28/visual-grounding-review/frames/outline-complete.png",
+          "image_sha256": "10054d21ba76eb7742515ed84724e51d4e17f18652459d21047ec00ba2c3c399",
+          "width": 380,
+          "height": 200,
+          "archived_source": "/Users/miguelrodriguez/Movies/Ambient-Field-Lens/2026-10-27/drawing-readiness/S22-square-post-fix-result.jpg",
+          "source_sha256": "7482e4d5109e7a77e0703d6592674647762208ba6e32bbd2c7cef2e6405cb4fa",
+          "source_frame_sha256": "7482e4d5109e7a77e0703d6592674647762208ba6e32bbd2c7cef2e6405cb4fa",
+          "source_dimensions": [
+            2880,
+            1616
+          ],
+          "source_seconds": null,
+          "crop_xyxy": [
+            1050,
+            1170,
+            1430,
+            1370
+          ],
+          "transformation": "Native-pixel crop only; no retouching, synthesis, sharpening or inferred content",
+          "archival": true,
+          "fresh_live_evidence": false,
+          "author_proposed_label": "pass",
+          "human_label": null,
+          "model_visible_metadata": []
+        }
+      ],
+      "author_note": "The failed-result crop has missing right/lower strokes; the later result shows those edges. Other marks are pre-existing labels. Pen pose also differs, a nuisance correlation to retain in reporting, not a causal contact validation.",
+      "instruction": "Use only the supplied image and explicitly provided visual target. Report UNKNOWN if the requested state is not visually resolvable. Manual instructions describe norms, not the state of this archived scene.",
+      "manual_context": "",
+      "human_review_status": "pending",
+      "text_only_expected": "unknown",
+      "manual_only_answerable": null
+    }
+  ],
+  "fold_policy": "Same capture family stays in one fold. S28 placement/target pairs fit; S06 contact validation; S19/S22 outline results test. One test pair only. Same rig/physical marks recur across captures; no independent-view robustness claim.",
+  "release_requirements": [
+    "Miguel independently reviews every member of every pair",
+    "Exactly one visually supported PASS and one FAIL per pair; unresolved/UNKNOWN/rejected pair blocks whole-set scoring",
+    "Each pair must be image-dependent and not answerable from manual text alone",
+    "Footprint target is explicitly approved as image-space only, or pair is rejected/replaced",
+    "Source/image/target hashes and frozen folds remain unchanged; no label/state metadata in model prompts"
+  ],
+  "excluded_text_questions": [
+    "Must paper be positioned correctly before drawing?",
+    "Should the pen touch the paper?",
+    "Does a lock prevent concurrent jobs?"
+  ],
+  "physical_boundary": "No result accepts robot registration, paper-to-robot coordinates, contact force, calibration or green instructions. /assist stays default-deny; archived frames are not live evidence.",
+  "pair_count": 4,
+  "image_condition_count": 8,
+  "unique_native_crops": 6
+}
