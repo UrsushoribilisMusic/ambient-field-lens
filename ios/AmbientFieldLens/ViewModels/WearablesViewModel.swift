@@ -11,6 +11,11 @@ final class WearablesViewModel: ObservableObject {
     @Published var registrationState: RegistrationState
     @Published var deviceCount: Int = 0
     @Published var deviceDiagnostics: String = "no data"
+    @Published var hasCompatibleDevice = false
+
+    private var deviceCompatibility: [DeviceIdentifier: String] = [:]
+    private var compatibilityTokens: [DeviceIdentifier: AnyListenerToken] =
+        [:]
     @Published var sessionState: String = "Idle"
     @Published var sessionStarted = false
     @Published var streamState: String = "Stopped"
@@ -18,14 +23,18 @@ final class WearablesViewModel: ObservableObject {
     @Published var lastError: String?
 
     private let wearables = Wearables.shared
+    private let deviceSelector: AutoDeviceSelector
     private var deviceSession: DeviceSession?
     private var camera: Camera?
     private var stream: MWDATCamera.Stream?
     private var mockEnabled = false
     private let sessionTokens = ListenerTokenBag()
 
+    @Published var selectorDevice: String = "none"
+
     init() {
         registrationState = Wearables.shared.registrationState
+        deviceSelector = AutoDeviceSelector(wearables: Wearables.shared)
     }
 
     func observe() {
@@ -37,19 +46,59 @@ final class WearablesViewModel: ObservableObject {
         Task {
             for await deviceIds in wearables.devicesStream() {
                 self.deviceCount = deviceIds.count
-                var lines: [String] = []
-                for id in deviceIds {
-                    if let device = wearables.deviceForIdentifier(id) {
-                        lines.append(
-                            "\(device.nameOrId()): type=\(device.deviceType) link=\(device.linkState) compat=\(device.compatibility())"
-                        )
-                    } else {
-                        lines.append("\(id): unresolvable")
-                    }
-                }
-                self.deviceDiagnostics = lines.isEmpty
-                    ? "registry empty" : lines.joined(separator: "\n")
+                self.monitorCompatibility(deviceIds: deviceIds)
             }
+        }
+        Task {
+            for await active in deviceSelector.activeDeviceStream() {
+                self.selectorDevice = active ?? "none"
+            }
+        }
+    }
+
+    private func monitorCompatibility(deviceIds: [DeviceIdentifier]) {
+        let current = Set(deviceIds)
+        compatibilityTokens = compatibilityTokens.filter {
+            current.contains($0.key)
+        }
+        deviceCompatibility = deviceCompatibility.filter {
+            current.contains($0.key)
+        }
+        for id in deviceIds {
+            guard compatibilityTokens[id] == nil else { continue }
+            guard let device = wearables.deviceForIdentifier(id) else {
+                continue
+            }
+            deviceCompatibility[id] = "\(device.compatibility())"
+            self.refreshDiagnostics()
+            let token = device.addCompatibilityListener {
+                [weak self] compatibility in
+                Task { @MainActor in
+                    self?.deviceCompatibility[id] = "\(compatibility)"
+                    self?.refreshDiagnostics()
+                }
+            }
+            compatibilityTokens[id] = token
+        }
+        refreshDiagnostics()
+    }
+
+    private func refreshDiagnostics() {
+        var lines: [String] = []
+        for id in deviceCompatibility.keys.sorted() {
+            if let device = wearables.deviceForIdentifier(id) {
+                lines.append(
+                    "\(device.nameOrId()): type=\(device.deviceType()) link=\(device.linkState) compat=\(deviceCompatibility[id] ?? "?")"
+                )
+            } else {
+                lines.append("\(id): unresolvable")
+            }
+        }
+        deviceDiagnostics = lines.isEmpty
+            ? "registry empty" : lines.joined(separator: "\n")
+        hasCompatibleDevice = deviceCompatibility.values.contains {
+            $0.lowercased().contains("compatible")
+                && !$0.lowercased().contains("incompatible")
         }
     }
 
@@ -86,13 +135,10 @@ final class WearablesViewModel: ObservableObject {
             // retry creation briefly before reporting no device.
             var session: DeviceSession?
             var lastThrown: Error?
-            for _ in 0..<3 {
+            for _ in 0..<2 {
                 do {
-                    let selector = AutoDeviceSelector(
-                        wearables: wearables
-                    )
                     session = try wearables.createSession(
-                        deviceSelector: selector
+                        deviceSelector: deviceSelector
                     )
                     lastThrown = nil
                     break

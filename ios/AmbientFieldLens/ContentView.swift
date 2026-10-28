@@ -95,6 +95,9 @@ struct ContentView: View {
                 )
                 .font(.caption)
                 .foregroundStyle(.secondary)
+                Text("Selector: \(wearables.selectorDevice)")
+                    .font(.caption2.monospaced())
+                    .foregroundStyle(.secondary)
                 HStack {
                     Button("Start session") {
                         Task { await wearables.startSession() }
