@@ -16,3 +16,24 @@ Test offline with fake transport including error, missing usage, truncation,
 wrong model, routing, credential redaction and duplicate-attempt prevention.
 Document usage and handoff; commit/push draft PR. No paid call just to prove a
 connection; next authorized wording task uses this tool and records its usage.
+
+## Implemented and CPU-verified
+
+Added `backend/generation/wording.py` (default Baseten exact pinned model,
+explicit Meta overflow), and `generation/import_meta.py` for historical receipt
+consolidation. All three permitted wording purposes use private exact request /
+response receipts, pre-send durable attempts, locked append-only hosted-API
+ledger, usage-based uncached estimates, no retries or automatic fallbacks.
+Unknown usage/cost remains null, and incomplete output is not published as a
+usable draft. Runtime vault only; redirects rejected; no secret/error text output.
+
+Seven new fake-transport tests pass. Full backend suite114 tests,107 pass and7
+expected private-archive skips. No scoring/research/provider tests require paid
+calls. Existing `/assist`, SAM tools, fixtures and Modal modules untouched.
+Imported22 historical attempts:7 Spark and15 SAM, all with token usage. Known
+Spark uncached estimates total$0.0393445; SAM token-rate cost remains unknown,
+not zero. Import makes no calls, is idempotent and does not modify originals.
+Modal grant ledger remains separate. No Baseten/Meta calls, model sampling,
+GPU windows or hardware activity during this implementation. Baseten configured
+but not live-tested here; next authorized wording job produces its first receipt.
+PR review required; pending visual labels remain pending.
