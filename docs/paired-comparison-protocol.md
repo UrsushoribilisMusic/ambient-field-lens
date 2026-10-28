@@ -64,3 +64,23 @@ Reservations are conservative bounds, not provider invoices or a workspace cap.
 Rates/control references: https://modal.com/pricing and
 https://modal.com/docs/guide/scale . JVP semantics:
 https://docs.pytorch.org/docs/stable/generated/torch.func.jvp.html .
+
+## Camera-conditioned round (same text pairs and folds)
+
+After the text-only smoke, attach the six real S04/S27/S28/S30 archived Reolink
+frames already inventoried on27October. Each member of a pair gets the exact
+same SHA-256-bound image. Cycle three scenes per topic; both fit topics together,
+both validation topics together, and both test topics together see all six
+scenes. This holds out **question topics**, not viewpoints or physical scenes.
+No scene is newly filmed and no image is synthetically changed.
+
+Use the native Glimmer processor, maximum256visual tokens, with CPU verification
+of pixel tensors, actual image grids, final candidate position and full token
+counts before another $4 finite window. Keep question IDs/labels/folds and the
+scoring/layer-selection rule unchanged from the text pilot. This is a separate
+camera-conditioned measurement, not a replacement of the initial result.
+Images are real inputs to both arms, not textual scene labels. Controller,
+geometry and live freshness remain outside this offline readout evaluation.
+The candidate-step/manual support target still does not validate pen detection
+or the correctness of a model-generated instruction. Author checks are by an
+agent; independent human labels/review are pending.
