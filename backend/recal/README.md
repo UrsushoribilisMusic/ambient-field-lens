@@ -112,3 +112,21 @@ trajectory extension.24 new wording pairs are scored separately from known
 controls. Report and limitations are in
 [results](../../docs/verification/heldout-wording-results-2026-10-28.md).
 The increase is in prompt coverage, not independent test topics.
+
+
+## Archived image-only seed — review pending
+
+Four pairs /eight conditions /six unique native crops are authored for paper
+position, supplied image-space footprint, visible pen contact and missing
+outline edges. Scene families remain in one fold; only one test pair, so this
+is not an accuracy/calibration benchmark. No model, SAM, GPU or filming calls.
+All human labels and reviewer fields remain null pending Miguel's review.
+
+Private form:
+`~/Movies/Ambient-Field-Lens/2026-10-28/visual-grounding-review/review.html`
+
+The form exports a digest-bound local review JSON, never an automatic score or
+GPU request. Unknown, rejected or text-only-answerable pairs must be discarded/
+replaced before scoring. The footprint target requires explicit scope review.
+[Protocol](../../docs/visual-grounding-pair-protocol-2026-10-28.md) records limits.
+Do not rerun authoring after labels freeze; changes invalidate that review.
