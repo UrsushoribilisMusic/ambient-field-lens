@@ -5,7 +5,7 @@ import json
 from pathlib import Path
 import uuid
 
-CEILING_USD = 20.0
+CEILING_USD = 100.0
 CPU_AND_BUILD_RESERVE_USD = 2.0
 WINDOW_RESERVE_USD = 4.0
 # 45m function + 5m startup + 2s scale-down, with resource *limits* below.
@@ -22,6 +22,11 @@ def reserve_window(path):
         fcntl.flock(lock, fcntl.LOCK_EX)
         ledger = json.loads(path.read_text()) if path.exists() else {
             'ceiling_usd': CEILING_USD, 'cpu_and_build_reserve_usd': CPU_AND_BUILD_RESERVE_USD, 'windows': []}
+        if ledger.get('ceiling_usd') == 20.0:
+            ledger['previous_ceiling_usd'] = 20.0
+            ledger['ceiling_usd'] = CEILING_USD
+            ledger['authorization'] = {'workspace': 'miguel-40686', 'grant_usd': 100,
+                'confirmed_by': 'Miguel, 2026-10-28 screenshot and instruction', 'expires': '2027-10-31'}
         if (ledger.get('ceiling_usd') != CEILING_USD or
             ledger.get('cpu_and_build_reserve_usd') != CPU_AND_BUILD_RESERVE_USD or
             any(w.get('reserved_usd') != WINDOW_RESERVE_USD for w in ledger['windows'])):
@@ -37,3 +42,15 @@ def reserve_window(path):
         staged.chmod(0o600)
         staged.replace(path)
         return item
+
+
+def record_result(path, reservation_id, **result):
+    """Preserve the nonrefundable charge bound, including failed attempts."""
+    path=Path(path)
+    if {'id','reserved_usd'} & result.keys():raise ValueError('Reservation is immutable')
+    with path.with_suffix('.lock').open('a+') as lock:
+        fcntl.flock(lock,fcntl.LOCK_EX)
+        ledger=json.loads(path.read_text())
+        item=next(w for w in ledger['windows'] if w['id']==reservation_id)
+        item.update(result);item['updated_utc']=datetime.datetime.now(datetime.timezone.utc).isoformat()
+        staged=path.with_suffix('.tmp');staged.write_text(json.dumps(ledger,indent=2));staged.chmod(0o600);staged.replace(path)
