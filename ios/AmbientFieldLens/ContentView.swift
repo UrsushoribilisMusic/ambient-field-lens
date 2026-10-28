@@ -178,6 +178,9 @@ struct ContentView: View {
                         .font(.caption2.monospaced())
                         .foregroundStyle(.secondary)
                 }
+                Text(assist.lastRequestLog)
+                    .font(.caption2.monospaced())
+                    .foregroundStyle(.secondary)
             }
         }
     }

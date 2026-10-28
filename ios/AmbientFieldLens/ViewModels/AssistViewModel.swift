@@ -1,6 +1,11 @@
 import Foundation
 import Network
 import UIKit
+import os
+
+private let assistLog = Logger(
+    subsystem: "art.robotross.AmbientFieldLens", category: "assist"
+)
 
 /// Talks to backend POST /assist and holds the gate verdict for the HUD.
 /// Decodes the Phase 3 evidence shape; missing optional fields fall back
@@ -30,6 +35,7 @@ final class AssistViewModel: ObservableObject {
     @Published var isAsking = false
     @Published var lastError: String?
     @Published var tcpStatus: String = "not tested"
+    @Published var lastRequestLog: String = "no request yet"
 
     private struct CheckResponse: Decodable {
         var name: String
@@ -152,13 +158,28 @@ final class AssistViewModel: ObservableObject {
             request.setValue(
                 "application/json", forHTTPHeaderField: "Content-Type"
             )
-            request.httpBody = try JSONEncoder().encode(
+            let body = try JSONEncoder().encode(
                 AssistRequest(query: query, image_jpeg_base64: imageB64)
             )
+            request.httpBody = body
+            let started = Date()
+            assistLog.debug(
+                "POST \(url.absoluteString, privacy: .public) body=\(body.count) bytes"
+            )
+            self.lastRequestLog =
+                "POST \(url.host ?? "?"):\(url.port ?? 0)/assist body=\(body.count)B…"
             let configuration = URLSessionConfiguration.default
             configuration.timeoutIntervalForRequest = 10
             let session = URLSession(configuration: configuration)
-            let (data, _) = try await session.data(for: request)
+            let (data, response) = try await session.data(for: request)
+            let status =
+                (response as? HTTPURLResponse)?.statusCode ?? -1
+            let elapsed = Date().timeIntervalSince(started)
+            assistLog.debug(
+                "response status=\(status) bytes=\(data.count) in \(elapsed, format: .fixed(precision: 2))s"
+            )
+            self.lastRequestLog =
+                "status=\(status) bytes=\(data.count) in \(String(format: "%.2f", elapsed))s"
             let response = try JSONDecoder().decode(
                 AssistResponse.self, from: data
             )
@@ -180,6 +201,11 @@ final class AssistViewModel: ObservableObject {
         } catch {
             verdict = .none
             let nsError = error as NSError
+            assistLog.error(
+                "request failed: \(nsError.domain, privacy: .public) \(nsError.code) \(error.localizedDescription, privacy: .public)"
+            )
+            self.lastRequestLog =
+                "failed [\(nsError.domain) \(nsError.code)]"
             lastError =
                 "\(error.localizedDescription) [\(nsError.domain) \(nsError.code)]"
         }
