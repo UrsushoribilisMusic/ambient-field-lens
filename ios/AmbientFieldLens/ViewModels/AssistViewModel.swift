@@ -142,7 +142,9 @@ final class AssistViewModel: ObservableObject {
             }
         } catch {
             verdict = .none
-            lastError = error.localizedDescription
+            let nsError = error as NSError
+            lastError =
+                "\(error.localizedDescription) [\(nsError.domain) \(nsError.code)]"
         }
     }
 }
