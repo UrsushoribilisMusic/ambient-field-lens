@@ -2,7 +2,26 @@
 import datetime,hashlib,json
 from pathlib import Path
 import modal
-from recal_window import app,gpu_image,weights,artifacts,checked_download
+app=modal.App('ambient-field-lens-paired-comparison')
+weights=modal.Volume.from_name('glimmer-weights',create_if_missing=False)
+artifacts=modal.Volume.from_name('afl-recal-artifacts',create_if_missing=True)
+cpu_image=modal.Image.debian_slim(python_version='3.12')
+gpu_image=(modal.Image.debian_slim(python_version='3.12')
+ .pip_install('torch==2.14.1','transformers==5.21.0','accelerate==1.15.0','safetensors',
+              'numpy==2.5.4','scikit-learn==1.9.1','scipy==1.18.1','pillow')
+ .env({'HF_HUB_OFFLINE':'1','HF_HUB_DISABLE_TELEMETRY':'1'}))
+
+@app.function(image=cpu_image,gpu=None,volumes={'/weights':weights},timeout=30,retries=0,
+ min_containers=0,max_containers=1,scaledown_window=2)
+def checked_download():
+    root=Path('/weights/Muse-Glimmer-30B')
+    report=json.loads((root/'verified-download.json').read_text())
+    if not report.get('verified') or report.get('gpu_used') or report.get('weight_bytes')!=59_553_435_272:
+        raise ValueError('Verified BF16 CPU snapshot required')
+    for item in report['files']:
+        if (root/item['path']).stat().st_size!=item['bytes']:raise ValueError('Verified snapshot changed')
+    return report
+
 
 HERE=Path(__file__).parent
 image=(gpu_image.add_local_file(HERE/'paired_analysis.py','/opt/afl/paired_analysis.py')
