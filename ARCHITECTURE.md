@@ -211,3 +211,12 @@ pairs, changed digests and capture-family fold leakage. No scoring or GPU path
 is implemented here; even validated human labels only enable later planning.
 The supplied image-space footprint is a separate reference target, not accepted
 robot registration. See `docs/visual-grounding-pair-protocol-2026-10-28.md`.
+
+## Hosted wording generation (offline authoring)
+
+[Generation routing](docs/generation-routing.md) defaults pair phrasings, step
+text and review copy to Baseten `meta-models/muse-spark-open-1026`, with explicit
+Meta overflow. Runtime vault credentials, private exact receipts and a shared
+per-call hosted-API ledger; missing usage is unknown, not zero. This authoring
+tool does not change frozen labels, scoring, SAM, `/assist` or GPU windows. SAM
+stays on Meta; probes and all internal-state readouts stay on Modal Glimmer.

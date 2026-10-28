@@ -29,3 +29,8 @@ The tests use synthetic in-memory JPEGs, fake async providers and synthetic
 geometry/evidence fixtures, never a GPU, external model API, production manual
 corpus or secret. Offline readiness tests do not establish marker registration
 or per-scene physical validation; see `docs/drawing-readiness-progress.md`.
+
+Offline wording jobs use the [Baseten generation tool](../docs/generation-routing.md),
+with explicit Meta overflow and shared API receipts. Run `python3.12 -m
+unittest discover -s tests -p test_wording_generation.py -v` for its CPU-only
+tests. It is not imported by the HTTP backend or scientific readout code.
