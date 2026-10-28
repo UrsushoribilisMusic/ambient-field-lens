@@ -52,11 +52,11 @@ class ResearchChecks(unittest.TestCase):
         self.assertFalse(result['semantic_causal_claim'])
         self.assertFalse(result['monotone_readout'])
 
-    def test_budget_reservations_survive_restart_and_refuse_fifth_window(self):
+    def test_grant_reservations_survive_restart_and_refuse_twenty_fifth_window(self):
         with tempfile.TemporaryDirectory() as tmp:
             path = Path(tmp) / 'budget.json'
-            for _ in range(4): reserve_window(path)
-            self.assertEqual(len(json.loads(path.read_text())['windows']), 4)
+            for _ in range(24): reserve_window(path)
+            self.assertEqual(len(json.loads(path.read_text())['windows']), 24)
             with self.assertRaisesRegex(ValueError, 'ceiling reached'):
                 reserve_window(path)
 
