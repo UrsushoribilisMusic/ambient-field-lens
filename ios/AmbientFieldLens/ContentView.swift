@@ -79,6 +79,9 @@ struct ContentView: View {
                 Text("Demo path: Mock glasses. Register needs the Meta AI app.")
                     .font(.caption2)
                     .foregroundStyle(.secondary)
+                Text(wearables.deviceDiagnostics)
+                    .font(.caption2.monospaced())
+                    .foregroundStyle(.secondary)
             }
         }
     }

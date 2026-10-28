@@ -10,6 +10,7 @@ import UIKit
 final class WearablesViewModel: ObservableObject {
     @Published var registrationState: RegistrationState
     @Published var deviceCount: Int = 0
+    @Published var deviceDiagnostics: String = "no data"
     @Published var sessionState: String = "Idle"
     @Published var sessionStarted = false
     @Published var streamState: String = "Stopped"
@@ -36,6 +37,18 @@ final class WearablesViewModel: ObservableObject {
         Task {
             for await deviceIds in wearables.devicesStream() {
                 self.deviceCount = deviceIds.count
+                var lines: [String] = []
+                for id in deviceIds {
+                    if let device = wearables.deviceForIdentifier(id) {
+                        lines.append(
+                            "\(device.nameOrId()): type=\(device.deviceType) link=\(device.linkState) compat=\(device.compatibility())"
+                        )
+                    } else {
+                        lines.append("\(id): unresolvable")
+                    }
+                }
+                self.deviceDiagnostics = lines.isEmpty
+                    ? "registry empty" : lines.joined(separator: "\n")
             }
         }
     }
