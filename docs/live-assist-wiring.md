@@ -22,7 +22,27 @@ live composition; otherwise the Phase 1 stub. Live image adds
   archived cross-sheet frame), grounding not reached without masks.
 - Unit tests: 128 pass, 7 expected skips (`tests/test_live_backend.py`: 7).
 
-## Unresolved (morning work, NO spend overnight)
+## Root cause found (morning, no spend)
+Framed `/assist` 502s at stage `segment` with `RuntimeError`: the
+`afl-model-api` Modal Secret contains whitespace — it was filled from a
+failed vault fetch (Infisical browser session expired overnight, so
+`agent-fetch.sh` printed its error message into the dotenv file).
+`credential()` rightly rejects it (`credential_unavailable`, fail-closed).
+Fix chain (needs Miguel, 2 min): `infisical login` (browser) ->
+verify `agent-fetch.sh MODEL_API_KEY dev` returns no whitespace ->
+`modal secret create afl-model-api --from-dotenv <600-file> --force` ->
+verify with the length-only probe (`/tmp/afl-secret-probe.py`: present,
+length ~3-digit, **no whitespace**) -> NO redeploy needed (secret resolves
+at container start) -> open fresh window -> one framed call.
+Hardening for Codi: make the refill procedure + whitespace probe a doc,
+and consider a deploy-time secret-shape check.
+
+## iOS companion (built + installed 2026-10-29)
+`AssistViewModel`: frames downscaled to <=1600px longest edge before send
+(full-res JPEGs hit the 422 contract limit); timeouts 10s -> 180s for the
+live path. Builds clean, installed on the 15 Pro Max. Not yet tapped.
+
+## Unresolved (needs the key above, then minutes)
 Full-frame `/assist` returns **502** after ~7-21s. Fixed so far:
 `create_if_none` -> `create_if_missing`, `Dict[...] = ...` -> `.put()`.
 Hypotheses ranked: (1) container crashing mid-SAM (native parser) rather

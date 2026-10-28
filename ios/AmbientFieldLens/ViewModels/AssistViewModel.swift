@@ -65,6 +65,30 @@ final class AssistViewModel: ObservableObject {
         var receipt: ReceiptResponse?
     }
 
+    /// Downscale a camera frame to fit the server's wire contract
+    /// (<= 4 MPixels, <= 2 MB JPEG). Full-res phone frames are rejected
+    /// with 422, so this runs before every ask with a frame.
+    static func contractFrameJPEG(_ frame: UIImage) -> Data? {
+        let maxDimension: CGFloat = 1600
+        let size = frame.size
+        let longest = max(size.width, size.height)
+        let scaled: UIImage
+        if longest > maxDimension, let cg = frame.cgImage {
+            let ratio = maxDimension / longest
+            let target = CGSize(
+                width: floor(size.width * ratio),
+                height: floor(size.height * ratio)
+            )
+            UIGraphicsBeginImageContextWithOptions(target, true, 1.0)
+            UIImage(cgImage: cg).draw(in: CGRect(origin: .zero, size: target))
+            scaled = UIGraphicsGetImageFromCurrentImageContext() ?? frame
+            UIGraphicsEndImageContext()
+        } else {
+            scaled = frame
+        }
+        return scaled.jpegData(compressionQuality: 0.7)
+    }
+
     private struct AssistRequest: Encodable {
         var query: String
         var image_jpeg_base64: String
@@ -148,13 +172,17 @@ final class AssistViewModel: ObservableObject {
         defer { isAsking = false }
 
         var imageB64 = ""
-        if let data = frame?.jpegData(compressionQuality: 0.7) {
+        if let frame = frame,
+            let data = Self.contractFrameJPEG(frame)
+        {
             imageB64 = data.base64EncodedString()
         }
         do {
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
-            request.timeoutInterval = 10
+            // Live provider path (retrieval + SAM + Glimmer) can take a
+            // minute warm and several minutes cold. Fail loudly, not early.
+            request.timeoutInterval = 180
             request.setValue(
                 "application/json", forHTTPHeaderField: "Content-Type"
             )
@@ -169,7 +197,7 @@ final class AssistViewModel: ObservableObject {
             self.lastRequestLog =
                 "POST \(url.host ?? "?"):\(url.port ?? 0)/assist body=\(body.count)B…"
             let configuration = URLSessionConfiguration.default
-            configuration.timeoutIntervalForRequest = 10
+            configuration.timeoutIntervalForRequest = 180
             let session = URLSession(configuration: configuration)
             let (data, response) = try await session.data(for: request)
             let status =
