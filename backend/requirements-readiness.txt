@@ -1,0 +1,4 @@
+# CPU-only offline geometry; independent of the live /assist service.
+numpy==2.5.4
+Pillow==13.0.0
+meta-sam-parser==0.1.0

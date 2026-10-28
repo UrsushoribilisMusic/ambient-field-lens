@@ -1,0 +1,1161 @@
+{
+  "scope": "archival image components, not live readiness or model accuracy benchmark",
+  "network_calls": 0,
+  "gpu_used": false,
+  "results": [
+    {
+      "schema_version": "drawing-pipeline-replay-v1",
+      "mode": "archival_replay",
+      "checks": [
+        {
+          "name": "paper_present",
+          "state": "unknown",
+          "reason": "Frame identity or freshness is invalid.",
+          "correction": "Capture a fresh identified frame and re-check the setup."
+        },
+        {
+          "name": "pen_holder_observable_presence",
+          "state": "unknown",
+          "reason": "Frame identity or freshness is invalid.",
+          "correction": "Capture a fresh identified frame and re-check the setup."
+        },
+        {
+          "name": "pen_fitted",
+          "state": "unknown",
+          "reason": "Frame identity or freshness is invalid.",
+          "correction": "Capture a fresh identified frame and re-check the setup."
+        },
+        {
+          "name": "footprint_inside_paper",
+          "state": "unknown",
+          "reason": "Frame identity or freshness is invalid.",
+          "correction": "Capture a fresh identified frame and re-check the setup."
+        },
+        {
+          "name": "calibration_ready",
+          "state": "unknown",
+          "reason": "Frame identity or freshness is invalid.",
+          "correction": "Capture a fresh identified frame and re-check the setup."
+        },
+        {
+          "name": "approved_current_step",
+          "state": "unknown",
+          "reason": "Frame identity or freshness is invalid.",
+          "correction": "Capture a fresh identified frame and re-check the setup."
+        }
+      ],
+      "evidence_errors": [],
+      "provenance": [
+        {
+          "provider": "meta-model-api",
+          "model": "muse-spark-1.3",
+          "response_id": "resp_6ae10f0dc35e581e243b4fad",
+          "frame_sha256": "3dbe93903ceca471323035fb78ec70eb5c5e6863e5bd1e5de72b125a706b7a89",
+          "width": 896,
+          "height": 512,
+          "camera": "reolink-896x512-intrinsics-unknown",
+          "rig": "tripod-F-unmeasured",
+          "surface_pose": "archived-unregistered-surface",
+          "tool": "ross-archived-pen",
+          "controller_session": "",
+          "frame_captured_at": 1793100041.004414,
+          "capture_clock_verified": false,
+          "request_started_at": 1793134346.509078,
+          "response_created_at": 1793134349.0,
+          "response_completed_at": 1793134349.0,
+          "ingested_at": 1793134477.0,
+          "mode": "archival_replay",
+          "receipt_sha256": "c649fabe224e935b76472c75453bd472af322ebac94fcd7da7d8215a89447e6f",
+          "request_sha256": "1c6de075644226ca8ef9928063cf95b5ace2808f756c368e3949fb572a34ea1e",
+          "request_digest_basis": "captured_request_bytes",
+          "response_sha256": "de36d0cfae06457470f19090cfa8c8297c6c0fdd0c4384028b31bce2296611b4",
+          "prompt_sha256": "bffb14261191832835d2af5a3299bee6943803474969a10130f67d5ff4df13cc",
+          "semantic_origin": "structured_model_observation",
+          "object_id": "",
+          "role": "",
+          "parser": "drawing-observations-v1",
+          "linkage": "Saved exact request/response and original frame digest; capture clock is clip-start plus offset, not sensor verified.",
+          "coordinate_space": "native_full_frame_pixels",
+          "spatial_transform": "identity_only",
+          "mask_encoding": "",
+          "object_bounds": null
+        },
+        {
+          "provider": "meta-model-api",
+          "model": "sam-3.1",
+          "response_id": "resp_6ae10f8c0772a2739eea4eaf",
+          "frame_sha256": "3dbe93903ceca471323035fb78ec70eb5c5e6863e5bd1e5de72b125a706b7a89",
+          "width": 896,
+          "height": 512,
+          "camera": "reolink-896x512-intrinsics-unknown",
+          "rig": "tripod-F-unmeasured",
+          "surface_pose": "archived-unregistered-surface",
+          "tool": "ross-archived-pen",
+          "controller_session": "",
+          "frame_captured_at": 1793100041.004414,
+          "capture_clock_verified": false,
+          "request_started_at": 1793134475.221026,
+          "response_created_at": 1793134476.0,
+          "response_completed_at": 1793134476.0,
+          "ingested_at": 1793134477.0,
+          "mode": "archival_replay",
+          "receipt_sha256": "a47a130da4a6ae6d5fc724f3eeeb4b9d53587dca8e34dfa93ebff6fc9e77e970",
+          "request_sha256": "df574dbc3af6825263cabd3374a024091cc662d58eee0cb65ba1431fb8a40925",
+          "request_digest_basis": "captured_request_bytes",
+          "response_sha256": "9ca0b917edc9a76c228e838a2a15fb1c79451ccda7325a4e6c638d6196d03a2a",
+          "prompt_sha256": "31beb481e12a99174c3015a9ff5174e79b36eddaed2fa329fa341dcf9ad48215",
+          "semantic_origin": "model_concept",
+          "object_id": "",
+          "role": "",
+          "parser": "meta-sam-parser==0.1.0",
+          "linkage": "Exact saved Meta request/stream and original frame hash; archived scene clock.",
+          "coordinate_space": "native_full_frame_pixels",
+          "spatial_transform": "identity_only",
+          "mask_encoding": "one_bit",
+          "object_bounds": null
+        },
+        {
+          "provider": "meta-model-api",
+          "model": "sam-3.1",
+          "response_id": "resp_6ae10f8d90e937afdccc4cf4",
+          "frame_sha256": "3dbe93903ceca471323035fb78ec70eb5c5e6863e5bd1e5de72b125a706b7a89",
+          "width": 896,
+          "height": 512,
+          "camera": "reolink-896x512-intrinsics-unknown",
+          "rig": "tripod-F-unmeasured",
+          "surface_pose": "archived-unregistered-surface",
+          "tool": "ross-archived-pen",
+          "controller_session": "",
+          "frame_captured_at": 1793100041.004414,
+          "capture_clock_verified": false,
+          "request_started_at": 1793134476.641538,
+          "response_created_at": 1793134477.0,
+          "response_completed_at": 1793134477.0,
+          "ingested_at": 1793134477.0,
+          "mode": "archival_replay",
+          "receipt_sha256": "68a154fa866fd23dbfa90cfe9c869b53a0a3ab22a9d39266223fb7991d5615bc",
+          "request_sha256": "cdb89642f257144240422d626cd46125a3b02c3eff3d482ad03f7cb9c631260e",
+          "request_digest_basis": "captured_request_bytes",
+          "response_sha256": "7fe8eb72bf9e1e39b944c42299e902ffd03d67cef2228706938f69b4a6a90665",
+          "prompt_sha256": "e21a6b0cb193057e06ac16b813443b3e6abae0db22762c6956a78ea049453058",
+          "semantic_origin": "model_concept",
+          "object_id": "",
+          "role": "",
+          "parser": "meta-sam-parser==0.1.0",
+          "linkage": "Exact saved Meta request/stream and original frame hash; archived scene clock.",
+          "coordinate_space": "native_full_frame_pixels",
+          "spatial_transform": "identity_only",
+          "mask_encoding": "one_bit",
+          "object_bounds": null
+        }
+      ],
+      "evidence_summary": {
+        "mask_pixels": {
+          "pen": [
+            1318,
+            742
+          ]
+        },
+        "observation_roles": [
+          "holder",
+          "pen"
+        ],
+        "fitment_observation_count": 1,
+        "aggregate_inputs_rejected": false,
+        "ambiguous_mask_roles": [
+          "pen"
+        ]
+      },
+      "archival_image_component_checks": [
+        {
+          "name": "paper_present",
+          "state": "unknown",
+          "reason": "No current-frame mask.",
+          "correction": "Show the paper clearly."
+        },
+        {
+          "name": "pen_holder_observable_presence",
+          "state": "pass",
+          "reason": "Pen and holder both observed clearly; mechanical fitment not established.",
+          "correction": ""
+        },
+        {
+          "name": "pen_fitted",
+          "state": "unknown",
+          "reason": "No current-frame mask.",
+          "correction": "Show the intended pen and its holder clearly."
+        }
+      ],
+      "component_checks_are_live_readiness": false,
+      "verdict": "amber",
+      "step": null,
+      "live_ready": false,
+      "grounding_validated": false,
+      "network_calls": 0,
+      "gpu_used": false,
+      "frame_sha256": "3dbe93903ceca471323035fb78ec70eb5c5e6863e5bd1e5de72b125a706b7a89",
+      "historical_evaluation_time": 1793134477.0,
+      "asset": "2026-10-27/drawing-readiness/S27-clear-before-t030.jpg"
+    },
+    {
+      "schema_version": "drawing-pipeline-replay-v1",
+      "mode": "archival_replay",
+      "checks": [
+        {
+          "name": "paper_present",
+          "state": "unknown",
+          "reason": "Frame identity or freshness is invalid.",
+          "correction": "Capture a fresh identified frame and re-check the setup."
+        },
+        {
+          "name": "pen_holder_observable_presence",
+          "state": "unknown",
+          "reason": "Frame identity or freshness is invalid.",
+          "correction": "Capture a fresh identified frame and re-check the setup."
+        },
+        {
+          "name": "pen_fitted",
+          "state": "unknown",
+          "reason": "Frame identity or freshness is invalid.",
+          "correction": "Capture a fresh identified frame and re-check the setup."
+        },
+        {
+          "name": "footprint_inside_paper",
+          "state": "unknown",
+          "reason": "Frame identity or freshness is invalid.",
+          "correction": "Capture a fresh identified frame and re-check the setup."
+        },
+        {
+          "name": "calibration_ready",
+          "state": "unknown",
+          "reason": "Frame identity or freshness is invalid.",
+          "correction": "Capture a fresh identified frame and re-check the setup."
+        },
+        {
+          "name": "approved_current_step",
+          "state": "unknown",
+          "reason": "Frame identity or freshness is invalid.",
+          "correction": "Capture a fresh identified frame and re-check the setup."
+        }
+      ],
+      "evidence_errors": [],
+      "provenance": [
+        {
+          "provider": "meta-model-api",
+          "model": "muse-spark-1.3",
+          "response_id": "resp_6ae10f11e68f848878ab495b",
+          "frame_sha256": "4b0f29d2e7eb38dbbad173f62cf580b9fb5ed42bcfe1d82ab7fd4645f0076db3",
+          "width": 896,
+          "height": 512,
+          "camera": "reolink-896x512-intrinsics-unknown",
+          "rig": "tripod-F-unmeasured",
+          "surface_pose": "archived-unregistered-surface",
+          "tool": "ross-archived-pen",
+          "controller_session": "",
+          "frame_captured_at": 1793100091.004414,
+          "capture_clock_verified": false,
+          "request_started_at": 1793134349.892271,
+          "response_created_at": 1793134353.0,
+          "response_completed_at": 1793134353.0,
+          "ingested_at": 1793134480.0,
+          "mode": "archival_replay",
+          "receipt_sha256": "0ccfc20177788b5b9cb09ff7d583a2d46e8a9bcb0ee55004b339d6b2668bc74e",
+          "request_sha256": "7296fba911917a4fda39e2f29ffd31ed008f21d376e3a5941d977f78b982e5e9",
+          "request_digest_basis": "captured_request_bytes",
+          "response_sha256": "6c064daae3e944bae37980182d93ce2ad91112f81b85605e5a1132ca455d5611",
+          "prompt_sha256": "bffb14261191832835d2af5a3299bee6943803474969a10130f67d5ff4df13cc",
+          "semantic_origin": "structured_model_observation",
+          "object_id": "",
+          "role": "",
+          "parser": "drawing-observations-v1",
+          "linkage": "Saved exact request/response and original frame digest; capture clock is clip-start plus offset, not sensor verified.",
+          "coordinate_space": "native_full_frame_pixels",
+          "spatial_transform": "identity_only",
+          "mask_encoding": "",
+          "object_bounds": null
+        },
+        {
+          "provider": "meta-model-api",
+          "model": "sam-3.1",
+          "response_id": "resp_6ae10f8e451283a8c6834191",
+          "frame_sha256": "4b0f29d2e7eb38dbbad173f62cf580b9fb5ed42bcfe1d82ab7fd4645f0076db3",
+          "width": 896,
+          "height": 512,
+          "camera": "reolink-896x512-intrinsics-unknown",
+          "rig": "tripod-F-unmeasured",
+          "surface_pose": "archived-unregistered-surface",
+          "tool": "ross-archived-pen",
+          "controller_session": "",
+          "frame_captured_at": 1793100091.004414,
+          "capture_clock_verified": false,
+          "request_started_at": 1793134477.751315,
+          "response_created_at": 1793134478.0,
+          "response_completed_at": 1793134478.0,
+          "ingested_at": 1793134480.0,
+          "mode": "archival_replay",
+          "receipt_sha256": "95a48c6274460c075c709926ce3fba5da3109c0545a908b6a06ebdf82344855a",
+          "request_sha256": "c78243b97f1831f94c0a39591f6648e4005d2a06249d0bcd7b2952b9eb28a7c2",
+          "request_digest_basis": "captured_request_bytes",
+          "response_sha256": "8e1c68c707b1b12f0fc67c86f44683f66b903aee9f882e5964bb659f0c344325",
+          "prompt_sha256": "31beb481e12a99174c3015a9ff5174e79b36eddaed2fa329fa341dcf9ad48215",
+          "semantic_origin": "model_concept",
+          "object_id": "",
+          "role": "",
+          "parser": "meta-sam-parser==0.1.0",
+          "linkage": "Exact saved Meta request/stream and original frame hash; archived scene clock.",
+          "coordinate_space": "native_full_frame_pixels",
+          "spatial_transform": "identity_only",
+          "mask_encoding": "one_bit",
+          "object_bounds": null
+        },
+        {
+          "provider": "meta-model-api",
+          "model": "sam-3.1",
+          "response_id": "resp_6ae10f9021099f96f8164f12",
+          "frame_sha256": "4b0f29d2e7eb38dbbad173f62cf580b9fb5ed42bcfe1d82ab7fd4645f0076db3",
+          "width": 896,
+          "height": 512,
+          "camera": "reolink-896x512-intrinsics-unknown",
+          "rig": "tripod-F-unmeasured",
+          "surface_pose": "archived-unregistered-surface",
+          "tool": "ross-archived-pen",
+          "controller_session": "",
+          "frame_captured_at": 1793100091.004414,
+          "capture_clock_verified": false,
+          "request_started_at": 1793134479.426476,
+          "response_created_at": 1793134480.0,
+          "response_completed_at": 1793134480.0,
+          "ingested_at": 1793134480.0,
+          "mode": "archival_replay",
+          "receipt_sha256": "3b403098c1a02b682f956284ea95bc8dafe765dd781cedbdaf82d765c6c69928",
+          "request_sha256": "831a96647e98ea61a7f984dc477d76b421f03cd8606d042ea983b3ec58bd2f05",
+          "request_digest_basis": "captured_request_bytes",
+          "response_sha256": "616859cb2447b5be3e7085e03c78e4a7fca337d1b86794fd4b660ec46aeb5153",
+          "prompt_sha256": "e21a6b0cb193057e06ac16b813443b3e6abae0db22762c6956a78ea049453058",
+          "semantic_origin": "model_concept",
+          "object_id": "",
+          "role": "",
+          "parser": "meta-sam-parser==0.1.0",
+          "linkage": "Exact saved Meta request/stream and original frame hash; archived scene clock.",
+          "coordinate_space": "native_full_frame_pixels",
+          "spatial_transform": "identity_only",
+          "mask_encoding": "one_bit",
+          "object_bounds": null
+        }
+      ],
+      "evidence_summary": {
+        "mask_pixels": {
+          "pen": [
+            1306
+          ]
+        },
+        "observation_roles": [
+          "holder",
+          "pen"
+        ],
+        "fitment_observation_count": 1,
+        "aggregate_inputs_rejected": false,
+        "ambiguous_mask_roles": []
+      },
+      "archival_image_component_checks": [
+        {
+          "name": "paper_present",
+          "state": "unknown",
+          "reason": "No current-frame mask.",
+          "correction": "Show the paper clearly."
+        },
+        {
+          "name": "pen_holder_observable_presence",
+          "state": "unknown",
+          "reason": "holder: visibility or presence unresolved",
+          "correction": "Show the pen and holder clearly; fit the pen if it is absent."
+        },
+        {
+          "name": "pen_fitted",
+          "state": "unknown",
+          "reason": "A pen mask does not establish fitment.",
+          "correction": "Fit the intended pen in the holder and show the fitment clearly."
+        }
+      ],
+      "component_checks_are_live_readiness": false,
+      "verdict": "amber",
+      "step": null,
+      "live_ready": false,
+      "grounding_validated": false,
+      "network_calls": 0,
+      "gpu_used": false,
+      "frame_sha256": "4b0f29d2e7eb38dbbad173f62cf580b9fb5ed42bcfe1d82ab7fd4645f0076db3",
+      "historical_evaluation_time": 1793134480.0,
+      "asset": "2026-10-27/drawing-readiness/S27-occluded-t080.jpg"
+    },
+    {
+      "schema_version": "drawing-pipeline-replay-v1",
+      "mode": "archival_replay",
+      "checks": [
+        {
+          "name": "paper_present",
+          "state": "unknown",
+          "reason": "Frame identity or freshness is invalid.",
+          "correction": "Capture a fresh identified frame and re-check the setup."
+        },
+        {
+          "name": "pen_holder_observable_presence",
+          "state": "unknown",
+          "reason": "Frame identity or freshness is invalid.",
+          "correction": "Capture a fresh identified frame and re-check the setup."
+        },
+        {
+          "name": "pen_fitted",
+          "state": "unknown",
+          "reason": "Frame identity or freshness is invalid.",
+          "correction": "Capture a fresh identified frame and re-check the setup."
+        },
+        {
+          "name": "footprint_inside_paper",
+          "state": "unknown",
+          "reason": "Frame identity or freshness is invalid.",
+          "correction": "Capture a fresh identified frame and re-check the setup."
+        },
+        {
+          "name": "calibration_ready",
+          "state": "unknown",
+          "reason": "Frame identity or freshness is invalid.",
+          "correction": "Capture a fresh identified frame and re-check the setup."
+        },
+        {
+          "name": "approved_current_step",
+          "state": "unknown",
+          "reason": "Frame identity or freshness is invalid.",
+          "correction": "Capture a fresh identified frame and re-check the setup."
+        }
+      ],
+      "evidence_errors": [],
+      "provenance": [
+        {
+          "provider": "meta-model-api",
+          "model": "muse-spark-1.3",
+          "response_id": "resp_6ae10f14eb8fbe73c2924c8b",
+          "frame_sha256": "4907a0ecffa2cd4a5a9cacf767e88dd5c138d5d0657499aa101b958028cc7701",
+          "width": 896,
+          "height": 512,
+          "camera": "reolink-896x512-intrinsics-unknown",
+          "rig": "tripod-F-unmeasured",
+          "surface_pose": "archived-unregistered-surface",
+          "tool": "ross-archived-pen",
+          "controller_session": "",
+          "frame_captured_at": 1793100111.004414,
+          "capture_clock_verified": false,
+          "request_started_at": 1793134353.762965,
+          "response_created_at": 1793134356.0,
+          "response_completed_at": 1793134356.0,
+          "ingested_at": 1793134482.0,
+          "mode": "archival_replay",
+          "receipt_sha256": "47e43d9eb24748c8e5cfd4765759ab78be4dacc63b6819320bc7127e4794e9e6",
+          "request_sha256": "7a573d6c6a070332b1eba616db7d8760a2482bba7fbd49061a8ec9c24ef460fe",
+          "request_digest_basis": "captured_request_bytes",
+          "response_sha256": "31fdd28f29d522cf08df064396cc1757dc797aafdb187aaabbb039222b404934",
+          "prompt_sha256": "bffb14261191832835d2af5a3299bee6943803474969a10130f67d5ff4df13cc",
+          "semantic_origin": "structured_model_observation",
+          "object_id": "",
+          "role": "",
+          "parser": "drawing-observations-v1",
+          "linkage": "Saved exact request/response and original frame digest; capture clock is clip-start plus offset, not sensor verified.",
+          "coordinate_space": "native_full_frame_pixels",
+          "spatial_transform": "identity_only",
+          "mask_encoding": "",
+          "object_bounds": null
+        },
+        {
+          "provider": "meta-model-api",
+          "model": "sam-3.1",
+          "response_id": "resp_6ae10f9185239687a5e44640",
+          "frame_sha256": "4907a0ecffa2cd4a5a9cacf767e88dd5c138d5d0657499aa101b958028cc7701",
+          "width": 896,
+          "height": 512,
+          "camera": "reolink-896x512-intrinsics-unknown",
+          "rig": "tripod-F-unmeasured",
+          "surface_pose": "archived-unregistered-surface",
+          "tool": "ross-archived-pen",
+          "controller_session": "",
+          "frame_captured_at": 1793100111.004414,
+          "capture_clock_verified": false,
+          "request_started_at": 1793134480.891151,
+          "response_created_at": 1793134481.0,
+          "response_completed_at": 1793134481.0,
+          "ingested_at": 1793134482.0,
+          "mode": "archival_replay",
+          "receipt_sha256": "450acc1a37fc9d675ec08229fbaff432bde5c69a0ba1a2e0a5e74a18794a12cd",
+          "request_sha256": "f555ef719e874c31f96801a1ec709979913364cfd586b9dbeeb327f0d8ab19ea",
+          "request_digest_basis": "captured_request_bytes",
+          "response_sha256": "8b924d7635f6a75cb129a2cb15722e58c29addf909499171d7dc2557a999e812",
+          "prompt_sha256": "31beb481e12a99174c3015a9ff5174e79b36eddaed2fa329fa341dcf9ad48215",
+          "semantic_origin": "model_concept",
+          "object_id": "",
+          "role": "",
+          "parser": "meta-sam-parser==0.1.0",
+          "linkage": "Exact saved Meta request/stream and original frame hash; archived scene clock.",
+          "coordinate_space": "native_full_frame_pixels",
+          "spatial_transform": "identity_only",
+          "mask_encoding": "one_bit",
+          "object_bounds": null
+        },
+        {
+          "provider": "meta-model-api",
+          "model": "sam-3.1",
+          "response_id": "resp_6ae10f92788fb1f33d2c4569",
+          "frame_sha256": "4907a0ecffa2cd4a5a9cacf767e88dd5c138d5d0657499aa101b958028cc7701",
+          "width": 896,
+          "height": 512,
+          "camera": "reolink-896x512-intrinsics-unknown",
+          "rig": "tripod-F-unmeasured",
+          "surface_pose": "archived-unregistered-surface",
+          "tool": "ross-archived-pen",
+          "controller_session": "",
+          "frame_captured_at": 1793100111.004414,
+          "capture_clock_verified": false,
+          "request_started_at": 1793134481.41785,
+          "response_created_at": 1793134482.0,
+          "response_completed_at": 1793134482.0,
+          "ingested_at": 1793134482.0,
+          "mode": "archival_replay",
+          "receipt_sha256": "71a5fa2f1a4ab1dc4bc027b7f18de403d6bc91f1e0058235b515b56ac7a09d3f",
+          "request_sha256": "20b9482e4cbc11b1084ace9d7e0a198c11ad936b3a1044915f5df6380a1de1f0",
+          "request_digest_basis": "captured_request_bytes",
+          "response_sha256": "0f70cb5350db77245e24c5f411872d88aa5e19e57db8141bd6a694d0e972aa5a",
+          "prompt_sha256": "e21a6b0cb193057e06ac16b813443b3e6abae0db22762c6956a78ea049453058",
+          "semantic_origin": "model_concept",
+          "object_id": "",
+          "role": "",
+          "parser": "meta-sam-parser==0.1.0",
+          "linkage": "Exact saved Meta request/stream and original frame hash; archived scene clock.",
+          "coordinate_space": "native_full_frame_pixels",
+          "spatial_transform": "identity_only",
+          "mask_encoding": "one_bit",
+          "object_bounds": null
+        }
+      ],
+      "evidence_summary": {
+        "mask_pixels": {
+          "pen": [
+            1322,
+            1445
+          ]
+        },
+        "observation_roles": [
+          "holder",
+          "pen"
+        ],
+        "fitment_observation_count": 1,
+        "aggregate_inputs_rejected": false,
+        "ambiguous_mask_roles": [
+          "pen"
+        ]
+      },
+      "archival_image_component_checks": [
+        {
+          "name": "paper_present",
+          "state": "unknown",
+          "reason": "No current-frame mask.",
+          "correction": "Show the paper clearly."
+        },
+        {
+          "name": "pen_holder_observable_presence",
+          "state": "pass",
+          "reason": "Pen and holder both observed clearly; mechanical fitment not established.",
+          "correction": ""
+        },
+        {
+          "name": "pen_fitted",
+          "state": "unknown",
+          "reason": "No current-frame mask.",
+          "correction": "Show the intended pen and its holder clearly."
+        }
+      ],
+      "component_checks_are_live_readiness": false,
+      "verdict": "amber",
+      "step": null,
+      "live_ready": false,
+      "grounding_validated": false,
+      "network_calls": 0,
+      "gpu_used": false,
+      "frame_sha256": "4907a0ecffa2cd4a5a9cacf767e88dd5c138d5d0657499aa101b958028cc7701",
+      "historical_evaluation_time": 1793134482.0,
+      "asset": "2026-10-27/drawing-readiness/S27-clear-after-t100.jpg"
+    },
+    {
+      "schema_version": "drawing-pipeline-replay-v1",
+      "mode": "archival_replay",
+      "checks": [
+        {
+          "name": "paper_present",
+          "state": "unknown",
+          "reason": "Frame identity or freshness is invalid.",
+          "correction": "Capture a fresh identified frame and re-check the setup."
+        },
+        {
+          "name": "pen_holder_observable_presence",
+          "state": "unknown",
+          "reason": "Frame identity or freshness is invalid.",
+          "correction": "Capture a fresh identified frame and re-check the setup."
+        },
+        {
+          "name": "pen_fitted",
+          "state": "unknown",
+          "reason": "Frame identity or freshness is invalid.",
+          "correction": "Capture a fresh identified frame and re-check the setup."
+        },
+        {
+          "name": "footprint_inside_paper",
+          "state": "unknown",
+          "reason": "Frame identity or freshness is invalid.",
+          "correction": "Capture a fresh identified frame and re-check the setup."
+        },
+        {
+          "name": "calibration_ready",
+          "state": "unknown",
+          "reason": "Frame identity or freshness is invalid.",
+          "correction": "Capture a fresh identified frame and re-check the setup."
+        },
+        {
+          "name": "approved_current_step",
+          "state": "unknown",
+          "reason": "Frame identity or freshness is invalid.",
+          "correction": "Capture a fresh identified frame and re-check the setup."
+        }
+      ],
+      "evidence_errors": [],
+      "provenance": [
+        {
+          "provider": "meta-model-api",
+          "model": "muse-spark-1.3",
+          "response_id": "resp_6ae10f17e1ffb976402041ae",
+          "frame_sha256": "8d43878f1b1d9b5ab9cca1e27b236b86870b0bae9ac91e7f9c5765702b06f75b",
+          "width": 896,
+          "height": 512,
+          "camera": "reolink-896x512-intrinsics-unknown",
+          "rig": "tripod-F-unmeasured",
+          "surface_pose": "archived-unregistered-surface",
+          "tool": "ross-archived-pen",
+          "controller_session": "",
+          "frame_captured_at": 1793116590.66298,
+          "capture_clock_verified": false,
+          "request_started_at": 1793134356.710541,
+          "response_created_at": 1793134359.0,
+          "response_completed_at": 1793134359.0,
+          "ingested_at": 1793134484.0,
+          "mode": "archival_replay",
+          "receipt_sha256": "4af6536612e3c469f781c5b18c83a8af05c4f9a2b0bf2c1c7267b5b5d43d0bec",
+          "request_sha256": "565db3121ed2b1f921deee536f7fe2a4543e51265c08b0f572b4a8ce0aff08c6",
+          "request_digest_basis": "captured_request_bytes",
+          "response_sha256": "a9597313fae652b549a14d18ab4676b8e65a00033ee4cd4dc3e9806425c44c86",
+          "prompt_sha256": "bffb14261191832835d2af5a3299bee6943803474969a10130f67d5ff4df13cc",
+          "semantic_origin": "structured_model_observation",
+          "object_id": "",
+          "role": "",
+          "parser": "drawing-observations-v1",
+          "linkage": "Saved exact request/response and original frame digest; capture clock is clip-start plus offset, not sensor verified.",
+          "coordinate_space": "native_full_frame_pixels",
+          "spatial_transform": "identity_only",
+          "mask_encoding": "",
+          "object_bounds": null
+        },
+        {
+          "provider": "meta-model-api",
+          "model": "sam-3.1",
+          "response_id": "resp_6ae10f93f3c3ac3c44704b11",
+          "frame_sha256": "8d43878f1b1d9b5ab9cca1e27b236b86870b0bae9ac91e7f9c5765702b06f75b",
+          "width": 896,
+          "height": 512,
+          "camera": "reolink-896x512-intrinsics-unknown",
+          "rig": "tripod-F-unmeasured",
+          "surface_pose": "archived-unregistered-surface",
+          "tool": "ross-archived-pen",
+          "controller_session": "",
+          "frame_captured_at": 1793116590.66298,
+          "capture_clock_verified": false,
+          "request_started_at": 1793134483.088849,
+          "response_created_at": 1793134483.0,
+          "response_completed_at": 1793134483.0,
+          "ingested_at": 1793134484.0,
+          "mode": "archival_replay",
+          "receipt_sha256": "47893713580df7fa62c229a4417ea34c8a4edbc4624f3611dd2a077376039974",
+          "request_sha256": "72a5da33649c302e19fd22ad6eb347607be3797fe167f367deadcf59fcbde201",
+          "request_digest_basis": "captured_request_bytes",
+          "response_sha256": "92b47601e4da49ab7c2611db1b866a906f9cf11e786c36a4c69ea3bdd47981b3",
+          "prompt_sha256": "31beb481e12a99174c3015a9ff5174e79b36eddaed2fa329fa341dcf9ad48215",
+          "semantic_origin": "model_concept",
+          "object_id": "",
+          "role": "",
+          "parser": "meta-sam-parser==0.1.0",
+          "linkage": "Exact saved Meta request/stream and original frame hash; archived scene clock.",
+          "coordinate_space": "native_full_frame_pixels",
+          "spatial_transform": "identity_only",
+          "mask_encoding": "one_bit",
+          "object_bounds": null
+        },
+        {
+          "provider": "meta-model-api",
+          "model": "sam-3.1",
+          "response_id": "resp_6ae10f947b6382c925ed461b",
+          "frame_sha256": "8d43878f1b1d9b5ab9cca1e27b236b86870b0bae9ac91e7f9c5765702b06f75b",
+          "width": 896,
+          "height": 512,
+          "camera": "reolink-896x512-intrinsics-unknown",
+          "rig": "tripod-F-unmeasured",
+          "surface_pose": "archived-unregistered-surface",
+          "tool": "ross-archived-pen",
+          "controller_session": "",
+          "frame_captured_at": 1793116590.66298,
+          "capture_clock_verified": false,
+          "request_started_at": 1793134483.989769,
+          "response_created_at": 1793134484.0,
+          "response_completed_at": 1793134484.0,
+          "ingested_at": 1793134484.0,
+          "mode": "archival_replay",
+          "receipt_sha256": "73866deddc493f4d0383a7f4eee8cc68b7ade5191bc1be9244922ad68ce89e5c",
+          "request_sha256": "d096a6f1db1d086aedcda317669a65f15b30f6edf27bc59ab7956b1a81f1d8ca",
+          "request_digest_basis": "captured_request_bytes",
+          "response_sha256": "4cfd7b62bd71680bfe0f2a554452f49d6b8098221bf15d839ebea7747d6ee313",
+          "prompt_sha256": "e21a6b0cb193057e06ac16b813443b3e6abae0db22762c6956a78ea049453058",
+          "semantic_origin": "model_concept",
+          "object_id": "",
+          "role": "",
+          "parser": "meta-sam-parser==0.1.0",
+          "linkage": "Exact saved Meta request/stream and original frame hash; archived scene clock.",
+          "coordinate_space": "native_full_frame_pixels",
+          "spatial_transform": "identity_only",
+          "mask_encoding": "one_bit",
+          "object_bounds": null
+        }
+      ],
+      "evidence_summary": {
+        "mask_pixels": {
+          "pen": [
+            1356,
+            1461
+          ]
+        },
+        "observation_roles": [
+          "holder",
+          "pen"
+        ],
+        "fitment_observation_count": 1,
+        "aggregate_inputs_rejected": false,
+        "ambiguous_mask_roles": [
+          "pen"
+        ]
+      },
+      "archival_image_component_checks": [
+        {
+          "name": "paper_present",
+          "state": "unknown",
+          "reason": "No current-frame mask.",
+          "correction": "Show the paper clearly."
+        },
+        {
+          "name": "pen_holder_observable_presence",
+          "state": "pass",
+          "reason": "Pen and holder both observed clearly; mechanical fitment not established.",
+          "correction": ""
+        },
+        {
+          "name": "pen_fitted",
+          "state": "unknown",
+          "reason": "No current-frame mask.",
+          "correction": "Show the intended pen and its holder clearly."
+        }
+      ],
+      "component_checks_are_live_readiness": false,
+      "verdict": "amber",
+      "step": null,
+      "live_ready": false,
+      "grounding_validated": false,
+      "network_calls": 0,
+      "gpu_used": false,
+      "frame_sha256": "8d43878f1b1d9b5ab9cca1e27b236b86870b0bae9ac91e7f9c5765702b06f75b",
+      "historical_evaluation_time": 1793134484.0,
+      "asset": "2026-10-27/drawing-readiness/S28-before-move-t000.jpg"
+    },
+    {
+      "schema_version": "drawing-pipeline-replay-v1",
+      "mode": "archival_replay",
+      "checks": [
+        {
+          "name": "paper_present",
+          "state": "unknown",
+          "reason": "Frame identity or freshness is invalid.",
+          "correction": "Capture a fresh identified frame and re-check the setup."
+        },
+        {
+          "name": "pen_holder_observable_presence",
+          "state": "unknown",
+          "reason": "Frame identity or freshness is invalid.",
+          "correction": "Capture a fresh identified frame and re-check the setup."
+        },
+        {
+          "name": "pen_fitted",
+          "state": "unknown",
+          "reason": "Frame identity or freshness is invalid.",
+          "correction": "Capture a fresh identified frame and re-check the setup."
+        },
+        {
+          "name": "footprint_inside_paper",
+          "state": "unknown",
+          "reason": "Frame identity or freshness is invalid.",
+          "correction": "Capture a fresh identified frame and re-check the setup."
+        },
+        {
+          "name": "calibration_ready",
+          "state": "unknown",
+          "reason": "Frame identity or freshness is invalid.",
+          "correction": "Capture a fresh identified frame and re-check the setup."
+        },
+        {
+          "name": "approved_current_step",
+          "state": "unknown",
+          "reason": "Frame identity or freshness is invalid.",
+          "correction": "Capture a fresh identified frame and re-check the setup."
+        }
+      ],
+      "evidence_errors": [],
+      "provenance": [
+        {
+          "provider": "meta-model-api",
+          "model": "muse-spark-1.3",
+          "response_id": "resp_6ae10ea2cdf65b75484a416e",
+          "frame_sha256": "45d5a4d4a3cc0d220f64d119152bd5d1f049254296097b81c30be101d498ddc9",
+          "width": 896,
+          "height": 512,
+          "camera": "reolink-896x512-intrinsics-unknown",
+          "rig": "tripod-A-unmeasured",
+          "surface_pose": "2026-10-27-book-block-unregistered",
+          "tool": "ross-archived-pen",
+          "controller_session": "",
+          "frame_captured_at": 1793092226.607656,
+          "capture_clock_verified": false,
+          "request_started_at": 1793134236.102747,
+          "response_created_at": 1793134242.0,
+          "response_completed_at": 1793134242.0,
+          "ingested_at": 1793134474.0,
+          "mode": "archival_replay",
+          "receipt_sha256": "9aef367ceebb891e95b8b46e6ce8c59c7b097562b6e698096ca5a96d363bbc8b",
+          "request_sha256": "57f4781bb0adbecda695500025836512f1fdf33df933967bda1aa21392cbb1f4",
+          "request_digest_basis": "captured_request_bytes",
+          "response_sha256": "27b8039b1b804eb03daf8c3280d8f8863b9882ac3d1c585dc4cf366a5ff411fa",
+          "prompt_sha256": "bffb14261191832835d2af5a3299bee6943803474969a10130f67d5ff4df13cc",
+          "semantic_origin": "structured_model_observation",
+          "object_id": "",
+          "role": "",
+          "parser": "drawing-observations-v1",
+          "linkage": "Exact saved request/response and original frame digest; archived clip-offset timestamp.",
+          "coordinate_space": "native_full_frame_pixels",
+          "spatial_transform": "identity_only",
+          "mask_encoding": "",
+          "object_bounds": null
+        },
+        {
+          "provider": "meta-model-api",
+          "model": "sam-3.1",
+          "response_id": "resp_6ae10f88df81160b88284c69",
+          "frame_sha256": "45d5a4d4a3cc0d220f64d119152bd5d1f049254296097b81c30be101d498ddc9",
+          "width": 896,
+          "height": 512,
+          "camera": "reolink-896x512-intrinsics-unknown",
+          "rig": "tripod-A-unmeasured",
+          "surface_pose": "2026-10-27-book-block-unregistered",
+          "tool": "ross-archived-pen",
+          "controller_session": "",
+          "frame_captured_at": 1793092226.607656,
+          "capture_clock_verified": false,
+          "request_started_at": 1793134471.20075,
+          "response_created_at": 1793134472.0,
+          "response_completed_at": 1793134472.0,
+          "ingested_at": 1793134474.0,
+          "mode": "archival_replay",
+          "receipt_sha256": "381f9f5aedab628c66ec0da825b518f322646e5cba0a3ba83bd2ac1b93f39e7b",
+          "request_sha256": "21f6f0c47e9df801b76920bff973572c6a70f8b6e6a285d4fef635c02a2699d1",
+          "request_digest_basis": "captured_request_bytes",
+          "response_sha256": "7a33787b165fb5773b41fcdf457aadc9e0ecfb8504591a52cbb6222f96d26e00",
+          "prompt_sha256": "31beb481e12a99174c3015a9ff5174e79b36eddaed2fa329fa341dcf9ad48215",
+          "semantic_origin": "model_concept",
+          "object_id": "",
+          "role": "",
+          "parser": "meta-sam-parser==0.1.0",
+          "linkage": "Exact saved Meta request/stream and original frame hash; archived scene clock.",
+          "coordinate_space": "native_full_frame_pixels",
+          "spatial_transform": "identity_only",
+          "mask_encoding": "one_bit",
+          "object_bounds": null
+        },
+        {
+          "provider": "meta-model-api",
+          "model": "sam-3.1",
+          "response_id": "resp_6ae10f8a36eb8a0876ce4804",
+          "frame_sha256": "45d5a4d4a3cc0d220f64d119152bd5d1f049254296097b81c30be101d498ddc9",
+          "width": 896,
+          "height": 512,
+          "camera": "reolink-896x512-intrinsics-unknown",
+          "rig": "tripod-A-unmeasured",
+          "surface_pose": "2026-10-27-book-block-unregistered",
+          "tool": "ross-archived-pen",
+          "controller_session": "",
+          "frame_captured_at": 1793092226.607656,
+          "capture_clock_verified": false,
+          "request_started_at": 1793134473.135546,
+          "response_created_at": 1793134474.0,
+          "response_completed_at": 1793134474.0,
+          "ingested_at": 1793134474.0,
+          "mode": "archival_replay",
+          "receipt_sha256": "fe7cc23a3319f26419e6dcbbca8157c245d573a94ca49da40a4d2153b6b16bb7",
+          "request_sha256": "130bb65560dc92277785a548937de4cb2b0afb75d605a3836038a3d63b51b47d",
+          "request_digest_basis": "captured_request_bytes",
+          "response_sha256": "77ae333521d338b0f6a42351229b088a5fa7375a06b242033eb8e8d23d85a440",
+          "prompt_sha256": "e21a6b0cb193057e06ac16b813443b3e6abae0db22762c6956a78ea049453058",
+          "semantic_origin": "model_concept",
+          "object_id": "",
+          "role": "",
+          "parser": "meta-sam-parser==0.1.0",
+          "linkage": "Exact saved Meta request/stream and original frame hash; archived scene clock.",
+          "coordinate_space": "native_full_frame_pixels",
+          "spatial_transform": "identity_only",
+          "mask_encoding": "one_bit",
+          "object_bounds": null
+        }
+      ],
+      "evidence_summary": {
+        "mask_pixels": {},
+        "observation_roles": [
+          "holder",
+          "pen"
+        ],
+        "fitment_observation_count": 1,
+        "aggregate_inputs_rejected": false,
+        "ambiguous_mask_roles": []
+      },
+      "archival_image_component_checks": [
+        {
+          "name": "paper_present",
+          "state": "unknown",
+          "reason": "No current-frame mask.",
+          "correction": "Show the paper clearly."
+        },
+        {
+          "name": "pen_holder_observable_presence",
+          "state": "unknown",
+          "reason": "pen: visibility or presence unresolved",
+          "correction": "Show the pen and holder clearly; fit the pen if it is absent."
+        },
+        {
+          "name": "pen_fitted",
+          "state": "fail",
+          "reason": "Visible fitment observation reports the intended pen is not fitted.",
+          "correction": "Fit the intended pen in its holder and re-check."
+        }
+      ],
+      "component_checks_are_live_readiness": false,
+      "verdict": "amber",
+      "step": null,
+      "live_ready": false,
+      "grounding_validated": false,
+      "network_calls": 0,
+      "gpu_used": false,
+      "frame_sha256": "45d5a4d4a3cc0d220f64d119152bd5d1f049254296097b81c30be101d498ddc9",
+      "historical_evaluation_time": 1793134474.0,
+      "asset": "2026-10-27/drawing-readiness/S04-pen-missing.jpg"
+    },
+    {
+      "schema_version": "drawing-pipeline-replay-v1",
+      "mode": "archival_replay",
+      "checks": [
+        {
+          "name": "paper_present",
+          "state": "unknown",
+          "reason": "Frame identity or freshness is invalid.",
+          "correction": "Capture a fresh identified frame and re-check the setup."
+        },
+        {
+          "name": "pen_holder_observable_presence",
+          "state": "unknown",
+          "reason": "Frame identity or freshness is invalid.",
+          "correction": "Capture a fresh identified frame and re-check the setup."
+        },
+        {
+          "name": "pen_fitted",
+          "state": "unknown",
+          "reason": "Frame identity or freshness is invalid.",
+          "correction": "Capture a fresh identified frame and re-check the setup."
+        },
+        {
+          "name": "footprint_inside_paper",
+          "state": "unknown",
+          "reason": "Frame identity or freshness is invalid.",
+          "correction": "Capture a fresh identified frame and re-check the setup."
+        },
+        {
+          "name": "calibration_ready",
+          "state": "unknown",
+          "reason": "Frame identity or freshness is invalid.",
+          "correction": "Capture a fresh identified frame and re-check the setup."
+        },
+        {
+          "name": "approved_current_step",
+          "state": "unknown",
+          "reason": "Frame identity or freshness is invalid.",
+          "correction": "Capture a fresh identified frame and re-check the setup."
+        }
+      ],
+      "evidence_errors": [],
+      "provenance": [
+        {
+          "provider": "meta-model-api",
+          "model": "muse-spark-1.3",
+          "response_id": "resp_6ae10f5f3703880c4ba74aeb",
+          "frame_sha256": "979e82f1fe009824ea80a58c61075712621ea6dd8329be727285551c2029c327",
+          "width": 2880,
+          "height": 1616,
+          "camera": "reolink-2880x1616-intrinsics-unknown",
+          "rig": "tripod-F-unmeasured",
+          "surface_pose": "archived-unregistered-surface",
+          "tool": "ross-archived-pen",
+          "controller_session": "",
+          "frame_captured_at": 1793116922.625085,
+          "capture_clock_verified": false,
+          "request_started_at": 1793134428.321761,
+          "response_created_at": 1793134431.0,
+          "response_completed_at": 1793134431.0,
+          "ingested_at": 1793134487.0,
+          "mode": "archival_replay",
+          "receipt_sha256": "c7e269266564200f897f6296684c256823bc6becb6d8f9bfab3d41a8d6364df4",
+          "request_sha256": "23e479a14d519517668ffda7ea95b37d86b046f61db19f5aaff7f3e3c4289eca",
+          "request_digest_basis": "captured_request_bytes",
+          "response_sha256": "fccb6861c08b8e4acf31459d77f8e6e14cc0a30e274c9700ed23f6c227975257",
+          "prompt_sha256": "bffb14261191832835d2af5a3299bee6943803474969a10130f67d5ff4df13cc",
+          "semantic_origin": "structured_model_observation",
+          "object_id": "",
+          "role": "",
+          "parser": "drawing-observations-v1",
+          "linkage": "Saved exact request/response and original frame digest; capture clock is clip-start plus offset, not sensor verified.",
+          "coordinate_space": "native_full_frame_pixels",
+          "spatial_transform": "identity_only",
+          "mask_encoding": "",
+          "object_bounds": null
+        },
+        {
+          "provider": "meta-model-api",
+          "model": "sam-3.1",
+          "response_id": "resp_6ae10f954c6bc3c385e74fc0",
+          "frame_sha256": "979e82f1fe009824ea80a58c61075712621ea6dd8329be727285551c2029c327",
+          "width": 2880,
+          "height": 1616,
+          "camera": "reolink-2880x1616-intrinsics-unknown",
+          "rig": "tripod-F-unmeasured",
+          "surface_pose": "archived-unregistered-surface",
+          "tool": "ross-archived-pen",
+          "controller_session": "",
+          "frame_captured_at": 1793116922.625085,
+          "capture_clock_verified": false,
+          "request_started_at": 1793134485.061478,
+          "response_created_at": 1793134485.0,
+          "response_completed_at": 1793134486.0,
+          "ingested_at": 1793134487.0,
+          "mode": "archival_replay",
+          "receipt_sha256": "c5e4c20fcbb881fb8b135c3c867c69dcb2e8925ee2b870e08e90a851a61d7788",
+          "request_sha256": "2dc6e893ea231e826cd6602d44694636cc36f12b8fed1cae70ce92d1d49d1ba2",
+          "request_digest_basis": "captured_request_bytes",
+          "response_sha256": "f3863603d0eb520b3097fd6e3ac7679847dd6a0f27297f68fac04386f80e099f",
+          "prompt_sha256": "31beb481e12a99174c3015a9ff5174e79b36eddaed2fa329fa341dcf9ad48215",
+          "semantic_origin": "model_concept",
+          "object_id": "",
+          "role": "",
+          "parser": "meta-sam-parser==0.1.0",
+          "linkage": "Exact saved Meta request/stream and original frame hash; archived scene clock.",
+          "coordinate_space": "native_full_frame_pixels",
+          "spatial_transform": "identity_only",
+          "mask_encoding": "one_bit",
+          "object_bounds": null
+        },
+        {
+          "provider": "meta-model-api",
+          "model": "sam-3.1",
+          "response_id": "resp_6ae10f971b146531e1e64a9b",
+          "frame_sha256": "979e82f1fe009824ea80a58c61075712621ea6dd8329be727285551c2029c327",
+          "width": 2880,
+          "height": 1616,
+          "camera": "reolink-2880x1616-intrinsics-unknown",
+          "rig": "tripod-F-unmeasured",
+          "surface_pose": "archived-unregistered-surface",
+          "tool": "ross-archived-pen",
+          "controller_session": "",
+          "frame_captured_at": 1793116922.625085,
+          "capture_clock_verified": false,
+          "request_started_at": 1793134486.957533,
+          "response_created_at": 1793134487.0,
+          "response_completed_at": 1793134487.0,
+          "ingested_at": 1793134487.0,
+          "mode": "archival_replay",
+          "receipt_sha256": "7d720c39475ad7f87e577a3f1d77979c7529fc58bc20bd70baf2bae2f64a5847",
+          "request_sha256": "669480a658924a9015db431caa17c030f6ff2d21823559d4f57be6d5659fe9f1",
+          "request_digest_basis": "captured_request_bytes",
+          "response_sha256": "90ee1e7848ec6043bde5878a20c32bd7cf92c5b63be6bdf1e636200da6d53b81",
+          "prompt_sha256": "e21a6b0cb193057e06ac16b813443b3e6abae0db22762c6956a78ea049453058",
+          "semantic_origin": "model_concept",
+          "object_id": "",
+          "role": "",
+          "parser": "meta-sam-parser==0.1.0",
+          "linkage": "Exact saved Meta request/stream and original frame hash; archived scene clock.",
+          "coordinate_space": "native_full_frame_pixels",
+          "spatial_transform": "identity_only",
+          "mask_encoding": "one_bit",
+          "object_bounds": null
+        }
+      ],
+      "evidence_summary": {
+        "mask_pixels": {
+          "pen": [
+            13787,
+            14019
+          ]
+        },
+        "observation_roles": [
+          "holder",
+          "pen"
+        ],
+        "fitment_observation_count": 1,
+        "aggregate_inputs_rejected": false,
+        "ambiguous_mask_roles": [
+          "pen"
+        ]
+      },
+      "archival_image_component_checks": [
+        {
+          "name": "paper_present",
+          "state": "unknown",
+          "reason": "No current-frame mask.",
+          "correction": "Show the paper clearly."
+        },
+        {
+          "name": "pen_holder_observable_presence",
+          "state": "pass",
+          "reason": "Pen and holder both observed clearly; mechanical fitment not established.",
+          "correction": ""
+        },
+        {
+          "name": "pen_fitted",
+          "state": "unknown",
+          "reason": "No current-frame mask.",
+          "correction": "Show the intended pen and its holder clearly."
+        }
+      ],
+      "component_checks_are_live_readiness": false,
+      "verdict": "amber",
+      "step": null,
+      "live_ready": false,
+      "grounding_validated": false,
+      "network_calls": 0,
+      "gpu_used": false,
+      "frame_sha256": "979e82f1fe009824ea80a58c61075712621ea6dd8329be727285551c2029c327",
+      "historical_evaluation_time": 1793134487.0,
+      "asset": "2026-10-27/drawing-readiness/S30-paper-outside-pen-check.jpg"
+    }
+  ]
+}

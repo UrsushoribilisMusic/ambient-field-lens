@@ -1,0 +1,343 @@
+{
+  "measurement_record": {
+    "source_frame": "rectangle-centrelines-201939.jpg",
+    "source_frame_sha256": "be953e39cad3b83d3be6f0c3bfc3dc56a515a9c6028023df439c1e5b48bfdcb4",
+    "physical_measurements": "markers-rectangle-ruler-confirmed-2026-10-27.txt",
+    "physical_measurements_sha256": "8849d8c808fc86a30b1434a641e049129bd2cf2378bd4de79948da46f6f7bdd9",
+    "image_size_px": [
+      2880,
+      1616
+    ],
+    "camera_pose": "after-dinner camera; replaced clean sheet with added rectangle and full centre lines; no exact pose continuity assumed",
+    "method": "Fresh hand-reading of line/cross intersections from native frame at2x/4x nearest-neighbour crops; labels excluded. Recorded before fitting. No transfer of earlier sheet pixels.",
+    "reading_precision_note": "Blurred strokes; approximate1-3 native pixel centre ambiguity unquantified; half-pixel notation not subpixel accuracy.",
+    "physical_position_status": "Operator confirms rectangle width/height120mm with ruler and centre lines60/60mm; cross9 approximately78.5/92mm from cross1. Cross9 uncertainty unquantified.",
+    "fit_ids": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "validation_ids": [
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "acceptance_bar_px": 2.0,
+    "points": [
+      {
+        "id": 1,
+        "plane_mm": [
+          0,
+          0
+        ],
+        "image_px": [
+          868.5,
+          841
+        ]
+      },
+      {
+        "id": 2,
+        "plane_mm": [
+          120,
+          0
+        ],
+        "image_px": [
+          1282,
+          735
+        ]
+      },
+      {
+        "id": 3,
+        "plane_mm": [
+          0,
+          120
+        ],
+        "image_px": [
+          1034,
+          1111
+        ]
+      },
+      {
+        "id": 4,
+        "plane_mm": [
+          120,
+          120
+        ],
+        "image_px": [
+          1515,
+          960
+        ]
+      },
+      {
+        "id": 5,
+        "plane_mm": [
+          60,
+          120
+        ],
+        "image_px": [
+          1285.5,
+          1031
+        ]
+      },
+      {
+        "id": 6,
+        "plane_mm": [
+          60,
+          0
+        ],
+        "image_px": [
+          1080.5,
+          784.5
+        ]
+      },
+      {
+        "id": 7,
+        "plane_mm": [
+          120,
+          60
+        ],
+        "image_px": [
+          1389,
+          837.5
+        ]
+      },
+      {
+        "id": 8,
+        "plane_mm": [
+          0,
+          60
+        ],
+        "image_px": [
+          941.5,
+          962.5
+        ]
+      },
+      {
+        "id": 9,
+        "plane_mm": [
+          78.5,
+          92
+        ],
+        "image_px": [
+          1306.5,
+          945.5
+        ]
+      }
+    ],
+    "extra_centre": {
+      "id": 10,
+      "plane_mm": [
+        60,
+        60
+      ],
+      "image_px": null,
+      "state": "unknown",
+      "reason": "Pen occludes exact central intersection; not inferred from fitted geometry."
+    },
+    "robot_coordinate_linkage": "unknown",
+    "physical_measurement_revision": {
+      "basis": "operator ruler measurements after4mm-grid discovery",
+      "rectangle_spans_mm": [
+        120,
+        120
+      ],
+      "midlines_mm": [
+        60,
+        60
+      ],
+      "cross9_mm": [
+        78.5,
+        92
+      ],
+      "cross9_approximate": true,
+      "cross9_uncertainty_mm": null,
+      "image_readings_unchanged": true,
+      "fit_corners_unchanged": true,
+      "previous_record": "rectangle-centrelines-manual-readings.json"
+    }
+  },
+  "homography_paper_mm_to_image_px": [
+    [
+      0.003555937696887184,
+      -0.00013512808890948113,
+      0.7183838431925672
+    ],
+    [
+      -0.00032605901567108646,
+      0.0004901710393011946,
+      0.6956370893781798
+    ],
+    [
+      5.504684199589758e-07,
+      -1.233957695821591e-06,
+      0.0008271546841595479
+    ]
+  ],
+  "residuals": [
+    {
+      "id": 1,
+      "split": "fit",
+      "observed_px": [
+        868.5,
+        841
+      ],
+      "projected_px": [
+        868.4999999999999,
+        841.0
+      ],
+      "residual_xy_px": [
+        -1.1368683772161603e-13,
+        0.0
+      ],
+      "error_px": 1.1368683772161603e-13
+    },
+    {
+      "id": 2,
+      "split": "fit",
+      "observed_px": [
+        1282,
+        735
+      ],
+      "projected_px": [
+        1282.0,
+        735.0
+      ],
+      "residual_xy_px": [
+        0.0,
+        0.0
+      ],
+      "error_px": 0.0
+    },
+    {
+      "id": 3,
+      "split": "fit",
+      "observed_px": [
+        1034,
+        1111
+      ],
+      "projected_px": [
+        1034.0,
+        1111.0
+      ],
+      "residual_xy_px": [
+        0.0,
+        0.0
+      ],
+      "error_px": 0.0
+    },
+    {
+      "id": 4,
+      "split": "fit",
+      "observed_px": [
+        1515,
+        960
+      ],
+      "projected_px": [
+        1515.0,
+        960.0000000000002
+      ],
+      "residual_xy_px": [
+        0.0,
+        2.2737367544323206e-13
+      ],
+      "error_px": 2.2737367544323206e-13
+    },
+    {
+      "id": 5,
+      "split": "validation",
+      "observed_px": [
+        1285.5,
+        1031
+      ],
+      "projected_px": [
+        1285.6545731775227,
+        1031.998252495206
+      ],
+      "residual_xy_px": [
+        0.15457317752270683,
+        0.9982524952060885
+      ],
+      "error_px": 1.01014895505299
+    },
+    {
+      "id": 6,
+      "split": "validation",
+      "observed_px": [
+        1080.5,
+        784.5
+      ],
+      "projected_px": [
+        1083.1884996236613,
+        785.9649795402464
+      ],
+      "residual_xy_px": [
+        2.6884996236613006,
+        1.4649795402464179
+      ],
+      "error_px": 3.0617307653952137
+    },
+    {
+      "id": 7,
+      "split": "validation",
+      "observed_px": [
+        1389,
+        837.5
+      ],
+      "projected_px": [
+        1387.9706493785393,
+        837.3321721466582
+      ],
+      "residual_xy_px": [
+        -1.0293506214607078,
+        -0.16782785334180517
+      ],
+      "error_px": 1.0429424194359265
+    },
+    {
+      "id": 8,
+      "split": "validation",
+      "observed_px": [
+        941.5,
+        962.5
+      ],
+      "projected_px": [
+        943.1150114783634,
+        962.7284175175718
+      ],
+      "residual_xy_px": [
+        1.6150114783633853,
+        0.22841751757175643
+      ],
+      "error_px": 1.631084497375636
+    },
+    {
+      "id": 9,
+      "split": "validation",
+      "observed_px": [
+        1306.5,
+        945.5
+      ],
+      "projected_px": [
+        1301.5830469570699,
+        944.8958491735539
+      ],
+      "residual_xy_px": [
+        -4.916953042930118,
+        -0.6041508264461299
+      ],
+      "error_px": 4.9539303030498205
+    }
+  ],
+  "held_out_rms_px": 2.781517110013005,
+  "held_out_max_px": 4.9539303030498205,
+  "acceptance_bar_px": 2.0,
+  "network_calls": 0,
+  "gpu_used": false,
+  "robot_coordinate_linkage": "unknown",
+  "footprint_registration_accepted": false,
+  "paper_plane_validation": "FAIL",
+  "rejection": "Independent registration validation exceeds tolerance"
+}

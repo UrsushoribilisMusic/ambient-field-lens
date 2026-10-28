@@ -1,0 +1,153 @@
+{
+  "provider": "Meta Model API",
+  "modal_gpu_started": false,
+  "spark_requests": 7,
+  "spark_completed": 6,
+  "spark_incomplete": 1,
+  "spark_estimated_uncached_cost_usd": 0.03934449999999999,
+  "sam_still_requests": 14,
+  "sam_estimated_cost_usd": 0.035,
+  "total_estimated_uncached_cost_usd": 0.0743445,
+  "pricing_source": "https://dev.meta.ai/docs/pricing-rate-limits",
+  "source_media_private": true,
+  "spark": [
+    {
+      "run": "meta-spark-observations-20261027",
+      "response_id": "resp_6ae10e3f79151eee40524875",
+      "status": "incomplete",
+      "usage": {
+        "input_tokens": 815,
+        "input_tokens_details": {
+          "cached_tokens": 0
+        },
+        "output_tokens": 2048,
+        "output_tokens_details": {
+          "reasoning_tokens": 2046
+        },
+        "total_tokens": 2863
+      },
+      "estimated_cost_usd_uncached": 0.00972275
+    },
+    {
+      "run": "meta-spark-low-reasoning-smoke-20261027",
+      "response_id": "resp_6ae10ea2cdf65b75484a416e",
+      "status": "completed",
+      "usage": {
+        "input_tokens": 815,
+        "input_tokens_details": {
+          "cached_tokens": 0
+        },
+        "output_tokens": 1700,
+        "output_tokens_details": {
+          "reasoning_tokens": 1640
+        },
+        "total_tokens": 2515
+      },
+      "estimated_cost_usd_uncached": 0.00824375
+    },
+    {
+      "run": "meta-spark-low-reasoning-continuation-20261027",
+      "response_id": "resp_6ae10f0dc35e581e243b4fad",
+      "status": "completed",
+      "usage": {
+        "input_tokens": 815,
+        "input_tokens_details": {
+          "cached_tokens": 227
+        },
+        "output_tokens": 613,
+        "output_tokens_details": {
+          "reasoning_tokens": 553
+        },
+        "total_tokens": 1428
+      },
+      "estimated_cost_usd_uncached": 0.003624
+    },
+    {
+      "run": "meta-spark-low-reasoning-continuation-20261027",
+      "response_id": "resp_6ae10f11e68f848878ab495b",
+      "status": "completed",
+      "usage": {
+        "input_tokens": 815,
+        "input_tokens_details": {
+          "cached_tokens": 0
+        },
+        "output_tokens": 774,
+        "output_tokens_details": {
+          "reasoning_tokens": 714
+        },
+        "total_tokens": 1589
+      },
+      "estimated_cost_usd_uncached": 0.00430825
+    },
+    {
+      "run": "meta-spark-low-reasoning-continuation-20261027",
+      "response_id": "resp_6ae10f14eb8fbe73c2924c8b",
+      "status": "completed",
+      "usage": {
+        "input_tokens": 815,
+        "input_tokens_details": {
+          "cached_tokens": 0
+        },
+        "output_tokens": 470,
+        "output_tokens_details": {
+          "reasoning_tokens": 410
+        },
+        "total_tokens": 1285
+      },
+      "estimated_cost_usd_uncached": 0.00301625
+    },
+    {
+      "run": "meta-spark-low-reasoning-continuation-20261027",
+      "response_id": "resp_6ae10f17e1ffb976402041ae",
+      "status": "completed",
+      "usage": {
+        "input_tokens": 815,
+        "input_tokens_details": {
+          "cached_tokens": 227
+        },
+        "output_tokens": 545,
+        "output_tokens_details": {
+          "reasoning_tokens": 485
+        },
+        "total_tokens": 1360
+      },
+      "estimated_cost_usd_uncached": 0.003335
+    },
+    {
+      "run": "meta-spark-s30-20261027",
+      "response_id": "resp_6ae10f5f3703880c4ba74aeb",
+      "status": "completed",
+      "usage": {
+        "input_tokens": 4319,
+        "input_tokens_details": {
+          "cached_tokens": 227
+        },
+        "output_tokens": 399,
+        "output_tokens_details": {
+          "reasoning_tokens": 339
+        },
+        "total_tokens": 4718
+      },
+      "estimated_cost_usd_uncached": 0.0070945
+    }
+  ],
+  "sam_probe_results": {
+    "graph paper": {
+      "requests": 6,
+      "all_zero_match": true
+    },
+    "pen": {
+      "requests": 6,
+      "multiple_candidates_present": true
+    },
+    "paper": {
+      "requests": 1,
+      "mask_tokens": 8
+    },
+    "sheet of paper under the robot arm": {
+      "requests": 1,
+      "mask_tokens": 0
+    }
+  },
+  "billing_note": "Published rates applied to reported tokens; uncached input assumption is conservative. Not an invoice. SAM price is per still image."
+}

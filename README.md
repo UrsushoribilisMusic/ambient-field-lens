@@ -3,9 +3,10 @@
 Safety-gated wearable assistant for the Meta Global AI Developer Hackathon
 (Cerebral Valley), Startup track. Built Oct 26 – Nov 4, 2026.
 
-**One-liner:** the app identifies machine parts through smart glasses and only
-shows an operator step when its internal grounding check passes — otherwise it
-tells the user to verify in the manual.
+**One-liner:** a wearable machine-setup assistant intended to show an operator
+step only when observable world checks and a validated grounding check both
+pass; otherwise it names the fault and correction. The current backend is
+amber-only; this describes the product target.
 
 ## How it works (Phase 1 skeleton)
 
@@ -18,8 +19,25 @@ tells the user to verify in the manual.
    phone camera as mock feed) — designed for Ray-Ban Display; no Display
    hardware is available to the team, which the demo video states.
 
-The stub backend default-denies: until the Glimmer recalibration lands
-(Phase 3), every response is `verify`. That is the safe default, not a bug.
+The stub backend default-denies: every response is `verify`. Recalibration alone
+cannot enable green. Real scene validation and a separately reviewed evidence
+contract/integration are required; the failed confidence proxy remains failed.
+
+Current evidence: [architecture](ARCHITECTURE.md),
+[drawing-readiness contract](docs/drawing-readiness-contract.md), and
+[CPU checkpoint / remaining overnight work](docs/drawing-readiness-progress.md).
+The [27 October CPU scene report](docs/verification/scene-batch-2026-10-27.md)
+inventories 45 image assets across coarse viewpoints and distinct stream profiles.
+Viewpoint invariance and metric containment remain unvalidated; human-reference
+logic replay is explicitly separate from actual image-model check outputs.
+The [actual Meta observation round](docs/verification/real-model-pipeline-2026-10-27.md)
+now connects Spark observations and SAM masks through one offline runner:
+six completed Spark scene responses, explicit missing-pen/covered-holder
+outcomes, and107 passing tests. Target association among SAM candidates remains
+unresolved; no Modal GPU or live green integration was started.
+The [measured v2 / adapter report](docs/verification/adapter-and-measured-v2-2026-10-27.md)
+records failed held-out geometry (maximum 2.955 px versus 2 px), archival S03
+adapter replay and the review-only next SAM batch. No live gate integration.
 
 ## Layout
 
@@ -30,6 +48,8 @@ The stub backend default-denies: until the Glimmer recalibration lands
 | `backend/requirements.txt` | Backend deps |
 | `backend/recal/` | CPU-verified checkpoint staging and offline research jobs |
 | `docs/recalibration-results.md` | Measured Glimmer results and limitations |
+| `backend/readiness/` | Offline pure checks and planar geometry; not wired into `/assist` |
+| `tools/` | Explicit operator capture, one-request SAM diagnostic and offline replay utilities |
 
 ## Run
 
@@ -69,8 +89,9 @@ visible in the dependency graph:
 - Canis disposition seed phrases + CANIS-EVAL-001 eval matrices (540 core /
   350 matched negatives / 420 OOD) — `agentic-fleet-hub/disposition-lens/`,
   used only as a declared reference for the Phase 3 probe design.
-- Sovereign Mind ingestion/chunkers + Robot Ross chunk corpus (54 chunks) —
-  retrieval corpus source, disclosed on use.
+- Sovereign Mind ingestion/chunkers and the pre-event Robot Ross chunk corpus —
+  external references only, not copied. Unmerged PR #2 freshly ingests 38 chunks
+  from 10 user-owned documents with new in-event code.
 - Flotilla validators / circuit-breaker patterns — referenced for the
   Phase 3 low-grounding breaker.
 - `ambient-field-lens-test` (Oct 23–25) — throwaway pre-kickoff verification
