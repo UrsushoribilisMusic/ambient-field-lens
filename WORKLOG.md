@@ -44,3 +44,29 @@ Miguel supplied independent visual review: manifest digest matches; VG01/VG02/
 VG04 accepted, VG03 contact unknown in both images (only ink mark establishes
 past contact). Preserved original privately and review summary in docs. Whole
 old research set remains blocked; no replacement or new research run planned.
+
+## Live provider verification completed
+
+CPU export reproduces saved84 scores (max difference3.816e-17), six native
+prefix controls match. No new research scores/cases. Deployed authenticated
+HTTP+SDK provider app. New Reolink frame returned one usable paper mask from
+explicit ROI; overlay visually checked. Ross query returned real chunk IDs.
+
+A100-only request queued with0 GPU workers; stopped deployment rather than leave
+it queued. Added240s inclusive wait/cancellation and expiry check before model
+load. Same BF16 model/readout permits H100 fallback within checked$4 envelope.
+Second reserved window served real score -0.024460947181109742,861prefix tokens,
+zero candidate tokens, one forward, H100. Forward3.033s vs client roundtrip62.216s
+including cold start. Window closed. Final container list[]. Total grant
+reservations$30 including prior$22; not actual spend. SAM cost unknown (one image,
+provider reports0text tokens); usage preserved, not called free. Every attempt
+retained, no automatic retry or new GPU/corpus research round.
+
+Seven provider/control tests; full backend121 tests,114 pass /7 expected private
+archive skips. New mapping helper returns mm residual without 2px acceptance;
+real geometry/reading uncertainty/robot linkage remain Muse-contract inputs.
+Outside-paper and hole controls fail with no step; no threshold/green enabled.
+Handoff docs include cold-start latency, explicit ROI assumption, capture/pose
+freshness, exact procedure requirements, receipt bundle and actual-phone
+well-placed/displaced acceptance still required. No code changes in Muse's
+service/iOS lane. Original human review remains preserved, pen contact unknown.

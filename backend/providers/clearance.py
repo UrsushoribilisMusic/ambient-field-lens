@@ -32,6 +32,11 @@ def containment_clearance(paper, vertices_mm, matrix, *, frame_sha256,
               'reading_uncertainty_mm': reading_uncertainty_mm,
               'robot_allowance_mm': robot_allowance_mm, 'sampling_uncertainty_mm': None,
               'required_clearance_mm': None, 'step': None}
+    # Unknown quantities must remain JSON null, including nonfinite inputs.
+    for name in ('registration_error_mm','reading_uncertainty_mm','robot_allowance_mm'):
+        value=result[name]
+        if isinstance(value,bool) or not isinstance(value,(int,float)) or not math.isfinite(value) or value<0:
+            result[name]=None
     if (not geometry_reviewed or paper.frame_sha256 != frame_sha256 or paper.kind != 'paper'
             or paper.visible is not True or paper.ambiguous or not paper.pixels):
         return result
@@ -84,3 +89,32 @@ def containment_clearance(paper, vertices_mm, matrix, *, frame_sha256,
         return result
     except (ValueError, TypeError, np.linalg.LinAlgError):
         return result
+
+
+def estimate_surface_mapping(fit, validation):
+    """Fit measured correspondences; report mm residual, no inherited 2px cutoff.
+
+    Returns an estimate, NOT an accepted registration. Muse's server-owned
+    evidence contract binds measured points/pose and approves applicability.
+    Never replace measured robot/surface linkage with nominal coordinates.
+    """
+    from readiness.geometry import _normalise,_hull
+    if len(fit)<4 or len(validation)<4:
+        raise ValueError('four_fit_and_four_independent_validation_points_required')
+    fit_world=[p.plane_mm for p in fit];val_world=[p.plane_mm for p in validation]
+    if len(set(fit_world+val_world))!=len(fit_world+val_world):
+        raise ValueError('fit_validation_points_overlap')
+    a,ta=_normalise(fit_world)
+    b,tb=_normalise([p.image_px for p in fit])
+    rows=[]
+    for (x,y),(u,v) in zip(a,b):
+        rows.extend(([-x,-y,-1,0,0,0,u*x,u*y,u],[0,0,0,-x,-y,-1,v*x,v*y,v]))
+    if np.linalg.matrix_rank(rows)<8:raise ValueError('degenerate_mapping')
+    _,_,vt=np.linalg.svd(rows,full_matrices=True)
+    h=np.linalg.inv(tb)@vt[-1].reshape(3,3)@ta
+    h/=np.linalg.norm(h)
+    error_mm=measured_registration_error_mm(h,val_world,[p.image_px for p in validation])
+    error_px=float(np.linalg.norm(project(h,val_world)-np.asarray([p.image_px for p in validation]),axis=1).max())
+    return {'matrix':h.tolist(),'registration_error_mm':error_mm,
+            'max_validation_error_px':error_px,'support_plane_mm':_hull(fit_world),
+            'geometry_reviewed':False,'acceptance':'pending_clearance_and_server_owned_geometry_review'}

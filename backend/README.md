@@ -34,3 +34,9 @@ Offline wording jobs use the [Baseten generation tool](../docs/generation-routin
 with explicit Meta overflow and shared API receipts. Run `python3.12 -m
 unittest discover -s tests -p test_wording_generation.py -v` for its CPU-only
 tests. It is not imported by the HTTP backend or scientific readout code.
+
+Runtime demo providers: install `requirements-providers.txt` and follow
+[`docs/live-provider-handoff.md`](../docs/live-provider-handoff.md). A Modal window
+must be explicitly reserved/opened before Glimmer accepts requests. SAM and Ross
+retrieval are callable independently. Do not change `AssistService` to accept a
+provider score as a green verdict; Muse owns the reviewed admission contract.

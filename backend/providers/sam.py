@@ -84,7 +84,7 @@ def segment_paper(image, *, request_id, output_root, box=None, ledger=DEFAULT_LE
         if not (0 <= x1 < x2 <= width and 0 <= y1 < y2 <= height):
             raise ValueError('invalid_reviewed_roi')
         prompt = f'<0f>0<|box;x1={x1};y1={y1};x2={x2};y2={y2};w={width};h={height}|>'
-        origin = 'server_reviewed_manual_box'
+        origin = 'explicit_manual_box_requires_identity_review'
     body = {'model':'sam-3.1', 'input':[{'type':'message','role':'user','content':[
         {'type':'input_text','text':prompt}, {'type':'input_image','image_url':
         'data:image/jpeg;base64,'+base64.b64encode(image).decode()}]}],

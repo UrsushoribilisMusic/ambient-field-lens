@@ -1,0 +1,100 @@
+{
+  "date": "2026-10-28",
+  "scope": "runtime provider integration; no new research round",
+  "grounding": {
+    "request_id": "live-demo-score-20261028-02",
+    "frame_sha256": "2672d519366f517c7a5e4b43602a828a845cc96d10eb3dace871f50ba96ba2c2",
+    "question_sha256": "0bc1112032f888044c94f93bd772dbdcbaf349389c6344a2ac246e6062d43376",
+    "context_sha256": "a5126f7536984c26e719712be98712f8170d012b2342d0c441e594f89f953ea0",
+    "score": -0.024460947181109742,
+    "threshold": null,
+    "method": "frozen_contrastive_true_prefill",
+    "layer": 27,
+    "model_revision": "cec94fcfd6512f2cfe708138c32533b346ea4f69",
+    "direction_sha256": "dd1149b0067c6189417871f87c8ee461efd088e433b37a9bf10dcce991373bb7",
+    "candidate_tokens_consumed": 0,
+    "prefix_sha256": "d19b2d4e6a8b297de22632fab833b26105e8aa0237b1739d8264a7bfc9728e33",
+    "prefix_tokens": 861,
+    "forward_passes": 1,
+    "gpu": "NVIDIA H100 80GB HBM3",
+    "elapsed_seconds": 3.033,
+    "probability": false,
+    "retrieved_chunk_ids": [
+      "5a3d04d16391b7d4640d24a674a1df5a44daa3b7c2536ea7cf08bea3b3e9e867"
+    ]
+  },
+  "client_roundtrip_including_cold_start_seconds": 62.21578,
+  "sam": {
+    "frame_sha256": "2672d519366f517c7a5e4b43602a828a845cc96d10eb3dace871f50ba96ba2c2",
+    "response_sha256": "0dd51e3e07a8c840c8b5433550de7c5057542085bb95fd08f12bcdbc95386de6",
+    "mask_count": 1,
+    "usage": {
+      "images_processed": 1,
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "elapsed_seconds": 1.681,
+    "origin": "server_reviewed_manual_box"
+  },
+  "paper_mask_sha256": "9fdc2f58a9af905551461be3b0942920cd157ecf738585bc84c49c5534fe3208",
+  "retrieval_collection": "ross-manuals-2ca5f2f152267049",
+  "cpu_frozen_verification": {
+    "schema": "frozen-contrastive-prefill-v1",
+    "model_revision": "cec94fcfd6512f2cfe708138c32533b346ea4f69",
+    "layer": 27,
+    "direction_sha256": "dd1149b0067c6189417871f87c8ee461efd088e433b37a9bf10dcce991373bb7",
+    "dimension": 6656,
+    "source_residuals": "/artifacts/578c40bb-df38-4b11-a342-f612685d75bd/heldout-prefill-residuals.npz",
+    "source_scores": "/artifacts/578c40bb-df38-4b11-a342-f612685d75bd/heldout-scores.npz",
+    "control_score_max_difference": 3.8163916471489756e-17,
+    "fit_record_ids": [
+      "calibration-0-support",
+      "calibration-0-control",
+      "calibration-1-support",
+      "calibration-1-control",
+      "calibration-2-support",
+      "calibration-2-control",
+      "port-0-support",
+      "port-0-control",
+      "port-1-support",
+      "port-1-control",
+      "port-2-support",
+      "port-2-control"
+    ],
+    "candidate_tokens_consumed": 0,
+    "threshold": null,
+    "probability": false,
+    "serving_prefix_controls_verified": 6,
+    "scope": "support in supplied manual context; not answer correctness or physical readiness"
+  },
+  "gpu_windows": [
+    {
+      "id": "65342297-6b5c-40cb-817d-e231bb43627f",
+      "status": "closed",
+      "reserved_usd": 4.0
+    },
+    {
+      "id": "eea0926e-7f01-40f4-9041-3c6c587349b2",
+      "status": "closed",
+      "reserved_usd": 4.0
+    }
+  ],
+  "cumulative_grant_reservations_usd": 30.0,
+  "freshness_validated": false,
+  "physical_geometry_accepted": false,
+  "phone_two_state_demo_complete": false,
+  "limitations": [
+    "Region-prompted SAM mask, not autonomous paper identification",
+    "Threshold remains owned by reviewed server evidence contract",
+    "Measured geometry/reading uncertainty/robot linkage needed for actual clearance acceptance",
+    "No phone green/amber run yet",
+    "3.033s forward excludes model cold start and provider overhead"
+  ]
+}

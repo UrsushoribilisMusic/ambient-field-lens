@@ -101,6 +101,15 @@ def configure_window(window):
     return window
 
 
+@app.function(image=cpu,gpu=None,volumes={'/artifacts':artifacts},timeout=30,
+              min_containers=0,max_containers=1,scaledown_window=2,retries=0)
+def close_window(request:dict):
+    path=BASE/'window.json';window=json.loads(path.read_text())
+    if request.get('id')!=window['id']:raise ValueError('window_id_mismatch')
+    window['expires_at']=0;path.write_text(json.dumps(window));artifacts.commit()
+    return {'id':window['id'],'status':'closed','attempts':window['attempts']}
+
+
 @app.function(image=retrieval_image,gpu=None,cpu=(1,2),memory=(2048,4096),volumes={'/corpus':corpus},timeout=120,
               min_containers=0,max_containers=1,scaledown_window=2,retries=0)
 def retrieve(request:dict):
@@ -123,12 +132,13 @@ def retrieve(request:dict):
             for ident,text,meta,distance in zip(found['ids'][0],found['documents'][0],found['metadatas'][0],found['distances'][0])]
     if not chunks:raise ValueError('no_ross_evidence')
     # Stable source order; no generated summaries inserted into evidence.
-    context='\n\n'.join(c['text'] for c in chunks)
+    chunks=chunks[:1]  # Highest-ranked complete stored chunk; preserve finite prefill budget.
+    context=chunks[0]['text']
     return {'frame_sha256':frame,'collection':COLLECTION,'chunks':chunks,'context':context,
             'context_sha256':hashlib.sha256(context.encode()).hexdigest(),'gpu_used':False}
 
 
-@app.cls(image=gpu,gpu='A100-80GB',cpu=(2,4),memory=(32768,65536),
+@app.cls(image=gpu,gpu=['A100-80GB','H100'],cpu=(2,4),memory=(32768,65536),
          volumes={'/weights':weights,'/artifacts':artifacts},timeout=300,startup_timeout=300,
          min_containers=0,max_containers=1,buffer_containers=0,scaledown_window=2,retries=0)
 class Glimmer:
@@ -138,6 +148,8 @@ class Glimmer:
         import torch
         from transformers import AutoProcessor,AutoModelForImageTextToText
         _sys()
+        lease=json.loads((BASE/'window.json').read_text())
+        if time.time()>lease['expires_at']:raise ValueError('window_expired_before_model_load')
         root=Path('/weights/Muse-Glimmer-30B')
         verified=json.loads((root/'verified-download.json').read_text())
         if verified.get('revision')!=REVISION or not verified.get('verified') or verified.get('weight_bytes')!=59_553_435_272:
@@ -192,7 +204,7 @@ class Glimmer:
                 'method':'frozen_contrastive_true_prefill','layer':LAYER,'model_revision':REVISION,
                 'direction_sha256':self.meta['direction_sha256'],'candidate_tokens_consumed':0,
                 'prefix_sha256':sha(json.dumps(encoded['input_ids'][0].tolist()).encode()),
-                'prefix_tokens':int(encoded['input_ids'].shape[-1]),'forward_passes':1,
+                'prefix_tokens':int(encoded['input_ids'].shape[-1]),'forward_passes':1,'gpu':torch.cuda.get_device_name(),
                 'elapsed_seconds':round(time.monotonic()-started,3),'probability':False}
 
 
@@ -229,16 +241,24 @@ def dispatch_score(payload):
     window['attempts'].append(entry);path.write_text(json.dumps(window));artifacts.commit()
     folder=BASE/window['id']/payload['request_id'];folder.mkdir(parents=True,exist_ok=False)
     (folder/'request.json').write_text(json.dumps(payload))
+    call=None
     try:
-        result=Glimmer().score.remote(payload)
+        call=Glimmer().score.spawn(payload)
+        result=call.get(timeout=240)
         entry.update(status='complete',score=result['score'])
         (folder/'response.json').write_text(json.dumps(result))
         return result
-    except Exception:
+    except BaseException:
+        if call is not None:call.cancel(terminate_containers=True)
         entry['status']='failed_no_retry'
         raise
     finally:
-        path.write_text(json.dumps(window));(folder/'attempt.json').write_text(json.dumps(entry));artifacts.commit()
+        artifacts.reload()
+        latest=json.loads(path.read_text())
+        if latest['id']==window['id']:
+            latest['attempts']=[entry if item['request_id']==entry['request_id'] else item for item in latest['attempts']]
+            path.write_text(json.dumps(latest))
+        (folder/'attempt.json').write_text(json.dumps(entry));artifacts.commit()
 
 
 @app.local_entrypoint()

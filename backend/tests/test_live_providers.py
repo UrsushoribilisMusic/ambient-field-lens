@@ -4,7 +4,7 @@ import io
 import unittest
 import numpy as np
 from PIL import Image
-from providers.clearance import containment_clearance,measured_registration_error_mm
+from providers.clearance import containment_clearance,measured_registration_error_mm,estimate_surface_mapping
 from providers.payloads import validate,sha
 from readiness.checks import Mask
 
@@ -55,5 +55,14 @@ class ProviderTests(unittest.TestCase):
         pixels=world*2+np.array([2,0])
         h=np.diag([2.,2.,1.])
         self.assertAlmostEqual(measured_registration_error_mm(h,world,pixels),1.)
+
+    def test_measured_mapping_reports_error_without_borrowed_two_pixel_cutoff(self):
+        from readiness.geometry import Correspondence
+        fit=[Correspondence(p,p) for p in ((0.,0.),(100.,0.),(100.,100.),(0.,100.))]
+        validation=[Correspondence(p,(p[0]+3.,p[1])) for p in ((20.,20.),(80.,20.),(80.,80.),(20.,80.))]
+        result=estimate_surface_mapping(fit,validation)
+        self.assertAlmostEqual(result['registration_error_mm'],3.)
+        self.assertGreater(result['max_validation_error_px'],2.)
+        self.assertFalse(result['geometry_reviewed'])
 
 if __name__=='__main__':unittest.main()

@@ -23,13 +23,14 @@ def rpc(name,payload,*,ledger=DEFAULT_LEDGER,output_root=PRIVATE):
          'estimated_api_cost_usd_uncached':None,'automatic_retries':0}
     private_write(folder/'attempt.json',canonical(row));append_event(ledger,row,unique_attempt=True)
     row={**row,'event':'outcome','status':'failed_no_retry'}
+    started=time.monotonic()
     try:
         result=modal.Function.from_name(APP,name).remote(payload)
         private_write(folder/'response.json',canonical(result))
         row.update(status='complete',response_sha256=sha(canonical(result)))
         return result
     finally:
-        row['completed_at']=utc()
+        row['completed_at']=utc();row['elapsed_seconds']=round(time.monotonic()-started,3)
         private_write(folder/'outcome.json',canonical(row));append_event(ledger,row)
 
 
@@ -37,6 +38,9 @@ def open_window(*,seconds=600,max_calls=4):
     from recal.budget import reserve_window,record_result
     if type(seconds) is not int or not 30<=seconds<=600 or type(max_calls) is not int or not 1<=max_calls<=4:
         raise ValueError('finite_window_required')
+    # Even the H100 fallback plus maximum CPU/RAM fits the existing $4 envelope.
+    if 3002*(.001097+4*.0000131+64*.00000222)>=4.:
+        raise ValueError('gpu_rate_exceeds_reserved_window')
     ledger=Path.home()/'.local/state/ambient-field-lens/budget.json'
     reservation=reserve_window(ledger)
     window={'id':reservation['id'],'expires_at':time.time()+seconds,'max_calls':max_calls,'reserved_usd':4.0}
@@ -86,3 +90,11 @@ def collect(*,image,request_id,question,window_id,paper_box=None):
     score=grounding(request_id=request_id,question=question,evidence=evidence,
         image_jpeg_base64=base64.b64encode(image).decode(),frame_sha256=frame,window_id=window_id)
     return {'frame_sha256':frame,'retrieval':evidence,'segmentation':segmentation,'grounding':score}
+
+
+def close_window(window_id):
+    from recal.budget import record_result
+    result=rpc('close_window',{'id':window_id})
+    ledger=Path.home()/'.local/state/ambient-field-lens/budget.json'
+    record_result(ledger,window_id,status='closed',provider_attempts=result['attempts'])
+    return result
