@@ -1,0 +1,320 @@
+{
+  "protocol": "paired-footing-v1",
+  "sources": [
+    {
+      "group": "calibration",
+      "fold": "fit",
+      "source": "atf-wiki/Topics/Calibration.md",
+      "source_sha256": "e6c5e37c70291763dff0549dbfec2ebe520f77440c9b26d886e6f2e5453c966d",
+      "support_span_sha256": "4e33349eeeeb016fe2a8054b354224d5c8c8c25395adea4a5b3b5d7b6a41759f",
+      "control_source": "README.md",
+      "control_span_sha256": "965cd461fd801e594a3125e7d8d142edae987cfceda31c6b990ebaabf6aa2bc4"
+    },
+    {
+      "group": "port",
+      "fold": "fit",
+      "source": "skills/huenit/SKILL.md",
+      "source_sha256": "3611f38779551d0cabc2636b4da78f8b6ec80bd212723c4165735a8b8c92c684",
+      "support_span_sha256": "ccd33f480d4ab50c1e47252889dc7073d0b598fb3c0ae5dc4d8934da3c612b49",
+      "control_source": "atf-wiki/Topics/Narration.md",
+      "control_span_sha256": "19299d6553e782003c25a3a6d13e27b0083a30cd771c945c4ca9fff92c9bc583"
+    },
+    {
+      "group": "pressure",
+      "fold": "validation",
+      "source": "COMMANDS.md",
+      "source_sha256": "6291bcb5dc0a6925adc4dea42c58a339b2e705b56970956ed31443d4cf3b5cf9",
+      "support_span_sha256": "b9bb1810057e36162c1837b41bb44d9ddaf95c8bb4612d55d8d35e36a05a9c44",
+      "control_source": "README.md",
+      "control_span_sha256": "ff5e42c23d21f078a03d55d0372c7107fb93fe20f5a2a984320cf7e332390226"
+    },
+    {
+      "group": "approval",
+      "fold": "validation",
+      "source": "COMMANDS.md",
+      "source_sha256": "6291bcb5dc0a6925adc4dea42c58a339b2e705b56970956ed31443d4cf3b5cf9",
+      "support_span_sha256": "2ae1c94f87f82b6208f53af47f65369109a71869ab4d1ab4369ebb3a63b6da97",
+      "control_source": "atf-wiki/Topics/Calibration.md",
+      "control_span_sha256": "f2fdfaee623caedc1ef4b10369f7006da2a6af62cfd775ec6935b31b42e2def7"
+    },
+    {
+      "group": "locking",
+      "fold": "test",
+      "source": "atf-wiki/Subsystems/JobOrchestration.md",
+      "source_sha256": "299e26ed07e19092ba2484dca3e4bc40d15d981de60efcf8bef4b38d54780583",
+      "support_span_sha256": "876bdf0e541da8952730010978438b5bc6d75ef27434152923081618795e81f9",
+      "control_source": "atf-wiki/Overview.md",
+      "control_span_sha256": "f3955a2f72be8a117e1a6725cdb15be9beb68e91f4d85d61fd1a3a529bc0c029"
+    },
+    {
+      "group": "narration",
+      "fold": "test",
+      "source": "skills/robot-ross/SKILL.md",
+      "source_sha256": "dfc0db4c4db453b96c02edf76dfa9546a2368de6cab6823049586e9a9bdf917b",
+      "support_span_sha256": "340fb994f3907d3df65f4572464784a677a35dce3971c0fcfb016bd958ebcb34",
+      "control_source": "README.md",
+      "control_span_sha256": "916501e3f56d7fa3ce1f5ccfdb4593d6f340e90780944cf6c43e3c9cc1749e44"
+    }
+  ],
+  "cache_sha256": "959116d55968f72c2ca583f5d9bf8e24c168f0bed62c0cab627dc32b06d57586",
+  "case_origin": "new in-event authored questions, exact spans from existing Ross manual snapshot; not a copied evaluation matrix",
+  "method_reference": "Canis disposition paper draft section3, conceptual reference only; no code/vectors/data imported",
+  "author_review": "Codi (agent) checked each exact support span/candidate/control; independent human review pending.",
+  "labels": "supplied-context support; no generated-answer correctness claim",
+  "image_input": false,
+  "input_sha256": "f6d166a34f1f97be5b95bd6bfb8cf51a14b7363ec738691e8d6a80cdd23a296a",
+  "records": [
+    {
+      "id": "calibration-0-support",
+      "pair_id": "calibration-0",
+      "group": "calibration",
+      "fold": "fit",
+      "supported": true
+    },
+    {
+      "id": "calibration-0-control",
+      "pair_id": "calibration-0",
+      "group": "calibration",
+      "fold": "fit",
+      "supported": false
+    },
+    {
+      "id": "calibration-1-support",
+      "pair_id": "calibration-1",
+      "group": "calibration",
+      "fold": "fit",
+      "supported": true
+    },
+    {
+      "id": "calibration-1-control",
+      "pair_id": "calibration-1",
+      "group": "calibration",
+      "fold": "fit",
+      "supported": false
+    },
+    {
+      "id": "calibration-2-support",
+      "pair_id": "calibration-2",
+      "group": "calibration",
+      "fold": "fit",
+      "supported": true
+    },
+    {
+      "id": "calibration-2-control",
+      "pair_id": "calibration-2",
+      "group": "calibration",
+      "fold": "fit",
+      "supported": false
+    },
+    {
+      "id": "port-0-support",
+      "pair_id": "port-0",
+      "group": "port",
+      "fold": "fit",
+      "supported": true
+    },
+    {
+      "id": "port-0-control",
+      "pair_id": "port-0",
+      "group": "port",
+      "fold": "fit",
+      "supported": false
+    },
+    {
+      "id": "port-1-support",
+      "pair_id": "port-1",
+      "group": "port",
+      "fold": "fit",
+      "supported": true
+    },
+    {
+      "id": "port-1-control",
+      "pair_id": "port-1",
+      "group": "port",
+      "fold": "fit",
+      "supported": false
+    },
+    {
+      "id": "port-2-support",
+      "pair_id": "port-2",
+      "group": "port",
+      "fold": "fit",
+      "supported": true
+    },
+    {
+      "id": "port-2-control",
+      "pair_id": "port-2",
+      "group": "port",
+      "fold": "fit",
+      "supported": false
+    },
+    {
+      "id": "pressure-0-support",
+      "pair_id": "pressure-0",
+      "group": "pressure",
+      "fold": "validation",
+      "supported": true
+    },
+    {
+      "id": "pressure-0-control",
+      "pair_id": "pressure-0",
+      "group": "pressure",
+      "fold": "validation",
+      "supported": false
+    },
+    {
+      "id": "pressure-1-support",
+      "pair_id": "pressure-1",
+      "group": "pressure",
+      "fold": "validation",
+      "supported": true
+    },
+    {
+      "id": "pressure-1-control",
+      "pair_id": "pressure-1",
+      "group": "pressure",
+      "fold": "validation",
+      "supported": false
+    },
+    {
+      "id": "pressure-2-support",
+      "pair_id": "pressure-2",
+      "group": "pressure",
+      "fold": "validation",
+      "supported": true
+    },
+    {
+      "id": "pressure-2-control",
+      "pair_id": "pressure-2",
+      "group": "pressure",
+      "fold": "validation",
+      "supported": false
+    },
+    {
+      "id": "approval-0-support",
+      "pair_id": "approval-0",
+      "group": "approval",
+      "fold": "validation",
+      "supported": true
+    },
+    {
+      "id": "approval-0-control",
+      "pair_id": "approval-0",
+      "group": "approval",
+      "fold": "validation",
+      "supported": false
+    },
+    {
+      "id": "approval-1-support",
+      "pair_id": "approval-1",
+      "group": "approval",
+      "fold": "validation",
+      "supported": true
+    },
+    {
+      "id": "approval-1-control",
+      "pair_id": "approval-1",
+      "group": "approval",
+      "fold": "validation",
+      "supported": false
+    },
+    {
+      "id": "approval-2-support",
+      "pair_id": "approval-2",
+      "group": "approval",
+      "fold": "validation",
+      "supported": true
+    },
+    {
+      "id": "approval-2-control",
+      "pair_id": "approval-2",
+      "group": "approval",
+      "fold": "validation",
+      "supported": false
+    },
+    {
+      "id": "locking-0-support",
+      "pair_id": "locking-0",
+      "group": "locking",
+      "fold": "test",
+      "supported": true
+    },
+    {
+      "id": "locking-0-control",
+      "pair_id": "locking-0",
+      "group": "locking",
+      "fold": "test",
+      "supported": false
+    },
+    {
+      "id": "locking-1-support",
+      "pair_id": "locking-1",
+      "group": "locking",
+      "fold": "test",
+      "supported": true
+    },
+    {
+      "id": "locking-1-control",
+      "pair_id": "locking-1",
+      "group": "locking",
+      "fold": "test",
+      "supported": false
+    },
+    {
+      "id": "locking-2-support",
+      "pair_id": "locking-2",
+      "group": "locking",
+      "fold": "test",
+      "supported": true
+    },
+    {
+      "id": "locking-2-control",
+      "pair_id": "locking-2",
+      "group": "locking",
+      "fold": "test",
+      "supported": false
+    },
+    {
+      "id": "narration-0-support",
+      "pair_id": "narration-0",
+      "group": "narration",
+      "fold": "test",
+      "supported": true
+    },
+    {
+      "id": "narration-0-control",
+      "pair_id": "narration-0",
+      "group": "narration",
+      "fold": "test",
+      "supported": false
+    },
+    {
+      "id": "narration-1-support",
+      "pair_id": "narration-1",
+      "group": "narration",
+      "fold": "test",
+      "supported": true
+    },
+    {
+      "id": "narration-1-control",
+      "pair_id": "narration-1",
+      "group": "narration",
+      "fold": "test",
+      "supported": false
+    },
+    {
+      "id": "narration-2-support",
+      "pair_id": "narration-2",
+      "group": "narration",
+      "fold": "test",
+      "supported": true
+    },
+    {
+      "id": "narration-2-control",
+      "pair_id": "narration-2",
+      "group": "narration",
+      "fold": "test",
+      "supported": false
+    }
+  ]
+}
