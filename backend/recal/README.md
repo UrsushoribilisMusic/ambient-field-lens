@@ -84,3 +84,19 @@ The exact same36 records, all52 layers and fixed topic folds are used in both
 arms. No test tuning or product threshold. Private raw inputs/hidden vectors
 stay out of Git. Report files include input/source hashes, topic/pair counts,
 per-layer validation scores, untouched test performance, scope and limitations.
+
+
+## Bounded teacher-forced trajectory round
+
+The one authorized 28October trajectory window is **complete; do not rerun**.
+The launcher rejects another run tagged with this experiment in the same ledger.
+One causal forward per record saved all52-layer residuals for the entire fixed
+candidate, without sampling; first/middle/last positions and a true pre-candidate
+control were evaluated on unchanged fit/validation/test folds. Small score arrays
+were independently audited on CPU; large residuals remain private on Modal.
+
+Both early trajectory and true pre-candidate control reach test AUROC1.000,
+versus the prior final-candidate-token0.889 baseline. No incremental timing or
+Jacobian benefit was demonstrated, so retire the extra generation-time extension
+for this task. See [protocol](../../docs/trajectory-protocol-2026-10-28.md) and
+[results](../../docs/verification/trajectory-comparison-2026-10-28.md).
