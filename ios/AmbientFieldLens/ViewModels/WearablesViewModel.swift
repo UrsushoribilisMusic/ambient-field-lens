@@ -50,23 +50,47 @@ final class WearablesViewModel: ObservableObject {
 
     func enableMock() {
         guard !mockEnabled else { return }
+        lastError = nil
         MockDeviceKit.shared.enable()
-        if let device = try? MockDeviceKit.shared.pairGlasses(
-            model: .metaRayBanDisplay
-        ) {
+        do {
+            let device = try MockDeviceKit.shared.pairGlasses(
+                model: .metaRayBanDisplay
+            )
             device.powerOn()
             device.unfold()
             device.don()
+            mockEnabled = true
+        } catch {
+            lastError = "Mock pairing failed: \(error.localizedDescription)"
         }
-        mockEnabled = true
     }
 
     func startSession() async {
         lastError = nil
         sessionState = "Starting"
         do {
-            let selector = AutoDeviceSelector(wearables: wearables)
-            let session = try wearables.createSession(deviceSelector: selector)
+            // The device registry can lag behind the glasses toggle:
+            // retry creation briefly before reporting no device.
+            var session: DeviceSession?
+            var lastThrown: Error?
+            for _ in 0..<3 {
+                do {
+                    let selector = AutoDeviceSelector(
+                        wearables: wearables
+                    )
+                    session = try wearables.createSession(
+                        deviceSelector: selector
+                    )
+                    lastThrown = nil
+                    break
+                } catch {
+                    lastThrown = error
+                    try? await Task.sleep(
+                        for: .seconds(1)
+                    )
+                }
+            }
+            guard let session else { throw lastThrown! }
             deviceSession = session
             try session.start()
             for await state in session.stateStream() {
