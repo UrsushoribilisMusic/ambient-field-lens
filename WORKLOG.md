@@ -21,3 +21,20 @@ relax experiment or shutdown discipline. No active Modal containers at start.
 Branch is based on the existing clean-room recalibration PR #2 checkpoint;
 this comparison is a separate reviewable unit and does not require /assist
 integration or any physical robot motion.
+
+## Complete — pending independent review
+
+Text smoke and real-camera paired rounds completed; measured results and CPU
+recomputation are in docs/verification/paired-comparison-2026-10-28.md/.json.
+Hidden test AUROC0.889, norm/head Jacobian0.861 in both rounds; no lens advantage.
+Two independent held-out topic clusters only.16research/preflight and19backend
+regressions covered. $8new GPU reservations, $14total including prior and CPU;
+all five launch apps stopped and final container inventory empty. No queued
+GPU work, no automatic follow-up window. Fixture and /assist unchanged.
+
+Draft PR5: https://github.com/UrsushoribilisMusic/ambient-field-lens/pull/5
+stacked on PR2. Do not repeat these runs because the first client's TorchVersion
+transfer failed: all artifacts were recovered and independently audited.
+Next work is human label review and genuinely camera-dependent held-out cases,
+not another sweep or a lower confidence threshold. Local private review page:
+~/Movies/Ambient-Field-Lens/2026-10-28/paired-comparison/review.html .
