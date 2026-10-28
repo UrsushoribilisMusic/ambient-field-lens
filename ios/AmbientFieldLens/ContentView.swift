@@ -168,6 +168,16 @@ struct ContentView: View {
                 }
                 .buttonStyle(.borderedProminent)
                 .disabled(assist.isAsking)
+                HStack {
+                    Button("Test connection") {
+                        assist.testTCP()
+                    }
+                    .buttonStyle(.bordered)
+                    .font(.caption)
+                    Text(assist.tcpStatus)
+                        .font(.caption2.monospaced())
+                        .foregroundStyle(.secondary)
+                }
             }
         }
     }

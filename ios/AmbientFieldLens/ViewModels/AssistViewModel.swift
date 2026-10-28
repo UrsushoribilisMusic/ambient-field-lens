@@ -1,4 +1,5 @@
 import Foundation
+import Network
 import UIKit
 
 /// Talks to backend POST /assist and holds the gate verdict for the HUD.
@@ -28,6 +29,7 @@ final class AssistViewModel: ObservableObject {
     @Published var verdict: Verdict = .none
     @Published var isAsking = false
     @Published var lastError: String?
+    @Published var tcpStatus: String = "not tested"
 
     private struct CheckResponse: Decodable {
         var name: String
@@ -91,6 +93,41 @@ final class AssistViewModel: ObservableObject {
             summary: parts.isEmpty ? "no receipt" : parts.joined(separator: " · "),
             scoreLine: scoreLine
         )
+    }
+
+    /// Raw TCP connect to the configured host:port. Bypasses HTTP and
+    /// ATS verdicts: established means routing works and the fault is
+    /// HTTP-layer; failed means the device cannot route there at all.
+    func testTCP() {
+        guard let host = URL(string: baseURLString)?.host,
+            let portString = URL(string: baseURLString)?.port
+        else {
+            tcpStatus = "bad URL"
+            return
+        }
+        tcpStatus = "connecting \(host):\(portString)…"
+        let connection = NWConnection(
+            host: NWEndpoint.Host(host),
+            port: NWEndpoint.Port(rawValue: UInt16(portString))!,
+            using: .tcp
+        )
+        connection.stateUpdateHandler = { [weak self] state in
+            Task { @MainActor in
+                switch state {
+                case .ready:
+                    self?.tcpStatus = "TCP established"
+                    connection.cancel()
+                case .failed(let error):
+                    self?.tcpStatus = "TCP failed: \(error)"
+                    connection.cancel()
+                case .cancelled:
+                    break
+                default:
+                    break
+                }
+            }
+        }
+        connection.start(queue: .global())
     }
 
     func ask(frame: UIImage?) async {
