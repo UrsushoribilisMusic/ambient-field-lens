@@ -1,0 +1,22 @@
+{
+  "review_sha256": "538437c329460aaf61108477e08049bfd7f83be0e1f0a0c3e98a6d976fc69ce7",
+  "manifest_digest": "ececa834f413cf7a04509c096279d1b59b8f7f4a2baf6194b8ab18dac6900843",
+  "reviewer": "Miguel",
+  "reviewed_at": "2026-10-28T22:14:18.567Z",
+  "accepted_pairs": [
+    "VG01",
+    "VG02",
+    "VG04"
+  ],
+  "unresolved_pair": "VG03",
+  "pen_contact_labels": [
+    "unknown",
+    "unknown"
+  ],
+  "note": "the only way I confirm that the paper has been touched is because there is a marker left on the paper",
+  "scoring_enabled": false,
+  "gpu_launched": false,
+  "live_green_enabled": false,
+  "gate_reason": "Insufficient image evidence; pair must be rejected/replaced",
+  "director_priority": "Live providers only; no replacement/research round"
+}

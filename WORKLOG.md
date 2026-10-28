@@ -23,3 +23,24 @@ fabrication of marker points or source-to-robot coordinates. Exact runtime
 receipts and all paid attempts recorded, including failed attempts. Scale to
 zero outside short grant-ledger windows. Test failure/control behavior and
 publish integration handoff. Do not overwrite Muse's server/iOS work.
+
+## Runtime implementation checkpoint
+
+Implemented provider facade, receipted SAM current-frame segmentation, frozen
+Modal runtime + authenticated HTTP/RPC entry points, existing Ross retrieval,
+and dense-mask signed-clearance check. Six provider tests pass, including
+outside-paper control, internal mask holes, insufficient clearance and missing
+uncertainty. Unknown physical inputs cannot pass. All three requested mm
+quantities plus robot/raster allowances are returned; no step is produced here.
+
+CPU serving-prefix verification rejected add_generation_prompt: it differs
+from the saved continue-final-message prefix. Replaced it with the exact frozen
+template followed by an explicit candidate-boundary cut (zero candidate tokens
+passed to the model). CPU re-verification in progress; no GPU started yet.
+First CPU launch failed image build ordering, second caught prefix mismatch;
+both ledgered, no GPU. Existing comparison numbers and labels untouched.
+
+Miguel supplied independent visual review: manifest digest matches; VG01/VG02/
+VG04 accepted, VG03 contact unknown in both images (only ink mark establishes
+past contact). Preserved original privately and review summary in docs. Whole
+old research set remains blocked; no replacement or new research run planned.
