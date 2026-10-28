@@ -168,3 +168,13 @@ The stale HUD verdict on transport errors was cleared by the client change
 research jobs. It does not participate in `/assist`. Its threshold artefacts
 remain disabled and require Phase 3 review. See `docs/recalibration-results.md`
 for measured results, external-input disclosures and execution limits.
+
+
+## Offline paired comparison, 28 October 2026
+
+The $100 Modal grant confirmed by Miguel supersedes the historical $20 ceiling.
+A separately reviewable norm/head Jacobian-lens vs hidden-contrastive experiment
+uses identical paired manual-context cases, activations and grouped folds.
+See [protocol](docs/paired-comparison-protocol.md). No world check, geometry,
+calibration or procedure evidence can be overridden by the readout. This branch
+does not change the live /assist path or make any green result admissible.

@@ -1,8 +1,10 @@
 # Glimmer staging and offline research
 
 These are fresh in-event implementations. They do not import prior extraction,
-J-lens, calibration or chunking code. The current estimator is a contrastive-mean
-baseline, not a reproduction of the Canis Jacobian estimator.
+J-lens, calibration or chunking code. The original estimator is a contrastive-mean
+baseline. The separate paired experiment implements the complete final-norm /
+unembedding Jacobian lens with fresh code; see `comparison_window.py` and
+`../../docs/paired-comparison-protocol.md`. It is not an end-to-end network Jacobian.
 
 Checkpoint files live in Modal `glimmer-weights`, never on the Mac. The pinned
 HF revision, source byte counts and LFS hashes are in `source-manifest.json`.
@@ -48,7 +50,7 @@ GPU windows have no retries or warm minimum, one maximum container, a 45-minute
 function deadline, five-minute startup deadline and two-second scale-down.
 The shared local ledger at `~/.local/state/ambient-field-lens/budget.json`
 reserves $2 for CPU/build work and a nonrefundable $4 per GPU attempt, refusing a
-fifth window under the $20 ceiling. At the checked rates, the GPU/4-CPU/64-GiB
+twenty-fifth window under the $100 grant ceiling. At the checked rates, the GPU/4-CPU/64-GiB
 resource envelope fits inside that reservation. This guards these commands;
 independent workspace jobs require their own controls or a workspace budget.
 
@@ -62,3 +64,23 @@ Weights and derived vectors are not Git assets. Persistent research outputs
 are in `afl-recal-artifacts`; the sanitized manual index is in `afl-ross-chroma`.
 Only small provenance and result reports are committed. See
 [`../../docs/recalibration-results.md`](../../docs/recalibration-results.md).
+
+## 28 October grant and paired comparison
+
+Miguel confirmed $100 hackathon credit on miguel-40686 (expires2027-10-31).
+This supersedes the old $20 authorization. Existing reservations are preserved,
+not refunded; no warm containers, retries, default-deny or evidence-contract
+requirements change. CPU checks and token/readout/checkpoint preflight precede
+allocation. Every GPU attempt gets a nonrefundable $4 reservation and its final
+status. The local ledger is not a provider invoice or workspace-wide cap.
+
+```sh
+python backend/recal/prepare_pairs.py /private/ross-evidence-cache.json /private/paired-inputs.json
+modal run backend/recal/comparison_window.py::compare --inputs /private/paired-inputs.json --output /private/paired-report.json --gpu-window
+modal container list
+```
+
+The exact same36 records, all52 layers and fixed topic folds are used in both
+arms. No test tuning or product threshold. Private raw inputs/hidden vectors
+stay out of Git. Report files include input/source hashes, topic/pair counts,
+per-layer validation scores, untouched test performance, scope and limitations.
