@@ -1,0 +1,397 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5BE2351F59BFB615D8D845F6 /* WearablesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2F6FF8D5622E9E6FEAFC50 /* WearablesViewModel.swift */; };
+		884962AC682597C9F0397F8E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E8EF968BC90623AB0262C63 /* Assets.xcassets */; };
+		8D6EBE6D53143DBBFDF24CB7 /* MWDATCore in Frameworks */ = {isa = PBXBuildFile; productRef = 501B50AB7EDBB1124955B77B /* MWDATCore */; };
+		8DAB359264D31BD2C7A17C0F /* HUDCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876C4DF6FE4B15E0A5E3750F /* HUDCard.swift */; };
+		BAA5E9D0C96604945BB30C59 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611240D0E8271A886FB042AA /* ContentView.swift */; };
+		BCB937103D1E6515429A0B5B /* MWDATCamera in Frameworks */ = {isa = PBXBuildFile; productRef = 6B73749C6A4FB201CA94BF30 /* MWDATCamera */; };
+		C1321B758B2151431B9CC28E /* MWDATMockDevice in Frameworks */ = {isa = PBXBuildFile; productRef = EB5A6B43915963A701127F9A /* MWDATMockDevice */; };
+		D7344F890B6523158828C678 /* AssistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFAC67F842A048C6F2927B7 /* AssistViewModel.swift */; };
+		D78A07B774AE8DDC3416F76B /* AmbientFieldLensApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BD1EA47F3E53B5A09ABB66 /* AmbientFieldLensApp.swift */; };
+		F1B97721574755C6CE152445 /* MWDATDisplay in Frameworks */ = {isa = PBXBuildFile; productRef = 07B1F2D4F9B4C4A4CD9906F5 /* MWDATDisplay */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1E8EF968BC90623AB0262C63 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		545F584CB5389E3CC86BE362 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		5EFAC67F842A048C6F2927B7 /* AssistViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssistViewModel.swift; sourceTree = "<group>"; };
+		611240D0E8271A886FB042AA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		6B2F6FF8D5622E9E6FEAFC50 /* WearablesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WearablesViewModel.swift; sourceTree = "<group>"; };
+		7B72A1322599FBEE85E5AAE5 /* AmbientFieldLens.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = AmbientFieldLens.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		876C4DF6FE4B15E0A5E3750F /* HUDCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUDCard.swift; sourceTree = "<group>"; };
+		D9BD1EA47F3E53B5A09ABB66 /* AmbientFieldLensApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmbientFieldLensApp.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7F3F14EB8432553F6ACCBE04 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D6EBE6D53143DBBFDF24CB7 /* MWDATCore in Frameworks */,
+				BCB937103D1E6515429A0B5B /* MWDATCamera in Frameworks */,
+				F1B97721574755C6CE152445 /* MWDATDisplay in Frameworks */,
+				C1321B758B2151431B9CC28E /* MWDATMockDevice in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		40A9E4FBA4C99AF235EEC426 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				5EFAC67F842A048C6F2927B7 /* AssistViewModel.swift */,
+				6B2F6FF8D5622E9E6FEAFC50 /* WearablesViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		500FB1BF0879ED84EDD390F3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				876C4DF6FE4B15E0A5E3750F /* HUDCard.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		7ECB609CEC8CF86472CD94FA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7B72A1322599FBEE85E5AAE5 /* AmbientFieldLens.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CC65E4451AB5FCF6C4D696D4 = {
+			isa = PBXGroup;
+			children = (
+				E3649466599BB3F358648461 /* AmbientFieldLens */,
+				7ECB609CEC8CF86472CD94FA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E3649466599BB3F358648461 /* AmbientFieldLens */ = {
+			isa = PBXGroup;
+			children = (
+				D9BD1EA47F3E53B5A09ABB66 /* AmbientFieldLensApp.swift */,
+				1E8EF968BC90623AB0262C63 /* Assets.xcassets */,
+				611240D0E8271A886FB042AA /* ContentView.swift */,
+				545F584CB5389E3CC86BE362 /* Info.plist */,
+				40A9E4FBA4C99AF235EEC426 /* ViewModels */,
+				500FB1BF0879ED84EDD390F3 /* Views */,
+			);
+			path = AmbientFieldLens;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		14D8B8B241938C42F3319C8E /* AmbientFieldLens */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6E980727FFAA4882A0190BC5 /* Build configuration list for PBXNativeTarget "AmbientFieldLens" */;
+			buildPhases = (
+				1EA29AC81D9A2326DC0B44F6 /* Sources */,
+				BF645F0A04A8786684DFFDD7 /* Resources */,
+				7F3F14EB8432553F6ACCBE04 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AmbientFieldLens;
+			packageProductDependencies = (
+				501B50AB7EDBB1124955B77B /* MWDATCore */,
+				6B73749C6A4FB201CA94BF30 /* MWDATCamera */,
+				07B1F2D4F9B4C4A4CD9906F5 /* MWDATDisplay */,
+				EB5A6B43915963A701127F9A /* MWDATMockDevice */,
+			);
+			productName = AmbientFieldLens;
+			productReference = 7B72A1322599FBEE85E5AAE5 /* AmbientFieldLens.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AC759BF9BB7D835DE9A57AD8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 2710;
+				TargetAttributes = {
+				};
+			};
+			buildConfigurationList = DE35EAC95879DDC05D38AA42 /* Build configuration list for PBXProject "AmbientFieldLens" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = CC65E4451AB5FCF6C4D696D4;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				889AC337017353E1E452F6C1 /* XCRemoteSwiftPackageReference "meta-wearables-dat-ios" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 7ECB609CEC8CF86472CD94FA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				14D8B8B241938C42F3319C8E /* AmbientFieldLens */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BF645F0A04A8786684DFFDD7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				884962AC682597C9F0397F8E /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1EA29AC81D9A2326DC0B44F6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D78A07B774AE8DDC3416F76B /* AmbientFieldLensApp.swift in Sources */,
+				D7344F890B6523158828C678 /* AssistViewModel.swift in Sources */,
+				BAA5E9D0C96604945BB30C59 /* ContentView.swift in Sources */,
+				8DAB359264D31BD2C7A17C0F /* HUDCard.swift in Sources */,
+				5BE2351F59BFB615D8D845F6 /* WearablesViewModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		44BAB9E3A41B3C2E50867EE7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				INFOPLIST_FILE = AmbientFieldLens/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = art.robotross.AmbientFieldLens;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		749CE0F8CFF10239A10692B6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		74F14954195C2B52AE51897F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				INFOPLIST_FILE = AmbientFieldLens/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = art.robotross.AmbientFieldLens;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		A88067E618101927130A1313 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6E980727FFAA4882A0190BC5 /* Build configuration list for PBXNativeTarget "AmbientFieldLens" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				44BAB9E3A41B3C2E50867EE7 /* Debug */,
+				74F14954195C2B52AE51897F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		DE35EAC95879DDC05D38AA42 /* Build configuration list for PBXProject "AmbientFieldLens" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A88067E618101927130A1313 /* Debug */,
+				749CE0F8CFF10239A10692B6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		889AC337017353E1E452F6C1 /* XCRemoteSwiftPackageReference "meta-wearables-dat-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/facebook/meta-wearables-dat-ios";
+			requirement = {
+				kind = exactVersion;
+				version = 1.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		07B1F2D4F9B4C4A4CD9906F5 /* MWDATDisplay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 889AC337017353E1E452F6C1 /* XCRemoteSwiftPackageReference "meta-wearables-dat-ios" */;
+			productName = MWDATDisplay;
+		};
+		501B50AB7EDBB1124955B77B /* MWDATCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 889AC337017353E1E452F6C1 /* XCRemoteSwiftPackageReference "meta-wearables-dat-ios" */;
+			productName = MWDATCore;
+		};
+		6B73749C6A4FB201CA94BF30 /* MWDATCamera */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 889AC337017353E1E452F6C1 /* XCRemoteSwiftPackageReference "meta-wearables-dat-ios" */;
+			productName = MWDATCamera;
+		};
+		EB5A6B43915963A701127F9A /* MWDATMockDevice */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 889AC337017353E1E452F6C1 /* XCRemoteSwiftPackageReference "meta-wearables-dat-ios" */;
+			productName = MWDATMockDevice;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = AC759BF9BB7D835DE9A57AD8 /* Project object */;
+}

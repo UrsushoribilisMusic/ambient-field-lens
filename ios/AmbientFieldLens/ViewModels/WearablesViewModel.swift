@@ -11,6 +11,7 @@ final class WearablesViewModel: ObservableObject {
     @Published var registrationState: RegistrationState
     @Published var deviceCount: Int = 0
     @Published var sessionState: String = "Idle"
+    @Published var sessionStarted = false
     @Published var streamState: String = "Stopped"
     @Published var currentFrame: UIImage?
     @Published var lastError: String?
@@ -20,6 +21,7 @@ final class WearablesViewModel: ObservableObject {
     private var camera: Camera?
     private var stream: MWDATCamera.Stream?
     private var mockEnabled = false
+    private let sessionTokens = ListenerTokenBag()
 
     init() {
         registrationState = Wearables.shared.registrationState
@@ -69,10 +71,24 @@ final class WearablesViewModel: ObservableObject {
             try session.start()
             for await state in session.stateStream() {
                 sessionState = "\(state)"
-                if state == .started { break }
+                if state == .started {
+                    sessionStarted = true
+                    break
+                }
             }
+            // Keep watching after started: a stopped session must
+            // unlock the guided flow again. Never restart from here.
+            session.statePublisher.listen { [weak self] state in
+                Task { @MainActor in
+                    self?.sessionState = "\(state)"
+                    if state == .stopped {
+                        self?.sessionStarted = false
+                    }
+                }
+            }.store(in: sessionTokens)
         } catch {
             sessionState = "Idle"
+            sessionStarted = false
             lastError = error.localizedDescription
         }
     }
@@ -129,5 +145,6 @@ final class WearablesViewModel: ObservableObject {
         deviceSession?.stop()
         deviceSession = nil
         sessionState = "Idle"
+        sessionStarted = false
     }
 }
