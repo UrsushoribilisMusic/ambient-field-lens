@@ -16,7 +16,7 @@ def validate_records(records):
     for pair in pairs.values():
         if len(pair) != 2 or {p['supported'] for p in pair} != {False, True}:
             raise ValueError('Pair must contain both conditions')
-        for key in ('question', 'candidate', 'group', 'fold'):
+        for key in ('question', 'candidate', 'group', 'fold') + (('frame_sha256',) if any('frame_sha256' in p for p in pair) else ()):
             if len({p[key] for p in pair}) != 1: raise ValueError('Pair mismatch: '+key)
         if pair[0]['text'] == pair[1]['text']: raise ValueError('No evidence intervention')
         g=pair[0]['group'];groups.setdefault(g,set()).add(pair[0]['fold'])
@@ -69,4 +69,4 @@ def summarize(scores, records):
             'pair_accuracy':(wins+.5*ties)/len(margins),'pair_wins':wins,'pair_ties':ties,
             'paired_sign_test_two_sided_p':float(binomtest(wins,len(margins)-ties).pvalue) if len(margins)>ties else 1.,
             'test_pair_margins':margins,'enabled':False,'target':'support present in supplied manual context; not generated answer correctness',
-            'limitations':['Tiny pilot: only two test topic clusters','Teacher-forced fixed candidate; no generated-answer correctness labels','Text-only; camera robustness and physical readiness untested']}
+            'limitations':['Tiny pilot: only two test topic clusters','Teacher-forced fixed candidate; no generated-answer correctness labels','Image inclusion is recorded in image_input; camera robustness and physical readiness remain untested']}
