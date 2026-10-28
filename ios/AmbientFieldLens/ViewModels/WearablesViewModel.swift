@@ -19,6 +19,7 @@ final class WearablesViewModel: ObservableObject {
     @Published var sessionState: String = "Idle"
     @Published var sessionStarted = false
     @Published var streamState: String = "Stopped"
+    @Published var previewActive = false
     @Published var currentFrame: UIImage?
     @Published var lastError: String?
 
@@ -182,6 +183,8 @@ final class WearablesViewModel: ObservableObject {
             lastError = "Start the session first."
             return
         }
+        guard !previewActive else { return }
+        previewActive = true
         lastError = nil
         do {
             let config = StreamConfiguration(
@@ -195,9 +198,13 @@ final class WearablesViewModel: ObservableObject {
             stream = added.stream
         } catch {
             lastError = error.localizedDescription
+            previewActive = false
             return
         }
-        guard let stream else { return }
+        guard let stream else {
+            previewActive = false
+            return
+        }
         _ = stream.statePublisher.listen { [weak self] state in
             Task { @MainActor in
                 self?.streamState = "\(state)"
@@ -222,6 +229,7 @@ final class WearablesViewModel: ObservableObject {
         stream = nil
         camera = nil
         streamState = "Stopped"
+        previewActive = false
     }
 
     func endSession() {

@@ -120,7 +120,7 @@ struct ContentView: View {
     }
 
     private var previewSection: some View {
-        GroupBox("3 · Preview") {
+        GroupBox("3 · Preview (\(wearables.streamState))") {
             VStack(alignment: .leading, spacing: 8) {
                 if let frame = wearables.currentFrame {
                     Image(uiImage: frame)
@@ -140,7 +140,10 @@ struct ContentView: View {
                         wearables.startPreview()
                     }
                     .buttonStyle(.borderedProminent)
-                    .disabled(!wearables.sessionStarted)
+                    .disabled(
+                        !wearables.sessionStarted
+                            || wearables.previewActive
+                    )
                     Button("Stop preview") {
                         wearables.stopPreview()
                     }
