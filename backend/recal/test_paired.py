@@ -42,6 +42,12 @@ class PairedTests(unittest.TestCase):
         result=summarize(np.zeros((36,2)),records())
         self.assertEqual(result['pair_accuracy'],.5);self.assertEqual(result['paired_sign_test_two_sided_p'],1)
         self.assertFalse(result['enabled']);self.assertEqual(result['selected_layer'],0)
+    def test_sign_test_reports_topic_independence_not_six_independent_paraphrases(self):
+        r=records();scores=np.array([[int(x['supported'])] for x in r],dtype=float)
+        result=summarize(scores,r)
+        self.assertEqual(result['paired_sign_test_two_sided_p'],.03125)
+        self.assertEqual(result['topic_sign_test_two_sided_p'],.5)
+        self.assertIn('correlated',result['pair_sign_test_caveat'])
     def test_old_reservations_migrated_not_erased(self):
         with tempfile.TemporaryDirectory() as t:
             p=Path(t)/'ledger.json';p.write_text(json.dumps({'ceiling_usd':20.,'cpu_and_build_reserve_usd':2.,'windows':[{'id':'old','reserved_usd':4.}]}))

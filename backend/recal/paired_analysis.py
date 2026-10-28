@@ -56,6 +56,8 @@ def summarize(scores, records):
         a=records.index(pos);b=records.index(neg)
         margins.append({'pair_id':pos['pair_id'],'group':pos['group'],'positive':float(s[a]),'negative':float(s[b]),'margin':float(s[a]-s[b])})
     wins=sum(m['margin']>0 for m in margins);ties=sum(m['margin']==0 for m in margins)
+    topic_margins={g:float(np.mean([m['margin'] for m in margins if m['group']==g])) for g in sorted({m['group'] for m in margins})}
+    topic_wins=sum(v>0 for v in topic_margins.values());topic_n=sum(v!=0 for v in topic_margins.values())
     # Entire test topic clusters resampled, not independent rows/pair members.
     rng=np.random.default_rng(31);gs=sorted({r['group'] for r in records if r['fold']=='test'});boot=[]
     for _ in range(1000):
@@ -68,5 +70,8 @@ def summarize(scores, records):
             'test_pairs':len(margins),'test_records':int(test.sum()),'test_topic_clusters':len(gs),
             'pair_accuracy':(wins+.5*ties)/len(margins),'pair_wins':wins,'pair_ties':ties,
             'paired_sign_test_two_sided_p':float(binomtest(wins,len(margins)-ties).pvalue) if len(margins)>ties else 1.,
+            'pair_sign_test_caveat':'Unadjusted diagnostic; paraphrases within topics are correlated',
+            'topic_mean_margins':topic_margins,
+            'topic_sign_test_two_sided_p':float(binomtest(topic_wins,topic_n).pvalue) if topic_n else 1.,
             'test_pair_margins':margins,'enabled':False,'target':'support present in supplied manual context; not generated answer correctness',
             'limitations':['Tiny pilot: only two test topic clusters','Teacher-forced fixed candidate; no generated-answer correctness labels','Image inclusion is recorded in image_input; camera robustness and physical readiness remain untested']}
