@@ -23,6 +23,12 @@ class PairedTests(unittest.TestCase):
             bad=copy.deepcopy(r);bad[0][corrupt]='other'
             with self.assertRaises(ValueError):validate_records(bad)
         with self.assertRaises(ValueError):validate_records(r[:-1])
+    def test_camera_pair_must_use_the_same_frame(self):
+        r=records()
+        for row in r:row['frame_sha256']='original'
+        validate_records(r)
+        r[0]['frame_sha256']='changed'
+        with self.assertRaisesRegex(ValueError,'frame_sha256'):validate_records(r)
     def test_validation_selects_layer_not_heldout_test(self):
         r=records();s=np.zeros((36,3))
         for i,row in enumerate(r):s[i,1]=int(row['supported'])

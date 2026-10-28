@@ -24,7 +24,7 @@ def checked_download():
 
 
 HERE=Path(__file__).parent
-image=(gpu_image.add_local_file(HERE/'paired_analysis.py','/opt/afl/paired_analysis.py')
+image=(gpu_image.pip_install('torchvision==0.29.1').add_local_file(HERE/'paired_analysis.py','/opt/afl/paired_analysis.py')
  .add_local_file(HERE/'jacobian_lens.py','/opt/afl/jacobian_lens.py'))
 
 
@@ -67,6 +67,7 @@ def paired_preflight(records,frames=None):
     if not torch.isfinite(tangent).all():raise ValueError('Actual norm JVP unavailable on CPU')
     enc=[encode_record(tok,r,frames) for r in records]
     if frames and any('pixel_values' not in e or not e['pixel_values'].numel() for e in enc):raise ValueError('Camera input missing from processor output')
+    if frames and any(int(e['image_grid_thw'].prod())//4>256 for e in enc):raise ValueError('Vision-token budget exceeded')
     lengths=[int(e['input_ids'].shape[-1]) for e in enc]
     if max(lengths)>1024:raise ValueError('Prompt budget exceeded; no truncation allowed')
     for r,e in zip(records,enc):
