@@ -232,3 +232,17 @@ The real displaced-paper phone control is still required before shipment. Muse
 owns the reviewed `/assist` admission contract and iOS integration; provider raw
 scores alone never authorize a step. [Interfaces, proof and remaining integration
 requirements](docs/live-provider-handoff.md).
+
+## Observable refusals and controller binding — 29 October
+
+[Runtime handoff](docs/observable-checks-handoff.md): Spark pen presence is a
+separate, provenance-bound check (not contact or mechanical fitment). Measured
+geometry requires fixed coplanar workspace markers and independently measured
+robot linkage; moving-paper marks cannot anchor a fixed robot footprint.
+Corrections are numeric geometry or exact retrieved passages only. Controller
+file/flag/log/process snapshots remain unverified without tool/surface/session
+binding; Mac-side collection and authenticated CPU transport are distinct from
+container state. All current responses remain amber with no step. The
+[RED extension](docs/proposals/red-controller-contract.md) is a proposal only.
+No validated weight signal currently supplies a permission gate; raw Glimmer
+scores are diagnostic. No new score rounds or GPU windows in this work.
