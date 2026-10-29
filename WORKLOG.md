@@ -62,3 +62,12 @@ Scope: capture exact current retrieval for “what to do if the paper is in the 
 1. Receipt one read-only CPU retrieval against the deployed corpus; save top three full passages, distances, original corpus snapshot privately.
 2. Add deterministic version manifest validation, immutable copy-on-write ingestion and guarded activation/rollback.
 3. Pin original and future approved versions by full content identity/count; test tampering, wrong counts and failed publication. Prepare reviewable PR and film handoff.
+
+## Repair ingestion implementation and evidence
+
+- Read-only CPU capture found top8135308218c2… at0.8199027180671692, calibration slopes rather than paper-position correction. Full top3 and complete38-record+embedding snapshot saved privately; public digest receipt committed.
+- Implemented reviewed full-content pins, separate immutable version DB, unchanged baseline report, exact human wiki-export addition, explicit IAM activation/rollback after data and deployed-pin validation. Retrieval still sends only top1 into prefill; audit includes runners-up and pin. No PR14/live-contract changes.
+- No human repair text supplied, so no fake39-record pin, real repair, live switch or deployment. Prepare candidate → review/commit exact39/count/fingerprint → coordinated provider deployment → guarded select → compare real citations. CLI records every attempt; no paid model calls.
+- Unit checks and actual Chroma 1.5.9 temporary-database smoke cover copy/idempotence/vector preservation; real captured baseline passes its committed pin.
+
+Validation (issue #15): full backend146 tests,139pass/7expected private-archive skips. Twelve new corpus regressions pass. Actual Chroma1.5.9 CPU smoke uses38 synthetic baseline chunks →39 in separate DB, preserves original38 and vectors, repeat staging is read-only. Modal CLI help imports successfully. Actual38-record captured baseline matches pinned content/report/count. Only remote call was the read-only before capture; its app stopped,0tasks, final container list empty (no other app stopped). No actual wiki repair or serving deployment performed.
