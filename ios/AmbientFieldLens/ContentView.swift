@@ -11,13 +11,14 @@ struct ContentView: View {
     @StateObject private var setup = DemoSetup()
     @State private var showSetup = false
     @State private var askPulse = 0
+    @State private var source: FrameSource = .phone
     private let pulseTimer = Timer.publish(every: 0.25, on: .main, in: .common)
         .autoconnect()
 
     var body: some View {
         NavigationStack {
             ZStack {
-                PhoneCameraPreview(session: phoneCamera.previewSession)
+                viewfinder
                     .ignoresSafeArea()
                 VStack(spacing: 0) {
                     statusBar
@@ -211,10 +212,64 @@ struct ContentView: View {
         return assist.lastRequestLog
     }
 
+    /// The rendered source IS the submitted source. Switching clears the
+    /// retained phone still so a stale phone frame can never ride along
+    /// with a glasses ask (and vice versa: the binding ignores it).
+    private var viewfinder: some View {
+        Group {
+            switch source {
+            case .phone:
+                PhoneCameraPreview(session: phoneCamera.previewSession)
+            case .glasses:
+                if let frame = wearables.currentFrame {
+                    Image(uiImage: frame)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                } else {
+                    Text("No glasses frame — start a session, or use Phone.")
+                        .foregroundStyle(.white)
+                        .padding()
+                }
+            }
+        }
+    }
+
+    private var askFrame: UIImage? {
+        resolveFrame(
+            source: source,
+            glasses: wearables.currentFrame,
+            phone: phoneCamera.lastPhoto)
+    }
+
+    /// Ask is armed only when the SELECTED source holds a frame.
+    private var canAsk: Bool {
+        switch source {
+        case .phone:
+            return phoneCamera.isReady
+        case .glasses:
+            return askFrame != nil
+        }
+    }
+
+    private func switchSource() {
+        source.toggle()
+        if source == .glasses {
+            phoneCamera.lastPhoto = nil
+        }
+    }
+
     // MARK: - Bottom ask bar
 
     private var askBar: some View {
         HStack(spacing: 8) {
+            Button(source.label) { switchSource() }
+                .font(.caption2.bold())
+                .foregroundStyle(.black)
+                .padding(.horizontal, 8)
+                .padding(.vertical, 6)
+                .background(.white.opacity(0.85))
+                .clipShape(Capsule())
+                .accessibilityLabel("Frame source, currently \(source.label)")
             TextField("Can I draw this here?", text: $assist.query)
                 .textFieldStyle(.roundedBorder)
             if assist.isAsking {
@@ -228,7 +283,7 @@ struct ContentView: View {
                     Task { await askAboutView() }
                 }
                 .buttonStyle(.borderedProminent)
-                .disabled(!phoneCamera.isReady)
+                .disabled(!canAsk)
                 .frame(minWidth: 72, minHeight: 44)
             }
         }
@@ -254,21 +309,22 @@ struct ContentView: View {
         }
     }
 
-    /// One tap: capture the current view, then ask about it.
+    /// One tap: capture the selected source, then ask about exactly that.
     private func askAboutView() async {
-        if let glasses = wearables.currentFrame {
-            await assist.ask(frame: glasses)
-            return
-        }
-        do {
-            let photo = try await phoneCamera.capturePhoto()
-            await assist.ask(frame: photo)
-        } catch let failure
-            as PhoneCameraViewModel.CaptureFailure
-        {
-            assist.lastError = failure.message
-        } catch {
-            assist.lastError = error.localizedDescription
+        switch source {
+        case .glasses:
+            await assist.ask(frame: askFrame)
+        case .phone:
+            do {
+                let photo = try await phoneCamera.capturePhoto()
+                await assist.ask(frame: photo)
+            } catch let failure
+                as PhoneCameraViewModel.CaptureFailure
+            {
+                assist.lastError = failure.message
+            } catch {
+                assist.lastError = error.localizedDescription
+            }
         }
     }
 

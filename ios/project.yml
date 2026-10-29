@@ -31,6 +31,19 @@ targets:
         product: MWDATDisplay
       - package: DATSDK
         product: MWDATMockDevice
+  AmbientFieldLensTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: AmbientFieldLensTests
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: art.robotross.AmbientFieldLensTests
+        SWIFT_VERSION: "6.0"
+        IPHONEOS_DEPLOYMENT_TARGET: "17.2"
+        GENERATE_INFOPLIST_FILE: "YES"
+    dependencies:
+      - target: AmbientFieldLens
 schemes:
   AmbientFieldLens:
     build:
@@ -38,3 +51,7 @@ schemes:
         AmbientFieldLens: all
     run:
       config: Debug
+    test:
+      config: Debug
+      targets:
+        - AmbientFieldLensTests

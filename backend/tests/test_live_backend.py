@@ -117,31 +117,110 @@ class LiveBackendTests(unittest.TestCase):
         self.assertEqual(response.verdict, 'verify')
         self.assertNotIn('secret-internal-trace-123', response.detail)
 
-    def test_claim_call_uses_put_protocol(self):
+    def fake_store(self, stores):
         import sys
-        stores = {}
+        import threading
         class FakeDict:
+            def __init__(self):
+                self.lock = threading.Lock()
             def get(self, key):
                 return stores.get(key)
             def put(self, key, value):
                 stores[key] = value
+            def contains(self, key):
+                return key in stores
+            def pop(self, key):
+                with self.lock:
+                    if key not in stores:
+                        raise KeyError(key)
+                    return stores.pop(key)
+        box = {}
         class FakeModal:
             class Dict:
                 @staticmethod
                 def from_name(name, create_if_missing=False):
                     assert create_if_missing
-                    return FakeDict()
+                    if 'dict' not in box:
+                        box['dict'] = FakeDict()
+                    return box['dict']
         saved = sys.modules.get('modal')
         sys.modules['modal'] = FakeModal()
+        return saved
+
+    def restore_modal(self, saved):
+        import sys
+        if saved is None:
+            del sys.modules['modal']
+        else:
+            sys.modules['modal'] = saved
+
+    def test_token_budget_survives_last_slot_race(self):
+        import threading
+        stores = {}
+        saved = self.fake_store(stores)
         try:
-            window_id = live_backend.claim_call(dict(WINDOW))
+            record = {'id': 'w9', 'expires_at': 9e9, 'max_calls': 1}
+            live_backend.arm_tokens(record)
+            stores['active'] = dict(record, calls_used=0)
+            barrier = threading.Barrier(2)
+            results = []
+            def attempt():
+                barrier.wait()
+                try:
+                    live_backend.claim_call(dict(record))
+                    results.append('ok')
+                except live_backend.WindowUnavailable:
+                    results.append('spent')
+            threads = [threading.Thread(target=attempt) for _ in range(2)]
+            for t in threads:
+                t.start()
+            for t in threads:
+                t.join()
         finally:
-            if saved is None:
-                del sys.modules['modal']
-            else:
-                sys.modules['modal'] = saved
-        self.assertEqual(window_id, 'w1')
-        self.assertEqual(stores['active']['calls_used'], 1)
+            self.restore_modal(saved)
+        self.assertEqual(sorted(results), ['ok', 'spent'])
+
+    def test_tokens_never_refill(self):
+        stores = {}
+        saved = self.fake_store(stores)
+        try:
+            record = {'id': 'w9', 'expires_at': 9e9, 'max_calls': 1}
+            live_backend.arm_tokens(record)
+            stores['active'] = dict(record, calls_used=0)
+            self.assertEqual(live_backend.claim_call(dict(record)), 'w9')
+            live_backend.arm_tokens(record)
+            with self.assertRaises(live_backend.WindowUnavailable):
+                live_backend.claim_call(dict(record))
+        finally:
+            self.restore_modal(saved)
+
+    def test_timeout_holds_slot_and_starts_no_new_stage(self):
+        import asyncio
+        import threading
+        entries = []
+        release = threading.Event()
+        live_backend.read_window = lambda: dict(WINDOW)
+        live_backend.claim_call = lambda record: 'w1'
+        def slow_retrieve(q, f):
+            entries.append('retrieve')
+            release.wait(timeout=5)
+            return dict(EVIDENCE)
+        live_backend.client.retrieve = slow_retrieve
+        live_backend.segment_paper = lambda *a, **k: entries.append('segment') or MASKS
+        service = LiveAssistService(limits=live_backend.LiveLimits(
+            timeout_seconds=0.05, concurrency=1, queue_seconds=0.05))
+        async def run():
+            first = asyncio.ensure_future(service.assist(request_with_image()))
+            await asyncio.sleep(0.2)
+            # Worker is past timeout, still inside retrieve: slot held, no
+            # new paid stage may start, second request cannot overlap.
+            second = await service.assist(request_with_image())
+            release.set()
+            return await first, second
+        (status1, _), (status2, _) = asyncio.run(run())
+        self.assertEqual(status1, 504)
+        self.assertIn(status2, (429, 503, 504))
+        self.assertEqual(entries, ['retrieve'])
 
     def test_evidence_detail_accepts_live_tuples(self):
         from live_backend import evidence_detail

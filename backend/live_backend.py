@@ -36,37 +36,90 @@ class WindowUnavailable(Exception):
     pass
 
 
+class Abandoned(Exception):
+    """A timed-out worker reached a stage gate after abandonment. Never amber text."""
+
+
+def _store():
+    import modal
+    return modal.Dict.from_name('afl-live', create_if_missing=True)
+
+
 def read_window():
     """Capability envelope for the live demo window. Claimed call-first."""
-    import modal
     try:
-        record = modal.Dict.from_name('afl-live', create_if_missing=True).get('active')
+        record = _store().get('active')
     except Exception:
         raise WindowUnavailable('Demo window store unreachable. Verify in the manual.')
     if not isinstance(record, dict):
         raise WindowUnavailable('No live demo window is open. Verify in the manual.')
     if record.get('expires_at', 0) <= time.time():
         raise WindowUnavailable('Live demo window expired. Verify in the manual.')
-    used = int(record.get('calls_used', 0))
-    if used >= int(record.get('max_calls', 0)):
-        raise WindowUnavailable('Live demo window call budget spent. Verify in the manual.')
     return record
 
 
+def _token_keys(record):
+    wid = str(record.get('id', 'unrecorded'))
+    return [f'{wid}:call-{i}' for i in range(int(record.get('max_calls', 0)))]
+
+
 def claim_call(record):
-    """Consume one window call BEFORE providers run (budget-safe)."""
-    import modal
-    record['calls_used'] = int(record.get('calls_used', 0)) + 1
-    modal.Dict.from_name('afl-live', create_if_missing=True).put('active', record)
-    return str(record.get('id', 'unrecorded'))
+    """Consume one single-use token BEFORE providers run (budget-safe).
+
+    Tokens are namespaced per window id and consumed with pop(), which is
+    the store's own atomic take: each token can be spent once no matter
+    how many instances race. Total spend can never exceed the tokens
+    issued, unlike read-increment-write of a shared counter. A token
+    consumed for a replaced window is lost, fail-closed (under-count).
+    """
+    store = _store()
+    try:
+        live = store.get('active')
+    except Exception:
+        raise WindowUnavailable('Demo window store unreachable. Verify in the manual.')
+    if not isinstance(live, dict) or live.get('id') != record.get('id'):
+        raise WindowUnavailable('Live demo window was replaced. Verify in the manual.')
+    if live.get('expires_at', 0) <= time.time():
+        raise WindowUnavailable('Live demo window expired. Verify in the manual.')
+    for key in _token_keys(record):
+        try:
+            store.pop(key)
+        except Exception:
+            continue
+        try:
+            shown = store.get('active')
+            if isinstance(shown, dict):
+                shown['calls_used'] = int(shown.get('calls_used', 0)) + 1
+                store.put('active', shown)
+        except Exception:
+            pass
+        return str(record.get('id', 'unrecorded'))
+    raise WindowUnavailable('Live demo window call budget spent. Verify in the manual.')
+
+
+def arm_tokens(record, store=None):
+    """Issue single-use call tokens for a window. Never refills spent ones.
+
+    Issuance is recorded under a per-window marker: re-arming an issued
+    window is a no-op, so a spent token can never come back. Replacing a
+    window means a new id, hence a new namespace.
+    """
+    store = store or _store()
+    wid = str(record.get('id', 'unrecorded'))
+    try:
+        if store.contains(f'{wid}:issued'):
+            return
+        for key in _token_keys(record):
+            store.put(key, True)
+        store.put(f'{wid}:issued', int(record.get('max_calls', 0)))
+    except Exception:
+        raise WindowUnavailable('Demo window store unreachable. Verify in the manual.')
 
 
 def note_progress(stage):
     """Best-effort stage marker for the operator's own Mac. Names only."""
     try:
-        import modal
-        modal.Dict.from_name('afl-live', create_if_missing=True).put(
-            'stage', {'stage': stage, 'at': time.time()})
+        _store().put('stage', {'stage': stage, 'at': time.time()})
     except Exception:
         pass
 
@@ -74,9 +127,7 @@ def note_progress(stage):
 def note_failure(stage, kind):
     """Best-effort debug note for the operator's own Mac. Type only."""
     try:
-        import modal
-        modal.Dict.from_name('afl-live', create_if_missing=True).put(
-            'last_error', {'stage': stage, 'type': kind, 'at': time.time()})
+        _store().put('last_error', {'stage': stage, 'type': kind, 'at': time.time()})
     except Exception:
         pass
 
@@ -128,19 +179,32 @@ class LiveAssistService:
             await asyncio.wait_for(self.slots.acquire(), timeout=self.limits.queue_seconds)
         except TimeoutError:
             return 429, deny('Assistant is busy. Verify in the manual.')
+        # The slot stays held until the worker thread has actually drained:
+        # a timed-out thread keeps running, so releasing early would let the
+        # next request overlap paid provider stages. The worker checks the
+        # deadline event before every paid stage and starts no new one after
+        # abandonment; the join below bounds the drain by provider timeouts.
+        import threading
+        deadline = threading.Event()
         try:
             permit = self.breaker.admit()
             if permit is None:
                 return 503, deny('Assistant is temporarily unavailable. Verify in the manual.')
+            worker = asyncio.get_running_loop().run_in_executor(
+                None, self.compose, request, deadline)
             try:
                 response = await asyncio.wait_for(
-                    asyncio.to_thread(self.compose, request),
-                    timeout=self.limits.timeout_seconds)
+                    asyncio.shield(worker), timeout=self.limits.timeout_seconds)
             except WindowUnavailable as exc:
                 self.breaker.succeeded(permit)
                 return 503, deny(str(exc))
             except TimeoutError:
+                deadline.set()
                 self.breaker.failed(permit)
+                try:
+                    await worker
+                except (Abandoned, Exception):
+                    pass
                 return 504, deny('Live check timed out. Verify in the manual.')
             except Exception as exc:
                 # Server-side stage log carries the exception TYPE only: never
@@ -154,17 +218,28 @@ class LiveAssistService:
         finally:
             self.slots.release()
 
-    def compose(self, request):
-        """One frame through retrieval, SAM, Glimmer. Sync; run in a thread."""
+    def compose(self, request, deadline=None):
+        """One frame through retrieval, SAM, Glimmer. Sync; run in a thread.
+
+        `deadline` is set when the caller abandons the worker (timeout).
+        Every paid stage gate-checks it first: an abandoned worker starts
+        no new provider stage, then exits so the held slot can drain.
+        """
         import tempfile
+        import threading
+        dead = deadline or threading.Event()
+        def gated(name):
+            if dead.is_set():
+                raise Abandoned()
+            note_progress(name)
+            return name
         stage = 'window'
         try:
             record = claim_call(read_window())
             image = base64.b64decode(request.image_jpeg_base64, validate=True)
             frame = sha(image)
             request_id = uuid.uuid4().hex[:16]
-            stage = 'retrieve'
-            note_progress(stage)
+            stage = gated('retrieve')
             evidence = client.retrieve(request.query, frame)
             chunks = evidence.get('chunks', [])
             if not chunks:
@@ -174,8 +249,7 @@ class LiveAssistService:
                 return deny('NOT COVERED: Manual returned no passage for this '
                             'question. Verify in the manual before touching '
                             'the machine.')
-            stage = 'segment'
-            note_progress(stage)
+            stage = gated('segment')
             segmentation = segment_paper(image, request_id=request_id,
                                          output_root=tempfile.mkdtemp(prefix='afl-live-'),
                                          box=None)
@@ -186,8 +260,7 @@ class LiveAssistService:
                 return deny('WORLD CHECK FAILED: No paper candidate in this '
                             'frame. Reposition the paper fully in view. '
                             'Verify in the manual.')
-            stage = 'ground'
-            note_progress(stage)
+            stage = gated('ground')
             score = client.grounding(
                 request_id=request_id, question=request.query, evidence=evidence,
                 image_jpeg_base64=request.image_jpeg_base64, frame_sha256=frame,
