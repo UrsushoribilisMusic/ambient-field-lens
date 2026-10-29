@@ -77,7 +77,9 @@ final class PhoneCameraViewModel: NSObject, ObservableObject {
     /// Capture a still, keep it as the current frame, and return it.
     /// Throws a human-readable message on failure.
     nonisolated func capturePhoto() async throws -> UIImage {
-        try await withCheckedThrowingContinuation { continuation in
+        self.output.connection(with: .video)?.videoOrientation =
+            PhoneCameraPreview.landscapeOrientation()
+        return try await withCheckedThrowingContinuation { continuation in
             self.pending.append(continuation)
             self.output.capturePhoto(
                 with: AVCapturePhotoSettings(), delegate: self)

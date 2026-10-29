@@ -58,7 +58,7 @@ struct ContentView: View {
 
     private var topBar: some View {
         HStack {
-            Text(setup.status(wearables: wearables))
+            Text(setup.status(wearables: wearables, cameraReady: phoneCamera.isReady))
                 .font(.caption2.monospaced())
                 .foregroundStyle(.white)
                 .padding(.horizontal, 10)
@@ -79,27 +79,15 @@ struct ContentView: View {
 
     private var bottomPanel: some View {
         VStack(alignment: .leading, spacing: 10) {
-            if let frame = askFrame {
-                HStack(spacing: 10) {
-                    Image(uiImage: frame)
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: 72, height: 72)
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
-                    TextField("Question", text: $assist.query)
-                        .textFieldStyle(.roundedBorder)
-                }
-            } else {
-                TextField("Question", text: $assist.query)
-                    .textFieldStyle(.roundedBorder)
-            }
-            Button(assist.isAsking ? "Asking…" : "Ask about this view") {
+            TextField("Question", text: $assist.query)
+                .textFieldStyle(.roundedBorder)
+            Button(assist.isAsking ? "Asking…" : "Ask") {
                 Task { await askAboutView() }
             }
             .buttonStyle(.borderedProminent)
             .disabled(assist.isAsking || !phoneCamera.isReady)
             .frame(maxWidth: .infinity, minHeight: 56)
-            HUDCard(verdict: assist.verdict)
+            verdictLine
             Text(assist.lastRequestLog)
                 .font(.caption2.monospaced())
                 .foregroundStyle(.white)
@@ -109,6 +97,43 @@ struct ContentView: View {
         .clipShape(
             RoundedRectangle(cornerRadius: 16, style: .continuous))
         .padding(12)
+    }
+
+    /// One status line, not a dialog: dot + short text.
+    private var verdictLine: some View {
+        HStack(spacing: 8) {
+            Circle()
+                .fill(verdictColor)
+                .frame(width: 10, height: 10)
+            Text(verdictText)
+                .font(.callout)
+                .foregroundStyle(.white)
+                .lineLimit(2)
+        }
+    }
+
+    private var verdictColor: Color {
+        switch assist.verdict {
+        case .none:
+            .gray
+        case .verified:
+            .green
+        case .verify:
+            .orange
+        }
+    }
+
+    private var verdictText: String {
+        switch assist.verdict {
+        case .none:
+            phoneCamera.isReady
+                ? "Ready — frame the rig and Ask."
+                : "Starting camera…"
+        case .verified(let step, _):
+            step
+        case .verify(let detail, _, _):
+            detail.isEmpty ? "Verify in manual." : detail
+        }
     }
 
     /// One tap: capture the current view, then ask about it.
@@ -141,7 +166,7 @@ struct ContentView: View {
                 Button("Start glasses preview") {
                     wearables.startPreview()
                 }
-                Text(setup.status(wearables: wearables))
+                Text(setup.status(wearables: wearables, cameraReady: phoneCamera.isReady))
                     .font(.caption2.monospaced())
             }
             .navigationTitle("Setup")
@@ -163,7 +188,7 @@ final class DemoSetup: ObservableObject {
         await wearables.startSession()
     }
 
-    func status(wearables: WearablesViewModel) -> String {
-        "devices=\(wearables.deviceCount) session=\(wearables.sessionState) stream=\(wearables.streamState)"
+    func status(wearables: WearablesViewModel, cameraReady: Bool) -> String {
+        "camera=\(cameraReady ? "ready" : "starting") glasses=\(wearables.deviceCount) session=\(wearables.sessionState)"
     }
 }
