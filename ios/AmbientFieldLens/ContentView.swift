@@ -133,10 +133,14 @@ struct ContentView: View {
         }
     }
 
-    /// Rolling status: error, verdict detail, request log, idle.
+    /// Rolling status: error, in-flight request, verdict detail, idle.
+    /// While asking, the previous verdict yields to the live request log.
     private var statusText: String {
         if let error = assist.lastError ?? wearables.lastError {
             return error
+        }
+        if assist.isAsking {
+            return assist.lastRequestLog
         }
         switch assist.verdict {
         case .none:
