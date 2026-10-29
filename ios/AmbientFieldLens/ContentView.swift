@@ -54,31 +54,32 @@ struct ContentView: View {
     // MARK: - Top status bar
 
     private var statusBar: some View {
-        HStack(spacing: 4) {
-            Text("Field Lens")
-                .font(.caption.bold())
-                .foregroundStyle(.white)
-            statusDot(phoneCamera.isReady, label: "cam")
-            statusDot(wearables.deviceCount > 0, label: "\(wearables.deviceCount)")
-            statusDot(wearables.sessionStarted, label: "ses")
-            semaphore
+        VStack(alignment: .leading, spacing: 2) {
+            HStack(spacing: 4) {
+                Text("Field Lens")
+                    .font(.caption.bold())
+                    .foregroundStyle(.white)
+                statusDot(phoneCamera.isReady, label: "cam")
+                statusDot(wearables.deviceCount > 0, label: "\(wearables.deviceCount)")
+                statusDot(wearables.sessionStarted, label: "ses")
+                semaphore
+                Spacer()
+                Button {
+                    showSetup = true
+                } label: {
+                    Image(systemName: "gearshape")
+                        .font(.caption)
+                        .foregroundStyle(.black)
+                        .padding(6)
+                        .background(.white.opacity(0.85))
+                        .clipShape(Circle())
+                }
+                .accessibilityLabel("Setup")
+            }
             Text(statusText)
                 .font(.caption2.monospaced())
                 .foregroundStyle(.white)
-                .lineLimit(1)
-                .truncationMode(.tail)
-            Spacer()
-            Button {
-                showSetup = true
-            } label: {
-                Image(systemName: "gearshape")
-                    .font(.caption)
-                    .foregroundStyle(.black)
-                    .padding(6)
-                    .background(.white.opacity(0.85))
-                    .clipShape(Circle())
-            }
-            .accessibilityLabel("Setup")
+                .lineLimit(2)
         }
         .padding(.horizontal, 1)
         .padding(.vertical, 6)
