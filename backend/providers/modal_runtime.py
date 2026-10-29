@@ -138,6 +138,46 @@ def retrieve(request:dict):
             'context_sha256':hashlib.sha256(context.encode()).hexdigest(),'gpu_used':False}
 
 
+@app.function(image=cpu,gpu=None,volumes={'/artifacts':artifacts},timeout=30,
+              min_containers=0,max_containers=1,scaledown_window=2,retries=0)
+def put_controller_snapshot(request:dict):
+    """IAM-authenticated Mac collector evidence, not a public client attestation."""
+    import re,math
+    robot=request.get('robot_id');snapshot=request.get('snapshot')
+    if not isinstance(robot,str) or not re.fullmatch('[A-Za-z0-9_-]{1,80}',robot):
+        raise ValueError('invalid_robot_id')
+    if (not isinstance(snapshot,dict) or snapshot.get('schema')!='ross-controller-evidence-v1'
+            or snapshot.get('physical_calibration_verified') is not False
+            or snapshot.get('controller_session_verified') is not False):
+        raise ValueError('raw_controller_snapshot_required_not_a_verdict')
+    observed=snapshot.get('observed_at')
+    if type(observed) not in (int,float) or not math.isfinite(observed) or not 0<=time.time()-observed<=5:
+        raise ValueError('controller_snapshot_stale_or_unbound_clock')
+    raw=json.dumps(snapshot,sort_keys=True,allow_nan=False).encode()
+    if len(raw)>65536:raise ValueError('controller_snapshot_size')
+    BASE.mkdir(parents=True,exist_ok=True)
+    entry={'robot_id':robot,'received_at':time.time(),'snapshot_sha256':hashlib.sha256(raw).hexdigest(),'snapshot':snapshot}
+    (BASE/('controller-'+robot+'.json')).write_text(json.dumps(entry));artifacts.commit()
+    return {'robot_id':robot,'snapshot_sha256':entry['snapshot_sha256'],'received_at':entry['received_at'],
+            'accepted_for_storage_only':True,'physical_calibration_verified':False}
+
+
+@app.function(image=cpu,gpu=None,volumes={'/artifacts':artifacts},timeout=30,
+              min_containers=0,max_containers=1,scaledown_window=2,retries=0)
+def get_controller_snapshot(request:dict):
+    import re
+    robot=request.get('robot_id')
+    if not isinstance(robot,str) or not re.fullmatch('[A-Za-z0-9_-]{1,80}',robot):raise ValueError('invalid_robot_id')
+    path=BASE/('controller-'+robot+'.json')
+    if not path.exists():raise ValueError('controller_snapshot_missing')
+    entry=json.loads(path.read_text())
+    raw=json.dumps(entry['snapshot'],sort_keys=True,allow_nan=False).encode()
+    if hashlib.sha256(raw).hexdigest()!=entry['snapshot_sha256']:raise ValueError('controller_snapshot_digest_mismatch')
+    # Time is not refreshed by fetching; consumer also validates against its frame.
+    entry['fresh']=0<=time.time()-entry['snapshot']['observed_at']<=5
+    return entry
+
+
 @app.cls(image=gpu,gpu=['A100-80GB','H100'],cpu=(2,4),memory=(32768,65536),
          volumes={'/weights':weights,'/artifacts':artifacts},timeout=300,startup_timeout=300,
          min_containers=0,max_containers=1,buffer_containers=0,scaledown_window=2,retries=0)
