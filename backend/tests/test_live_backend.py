@@ -156,17 +156,23 @@ class LiveBackendTests(unittest.TestCase):
         class FakeDict:
             def __init__(self):
                 self.lock = threading.Lock()
+                self.on_pop = None
             def get(self, key):
                 return stores.get(key)
             def put(self, key, value):
                 stores[key] = value
             def contains(self, key):
                 return key in stores
+            def keys(self):
+                return list(stores.keys())
             def pop(self, key):
                 with self.lock:
                     if key not in stores:
                         raise KeyError(key)
-                    return stores.pop(key)
+                    value = stores.pop(key)
+                    if self.on_pop is not None:
+                        self.on_pop(key)
+                    return value
         box = {}
         class FakeModal:
             class Dict:
@@ -178,7 +184,7 @@ class LiveBackendTests(unittest.TestCase):
                     return box['dict']
         saved = sys.modules.get('modal')
         sys.modules['modal'] = FakeModal()
-        return saved
+        return saved, box
 
     def restore_modal(self, saved):
         import sys
@@ -190,7 +196,7 @@ class LiveBackendTests(unittest.TestCase):
     def test_token_budget_survives_last_slot_race(self):
         import threading
         stores = {}
-        saved = self.fake_store(stores)
+        saved, _box = self.fake_store(stores)
         try:
             record = {'id': 'w9', 'expires_at': 9e9, 'max_calls': 1}
             live_backend.arm_tokens(record)
@@ -215,7 +221,7 @@ class LiveBackendTests(unittest.TestCase):
 
     def test_tokens_never_refill(self):
         stores = {}
-        saved = self.fake_store(stores)
+        saved, _box = self.fake_store(stores)
         try:
             record = {'id': 'w9', 'expires_at': 9e9, 'max_calls': 1}
             live_backend.arm_tokens(record)
@@ -226,6 +232,85 @@ class LiveBackendTests(unittest.TestCase):
                 live_backend.claim_call(dict(record))
         finally:
             self.restore_modal(saved)
+
+    def test_close_during_pop_kills_inflight_claim(self):
+        stores = {}
+        saved, box = self.fake_store(stores)
+        try:
+            shown = {'id': 'w9', 'expires_at': 9e9, 'max_calls': 1}
+            live_backend.arm_tokens(shown)
+            stores['active'] = dict(shown, calls_used=0)
+            def close_on_pop(key):
+                if key == 'w9:call-0':
+                    stores['active'] = None
+            box['dict'].on_pop = close_on_pop
+            with self.assertRaises(live_backend.WindowUnavailable):
+                live_backend.claim_call(dict(shown))
+            # Dead window stays dead: no stats write resurrected it, and the
+            # popped token is sacrificed (fail-closed under-count, no refill).
+            self.assertIsNone(stores.get('active'))
+            self.assertEqual(live_backend.remaining_calls('w9'), 0)
+        finally:
+            self.restore_modal(saved)
+
+    def test_replace_during_pop_refuses_and_preserves_new_budget(self):
+        stores = {}
+        saved, box = self.fake_store(stores)
+        try:
+            old = {'id': 'w-old', 'expires_at': 9e9, 'max_calls': 1}
+            new = {'id': 'w-new', 'expires_at': 9e9, 'max_calls': 1}
+            live_backend.arm_tokens(old)
+            live_backend.arm_tokens(new)
+            stores['active'] = dict(old, calls_used=0)
+            def replace_on_pop(key):
+                if key == 'w-old:call-0':
+                    stores['active'] = dict(new, calls_used=0)
+            box['dict'].on_pop = replace_on_pop
+            with self.assertRaises(live_backend.WindowUnavailable):
+                live_backend.claim_call(dict(old))
+            box['dict'].on_pop = None
+            # The new window's budget is untouched and still usable.
+            self.assertEqual(live_backend.remaining_calls('w-new'), 1)
+            self.assertEqual(live_backend.claim_call(dict(new)), 'w-new')
+        finally:
+            self.restore_modal(saved)
+
+    def test_cancelled_queued_caller_releases_nothing_and_cancel_drains(self):
+        import asyncio
+        import threading
+        entries = []
+        release = threading.Event()
+        live_backend.read_window = lambda: dict(WINDOW)
+        live_backend.claim_call = lambda record: 'w1'
+        def slow_retrieve(q, f):
+            entries.append('retrieve')
+            release.wait(timeout=5)
+            return dict(EVIDENCE)
+        live_backend.client.retrieve = slow_retrieve
+        live_backend.segment_paper = lambda *a, **k: entries.append('segment') or MASKS
+        live_backend.client.grounding = lambda **k: SCORE
+        service = LiveAssistService(limits=live_backend.LiveLimits(
+            timeout_seconds=30, concurrency=1, queue_seconds=30))
+        async def scenario():
+            first = asyncio.create_task(service.assist(request_with_image()))
+            for _ in range(1000):
+                if entries.count('retrieve') == 1:
+                    break
+                await asyncio.sleep(0.01)
+            queued = asyncio.create_task(service.assist(request_with_image()))
+            await asyncio.sleep(0.2)
+            self.assertTrue(service.slots.locked())
+            queued.cancel()
+            with self.assertRaises(asyncio.CancelledError):
+                await queued
+            # The cancelled waiter never held the slot: still locked by first.
+            self.assertTrue(service.slots.locked())
+            release.set()
+            status, body = await first
+            self.assertEqual(status, 200)
+            # Segment starts only after release; nothing overlapped the worker.
+            self.assertEqual(entries.count('segment'), 1)
+        asyncio.run(scenario())
 
     def test_timeout_holds_slot_and_starts_no_new_stage(self):
         import asyncio

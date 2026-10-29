@@ -72,38 +72,59 @@ def _token_keys(record):
     return [f'{wid}:call-{i}' for i in range(int(record.get('max_calls', 0)))]
 
 
+def _live_id(store):
+    """Current window id, or None. Single read, no mutation."""
+    try:
+        live = store.get('active')
+    except Exception:
+        raise WindowUnavailable('Demo window store unreachable. Verify in the manual.')
+    if not isinstance(live, dict):
+        return None
+    if live.get('expires_at', 0) <= time.time():
+        return None
+    return live.get('id')
+
+
 def claim_call(record):
     """Consume one single-use token BEFORE providers run (budget-safe).
 
     Tokens are namespaced per window id and consumed with pop(), which is
     the store's own atomic take: each token can be spent once no matter
     how many instances race. Total spend can never exceed the tokens
-    issued, unlike read-increment-write of a shared counter. A token
-    consumed for a replaced window is lost, fail-closed (under-count).
+    issued. The active row is NEVER written here — a stats put after a
+    close would resurrect a dead window, and the row is only a display
+    snapshot, not the budget authority.
+
+    Close/replacement interleavings: the window id is re-validated AFTER
+    the pop. A close or replace landing mid-claim sacrifices the popped
+    token and refuses fail-closed (under-count). True single-authority
+    serialization would need store transactions the Dict API does not
+    offer; this is the documented best-available shape.
     """
     store = _store()
-    try:
-        live = store.get('active')
-    except Exception:
-        raise WindowUnavailable('Demo window store unreachable. Verify in the manual.')
-    if not isinstance(live, dict) or live.get('id') != record.get('id'):
-        raise WindowUnavailable('Live demo window was replaced. Verify in the manual.')
-    if live.get('expires_at', 0) <= time.time():
-        raise WindowUnavailable('Live demo window expired. Verify in the manual.')
+    if _live_id(store) != record.get('id'):
+        raise WindowUnavailable('Live demo window is not open. Verify in the manual.')
     for key in _token_keys(record):
         try:
             store.pop(key)
         except Exception:
             continue
-        try:
-            shown = store.get('active')
-            if isinstance(shown, dict):
-                shown['calls_used'] = int(shown.get('calls_used', 0)) + 1
-                store.put('active', shown)
-        except Exception:
-            pass
+        if _live_id(store) != record.get('id'):
+            raise WindowUnavailable('Live demo window was replaced. Verify in the manual.')
         return str(record.get('id', 'unrecorded'))
+    if _live_id(store) != record.get('id'):
+        raise WindowUnavailable('Live demo window is not open. Verify in the manual.')
     raise WindowUnavailable('Live demo window call budget spent. Verify in the manual.')
+
+
+def remaining_calls(window_id, store=None):
+    """Count unspent tokens. Display only; the pop is the authority."""
+    store = store or _store()
+    try:
+        return sum(1 for k in store.keys()
+                   if isinstance(k, str) and k.startswith(f'{window_id}:call-'))
+    except Exception:
+        return -1
 
 
 def arm_tokens(record, store=None):
@@ -213,11 +234,13 @@ class LiveAssistService:
             except TimeoutError:
                 deadline.set()
                 self.breaker.failed(permit)
-                try:
-                    await worker
-                except (Abandoned, Exception):
-                    pass
+                await self._drain(worker)
                 return 504, deny('Live check timed out. Verify in the manual.')
+            except asyncio.CancelledError:
+                deadline.set()
+                self.breaker.failed(permit)
+                await self._drain(worker)
+                raise
             except Exception as exc:
                 # Server-side stage log carries the exception TYPE only: never
                 # provider text, image data, or partial steps (fail-closed).
@@ -229,6 +252,25 @@ class LiveAssistService:
             return 200, response
         finally:
             self.slots.release()
+
+    @staticmethod
+    async def _drain(worker):
+        """Retain admission until the worker actually stops.
+
+        Repeated cancellation only re-waits: the loop exits when the worker
+        thread exits, never by releasing early. Bounded by provider
+        timeouts (SAM transport 90 s); an unbounded provider block is a
+        documented residual risk, not a slot leak by design.
+        """
+        while not worker.done():
+            try:
+                await asyncio.shield(worker)
+            except BaseException:
+                continue
+        try:
+            worker.result()
+        except BaseException:
+            pass
 
     def compose(self, request, deadline=None):
         """One frame through retrieval, SAM, Glimmer. Sync; run in a thread.
