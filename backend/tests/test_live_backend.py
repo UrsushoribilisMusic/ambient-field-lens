@@ -125,6 +125,13 @@ class LiveBackendTests(unittest.TestCase):
         self.assertEqual(window_id, 'w1')
         self.assertEqual(stores['active']['calls_used'], 1)
 
+    def test_evidence_detail_accepts_live_tuples(self):
+        from live_backend import evidence_detail
+        detail = evidence_detail(masks=[('mask-abc', object()), ('m2', object())],
+                                 chunk_ids=['c1'], score=0.5)
+        self.assertIn('mask-abc', detail)
+        self.assertLessEqual(len(detail), 300)
+
     def test_evidence_detail_bounded(self):
         detail = evidence_detail(masks=[{'id': 'm' * 50}] * 10,
                                  chunk_ids=['c' * 60] * 5, score=0.12345)

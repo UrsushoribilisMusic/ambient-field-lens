@@ -81,9 +81,18 @@ def note_failure(stage, kind):
         pass
 
 
+def mask_label(mask):
+    """Live SAM masks are (ident, Mask) tuples; fakes may be dicts."""
+    if isinstance(mask, dict):
+        return str(mask.get('id', '?'))[:8]
+    if isinstance(mask, (tuple, list)):
+        return str(mask[0])[:8] if mask else '?'
+    return str(mask)[:8]
+
+
 def evidence_detail(*, masks, chunk_ids, score):
     """Compact evidence summary, contract-bounded to 300 chars."""
-    mask_ids = ','.join(str(m.get('id', '?'))[:8] for m in masks[:3])
+    mask_ids = ','.join(mask_label(m) for m in masks[:3])
     chunks = ','.join(str(c)[:24] for c in chunk_ids[:2])
     score_text = f'{score:.3f}' if isinstance(score, (int, float)) else 'unavailable'
     detail = (f'Live check (amber): paper candidates {len(masks)} [{mask_ids}]; '
