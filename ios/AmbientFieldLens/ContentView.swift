@@ -10,6 +10,9 @@ struct ContentView: View {
     @StateObject private var phoneCamera = PhoneCameraViewModel()
     @StateObject private var setup = DemoSetup()
     @State private var showSetup = false
+    @State private var askPulse = 0
+    private let pulseTimer = Timer.publish(every: 0.25, on: .main, in: .common)
+        .autoconnect()
 
     var body: some View {
         NavigationStack {
@@ -160,16 +163,41 @@ struct ContentView: View {
         HStack(spacing: 8) {
             TextField("Can I draw this here?", text: $assist.query)
                 .textFieldStyle(.roundedBorder)
-            Button(assist.isAsking ? "…" : "Ask") {
-                Task { await askAboutView() }
+            if assist.isAsking {
+                askingWave
+                    .frame(maxWidth: .infinity, minHeight: 44)
+                    .onReceive(pulseTimer) { _ in
+                        askPulse += 1
+                    }
+            } else {
+                Button("Ask") {
+                    Task { await askAboutView() }
+                }
+                .buttonStyle(.borderedProminent)
+                .disabled(!phoneCamera.isReady)
+                .frame(minWidth: 72, minHeight: 44)
             }
-            .buttonStyle(.borderedProminent)
-            .disabled(assist.isAsking || !phoneCamera.isReady)
-            .frame(minWidth: 72, minHeight: 44)
         }
         .padding(.horizontal, 1)
         .padding(.vertical, 8)
         .background(.black.opacity(0.55))
+    }
+
+    /// Bouncing highlight while the back end works: one bright letter
+    /// ping-pongs across "Asking", the rest stays dim.
+    private var askingWave: some View {
+        let word = Array("Asking")
+        let period = word.count * 2 - 2
+        let step = askPulse % period
+        let hot = step < word.count ? step : period - step
+        return HStack(spacing: 1) {
+            ForEach(word.indices, id: \.self) { i in
+                Text(String(word[i]))
+                    .font(.title3.bold())
+                    .foregroundStyle(
+                        i == hot ? Color.white : Color.white.opacity(0.25))
+            }
+        }
     }
 
     /// One tap: capture the current view, then ask about it.
