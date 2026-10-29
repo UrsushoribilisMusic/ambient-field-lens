@@ -85,3 +85,5 @@ guidance and may change without notice.
 - Chips: only the two real failures earn color (WORLD ✗ / COVERAGE ✗ orange). All unestablished state renders gray …, including the evidence path — a green ✓ beside amber claimed what the backend documents it cannot (masks are candidates, retrieval always hits pre-Q1).
 - Slot bound 150s (phone quits at 180); max_containers=1 so the process-local semaphore is global. Spend was already bounded by single-use tokens independent of instance count.
 - Open judgment call (Miguel): pull the grounding score from the amber card prose, keeping it server-side only.
+
+## Decision (Miguel, shoot day): grounding score stays on the card for the first shot, then reevaluated. Reviewers note the readout-didn't-transfer position.
