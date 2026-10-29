@@ -1,13 +1,14 @@
 import SwiftUI
 import UIKit
 
-/// Guided demo flow: each step unlocks the next.
-/// 1 Glasses → 2 Session → 3 Preview → 4 Ask → HUD card.
-/// Without glasses, step 3 falls back to the phone back camera.
+/// Demo-first screen: camera + Ask + verdict, no setup taps.
+/// Glasses/session controls live in Setup for later; the robot shoot runs
+/// on the phone camera with everything prefilled and auto-started.
 struct ContentView: View {
     @StateObject private var wearables = WearablesViewModel()
     @StateObject private var assist = AssistViewModel()
     @StateObject private var phoneCamera = PhoneCameraViewModel()
+    @StateObject private var setup = DemoSetup()
     @Environment(\.verticalSizeClass) private var verticalSizeClass
 
     /// Demo frame: glasses first, phone-camera still second.
@@ -20,31 +21,24 @@ struct ContentView: View {
             Group {
                 if verticalSizeClass == .compact {
                     HStack(alignment: .top, spacing: 16) {
+                        cameraCard
                         ScrollView {
                             VStack(alignment: .leading, spacing: 16) {
-                                previewSection
-                                assistSection
+                                askCard
+                                hudCard
+                                setupCard
                             }
                             .padding()
                         }
-                        ScrollView {
-                            VStack(alignment: .leading, spacing: 16) {
-                                glassesSection
-                                sessionSection
-                                hudSection
-                            }
-                            .padding()
-                        }
-                        .frame(maxWidth: 360)
+                        .frame(maxWidth: 420)
                     }
                 } else {
                     ScrollView {
                         VStack(alignment: .leading, spacing: 16) {
-                            glassesSection
-                            sessionSection
-                            previewSection
-                            assistSection
-                            hudSection
+                            cameraCard
+                            askCard
+                            hudCard
+                            setupCard
                         }
                         .padding()
                     }
@@ -71,92 +65,13 @@ struct ContentView: View {
         }
         .task {
             wearables.observe()
+            phoneCamera.start()
+            await setup.runOnce(wearables: wearables)
         }
     }
 
-    private var hudSection: some View {
-        GeometryReader { proxy in
-            HUDCard(verdict: assist.verdict)
-                .scaleEffect(
-                    min(1, proxy.size.width / 600),
-                    anchor: .topLeading
-                )
-                .frame(
-                    width: 600,
-                    height: 600,
-                    alignment: .topLeading
-                )
-        }
-        .frame(
-            height: min(600, UIScreen.main.bounds.width)
-        )
-    }
-
-    private var glassesSection: some View {
-        GroupBox("1 · Glasses") {
-            VStack(alignment: .leading, spacing: 8) {
-                Text(
-                    wearables.deviceCount > 0
-                        ? "\(wearables.deviceCount) connected"
-                        : "No glasses yet"
-                )
-                .font(.caption)
-                .foregroundStyle(.secondary)
-                HStack {
-                    Button("Mock glasses") {
-                        wearables.enableMock()
-                    }
-                    .buttonStyle(.borderedProminent)
-                    Button("Register") {
-                        Task { await wearables.register() }
-                    }
-                    .buttonStyle(.bordered)
-                }
-                Text("Demo path: Mock glasses. Register needs the Meta AI app.")
-                    .font(.caption2)
-                    .foregroundStyle(.secondary)
-                Text(wearables.deviceDiagnostics)
-                    .font(.caption2.monospaced())
-                    .foregroundStyle(.secondary)
-            }
-        }
-    }
-
-    private var sessionSection: some View {
-        GroupBox("2 · Session") {
-            VStack(alignment: .leading, spacing: 8) {
-                Text(
-                    wearables.sessionStarted
-                        ? "Connected" : "Session: \(wearables.sessionState)"
-                )
-                .font(.caption)
-                .foregroundStyle(.secondary)
-                Text("Selector: \(wearables.selectorDevice)")
-                    .font(.caption2.monospaced())
-                    .foregroundStyle(.secondary)
-                HStack {
-                    Button("Start session") {
-                        Task { await wearables.startSession() }
-                    }
-                    .buttonStyle(.borderedProminent)
-                    .disabled(wearables.deviceCount == 0)
-                    Button("End session", role: .destructive) {
-                        wearables.endSession()
-                    }
-                    .buttonStyle(.bordered)
-                    .disabled(!wearables.sessionStarted)
-                }
-                if wearables.deviceCount == 0 {
-                    Text("Connect glasses first (step 1).")
-                        .font(.caption2)
-                        .foregroundStyle(.secondary)
-                }
-            }
-        }
-    }
-
-    private var previewSection: some View {
-        GroupBox("3 · Preview (\(wearables.streamState))") {
+    private var cameraCard: some View {
+        GroupBox("Camera") {
             VStack(alignment: .leading, spacing: 8) {
                 if let frame = wearables.currentFrame {
                     Image(uiImage: frame)
@@ -170,40 +85,26 @@ struct ContentView: View {
                         .clipShape(RoundedRectangle(cornerRadius: 12))
                 } else {
                     PhoneCameraPreview(session: phoneCamera.previewSession)
-                        .frame(minHeight: 220)
+                        .frame(minHeight: 260)
                         .clipShape(RoundedRectangle(cornerRadius: 12))
-                        .task { phoneCamera.start() }
-                    if let error = phoneCamera.lastError {
-                        Text(error)
-                            .font(.caption2)
-                            .foregroundStyle(.secondary)
-                    }
                 }
-                HStack {
-                    Button("Start preview") {
-                        wearables.startPreview()
-                    }
-                    .buttonStyle(.borderedProminent)
-                    .disabled(
-                        !wearables.sessionStarted
-                            || wearables.previewActive
-                    )
-                    Button("Stop preview") {
-                        wearables.stopPreview()
-                    }
-                    .buttonStyle(.bordered)
-                    Button("Capture phone frame") {
-                        phoneCamera.capture()
-                    }
-                    .buttonStyle(.borderedProminent)
-                    .disabled(!phoneCamera.isReady)
+                if let error = phoneCamera.lastError {
+                    Text(error)
+                        .font(.caption2)
+                        .foregroundStyle(.secondary)
                 }
+                Button("Capture frame") {
+                    phoneCamera.capture()
+                }
+                .buttonStyle(.borderedProminent)
+                .disabled(!phoneCamera.isReady)
+                .frame(maxWidth: .infinity, minHeight: 48)
                 Text(
                     wearables.currentFrame != nil
                         ? "Frame source: glasses."
                         : phoneCamera.lastPhoto != nil
                             ? "Frame source: phone still."
-                            : "No frame yet: capture one, or start glasses."
+                            : "No frame yet — capture one."
                 )
                 .font(.caption2)
                 .foregroundStyle(.secondary)
@@ -211,13 +112,10 @@ struct ContentView: View {
         }
     }
 
-    private var assistSection: some View {
-        GroupBox("4 · Ask") {
+    private var askCard: some View {
+        GroupBox("Ask") {
             VStack(alignment: .leading, spacing: 8) {
-                TextField("Backend base URL", text: $assist.baseURLString)
-                    .textFieldStyle(.roundedBorder)
-                    .textInputAutocapitalization(.never)
-                TextField("What part is this?", text: $assist.query)
+                TextField("Question", text: $assist.query)
                     .textFieldStyle(.roundedBorder)
                 Button(assist.isAsking ? "Asking…" : "Ask") {
                     Task {
@@ -226,20 +124,63 @@ struct ContentView: View {
                 }
                 .buttonStyle(.borderedProminent)
                 .disabled(assist.isAsking || askFrame == nil)
-                HStack {
-                    Button("Test connection") {
-                        assist.testTCP()
-                    }
-                    .buttonStyle(.bordered)
-                    .font(.caption)
-                    Text(assist.tcpStatus)
-                        .font(.caption2.monospaced())
-                        .foregroundStyle(.secondary)
-                }
+                .frame(maxWidth: .infinity, minHeight: 56)
                 Text(assist.lastRequestLog)
                     .font(.caption2.monospaced())
                     .foregroundStyle(.secondary)
             }
         }
+    }
+
+    private var hudCard: some View {
+        HUDCard(verdict: assist.verdict)
+    }
+
+    private var setupCard: some View {
+        DisclosureGroup("Setup (automatic)") {
+            VStack(alignment: .leading, spacing: 8) {
+                Text(setup.status(wearables: wearables))
+                    .font(.caption2.monospaced())
+                    .foregroundStyle(.secondary)
+                TextField("Backend base URL", text: $assist.baseURLString)
+                    .textFieldStyle(.roundedBorder)
+                    .textInputAutocapitalization(.never)
+                HStack {
+                    Button("Mock glasses") {
+                        wearables.enableMock()
+                    }
+                    .buttonStyle(.bordered)
+                    Button("Start session") {
+                        Task { await wearables.startSession() }
+                    }
+                    .buttonStyle(.bordered)
+                    Button("Start preview") {
+                        wearables.startPreview()
+                    }
+                    .buttonStyle(.bordered)
+                }
+                .font(.caption)
+            }
+        }
+        .font(.caption)
+        .foregroundStyle(.secondary)
+    }
+}
+
+/// One-shot automatic setup: mock glasses + session, once per launch.
+/// Manual buttons in Setup remain as fallback; failures stay visible there.
+@MainActor
+final class DemoSetup: ObservableObject {
+    private var didRun = false
+
+    func runOnce(wearables: WearablesViewModel) async {
+        guard !didRun else { return }
+        didRun = true
+        wearables.enableMock()
+        await wearables.startSession()
+    }
+
+    func status(wearables: WearablesViewModel) -> String {
+        "devices=\(wearables.deviceCount) session=\(wearables.sessionState) stream=\(wearables.streamState)"
     }
 }
