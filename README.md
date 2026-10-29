@@ -1,111 +1,70 @@
 # Ambient Field Lens
 
-Safety-gated wearable assistant for the Meta Global AI Developer Hackathon
-(Cerebral Valley), Startup track. Built Oct 26 – Nov 4, 2026.
+Safety-gated wearable assistant for the Meta Global AI Developer Hackathon,
+Startup track. Built Oct 26 – Nov 4, 2026.
 
-**One-liner:** a wearable machine-setup assistant intended to show an operator
-step only when observable world checks and a validated grounding check both
-pass; otherwise it names the fault and correction. The current backend is
-amber-only; this describes the product target.
+**One-liner:** an operator looks at a machine through the phone (standing in
+for glasses) and asks setup questions. The system answers amber cards with
+evidence-backed refusals and corrections. It has never emitted a green step:
+the backend is type-level incapable of one until a reviewed evidence contract
+says what green requires.
 
-## How it works (Phase 1 skeleton)
+## What it does today
 
-1. iPhone captures a frame + voice query.
-2. Frame + query POST to backend `POST /assist`.
-3. Backend returns a gate verdict: `verified` (green badge + first step) or
-   `verify` (amber badge, no instruction).
-4. HUD card renders the verdict. HUD is a 600x600 card built with the
-   Wearables DAT SDK (`MWDATDisplay`, MockDeviceKit `.metaRayBanDisplay`,
-   phone camera as mock feed) — designed for Ray-Ban Display; no Display
-   hardware is available to the team, which the demo video states.
+- Frame a rig, tap **Ask**: the phone captures, the cloud runs retrieval over
+  the Robot Ross manuals, segments paper candidates with SAM, and reads a
+  frozen Glimmer grounding score — then refuses in amber with the evidence
+  attached (mask count, manual chunk, uncalibrated score, everything else
+  declared unverified).
+- Displace the paper and Ask again: the refusal names the fault
+  (`WORLD CHECK FAILED`) instead.
+- Ask about something the manuals don't cover: `NOT COVERED` once the Q1
+  coverage threshold is frozen (until then, covered-but-uncalibrated).
+- Header chips (WORLD / COV) show only earned failures in color; everything
+  unestablished renders gray. No chip can pass anything.
 
-The stub backend default-denies: every response is `verify`. Recalibration alone
-cannot enable green. Real scene validation and a separately reviewed evidence
-contract/integration are required; the failed confidence proxy remains failed.
+## What it does not do
 
-Current evidence: [architecture](ARCHITECTURE.md),
-[drawing-readiness contract](docs/drawing-readiness-contract.md), and
-[CPU checkpoint / remaining overnight work](docs/drawing-readiness-progress.md).
-The [27 October CPU scene report](docs/verification/scene-batch-2026-10-27.md)
-inventories 45 image assets across coarse viewpoints and distinct stream profiles.
-Viewpoint invariance and metric containment remain unvalidated; human-reference
-logic replay is explicitly separate from actual image-model check outputs.
-The [actual Meta observation round](docs/verification/real-model-pipeline-2026-10-27.md)
-now connects Spark observations and SAM masks through one offline runner:
-six completed Spark scene responses, explicit missing-pen/covered-holder
-outcomes, and107 passing tests. Target association among SAM candidates remains
-unresolved; no Modal GPU or live green integration was started.
-The [measured v2 / adapter report](docs/verification/adapter-and-measured-v2-2026-10-27.md)
-records failed held-out geometry (maximum 2.955 px versus 2 px), archival S03
-adapter replay and the review-only next SAM batch. No live gate integration.
+- No green steps, no red blocks, no instructions to touch the machine.
+- No weight readout in the verdict: four independent probes (contrastive,
+  Jacobian lens, trajectory, live prefill) found no signal separating
+  grounded from confabulated answers on our tasks. Groundedness here is a
+  system property — retrieved passage, hash-bound evidence, fail-closed on
+  anything missing — not a model readout.
+- No capture-time proof: a receipt binds which frame, question, passage, and
+  masks went into an answer — never when the photo was taken.
 
-## Layout
+## Run the demo
 
-| Path | What it is |
-| --- | --- |
-| `ios/` | Fresh SwiftUI app (camera + HUD + gate UX), built with xcodegen |
-| `backend/app.py` | `/assist` stub + `/healthz` (FastAPI) |
-| `backend/requirements.txt` | Backend deps |
-| `backend/recal/` | CPU-verified checkpoint staging and offline research jobs |
-| `docs/recalibration-results.md` | Measured Glimmer results and limitations |
-| `backend/readiness/` | Offline pure checks and planar geometry; not wired into `/assist` |
-| `tools/` | Explicit operator capture, one-request SAM diagnostic and offline replay utilities |
-
-## Run
-
-Backend:
+Requires an open window (finite: 600 s, 4 single-use token calls):
 
 ```bash
 cd backend
-python3.12 -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt
-uvicorn app:app --port 8000
+.venv/bin/python -c "
+import modal
+from providers import client
+from live_backend import arm_tokens
+r = client.open_window(seconds=600, max_calls=4)
+d = modal.Dict.from_name('afl-live', create_if_missing=True)
+rec = {'id': r['id'], 'expires_at': r['expires_at'], 'max_calls': 4, 'calls_used': 0}
+d.put('active', rec); arm_tokens(rec)"
 ```
 
-Python 3.12 was verified. See [backend setup/tests](backend/README.md) and
-[architecture and failure boundaries](ARCHITECTURE.md). Phase 1 request/output
-validation, limits, timeouts and a circuit breaker retain default-deny responses;
-no model or GPU is started by the backend or its regression suite.
+Then Ask from the phone (base URL in Setup; backend default-deny otherwise).
+Windows cost nothing to open; each framed call burns one token, ~15–90 s of
+Modal GPU/CPU plus one Meta SAM decode. Close with `client.close_window(id)`.
 
-iOS (Xcode 26.4+, iOS 17.2+):
+## Layout
 
-```bash
-cd ios
-xcodegen generate
-open AmbientFieldLens.xcodeproj
-```
+- [ARCHITECTURE.md](ARCHITECTURE.md) — system as built, gates, contracts.
+- [docs/submission.md](docs/submission.md) — hackathon narrative and limits.
+- [docs/live-assist-wiring.md](docs/live-assist-wiring.md) — live path ops log.
+- [docs/observable-checks-handoff.md](docs/observable-checks-handoff.md) — providers.
+- [docs/proposals/red-controller-contract.md](docs/proposals/red-controller-contract.md) — red proposal (not implemented).
 
-In the app, set the backend base URL (default `http://localhost:8000`), pair
-via MockDeviceKit or real glasses in Developer Mode, start the session, start
-preview, then Ask.
+## Disclosure
 
-## New work vs existing work (disclosure)
-
-Per the hackathon rules, the demo highlights only work built during the event
-in this repo (**new**). The following existed before kickoff, are **not**
-demoed as new, and are referenced — never vendored — so the boundary stays
-visible in the dependency graph:
-
-- Canis disposition seed phrases + CANIS-EVAL-001 eval matrices (540 core /
-  350 matched negatives / 420 OOD) — `agentic-fleet-hub/disposition-lens/`,
-  used only as a declared reference for the Phase 3 probe design.
-- Sovereign Mind ingestion/chunkers and the pre-event Robot Ross chunk corpus —
-  external references only, not copied. Unmerged PR #2 freshly ingests 38 chunks
-  from 10 user-owned documents with new in-event code.
-- Flotilla validators / circuit-breaker patterns — referenced for the
-  Phase 3 low-grounding breaker.
-- `ambient-field-lens-test` (Oct 23–25) — throwaway pre-kickoff verification
-  (SDK wiring, MockDeviceKit, Modal staging scripts). Nothing was copied from
-  it; anything needed is retyped here against the DAT docs.
-
-Offline research reads the Canis ancillary datasets and the pre-event Ross
-question set as external, disclosed reference inputs. Their filenames, counts
-and hashes are recorded; raw matrices, prompts and old recalibration/chunking
-code are not bundled in this repo or the Modal images. Ross manuals are
-separately ingested from user-owned source documents with fresh ingestion code.
-The contrastive baseline and results are described in
-[`docs/recalibration-results.md`](docs/recalibration-results.md).
-
-## License
-
-Apache-2.0. See `LICENSE`.
+Clean-room repo created Oct 26, 2026. Nothing copied from earlier private
+prototypes; prior art is referenced as declared dependencies or in
+[docs/existing-work.md](docs/existing-work.md) where present. Calibration
+labels were reviewed by a human; scoring ran only on frozen labels.
