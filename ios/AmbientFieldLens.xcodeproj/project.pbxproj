@@ -8,9 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		5BE2351F59BFB615D8D845F6 /* WearablesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2F6FF8D5622E9E6FEAFC50 /* WearablesViewModel.swift */; };
+		82FDDAEB226504453F8F0CB0 /* PhoneCameraPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB609A5C48AD4290C9F39C8 /* PhoneCameraPreview.swift */; };
 		884962AC682597C9F0397F8E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E8EF968BC90623AB0262C63 /* Assets.xcassets */; };
 		8D6EBE6D53143DBBFDF24CB7 /* MWDATCore in Frameworks */ = {isa = PBXBuildFile; productRef = 501B50AB7EDBB1124955B77B /* MWDATCore */; };
 		8DAB359264D31BD2C7A17C0F /* HUDCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876C4DF6FE4B15E0A5E3750F /* HUDCard.swift */; };
+		A159C19C2A3C784BF85926B7 /* PhoneCameraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20340A1779060379F6DFA372 /* PhoneCameraViewModel.swift */; };
 		BAA5E9D0C96604945BB30C59 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611240D0E8271A886FB042AA /* ContentView.swift */; };
 		BCB937103D1E6515429A0B5B /* MWDATCamera in Frameworks */ = {isa = PBXBuildFile; productRef = 6B73749C6A4FB201CA94BF30 /* MWDATCamera */; };
 		C1321B758B2151431B9CC28E /* MWDATMockDevice in Frameworks */ = {isa = PBXBuildFile; productRef = EB5A6B43915963A701127F9A /* MWDATMockDevice */; };
@@ -21,6 +23,8 @@
 
 /* Begin PBXFileReference section */
 		1E8EF968BC90623AB0262C63 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1EB609A5C48AD4290C9F39C8 /* PhoneCameraPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneCameraPreview.swift; sourceTree = "<group>"; };
+		20340A1779060379F6DFA372 /* PhoneCameraViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneCameraViewModel.swift; sourceTree = "<group>"; };
 		545F584CB5389E3CC86BE362 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		5EFAC67F842A048C6F2927B7 /* AssistViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssistViewModel.swift; sourceTree = "<group>"; };
 		611240D0E8271A886FB042AA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -49,6 +53,7 @@
 			isa = PBXGroup;
 			children = (
 				5EFAC67F842A048C6F2927B7 /* AssistViewModel.swift */,
+				20340A1779060379F6DFA372 /* PhoneCameraViewModel.swift */,
 				6B2F6FF8D5622E9E6FEAFC50 /* WearablesViewModel.swift */,
 			);
 			path = ViewModels;
@@ -58,6 +63,7 @@
 			isa = PBXGroup;
 			children = (
 				876C4DF6FE4B15E0A5E3750F /* HUDCard.swift */,
+				1EB609A5C48AD4290C9F39C8 /* PhoneCameraPreview.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -170,6 +176,8 @@
 				D7344F890B6523158828C678 /* AssistViewModel.swift in Sources */,
 				BAA5E9D0C96604945BB30C59 /* ContentView.swift in Sources */,
 				8DAB359264D31BD2C7A17C0F /* HUDCard.swift in Sources */,
+				82FDDAEB226504453F8F0CB0 /* PhoneCameraPreview.swift in Sources */,
+				A159C19C2A3C784BF85926B7 /* PhoneCameraViewModel.swift in Sources */,
 				5BE2351F59BFB615D8D845F6 /* WearablesViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

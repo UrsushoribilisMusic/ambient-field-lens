@@ -1,15 +1,15 @@
 import SwiftUI
 import UIKit
 
-/// Demo-first screen: camera + Ask + verdict, no setup taps.
-/// Glasses/session controls live in Setup for later; the robot shoot runs
-/// on the phone camera with everything prefilled and auto-started.
+/// Demo viewfinder: fullscreen camera, one Ask button, verdict overlay.
+/// No columns, no scrolling, nothing to squeeze. Glasses/session setup
+/// happens automatically at launch; manual controls hide in Setup.
 struct ContentView: View {
     @StateObject private var wearables = WearablesViewModel()
     @StateObject private var assist = AssistViewModel()
     @StateObject private var phoneCamera = PhoneCameraViewModel()
     @StateObject private var setup = DemoSetup()
-    @Environment(\.verticalSizeClass) private var verticalSizeClass
+    @State private var showSetup = false
 
     /// Demo frame: glasses first, phone-camera still second.
     private var askFrame: UIImage? {
@@ -18,30 +18,13 @@ struct ContentView: View {
 
     var body: some View {
         NavigationStack {
-            Group {
-                if verticalSizeClass == .compact {
-                    HStack(alignment: .top, spacing: 16) {
-                        cameraCard
-                        ScrollView {
-                            VStack(alignment: .leading, spacing: 16) {
-                                askCard
-                                hudCard
-                                setupCard
-                            }
-                            .padding()
-                        }
-                        .frame(maxWidth: 420)
-                    }
-                } else {
-                    ScrollView {
-                        VStack(alignment: .leading, spacing: 16) {
-                            cameraCard
-                            askCard
-                            hudCard
-                            setupCard
-                        }
-                        .padding()
-                    }
+            ZStack {
+                PhoneCameraPreview(session: phoneCamera.previewSession)
+                    .ignoresSafeArea()
+                VStack(spacing: 0) {
+                    topBar
+                    Spacer()
+                    bottomPanel
                 }
             }
             .navigationTitle("Field Lens")
@@ -62,6 +45,9 @@ struct ContentView: View {
             } message: {
                 Text(wearables.lastError ?? assist.lastError ?? "")
             }
+            .sheet(isPresented: $showSetup) {
+                setupSheet
+            }
         }
         .task {
             wearables.observe()
@@ -70,100 +56,97 @@ struct ContentView: View {
         }
     }
 
-    private var cameraCard: some View {
-        GroupBox("Camera") {
-            VStack(alignment: .leading, spacing: 8) {
-                if let frame = wearables.currentFrame {
+    private var topBar: some View {
+        HStack {
+            Text(setup.status(wearables: wearables))
+                .font(.caption2.monospaced())
+                .foregroundStyle(.white)
+                .padding(.horizontal, 10)
+                .padding(.vertical, 4)
+                .background(.black.opacity(0.55))
+                .clipShape(Capsule())
+            Spacer()
+            Button("Setup") { showSetup = true }
+                .font(.caption)
+                .padding(.horizontal, 12)
+                .padding(.vertical, 6)
+                .background(.white.opacity(0.85))
+                .clipShape(Capsule())
+        }
+        .padding(.horizontal, 12)
+        .padding(.top, 8)
+    }
+
+    private var bottomPanel: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            if let frame = askFrame {
+                HStack(spacing: 10) {
                     Image(uiImage: frame)
                         .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .clipShape(RoundedRectangle(cornerRadius: 12))
-                } else if let photo = phoneCamera.lastPhoto {
-                    Image(uiImage: photo)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .clipShape(RoundedRectangle(cornerRadius: 12))
-                } else {
-                    PhoneCameraPreview(session: phoneCamera.previewSession)
-                        .frame(minHeight: 260)
-                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 72, height: 72)
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                    TextField("Question", text: $assist.query)
+                        .textFieldStyle(.roundedBorder)
                 }
-                if let error = phoneCamera.lastError {
-                    Text(error)
-                        .font(.caption2)
-                        .foregroundStyle(.secondary)
-                }
-                Button("Capture frame") {
-                    phoneCamera.capture()
-                }
-                .buttonStyle(.borderedProminent)
-                .disabled(!phoneCamera.isReady)
-                .frame(maxWidth: .infinity, minHeight: 48)
-                Text(
-                    wearables.currentFrame != nil
-                        ? "Frame source: glasses."
-                        : phoneCamera.lastPhoto != nil
-                            ? "Frame source: phone still."
-                            : "No frame yet — capture one."
-                )
-                .font(.caption2)
-                .foregroundStyle(.secondary)
-            }
-        }
-    }
-
-    private var askCard: some View {
-        GroupBox("Ask") {
-            VStack(alignment: .leading, spacing: 8) {
+            } else {
                 TextField("Question", text: $assist.query)
                     .textFieldStyle(.roundedBorder)
-                Button(assist.isAsking ? "Asking…" : "Ask") {
-                    Task {
-                        await assist.ask(frame: askFrame)
-                    }
-                }
-                .buttonStyle(.borderedProminent)
-                .disabled(assist.isAsking || askFrame == nil)
-                .frame(maxWidth: .infinity, minHeight: 56)
-                Text(assist.lastRequestLog)
-                    .font(.caption2.monospaced())
-                    .foregroundStyle(.secondary)
             }
+            Button(assist.isAsking ? "Asking…" : "Ask about this view") {
+                Task { await askAboutView() }
+            }
+            .buttonStyle(.borderedProminent)
+            .disabled(assist.isAsking || !phoneCamera.isReady)
+            .frame(maxWidth: .infinity, minHeight: 56)
+            HUDCard(verdict: assist.verdict)
+            Text(assist.lastRequestLog)
+                .font(.caption2.monospaced())
+                .foregroundStyle(.white)
+        }
+        .padding(12)
+        .background(.black.opacity(0.55))
+        .clipShape(
+            RoundedRectangle(cornerRadius: 16, style: .continuous))
+        .padding(12)
+    }
+
+    /// One tap: capture the current view, then ask about it.
+    private func askAboutView() async {
+        if let glasses = wearables.currentFrame {
+            await assist.ask(frame: glasses)
+            return
+        }
+        do {
+            let photo = try await phoneCamera.capturePhoto()
+            await assist.ask(frame: photo)
+        } catch let failure
+            as PhoneCameraViewModel.CaptureFailure
+        {
+            assist.lastError = failure.message
+        } catch {
+            assist.lastError = error.localizedDescription
         }
     }
 
-    private var hudCard: some View {
-        HUDCard(verdict: assist.verdict)
-    }
-
-    private var setupCard: some View {
-        DisclosureGroup("Setup (automatic)") {
-            VStack(alignment: .leading, spacing: 8) {
+    private var setupSheet: some View {
+        NavigationStack {
+            Form {
+                TextField("Backend base URL", text: $assist.baseURLString)
+                    .textInputAutocapitalization(.never)
+                Button("Mock glasses") { wearables.enableMock() }
+                Button("Start session") {
+                    Task { await wearables.startSession() }
+                }
+                Button("Start glasses preview") {
+                    wearables.startPreview()
+                }
                 Text(setup.status(wearables: wearables))
                     .font(.caption2.monospaced())
-                    .foregroundStyle(.secondary)
-                TextField("Backend base URL", text: $assist.baseURLString)
-                    .textFieldStyle(.roundedBorder)
-                    .textInputAutocapitalization(.never)
-                HStack {
-                    Button("Mock glasses") {
-                        wearables.enableMock()
-                    }
-                    .buttonStyle(.bordered)
-                    Button("Start session") {
-                        Task { await wearables.startSession() }
-                    }
-                    .buttonStyle(.bordered)
-                    Button("Start preview") {
-                        wearables.startPreview()
-                    }
-                    .buttonStyle(.bordered)
-                }
-                .font(.caption)
             }
+            .navigationTitle("Setup")
+            .navigationBarTitleDisplayMode(.inline)
         }
-        .font(.caption)
-        .foregroundStyle(.secondary)
     }
 }
 

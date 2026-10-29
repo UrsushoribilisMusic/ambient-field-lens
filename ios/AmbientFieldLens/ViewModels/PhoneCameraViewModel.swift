@@ -74,13 +74,21 @@ final class PhoneCameraViewModel: NSObject, ObservableObject {
         }
     }
 
-    func capture() {
-        guard isReady else {
-            lastError = "Camera not ready yet."
-            return
+    /// Capture a still, keep it as the current frame, and return it.
+    /// Throws a human-readable message on failure.
+    nonisolated func capturePhoto() async throws -> UIImage {
+        try await withCheckedThrowingContinuation { continuation in
+            self.pending.append(continuation)
+            self.output.capturePhoto(
+                with: AVCapturePhotoSettings(), delegate: self)
         }
-        lastError = nil
-        output.capturePhoto(with: AVCapturePhotoSettings(), delegate: self)
+    }
+
+    private nonisolated(unsafe) var pending:
+        [CheckedContinuation<UIImage, Error>] = []
+
+    struct CaptureFailure: Error {
+        let message: String
     }
 }
 
@@ -93,16 +101,21 @@ extension PhoneCameraViewModel: AVCapturePhotoCaptureDelegate {
         // Cross the actor boundary with Sendable values only.
         let data = photo.fileDataRepresentation()
         let message = error?.localizedDescription
-        Task { @MainActor [weak self, data, message] in
-            if let message {
-                self?.lastError = message
-                return
-            }
-            guard let data, let image = UIImage(data: data) else {
-                self?.lastError = "Photo decode failed."
-                return
-            }
+        let continuation = self.pending.first
+        if !self.pending.isEmpty { self.pending.removeFirst() }
+        guard let continuation else { return }
+        if let message {
+            continuation.resume(throwing: CaptureFailure(message: message))
+            return
+        }
+        guard let data, let image = UIImage(data: data) else {
+            continuation.resume(
+                throwing: CaptureFailure(message: "Photo decode failed."))
+            return
+        }
+        Task { @MainActor [weak self, image] in
             self?.lastPhoto = image
         }
+        continuation.resume(returning: image)
     }
 }
