@@ -75,3 +75,8 @@ guidance and may change without notice.
   in the same build as the downscale fix.
 - Spend tonight: one $4 window reserved then closed, provider attempts
   empty -> no GPU burn. Modal dashboard is the final word on charges.
+
+## Codi review fixes (PR14, same branch)
+- Admission is token-based (pop-atomic, namespaced per window, never refilled); arming scripts must call arm_tokens after writing the active row.
+- Timeout holds the slot until the worker drains; worker gates every paid stage on the deadline event.
+- Frame source is explicit (Phone/Glass toggle, rendered == submitted, switch clears retained phone still, Ask gated per source); resolveFrame pinned by simulator tests.
