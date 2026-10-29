@@ -1,36 +1,54 @@
 import SwiftUI
+import UIKit
 
 /// Guided demo flow: each step unlocks the next.
 /// 1 Glasses → 2 Session → 3 Preview → 4 Ask → HUD card.
+/// Without glasses, step 3 falls back to the phone back camera.
 struct ContentView: View {
     @StateObject private var wearables = WearablesViewModel()
     @StateObject private var assist = AssistViewModel()
+    @StateObject private var phoneCamera = PhoneCameraViewModel()
+    @Environment(\.verticalSizeClass) private var verticalSizeClass
+
+    /// Demo frame: glasses first, phone-camera still second.
+    private var askFrame: UIImage? {
+        wearables.currentFrame ?? phoneCamera.lastPhoto
+    }
 
     var body: some View {
         NavigationStack {
-            ScrollView {
-                VStack(alignment: .leading, spacing: 16) {
-                    glassesSection
-                    sessionSection
-                    previewSection
-                    assistSection
-                    GeometryReader { proxy in
-                        HUDCard(verdict: assist.verdict)
-                            .scaleEffect(
-                                min(1, proxy.size.width / 600),
-                                anchor: .topLeading
-                            )
-                            .frame(
-                                width: 600,
-                                height: 600,
-                                alignment: .topLeading
-                            )
+            Group {
+                if verticalSizeClass == .compact {
+                    HStack(alignment: .top, spacing: 16) {
+                        ScrollView {
+                            VStack(alignment: .leading, spacing: 16) {
+                                previewSection
+                                assistSection
+                            }
+                            .padding()
+                        }
+                        ScrollView {
+                            VStack(alignment: .leading, spacing: 16) {
+                                glassesSection
+                                sessionSection
+                                hudSection
+                            }
+                            .padding()
+                        }
+                        .frame(maxWidth: 360)
                     }
-                    .frame(
-                        height: min(600, UIScreen.main.bounds.width)
-                    )
+                } else {
+                    ScrollView {
+                        VStack(alignment: .leading, spacing: 16) {
+                            glassesSection
+                            sessionSection
+                            previewSection
+                            assistSection
+                            hudSection
+                        }
+                        .padding()
+                    }
                 }
-                .padding()
             }
             .navigationTitle("Field Lens")
             .navigationBarTitleDisplayMode(.inline)
@@ -54,6 +72,24 @@ struct ContentView: View {
         .task {
             wearables.observe()
         }
+    }
+
+    private var hudSection: some View {
+        GeometryReader { proxy in
+            HUDCard(verdict: assist.verdict)
+                .scaleEffect(
+                    min(1, proxy.size.width / 600),
+                    anchor: .topLeading
+                )
+                .frame(
+                    width: 600,
+                    height: 600,
+                    alignment: .topLeading
+                )
+        }
+        .frame(
+            height: min(600, UIScreen.main.bounds.width)
+        )
     }
 
     private var glassesSection: some View {
@@ -127,13 +163,21 @@ struct ContentView: View {
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .clipShape(RoundedRectangle(cornerRadius: 12))
+                } else if let photo = phoneCamera.lastPhoto {
+                    Image(uiImage: photo)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
                 } else {
-                    Text(
-                        wearables.streamState == "Stopped"
-                            ? "Preview stopped." : "Waiting for frames…"
-                    )
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
+                    PhoneCameraPreview(session: phoneCamera.previewSession)
+                        .frame(minHeight: 220)
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                        .task { phoneCamera.start() }
+                    if let error = phoneCamera.lastError {
+                        Text(error)
+                            .font(.caption2)
+                            .foregroundStyle(.secondary)
+                    }
                 }
                 HStack {
                     Button("Start preview") {
@@ -148,7 +192,21 @@ struct ContentView: View {
                         wearables.stopPreview()
                     }
                     .buttonStyle(.bordered)
+                    Button("Capture phone frame") {
+                        phoneCamera.capture()
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .disabled(!phoneCamera.isReady)
                 }
+                Text(
+                    wearables.currentFrame != nil
+                        ? "Frame source: glasses."
+                        : phoneCamera.lastPhoto != nil
+                            ? "Frame source: phone still."
+                            : "No frame yet: capture one, or start glasses."
+                )
+                .font(.caption2)
+                .foregroundStyle(.secondary)
             }
         }
     }
@@ -163,11 +221,11 @@ struct ContentView: View {
                     .textFieldStyle(.roundedBorder)
                 Button(assist.isAsking ? "Asking…" : "Ask") {
                     Task {
-                        await assist.ask(frame: wearables.currentFrame)
+                        await assist.ask(frame: askFrame)
                     }
                 }
                 .buttonStyle(.borderedProminent)
-                .disabled(assist.isAsking)
+                .disabled(assist.isAsking || askFrame == nil)
                 HStack {
                     Button("Test connection") {
                         assist.testTCP()
