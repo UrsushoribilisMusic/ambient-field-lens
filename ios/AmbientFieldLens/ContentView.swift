@@ -1,9 +1,9 @@
 import SwiftUI
 import UIKit
 
-/// Demo viewfinder: fullscreen camera, one Ask button, verdict overlay.
-/// No columns, no scrolling, nothing to squeeze. Glasses/session setup
-/// happens automatically at launch; manual controls hide in Setup.
+/// Demo viewfinder: fullscreen camera, one status line on top, one ask
+/// bar at the bottom. Nothing covers the work area. Glasses/session setup
+/// happens automatically at launch; Setup holds manual fallbacks.
 struct ContentView: View {
     @StateObject private var wearables = WearablesViewModel()
     @StateObject private var assist = AssistViewModel()
@@ -11,20 +11,15 @@ struct ContentView: View {
     @StateObject private var setup = DemoSetup()
     @State private var showSetup = false
 
-    /// Demo frame: glasses first, phone-camera still second.
-    private var askFrame: UIImage? {
-        wearables.currentFrame ?? phoneCamera.lastPhoto
-    }
-
     var body: some View {
         NavigationStack {
             ZStack {
                 PhoneCameraPreview(session: phoneCamera.previewSession)
                     .ignoresSafeArea()
                 VStack(spacing: 0) {
-                    topBar
+                    statusBar
                     Spacer()
-                    bottomPanel
+                    askBar
                 }
             }
             .navigationTitle("Field Lens")
@@ -56,84 +51,115 @@ struct ContentView: View {
         }
     }
 
-    private var topBar: some View {
-        HStack {
-            Text(setup.status(wearables: wearables, cameraReady: phoneCamera.isReady))
+    // MARK: - Top status bar
+
+    private var statusBar: some View {
+        HStack(spacing: 8) {
+            Text("Field Lens")
+                .font(.caption.bold())
+                .foregroundStyle(.white)
+            statusDot(phoneCamera.isReady, label: "cam")
+            statusDot(wearables.deviceCount > 0, label: "\(wearables.deviceCount)")
+            statusDot(wearables.sessionStarted, label: "ses")
+            semaphore
+            Text(statusText)
                 .font(.caption2.monospaced())
                 .foregroundStyle(.white)
-                .padding(.horizontal, 10)
-                .padding(.vertical, 4)
-                .background(.black.opacity(0.55))
-                .clipShape(Capsule())
+                .lineLimit(1)
+                .truncationMode(.tail)
             Spacer()
             Button("Setup") { showSetup = true }
-                .font(.caption)
-                .padding(.horizontal, 12)
-                .padding(.vertical, 6)
+                .font(.caption2)
+                .padding(.horizontal, 10)
+                .padding(.vertical, 4)
                 .background(.white.opacity(0.85))
                 .clipShape(Capsule())
         }
-        .padding(.horizontal, 12)
-        .padding(.top, 8)
+        .padding(.horizontal, 10)
+        .padding(.vertical, 6)
+        .background(.black.opacity(0.55))
     }
 
-    private var bottomPanel: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            TextField("Question", text: $assist.query)
+    private func statusDot(_ ok: Bool, label: String) -> some View {
+        HStack(spacing: 2) {
+            Circle()
+                .fill(ok ? Color.green : Color.gray)
+                .frame(width: 8, height: 8)
+            Text(label)
+                .font(.caption2.monospaced())
+                .foregroundStyle(.white)
+        }
+    }
+
+    /// Semaphore: what the assistant is doing right now.
+    private var semaphore: some View {
+        Text(semaphoreText)
+            .font(.caption2.bold())
+            .foregroundStyle(.black)
+            .padding(.horizontal, 8)
+            .padding(.vertical, 2)
+            .background(semaphoreColor)
+            .clipShape(Capsule())
+    }
+
+    private var semaphoreText: String {
+        if assist.isAsking { return "ASKING" }
+        if assist.lastError != nil { return "ERROR" }
+        switch assist.verdict {
+        case .none:
+            return phoneCamera.isReady ? "READY" : "STARTING"
+        case .verified:
+            return "DONE"
+        case .verify:
+            return "VERIFY"
+        }
+    }
+
+    private var semaphoreColor: Color {
+        if assist.isAsking { return .yellow }
+        if assist.lastError != nil { return .red }
+        switch assist.verdict {
+        case .none:
+            return phoneCamera.isReady ? .green : .gray
+        case .verified:
+            return .green
+        case .verify:
+            return .orange
+        }
+    }
+
+    /// Rolling status: error, verdict detail, request log, idle.
+    private var statusText: String {
+        if let error = assist.lastError ?? wearables.lastError {
+            return error
+        }
+        switch assist.verdict {
+        case .none:
+            break
+        case .verified(let step, _):
+            return step
+        case .verify(let detail, _, _):
+            return detail.isEmpty ? "Verify in manual." : detail
+        }
+        return assist.lastRequestLog
+    }
+
+    // MARK: - Bottom ask bar
+
+    private var askBar: some View {
+        HStack(spacing: 8) {
+            TextField("Can I draw this here?", text: $assist.query)
                 .textFieldStyle(.roundedBorder)
-            Button(assist.isAsking ? "Asking…" : "Ask") {
+            Button(assist.isAsking ? "…" : "Ask") {
                 Task { await askAboutView() }
             }
             .buttonStyle(.borderedProminent)
             .disabled(assist.isAsking || !phoneCamera.isReady)
-            .frame(maxWidth: .infinity, minHeight: 56)
-            verdictLine
-            Text(assist.lastRequestLog)
-                .font(.caption2.monospaced())
-                .foregroundStyle(.white)
+            .frame(minWidth: 72, minHeight: 44)
         }
-        .padding(12)
+        .padding(.horizontal, 10)
+        .padding(.vertical, 8)
         .background(.black.opacity(0.55))
-        .clipShape(
-            RoundedRectangle(cornerRadius: 16, style: .continuous))
-        .padding(12)
-    }
-
-    /// One status line, not a dialog: dot + short text.
-    private var verdictLine: some View {
-        HStack(spacing: 8) {
-            Circle()
-                .fill(verdictColor)
-                .frame(width: 10, height: 10)
-            Text(verdictText)
-                .font(.callout)
-                .foregroundStyle(.white)
-                .lineLimit(2)
-        }
-    }
-
-    private var verdictColor: Color {
-        switch assist.verdict {
-        case .none:
-            .gray
-        case .verified:
-            .green
-        case .verify:
-            .orange
-        }
-    }
-
-    private var verdictText: String {
-        switch assist.verdict {
-        case .none:
-            phoneCamera.isReady
-                ? "Ready — frame the rig and Ask."
-                : "Starting camera…"
-        case .verified(let step, _):
-            step
-        case .verify(let detail, _, _):
-            detail.isEmpty ? "Verify in manual." : detail
-        }
     }
 
     /// One tap: capture the current view, then ask about it.
@@ -154,6 +180,8 @@ struct ContentView: View {
         }
     }
 
+    // MARK: - Setup fallback sheet
+
     private var setupSheet: some View {
         NavigationStack {
             Form {
@@ -166,8 +194,10 @@ struct ContentView: View {
                 Button("Start glasses preview") {
                     wearables.startPreview()
                 }
-                Text(setup.status(wearables: wearables, cameraReady: phoneCamera.isReady))
-                    .font(.caption2.monospaced())
+                Text(
+                    "devices=\(wearables.deviceCount) session=\(wearables.sessionState) stream=\(wearables.streamState)"
+                )
+                .font(.caption2.monospaced())
             }
             .navigationTitle("Setup")
             .navigationBarTitleDisplayMode(.inline)
@@ -186,9 +216,5 @@ final class DemoSetup: ObservableObject {
         didRun = true
         wearables.enableMock()
         await wearables.startSession()
-    }
-
-    func status(wearables: WearablesViewModel, cameraReady: Bool) -> String {
-        "camera=\(cameraReady ? "ready" : "starting") glasses=\(wearables.deviceCount) session=\(wearables.sessionState)"
     }
 }
