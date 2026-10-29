@@ -21,9 +21,9 @@ struct ContentView: View {
                     Spacer()
                     askBar
                 }
+                .ignoresSafeArea(.container, edges: [.top, .bottom])
             }
-            .navigationTitle("Field Lens")
-            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarHidden(true)
             .alert(
                 "Error",
                 isPresented: Binding(
@@ -68,14 +68,19 @@ struct ContentView: View {
                 .lineLimit(1)
                 .truncationMode(.tail)
             Spacer()
-            Button("Setup") { showSetup = true }
-                .font(.caption2)
-                .padding(.horizontal, 10)
-                .padding(.vertical, 4)
-                .background(.white.opacity(0.85))
-                .clipShape(Capsule())
+            Button {
+                showSetup = true
+            } label: {
+                Image(systemName: "gearshape")
+                    .font(.caption)
+                    .foregroundStyle(.black)
+                    .padding(6)
+                    .background(.white.opacity(0.85))
+                    .clipShape(Circle())
+            }
+            .accessibilityLabel("Setup")
         }
-        .padding(.horizontal, 10)
+        .padding(.horizontal, 4)
         .padding(.vertical, 6)
         .background(.black.opacity(0.55))
     }
@@ -157,7 +162,7 @@ struct ContentView: View {
             .disabled(assist.isAsking || !phoneCamera.isReady)
             .frame(minWidth: 72, minHeight: 44)
         }
-        .padding(.horizontal, 10)
+        .padding(.horizontal, 4)
         .padding(.vertical, 8)
         .background(.black.opacity(0.55))
     }
