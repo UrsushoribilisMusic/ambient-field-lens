@@ -27,7 +27,10 @@ image = (
 secrets = [modal.Secret.from_name("afl-model-api")] if LIVE else []
 
 
-@app.function(image=image, secrets=secrets)
+# Single instance: the admission semaphore is process-local, so one container
+# makes it mean what its docstring says. Spend itself is bounded by single-use
+# tokens regardless of instance count; this closes the overlap window too.
+@app.function(image=image, secrets=secrets, max_containers=1)
 @modal.asgi_app()
 def api():
     import sys

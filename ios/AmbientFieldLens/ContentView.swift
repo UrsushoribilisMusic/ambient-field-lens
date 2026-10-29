@@ -68,7 +68,7 @@ struct ContentView: View {
                 statusDot(wearables.sessionStarted, label: "ses")
                 semaphore
                 gateChip("WORLD", mark: worldMark)
-                gateChip("COV", mark: coverageMark, uncal: coverageUncal)
+                gateChip("COV", mark: coverageMark)
                 Spacer()
                 Button {
                     showSetup = true
@@ -149,40 +149,25 @@ struct ContentView: View {
         return nil
     }
 
+    /// Gate chips: only the two real failures earn color. Everything the
+    /// system has not established renders gray "…" — a green ✓ beside an
+    /// amber verdict would claim what the backend documents it cannot.
     private var worldMark: (String, Color) {
         guard let d = gateDetail else { return ("–", .gray) }
-        if d.hasPrefix("Live check (amber)") { return ("✓", .green) }
         if d.hasPrefix("WORLD CHECK FAILED") { return ("✗", .orange) }
-        if d.hasPrefix("NOT COVERED") { return ("…", .gray) }
-        return ("–", .gray)
+        return ("…", .gray)
     }
 
     private var coverageMark: (String, Color) {
         guard let d = gateDetail else { return ("–", .gray) }
         if d.hasPrefix("NOT COVERED") { return ("✗", .orange) }
-        if d.hasPrefix("Live check (amber)") || d.hasPrefix("WORLD CHECK FAILED") {
-            return ("✓", .green)
-        }
-        return ("–", .gray)
+        return ("…", .gray)
     }
 
-    /// True while the card carries no validated cutoff.
-    private var coverageUncal: Bool {
-        (gateDetail?.contains("no threshold") ?? false)
-            && coverageMark.1 == .green
-    }
-
-    private func gateChip(
-        _ name: String, mark: (String, Color), uncal: Bool = false
-    ) -> some View {
+    private func gateChip(_ name: String, mark: (String, Color)) -> some View {
         HStack(spacing: 2) {
             Text(name)
             Text(mark.0).bold()
-            if uncal {
-                Text("uncal")
-                    .font(.caption2)
-                    .foregroundStyle(.black.opacity(0.6))
-            }
         }
         .font(.caption2.monospaced())
         .foregroundStyle(.black)

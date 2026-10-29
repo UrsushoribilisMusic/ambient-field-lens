@@ -155,7 +155,10 @@ def evidence_detail(*, masks, chunk_ids, score):
 
 @dataclass(frozen=True)
 class LiveLimits:
-    timeout_seconds: float = 300.0
+    # The phone quits at 180s; the slot must always free first, or a tap
+    # during the drain earns a 60s queue and a 429 for nothing. Measured
+    # round trip is 12-100s, so 150 loses nothing and bounds the lockout.
+    timeout_seconds: float = 150.0
     concurrency: int = 1
     queue_seconds: float = 60.0
     breaker_failures: int = 3

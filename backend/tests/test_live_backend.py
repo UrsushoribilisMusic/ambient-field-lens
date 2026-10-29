@@ -222,6 +222,9 @@ class LiveBackendTests(unittest.TestCase):
         self.assertIn(status2, (429, 503, 504))
         self.assertEqual(entries, ['retrieve'])
 
+    def test_default_timeout_frees_slot_before_phone_quits(self):
+        self.assertLessEqual(live_backend.LiveLimits().timeout_seconds, 150.0)
+
     def test_evidence_detail_accepts_live_tuples(self):
         from live_backend import evidence_detail
         detail = evidence_detail(masks=[('mask-abc', object()), ('m2', object())],
