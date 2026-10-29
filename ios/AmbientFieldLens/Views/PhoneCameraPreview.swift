@@ -8,7 +8,7 @@ import UIKit
 struct PhoneCameraPreview: UIViewRepresentable {
     let session: AVCaptureSession
 
-    static func landscapeOrientation() -> AVCaptureVideoOrientation {
+    nonisolated static func landscapeOrientation() -> AVCaptureVideoOrientation {
         switch UIDevice.current.orientation {
         case .landscapeLeft:
             // Home button on the right: sensor needs the opposite.
