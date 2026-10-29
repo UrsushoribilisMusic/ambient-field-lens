@@ -20,7 +20,9 @@ final class PhoneCameraViewModel: NSObject, ObservableObject {
 
     override init() {
         super.init()
-        output.maxPhotoDimensions = .init(width: 1600, height: 1600)
+        // No maxPhotoDimensions: arbitrary sizes the active format does not
+        // support raise an ObjC exception at capture time. Full-res frames
+        // are downscaled to the wire contract later by contractFrameJPEG.
     }
 
     func start() {
@@ -78,9 +80,7 @@ final class PhoneCameraViewModel: NSObject, ObservableObject {
             return
         }
         lastError = nil
-        let settings = AVCapturePhotoSettings()
-        settings.maxPhotoDimensions = .init(width: 1600, height: 1600)
-        output.capturePhoto(with: settings, delegate: self)
+        output.capturePhoto(with: AVCapturePhotoSettings(), delegate: self)
     }
 }
 
