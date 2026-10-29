@@ -1,0 +1,60 @@
+{
+  "date": "2026-10-29",
+  "purpose": "runtime pen presence component verification, not benchmark/scoring",
+  "observations": [
+    {
+      "scene": "pen-S04-pen-missing-presence-20261029-01",
+      "frame_sha256": "45d5a4d4a3cc0d220f64d119152bd5d1f049254296097b81c30be101d498ddc9",
+      "replay_manifest_sha256": "1abb4314c41782890d6ad6215d407b200c2fb605297ac40fcdbcd887f17b67d0",
+      "check": {
+        "name": "pen_observable_presence",
+        "state": "fail",
+        "reason": "No pen observed in the clearly visible holder area.",
+        "correction": ""
+      },
+      "verdict": "verify",
+      "step": null,
+      "live_eligible": false,
+      "usage": {
+        "completion_tokens": 523,
+        "prompt_tokens": 794,
+        "total_tokens": 1317
+      },
+      "estimated_api_cost_usd_uncached": 0.00321525
+    },
+    {
+      "scene": "pen-S05-pen-refitted-presence-20261029-01",
+      "frame_sha256": "ba9509765dd4d309ad257583305a2e25dc1072c5ae27d8ff78b8e78f846d0363",
+      "replay_manifest_sha256": "15d486acbc0419ec4f41adeb762f7778085667eaac6ac934b603b6137f78cec1",
+      "check": {
+        "name": "pen_observable_presence",
+        "state": "pass",
+        "reason": "Pen visibly observed at the toolhead; contact and fitment not established.",
+        "correction": ""
+      },
+      "verdict": "verify",
+      "step": null,
+      "live_eligible": false,
+      "usage": {
+        "completion_tokens": 481,
+        "prompt_tokens": 794,
+        "total_tokens": 1275
+      },
+      "estimated_api_cost_usd_uncached": 0.00303675
+    }
+  ],
+  "network_observation_calls": 2,
+  "total_uncached_estimate_usd": 0.006252,
+  "gpu_calls": 0,
+  "contact_established": false,
+  "fitment_established": false,
+  "green_enabled": false,
+  "physical_geometry_accepted": false,
+  "red_implemented": false,
+  "controller_binding_accepted": false,
+  "tests": {
+    "run": 134,
+    "passed": 127,
+    "expected_private_skips": 7
+  }
+}

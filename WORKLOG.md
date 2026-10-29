@@ -1,72 +1,55 @@
-# Codi — live demo providers, 2026-10-28
+# Codi — observable refusal checks, 29 October 2026
 
-Director brief, relayed and confirmed by Muse/Miguel, supersedes further offline
-research. Providers only: frozen-contrastive true-prefill Glimmer scoring on
-Modal, live-frame Meta SAM paper mask, Ross Chroma retrieval, millimetre-based
-containment clearance and response receipts. Muse owns /assist contract and iOS.
-Displaced paper must fail containment and carry no step; a readout never vetoes
-a physical failure. No new corpus, labels, folds, trajectory or benchmark round.
+Fresh main69104bb. Muse/user tasks: Spark pen presence (not contact) through
+existing observation adapter with provenance/replay; measured marker-to-robot
+footprint containment and signed mm corrections; read-only robot calibration /
+log / lock-state binding; propose RED blocked/critical contract for review only.
+No green, no threshold selection, no scoring rounds or GPU windows. Existing
+research artifacts untouched. Muse's uncommitted live service is not copied or
+edited. Provider functions return evidence and amber refusal, never permissions.
 
-Implement runtime provider interfaces reusable by Muse, deploy bounded endpoints
-only within receipted windows; no idle GPU reservation. Reuse frozen layer27
-contrastive direction and exact fit records/template, not the failed Platt proxy.
-Export existing direction from saved residuals and verify saved control scores
-without refitting or scoring a new corpus. Existing research results unchanged.
-Threshold acceptance belongs to Muse's reviewed evidence contract. Providers
-return raw finite scores and provenance; cannot authorize a green step themselves.
+Implement and test runtime evidence units, reuse saved Spark envelopes to verify
+adapter replay without spending on repeat observations. Presence claim is only
+visible pen in intended holder area, not loose pens elsewhere or contact.
+Geometry requires physically measured robot-to-plane linkage and fixed markers
+independent of moving paper. Prior sheet marks alone cannot validate it. Missing
+measurements remain unknown; corrections are deterministic geometry or exact
+retrieved text, never generated advice. Read controller state/log/lock files
+without robot motion, deletion or resetting calibration; do not promote a
+session-ready flag to proven physical calibration. Proposal for RED stays docs.
 
-SAM consumes actual incoming JPEG and returns decoded frame-bound paper mask;
-retrieval uses existing Ross collection and returns real chunk IDs/source hashes.
-Containment reports signed clearance, registration error, reading uncertainty
-in mm (and any robot/tool allowance). Unmeasured geometry stays unknown; no
-fabrication of marker points or source-to-robot coordinates. Exact runtime
-receipts and all paid attempts recorded, including failed attempts. Scale to
-zero outside short grant-ledger windows. Test failure/control behavior and
-publish integration handoff. Do not overwrite Muse's server/iOS work.
+Known blockers to resolve honestly: phone vs Reolink calibration is separate;
+ink marks do not establish current contact; existing local status API lacks
+strong session identity; vault login may be expired (do not capture error text
+as a secret). Tests and direct saved evidence first, live network calls only
+within authorized observation task and with per-call receipts. Commit/push for
+Muse review, preserve unrelated work. User camera choice asked asynchronously.
 
-## Runtime implementation checkpoint
+## Runtime units delivered; physical validation still pending
 
-Implemented provider facade, receipted SAM current-frame segmentation, frozen
-Modal runtime + authenticated HTTP/RPC entry points, existing Ross retrieval,
-and dense-mask signed-clearance check. Six provider tests pass, including
-outside-paper control, internal mask holes, insufficient clearance and missing
-uncertainty. Unknown physical inputs cannot pass. All three requested mm
-quantities plus robot/raster allowances are returned; no step is produced here.
+Spark pen-presence provider uses the existing strict observation adapter, exact
+receipts and archived replay. Narrow neutral toolhead prompt (loose desk pens
+excluded), no contact/fitment claims. Two authorized archived S04/S05 component
+calls produced absent/present respectively; both amber/no step/not live eligible.
+Original older unknown S04 output remains unchanged. Cost$0.006252 estimated
+uncached from provider usage;0GPU calls, no model-readout scoring or new benchmark.
 
-CPU serving-prefix verification rejected add_generation_prompt: it differs
-from the saved continue-final-message prefix. Replaced it with the exact frozen
-template followed by an explicit candidate-boundary cut (zero candidate tokens
-passed to the model). CPU re-verification in progress; no GPU started yet.
-First CPU launch failed image build ordering, second caught prefix mismatch;
-both ledgered, no GPU. Existing comparison numbers and labels untouched.
+Measured geometry runtime composes per-frame fixed-marker registration and
+independently measured robot linkage, validates measurement hashes/units/support,
+then derives signed paper-shift offsets deterministically from the actual mask.
+Holes/concavity/impossible fits/missing uncertainty refuse correction. No current
+rig artifact marked reviewed. Physical work awaits camera choice, fixed coplanar
+references, robot marks and quantified reading/repeatability uncertainty.
 
-Miguel supplied independent visual review: manifest digest matches; VG01/VG02/
-VG04 accepted, VG03 contact unknown in both images (only ink mark establishes
-past contact). Preserved original privately and review summary in docs. Whole
-old research set remains blocked; no replacement or new research run planned.
+Read-only actual controller captures preserve file/status/log hashes and process
+start identity. Relative controller script resolved against real process cwd.
+Found calibrated-file/ready flag, responsive API, no job lock and non-zombie
+control_center process. Tool/surface/session binding remains unknown. Added
+IAM-authenticated CPU snapshot publish/fetch RPCs for Mac-to-cloud evidence,
+no shared deployment or polling daemon started. Cloud container /tmp is never
+mistaken for local Ross. RED remains review-only docs; no verdict enum change.
 
-## Live provider verification completed
-
-CPU export reproduces saved84 scores (max difference3.816e-17), six native
-prefix controls match. No new research scores/cases. Deployed authenticated
-HTTP+SDK provider app. New Reolink frame returned one usable paper mask from
-explicit ROI; overlay visually checked. Ross query returned real chunk IDs.
-
-A100-only request queued with0 GPU workers; stopped deployment rather than leave
-it queued. Added240s inclusive wait/cancellation and expiry check before model
-load. Same BF16 model/readout permits H100 fallback within checked$4 envelope.
-Second reserved window served real score -0.024460947181109742,861prefix tokens,
-zero candidate tokens, one forward, H100. Forward3.033s vs client roundtrip62.216s
-including cold start. Window closed. Final container list[]. Total grant
-reservations$30 including prior$22; not actual spend. SAM cost unknown (one image,
-provider reports0text tokens); usage preserved, not called free. Every attempt
-retained, no automatic retry or new GPU/corpus research round.
-
-Seven provider/control tests; full backend121 tests,114 pass /7 expected private
-archive skips. New mapping helper returns mm residual without 2px acceptance;
-real geometry/reading uncertainty/robot linkage remain Muse-contract inputs.
-Outside-paper and hole controls fail with no step; no threshold/green enabled.
-Handoff docs include cold-start latency, explicit ROI assumption, capture/pose
-freshness, exact procedure requirements, receipt bundle and actual-phone
-well-placed/displaced acceptance still required. No code changes in Muse's
-service/iOS lane. Original human review remains preserved, pen contact unknown.
+13 new refusal/geometry/controller/CPU-bridge tests pass; full backend134tests,
+127pass /7expected private-archive skips with Modal SDK available. No threshold
+retuning, no GPU window, no movement/reset/lock deletion, no edits in Muse's live
+service/iOS lane. Handoff and public hashed proof summary ready for review.
