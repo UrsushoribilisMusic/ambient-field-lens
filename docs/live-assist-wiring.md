@@ -52,6 +52,21 @@ than a caught exception — failure notes never landed in the Dict;
 Next: redeploy (progress-note build is committed, NOT deployed), open a
 fresh window, single full-frame call, read `afl-live` `stage`/`last_error`.
 
+## Prefix contract (app derives gate chips from these; Codi review)
+Amber detail strings carry stable machine-readable prefixes. The phone
+parses them into WORLD / COVERAGE chips; prose after the prefix is human
+guidance and may change without notice.
+- `Live check (amber): ...` — evidence path: WORLD ✓ (masks found),
+  COVERAGE ✓ with an `uncal` tag while the text contains `no threshold`.
+  A future validated cutoff will replace the tag with a PASS/FAIL claim;
+  that change needs the frozen-label validation, not this doc.
+- `WORLD CHECK FAILED: ...` — no paper candidate: WORLD ✗, COVERAGE ✓
+  (chunks were retrieved before segmentation ran).
+- `NOT COVERED: ...` — retrieval empty: COVERAGE ✗, WORLD unevaluated
+  (retrieval precedes any frame inspection; the app shows WORLD …).
+- Any other amber (window/busy/timeout/failure/no-frame): no prefix, chips
+  stay neutral. No prefix may ever imply a pass; all paths stay amber-only.
+
 ## Hard limits (unchanged)
 - Calls claimed BEFORE providers run (budget-safe); max 4 per window.
 - Any provider failure -> amber denial, never a step, never provider text.

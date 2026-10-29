@@ -66,6 +66,8 @@ struct ContentView: View {
                 statusDot(wearables.deviceCount > 0, label: "\(wearables.deviceCount)")
                 statusDot(wearables.sessionStarted, label: "ses")
                 semaphore
+                gateChip("WORLD", mark: worldMark)
+                gateChip("COV", mark: coverageMark, uncal: coverageUncal)
                 Spacer()
                 Button {
                     showSetup = true
@@ -135,6 +137,58 @@ struct ContentView: View {
         case .verify:
             return .orange
         }
+    }
+
+    /// Gate chips derived from the server prefix contract
+    /// (docs/live-assist-wiring.md). Display only: no chip can pass anything.
+    private var gateDetail: String? {
+        if case .verify(let detail, _, _) = assist.verdict, !detail.isEmpty {
+            return detail
+        }
+        return nil
+    }
+
+    private var worldMark: (String, Color) {
+        guard let d = gateDetail else { return ("–", .gray) }
+        if d.hasPrefix("Live check (amber)") { return ("✓", .green) }
+        if d.hasPrefix("WORLD CHECK FAILED") { return ("✗", .orange) }
+        if d.hasPrefix("NOT COVERED") { return ("…", .gray) }
+        return ("–", .gray)
+    }
+
+    private var coverageMark: (String, Color) {
+        guard let d = gateDetail else { return ("–", .gray) }
+        if d.hasPrefix("NOT COVERED") { return ("✗", .orange) }
+        if d.hasPrefix("Live check (amber)") || d.hasPrefix("WORLD CHECK FAILED") {
+            return ("✓", .green)
+        }
+        return ("–", .gray)
+    }
+
+    /// True while the card carries no validated cutoff.
+    private var coverageUncal: Bool {
+        (gateDetail?.contains("no threshold") ?? false)
+            && coverageMark.1 == .green
+    }
+
+    private func gateChip(
+        _ name: String, mark: (String, Color), uncal: Bool = false
+    ) -> some View {
+        HStack(spacing: 2) {
+            Text(name)
+            Text(mark.0).bold()
+            if uncal {
+                Text("uncal")
+                    .font(.caption2)
+                    .foregroundStyle(.black.opacity(0.6))
+            }
+        }
+        .font(.caption2.monospaced())
+        .foregroundStyle(.black)
+        .padding(.horizontal, 6)
+        .padding(.vertical, 2)
+        .background(mark.1.opacity(0.9))
+        .clipShape(Capsule())
     }
 
     /// Rolling status: error, in-flight request, verdict detail, idle.

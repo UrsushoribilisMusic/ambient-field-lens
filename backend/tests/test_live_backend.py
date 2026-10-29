@@ -88,6 +88,24 @@ class LiveBackendTests(unittest.TestCase):
         self.assertEqual(response.verdict, 'verify')
         self.assertIn('No paper candidate', response.detail)
 
+    def test_gate_prefixes(self):
+        live_backend.read_window = lambda: dict(WINDOW)
+        live_backend.claim_call = lambda record: 'w1'
+        live_backend.client.retrieve = lambda q, f: EVIDENCE
+        live_backend.segment_paper = lambda *a, **k: {'masks': []}
+        status, response = self.run_assist(request_with_image())
+        self.assertEqual(status, 200)
+        self.assertTrue(response.detail.startswith('WORLD CHECK FAILED:'))
+
+    def test_no_chunks_prefix(self):
+        live_backend.read_window = lambda: dict(WINDOW)
+        live_backend.claim_call = lambda record: 'w1'
+        live_backend.client.retrieve = lambda q, f: {'chunks': []}
+        status, response = self.run_assist(request_with_image())
+        self.assertEqual(status, 200)
+        self.assertEqual(response.verdict, 'verify')
+        self.assertTrue(response.detail.startswith('NOT COVERED:'))
+
     def test_provider_failure_is_502_amber_without_text(self):
         live_backend.read_window = lambda: dict(WINDOW)
         live_backend.claim_call = lambda record: 'w1'

@@ -168,8 +168,12 @@ class LiveAssistService:
             evidence = client.retrieve(request.query, frame)
             chunks = evidence.get('chunks', [])
             if not chunks:
-                return deny('Manual returned no passage for this question. '
-                            'Verify in the manual before touching the machine.')
+                # Prefix contract (docs/live-assist-wiring.md): the app
+                # derives COVERAGE ✗ from this prefix. World state unknown:
+                # retrieval runs before any frame is inspected.
+                return deny('NOT COVERED: Manual returned no passage for this '
+                            'question. Verify in the manual before touching '
+                            'the machine.')
             stage = 'segment'
             note_progress(stage)
             segmentation = segment_paper(image, request_id=request_id,
@@ -177,8 +181,11 @@ class LiveAssistService:
                                          box=None)
             masks = segmentation.get('masks', [])
             if not masks:
-                return deny('No paper candidate in this frame. Reposition the paper '
-                            'fully in view. Verify in the manual.')
+                # Prefix contract: the app derives WORLD ✗ from this prefix.
+                # Coverage holds here (chunks were retrieved above).
+                return deny('WORLD CHECK FAILED: No paper candidate in this '
+                            'frame. Reposition the paper fully in view. '
+                            'Verify in the manual.')
             stage = 'ground'
             note_progress(stage)
             score = client.grounding(
