@@ -54,7 +54,7 @@ struct ContentView: View {
     // MARK: - Top status bar
 
     private var statusBar: some View {
-        HStack(spacing: 8) {
+        HStack(spacing: 4) {
             Text("Field Lens")
                 .font(.caption.bold())
                 .foregroundStyle(.white)
@@ -80,7 +80,7 @@ struct ContentView: View {
             }
             .accessibilityLabel("Setup")
         }
-        .padding(.horizontal, 4)
+        .padding(.horizontal, 1)
         .padding(.vertical, 6)
         .background(.black.opacity(0.55))
     }
@@ -162,7 +162,7 @@ struct ContentView: View {
             .disabled(assist.isAsking || !phoneCamera.isReady)
             .frame(minWidth: 72, minHeight: 44)
         }
-        .padding(.horizontal, 4)
+        .padding(.horizontal, 1)
         .padding(.vertical, 8)
         .background(.black.opacity(0.55))
     }
