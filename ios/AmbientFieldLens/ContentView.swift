@@ -21,7 +21,7 @@ struct ContentView: View {
                     Spacer()
                     askBar
                 }
-                .ignoresSafeArea(.container, edges: [.top, .bottom])
+                .ignoresSafeArea(.container)
             }
             .navigationBarHidden(true)
             .alert(
