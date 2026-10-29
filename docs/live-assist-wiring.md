@@ -62,8 +62,15 @@ guidance and may change without notice.
   that change needs the frozen-label validation, not this doc.
 - `WORLD CHECK FAILED: ...` — no paper candidate: WORLD ✗, COVERAGE ✓
   (chunks were retrieved before segmentation ran).
-- `NOT COVERED: ...` — retrieval empty: COVERAGE ✗, WORLD unevaluated
+- `NOT COVERED: ...` — coverage gate tripped: COVERAGE ✗, WORLD unevaluated
   (retrieval precedes any frame inspection; the app shows WORLD …).
+  The gate is a threshold (COVERAGE_DISTANCE_MAX) on the top chunk's
+  retrieval distance, not emptiness: the provider raises no_ross_evidence
+  on empty, so an empty list never reaches composition (the emptiness
+  branch is retained fail-closed and unreachable-by-construction).
+  Threshold is None until the Q1 near-miss labelling freezes it; until
+  then every retrieved chunk counts as covered and the card keeps the
+  uncalibrated tag.
 - Any other amber (window/busy/timeout/failure/no-frame): no prefix, chips
   stay neutral. No prefix may ever imply a pass; all paths stay amber-only.
 

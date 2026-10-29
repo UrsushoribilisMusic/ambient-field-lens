@@ -106,6 +106,39 @@ class LiveBackendTests(unittest.TestCase):
         self.assertEqual(response.verdict, 'verify')
         self.assertTrue(response.detail.startswith('NOT COVERED:'))
 
+    def test_distance_gate_off_by_default(self):
+        self.assertIsNone(live_backend.COVERAGE_DISTANCE_MAX)
+
+    def test_distance_gate_fires_above_cutoff(self):
+        live_backend.read_window = lambda: dict(WINDOW)
+        live_backend.claim_call = lambda record: 'w1'
+        far = [dict(EVIDENCE['chunks'][0], distance=0.9, id='far-chunk')]
+        live_backend.client.retrieve = lambda q, f: dict(EVIDENCE, chunks=far)
+        saved = live_backend.COVERAGE_DISTANCE_MAX
+        live_backend.COVERAGE_DISTANCE_MAX = 0.5
+        try:
+            status, response = self.run_assist(request_with_image())
+        finally:
+            live_backend.COVERAGE_DISTANCE_MAX = saved
+        self.assertEqual(status, 200)
+        self.assertTrue(response.detail.startswith('NOT COVERED:'))
+        self.assertIn('close enough', response.detail)
+
+    def test_distance_gate_passes_below_cutoff(self):
+        live_backend.read_window = lambda: dict(WINDOW)
+        live_backend.claim_call = lambda record: 'w1'
+        near = [dict(EVIDENCE['chunks'][0], distance=0.1, id='near-chunk')]
+        live_backend.client.retrieve = lambda q, f: dict(EVIDENCE, chunks=near)
+        live_backend.segment_paper = lambda *a, **k: {'masks': []}
+        saved = live_backend.COVERAGE_DISTANCE_MAX
+        live_backend.COVERAGE_DISTANCE_MAX = 0.5
+        try:
+            status, response = self.run_assist(request_with_image())
+        finally:
+            live_backend.COVERAGE_DISTANCE_MAX = saved
+        self.assertEqual(status, 200)
+        self.assertFalse(response.detail.startswith('NOT COVERED:'))
+
     def test_provider_failure_is_502_amber_without_text(self):
         live_backend.read_window = lambda: dict(WINDOW)
         live_backend.claim_call = lambda record: 'w1'

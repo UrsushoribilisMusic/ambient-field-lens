@@ -36,6 +36,15 @@ class WindowUnavailable(Exception):
     pass
 
 
+# Coverage is a threshold on the top chunk's retrieval distance, not an
+# emptiness check: the provider raises no_ross_evidence on empty (which
+# surfaces as a 502 failure amber), so an empty chunk list never reaches
+# composition. Unset until the Q1 labelling session freezes a number from
+# the near-miss curve; while None, every retrieved chunk counts as covered
+# (today's behavior) and the card carries the uncalibrated tag.
+COVERAGE_DISTANCE_MAX = None
+
+
 class Abandoned(Exception):
     """A timed-out worker reached a stage gate after abandonment. Never amber text."""
 
@@ -246,12 +255,23 @@ class LiveAssistService:
             evidence = client.retrieve(request.query, frame)
             chunks = evidence.get('chunks', [])
             if not chunks:
-                # Prefix contract (docs/live-assist-wiring.md): the app
-                # derives COVERAGE ✗ from this prefix. World state unknown:
-                # retrieval runs before any frame is inspected.
+                # Unreachable via the current provider (empty raises
+                # no_ross_evidence, which lands in the 502 failure path).
+                # Retained as the fail-closed default if a future provider
+                # ever returns empty: no passage, no coverage.
                 return deny('NOT COVERED: Manual returned no passage for this '
                             'question. Verify in the manual before touching '
                             'the machine.')
+            distance = chunks[0].get('distance') if isinstance(chunks[0], dict) else None
+            if (COVERAGE_DISTANCE_MAX is not None
+                    and isinstance(distance, (int, float))
+                    and distance > COVERAGE_DISTANCE_MAX):
+                # Prefix contract (docs/live-assist-wiring.md): the app
+                # derives COVERAGE ✗ from this prefix. World state unknown:
+                # retrieval runs before any frame is inspected.
+                return deny('NOT COVERED: Manual holds no passage close enough '
+                            'to this question. Verify in the manual before '
+                            'touching the machine.')
             stage = gated('segment')
             segmentation = segment_paper(image, request_id=request_id,
                                          output_root=tempfile.mkdtemp(prefix='afl-live-'),
