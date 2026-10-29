@@ -41,12 +41,11 @@ struct HUDCard: View {
                     receiptView(receipt)
                 }
             }
-            Spacer()
         }
-        .padding(24)
-        .frame(width: 600, height: 600)
+        .padding(16)
+        .frame(maxWidth: .infinity, alignment: .leading)
         .background(.thinMaterial)
-        .clipShape(RoundedRectangle(cornerRadius: 28))
+        .clipShape(RoundedRectangle(cornerRadius: 16))
     }
 
     private func receiptView(
