@@ -20,6 +20,7 @@
 		C1321B758B2151431B9CC28E /* MWDATMockDevice in Frameworks */ = {isa = PBXBuildFile; productRef = EB5A6B43915963A701127F9A /* MWDATMockDevice */; };
 		D7344F890B6523158828C678 /* AssistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFAC67F842A048C6F2927B7 /* AssistViewModel.swift */; };
 		D78A07B774AE8DDC3416F76B /* AmbientFieldLensApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BD1EA47F3E53B5A09ABB66 /* AmbientFieldLensApp.swift */; };
+		EA127405A81F106F89B2167A /* GapTailTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3012F033F4A90631D0F5279 /* GapTailTests.swift */; };
 		F1B97721574755C6CE152445 /* MWDATDisplay in Frameworks */ = {isa = PBXBuildFile; productRef = 07B1F2D4F9B4C4A4CD9906F5 /* MWDATDisplay */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +45,7 @@
 		6B2F6FF8D5622E9E6FEAFC50 /* WearablesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WearablesViewModel.swift; sourceTree = "<group>"; };
 		7B72A1322599FBEE85E5AAE5 /* AmbientFieldLens.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = AmbientFieldLens.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		876C4DF6FE4B15E0A5E3750F /* HUDCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUDCard.swift; sourceTree = "<group>"; };
+		B3012F033F4A90631D0F5279 /* GapTailTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GapTailTests.swift; sourceTree = "<group>"; };
 		BA81B90C44BFFE274DD820D6 /* AmbientFieldLensTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = AmbientFieldLensTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9BD1EA47F3E53B5A09ABB66 /* AmbientFieldLensApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmbientFieldLensApp.swift; sourceTree = "<group>"; };
 		EB76CDCCCBAF269B6014D735 /* FrameSourceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameSourceTests.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				EB76CDCCCBAF269B6014D735 /* FrameSourceTests.swift */,
+				B3012F033F4A90631D0F5279 /* GapTailTests.swift */,
 			);
 			path = AmbientFieldLensTests;
 			sourceTree = "<group>";
@@ -233,6 +236,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				35A23BA6D02C9FEA431A88EC /* FrameSourceTests.swift in Sources */,
+				EA127405A81F106F89B2167A /* GapTailTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
