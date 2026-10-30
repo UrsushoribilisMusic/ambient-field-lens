@@ -7,7 +7,10 @@
   score 0.0). Requires the afl-model-api Modal Secret (MODEL_API_KEY for the
   in-container SAM decode) and an open window in the afl-live Dict.
 
-Demo transport only. Threshold unset; measured geometry unaccepted.
+Demo transport only. Coverage threshold 0.76 from the 2026-10-30
+receipt; measured geometry unaccepted. Also serves POST /report_gap
+(operator gap reports into the SM Feedback Flywheel; needs the
+SM_MOBILE_SESSION_TOKEN secret, fail-closed without it).
 """
 import os
 
@@ -24,7 +27,8 @@ image = (
     .add_local_dir(".", "/root/backend")
 )
 
-secrets = [modal.Secret.from_name("afl-model-api")] if LIVE else []
+secrets = [modal.Secret.from_name("afl-model-api"),
+           modal.Secret.from_name("afl-sm-feedback")] if LIVE else []
 
 
 # Single instance: the admission semaphore is process-local, so one container

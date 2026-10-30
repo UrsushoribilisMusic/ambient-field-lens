@@ -1,0 +1,111 @@
+{
+  "acceptance": {
+    "after": "TBD after repair ingest: same question must clear (d < 0.76) with the new passage top-1",
+    "before": "paper-position trips NOT COVERED (0.8199 > 0.76)"
+  },
+  "calibration": {
+    "covered_max": 0.741449236869812,
+    "covered_n": 8,
+    "provisional_note": "near-miss/absurd labels by construction; covered labels from Miguel's frozen review (label-review-2026-10-28). Centering + pen-touch land covered-side: needs Miguel's read on whether COMMANDS.md actually answers them.",
+    "threshold": 0.76,
+    "threshold_note": "Between covered max 0.7414 and nearest non-covered observation 0.7867 (coffee). Near-miss anchor 0.8199 trips with margin."
+  },
+  "collection": "ross-manuals-2ca5f2f152267049",
+  "coverage_threshold": 0.76,
+  "frame": "audit-only retrieval, no camera",
+  "gpu_used": false,
+  "rows": [
+    {
+      "class": "covered",
+      "distance": 0.48726415634155273,
+      "id": "96ec69f8e1afc5c357cf174db159b3a5021c75f6295c2f8950c0c7be29bb496f",
+      "question": "How is simultaneous execution of drawing jobs prevented?",
+      "source": "atf-wiki/Subsystems/JobOrchestration.md"
+    },
+    {
+      "class": "covered",
+      "distance": 0.3114994764328003,
+      "id": "16b8fd28eefd1449740c8ea5bab519b679d7bd5d23ae77ab2f40e7075db49254",
+      "question": "What is the purpose of the robot_ross_running.lock file during jobs?",
+      "source": "atf-wiki/Subsystems/JobOrchestration.md"
+    },
+    {
+      "class": "covered",
+      "distance": 0.6742992401123047,
+      "id": "16b8fd28eefd1449740c8ea5bab519b679d7bd5d23ae77ab2f40e7075db49254",
+      "question": "How is the one-job-at-a-time rule enforced?",
+      "source": "atf-wiki/Subsystems/JobOrchestration.md"
+    },
+    {
+      "class": "covered",
+      "distance": 0.5361753702163696,
+      "id": "16b8fd28eefd1449740c8ea5bab519b679d7bd5d23ae77ab2f40e7075db49254",
+      "question": "Which lock is used to prevent concurrent job execution?",
+      "source": "atf-wiki/Subsystems/JobOrchestration.md"
+    },
+    {
+      "class": "covered",
+      "distance": 0.4985949397087097,
+      "id": "4b3002a77f46c1b6e6494eb72c048686585365cfce3d5e9cf4c585e757ad0928",
+      "question": "Which drawing option suppresses spoken narration?",
+      "source": "atf-wiki/Topics/Narration.md"
+    },
+    {
+      "class": "covered",
+      "distance": 0.5439607501029968,
+      "id": "4b3002a77f46c1b6e6494eb72c048686585365cfce3d5e9cf4c585e757ad0928",
+      "question": "What command-line flag disables narration for a drawing?",
+      "source": "atf-wiki/Topics/Narration.md"
+    },
+    {
+      "class": "covered",
+      "distance": 0.5279178619384766,
+      "id": "176dec9a7072e0257401a36884c8a971db4deab044bd67688c0caf0e9dffdb5b",
+      "question": "How can voice output be disabled for the requested drawing job?",
+      "source": "docs/macos-feature-parity.md"
+    },
+    {
+      "class": "covered",
+      "distance": 0.741449236869812,
+      "id": "35814ab43ae1c2941c528b39d97e1710958f5a5e3f85231fafe67f64553fa70d",
+      "question": "What documented flag produces a silent draw?",
+      "source": "skills/robot-ross/SKILL.md"
+    },
+    {
+      "class": "near-miss",
+      "distance": 0.8199027180671692,
+      "id": "8135308218c2c50dfd8b0aec8c0a48b25782d42098b2af9d4aa03fb2d71ccbb6",
+      "question": "what to do if the paper is in the wrong position",
+      "source": "atf-wiki/Topics/Calibration.md"
+    },
+    {
+      "class": "near-miss",
+      "distance": 0.6682631969451904,
+      "id": "5a3d04d16391b7d4640d24a674a1df5a44daa3b7c2536ea7cf08bea3b3e9e867",
+      "question": "is the paper centered for a 120 mm drawing?",
+      "source": "COMMANDS.md"
+    },
+    {
+      "class": "near-miss",
+      "distance": 0.7253917455673218,
+      "id": "5a3d04d16391b7d4640d24a674a1df5a44daa3b7c2536ea7cf08bea3b3e9e867",
+      "question": "did the pen touch the paper during the drawing?",
+      "source": "COMMANDS.md"
+    },
+    {
+      "class": "absurd",
+      "distance": 0.7867114543914795,
+      "id": "e96cbf92dfc255027d1b0154e6f5ce2fac1c737bff348379c1698cc77d874395",
+      "question": "how do I make coffee with this machine",
+      "source": "README.md"
+    },
+    {
+      "class": "absurd",
+      "distance": 0.875507652759552,
+      "id": "9dc6369b01250b862f34bad34f857e31688d10a1e172d63a8f253bf8b9b8027",
+      "question": "what time is it right now",
+      "source": "atf-wiki/Topics/Narration.md"
+    }
+  ],
+  "schema": "coverage-calibration-v1"
+}

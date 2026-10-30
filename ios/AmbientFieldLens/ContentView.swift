@@ -86,10 +86,61 @@ struct ContentView: View {
                 .font(.caption2.monospaced())
                 .foregroundStyle(.white)
                 .lineLimit(2)
+            if isGapReportable {
+                gapReportRow
+            }
         }
         .padding(.horizontal, 1)
         .padding(.vertical, 6)
         .background(.black.opacity(0.55))
+    }
+
+    /// The repair loop made visible: only a NOT COVERED refusal arms it.
+    /// WORLD CHECK FAILED and every other deny never show this button.
+    private var isGapReportable: Bool {
+        guard let d = gateDetail else { return false }
+        return d.hasPrefix("NOT COVERED")
+    }
+
+    private var gapReportRow: some View {
+        HStack(spacing: 6) {
+            switch assist.gapState {
+            case .reported:
+                Text("Reported")
+                    .font(.caption2.bold())
+                    .foregroundStyle(.black)
+                    .padding(.horizontal, 10)
+                    .padding(.vertical, 4)
+                    .background(Color.gray.opacity(0.9))
+                    .clipShape(Capsule())
+            case .posting:
+                Text("Reporting…")
+                    .font(.caption2.bold())
+                    .foregroundStyle(.black)
+                    .padding(.horizontal, 10)
+                    .padding(.vertical, 4)
+                    .background(Color.yellow.opacity(0.9))
+                    .clipShape(Capsule())
+            case .none:
+                Button {
+                    Task { await assist.reportGap() }
+                } label: {
+                    Text("Report missing instruction")
+                        .font(.caption2.bold())
+                        .foregroundStyle(.black)
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 4)
+                        .background(Color.white.opacity(0.92))
+                        .clipShape(Capsule())
+                }
+                .accessibilityLabel("Report missing instruction")
+            }
+            if let error = assist.gapError {
+                Text(error)
+                    .font(.caption2.monospaced())
+                    .foregroundStyle(.white)
+            }
+        }
     }
 
     private func statusDot(_ ok: Bool, label: String) -> some View {

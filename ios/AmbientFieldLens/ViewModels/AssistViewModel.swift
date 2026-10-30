@@ -36,6 +36,49 @@ final class AssistViewModel: ObservableObject {
     @Published var lastError: String?
     @Published var tcpStatus: String = "not tested"
     @Published var lastRequestLog: String = "no request yet"
+    @Published var gapState: GapState = .none
+    @Published var gapError: String?
+
+    /// One report per answer. Reset on every new ask.
+    enum GapState {
+        case none
+        case posting
+        case reported
+    }
+
+    /// The question that produced the current verdict (may differ from the
+    /// live query field if the operator retyped after asking).
+    private var askedQuery: String = ""
+
+    /// Machine tail of a NOT COVERED detail (docs/live-assist-wiring.md):
+    /// the measured distance and the top chunk id the report must carry
+    /// verbatim. Pure, so the simulator suite pins it.
+    nonisolated static func gapTail(
+        from detail: String
+    ) -> (chunkID: String, distance: Double)? {
+        guard detail.hasPrefix("NOT COVERED") else { return nil }
+        guard
+            let topRange = detail.range(
+                of: "top=([0-9a-f]{16,128})\\s*$",
+                options: .regularExpression
+            )
+        else { return nil }
+        let tail = String(detail[topRange]).dropFirst(4).trimmingCharacters(
+            in: .whitespaces
+        )
+        guard
+            let dRange = detail.range(
+                of: "d=([0-9]*\\.?[0-9]+)>",
+                options: .regularExpression
+            )
+        else { return nil }
+        let dText =
+            String(detail[dRange])
+            .dropFirst(2)
+            .dropLast()
+        guard let distance = Double(dText) else { return nil }
+        return (String(tail), distance)
+    }
 
     private struct CheckResponse: Decodable {
         var name: String
@@ -169,6 +212,9 @@ final class AssistViewModel: ObservableObject {
         }
         isAsking = true
         lastError = nil
+        askedQuery = query
+        gapState = .none
+        gapError = nil
         defer { isAsking = false }
 
         var imageB64 = ""
@@ -228,6 +274,8 @@ final class AssistViewModel: ObservableObject {
             }
         } catch {
             verdict = .none
+            gapState = .none
+            gapError = nil
             let nsError = error as NSError
             assistLog.error(
                 "request failed: \(nsError.domain, privacy: .public) \(nsError.code) \(error.localizedDescription, privacy: .public)"
@@ -236,6 +284,69 @@ final class AssistViewModel: ObservableObject {
                 "failed [\(nsError.domain) \(nsError.code)]"
             lastError =
                 "\(error.localizedDescription) [\(nsError.domain) \(nsError.code)]"
+        }
+    }
+
+    private struct GapReportRequest: Encodable {
+        var question: String
+        var answer: String
+        // swiftlint:disable:next identifier_name
+        var retrieved_chunk_ids: [String]
+        var top1_distance: Double
+        var comment: String
+    }
+
+    private struct GapReportResponse: Decodable {
+        var ok: Bool
+        var error: String?
+    }
+
+    /// One tap files the coverage refusal showing on screen into the SM
+    /// Feedback Flywheel. Only the NOT COVERED prefix arms it; anything
+    /// else (or an unparseable tail) is a silent no-op. One report per
+    /// answer: after success the button stays "Reported". Failures render
+    /// inline and keep the button armed. Never blocks the viewfinder.
+    func reportGap() async {
+        guard case .verify(let detail, _, _) = verdict,
+            let tail = Self.gapTail(from: detail),
+            gapState != .reported
+        else { return }
+        guard let url = URL(string: baseURLString + "/report_gap") else {
+            gapError = "Bad backend URL."
+            return
+        }
+        gapState = .posting
+        gapError = nil
+        defer {
+            if gapState == .posting { gapState = .none }
+        }
+        do {
+            var request = URLRequest(url: url)
+            request.httpMethod = "POST"
+            request.timeoutInterval = 60
+            request.setValue(
+                "application/json", forHTTPHeaderField: "Content-Type"
+            )
+            request.httpBody = try JSONEncoder().encode(
+                GapReportRequest(
+                    question: askedQuery,
+                    answer: detail,
+                    retrieved_chunk_ids: [tail.chunkID],
+                    top1_distance: tail.distance,
+                    comment: ""
+                )
+            )
+            let (data, _) = try await URLSession.shared.data(for: request)
+            let decoded = try JSONDecoder().decode(
+                GapReportResponse.self, from: data
+            )
+            if decoded.ok {
+                gapState = .reported
+            } else {
+                gapError = "Not filed (\(decoded.error ?? "unknown"))."
+            }
+        } catch {
+            gapError = "Not filed (network)."
         }
     }
 }

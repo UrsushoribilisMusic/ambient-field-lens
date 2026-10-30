@@ -106,8 +106,9 @@ class LiveBackendTests(unittest.TestCase):
         self.assertEqual(response.verdict, 'verify')
         self.assertTrue(response.detail.startswith('NOT COVERED:'))
 
-    def test_distance_gate_off_by_default(self):
-        self.assertIsNone(live_backend.COVERAGE_DISTANCE_MAX)
+    def test_distance_gate_calibrated_from_receipt(self):
+        self.assertEqual(live_backend.COVERAGE_DISTANCE_MAX, 0.76)
+        self.assertEqual(live_backend.COVERAGE_N, 8)
 
     def test_distance_gate_fires_above_cutoff(self):
         live_backend.read_window = lambda: dict(WINDOW)
@@ -122,7 +123,23 @@ class LiveBackendTests(unittest.TestCase):
             live_backend.COVERAGE_DISTANCE_MAX = saved
         self.assertEqual(status, 200)
         self.assertTrue(response.detail.startswith('NOT COVERED:'))
-        self.assertIn('close enough', response.detail)
+        self.assertIn('No manual passage within the coverage threshold', response.detail)
+
+    def test_not_covered_detail_carries_machine_tail(self):
+        import re
+        live_backend.read_window = lambda: dict(WINDOW)
+        live_backend.claim_call = lambda record: 'w1'
+        chunk_id = '8135308218c2c50dfd8b0aec8c0a48b25782d42098b2af9d4aa03fb2d71ccbb6'
+        far = [dict(EVIDENCE['chunks'][0], distance=0.8199027180671692, id=chunk_id)]
+        live_backend.client.retrieve = lambda q, f: dict(EVIDENCE, chunks=far)
+        status, response = self.run_assist(request_with_image())
+        self.assertEqual(status, 200)
+        self.assertLessEqual(len(response.detail), 300)
+        self.assertIn('d=0.820>0.760', response.detail)
+        self.assertIn('8 covered max 0.741', response.detail)
+        tail = re.search(r'top=([0-9a-f]{16,128})\s*$', response.detail)
+        self.assertIsNotNone(tail)
+        self.assertEqual(tail.group(1), chunk_id)
 
     def test_distance_gate_passes_below_cutoff(self):
         live_backend.read_window = lambda: dict(WINDOW)

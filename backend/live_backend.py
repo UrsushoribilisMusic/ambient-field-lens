@@ -39,10 +39,18 @@ class WindowUnavailable(Exception):
 # Coverage is a threshold on the top chunk's retrieval distance, not an
 # emptiness check: the provider raises no_ross_evidence on empty (which
 # surfaces as a 502 failure amber), so an empty chunk list never reaches
-# composition. Unset until the Q1 labelling session freezes a number from
-# the near-miss curve; while None, every retrieved chunk counts as covered
-# (today's behavior) and the card carries the uncalibrated tag.
-COVERAGE_DISTANCE_MAX = None
+# composition. Calibrated 2026-10-30 (docs/verification/coverage-
+# calibration-2026-10-30.json): 8 Miguel-supported questions score
+# 0.311-0.741; the validated paper-position anchor scores 0.820 and the
+# coffee absurd 0.787. 0.76 sits between covered max and the nearest
+# non-covered observation. Two hypothesized near-misses (paper centering
+# 0.668, pen touch 0.725, both COMMANDS.md) land covered-side: they need
+# Miguel's read on whether that chunk actually answers them. Frozen from
+# that receipt; never tuned to green.
+COVERAGE_DISTANCE_MAX = 0.76
+# Calibration cluster shown on the card next to the measured distance.
+COVERAGE_N = 8
+COVERAGE_MAX = 0.741
 
 
 class Abandoned(Exception):
@@ -309,11 +317,18 @@ class LiveAssistService:
                     and isinstance(distance, (int, float))
                     and distance > COVERAGE_DISTANCE_MAX):
                 # Prefix contract (docs/live-assist-wiring.md): the app
-                # derives COVERAGE ✗ from this prefix. World state unknown:
-                # retrieval runs before any frame is inspected.
-                return deny('NOT COVERED: Manual holds no passage close enough '
-                            'to this question. Verify in the manual before '
-                            'touching the machine.')
+                # derives COVERAGE ✗ from this prefix and offers the gap
+                # report from its tail. World state unknown: retrieval runs
+                # before any frame is inspected. The tail carries the top
+                # chunk id and the measured distance for the report; the app
+                # may hide the tail on screen but must post it verbatim.
+                top_id = chunks[0].get('id', '?') if isinstance(chunks[0], dict) else '?'
+                return deny(
+                    'NOT COVERED: No manual passage within the coverage '
+                    'threshold (d=%.3f>%.3f; %d covered max %.3f). Verify '
+                    'in the manual. top=%s'
+                    % (distance, COVERAGE_DISTANCE_MAX, COVERAGE_N,
+                       COVERAGE_MAX, top_id))
             stage = gated('segment')
             segmentation = segment_paper(image, request_id=request_id,
                                          output_root=tempfile.mkdtemp(prefix='afl-live-'),

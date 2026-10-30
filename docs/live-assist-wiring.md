@@ -68,9 +68,14 @@ guidance and may change without notice.
   retrieval distance, not emptiness: the provider raises no_ross_evidence
   on empty, so an empty list never reaches composition (the emptiness
   branch is retained fail-closed and unreachable-by-construction).
-  Threshold is None until the Q1 near-miss labelling freezes it; until
-  then every retrieved chunk counts as covered and the card keeps the
-  uncalibrated tag.
+  Calibrated 2026-10-30: `COVERAGE_DISTANCE_MAX = 0.76`
+  (docs/verification/coverage-calibration-2026-10-30.json: 8 covered
+  ≤0.741, paper anchor 0.820, coffee 0.787). The detail carries a machine
+  tail `top=<64-hex chunk id>` after the human sentence; the app shows the
+  `Report missing instruction` button only on this prefix, posts the tail
+  verbatim to `/report_gap`, and may hide the tail on screen. Tail regex:
+  `top=([0-9a-f]{64})\s*$`. Never "I don't know": the claim is "no manual
+  passage within the coverage threshold."
 - Any other amber (window/busy/timeout/failure/no-frame): no prefix, chips
   stay neutral. No prefix may ever imply a pass; all paths stay amber-only.
 
@@ -82,6 +87,14 @@ guidance and may change without notice.
   in the same build as the downscale fix.
 - Spend tonight: one $4 window reserved then closed, provider attempts
   empty -> no GPU burn. Modal dashboard is the final word on charges.
+
+## Gap report deploy note
+`POST /report_gap` needs the `afl-sm-feedback` Modal Secret
+(`SM_MOBILE_SESSION_TOKEN`, minted by Clau into Infisical, then
+`modal secret create afl-sm-feedback --from-dotenv` at deploy time).
+Without it the route fail-closes with `credential_unavailable` and the
+phone shows "Not filed". Redeploy must create that secret first or the
+deploy itself fails on the missing reference.
 
 ## Codi review fixes (PR14, same branch)
 - Admission is token-based (pop-atomic, namespaced per window, never refilled); arming scripts must call arm_tokens after writing the active row.
