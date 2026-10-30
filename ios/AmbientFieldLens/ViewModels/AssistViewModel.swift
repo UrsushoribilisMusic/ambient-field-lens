@@ -64,11 +64,38 @@ final class AssistViewModel: ObservableObject {
     /// and code spans then render natively, paths survive verbatim.
     /// Falls back to plain text if parsing fails. Pure, pinned by tests.
     nonisolated static func formattedQuote(from text: String) -> AttributedString {
-        let escaped = text.replacingOccurrences(of: "\\", with: "\\\\")
+        let condensed = Self.condensedPaths(in: text)
+        let escaped = condensed.replacingOccurrences(of: "\\", with: "\\\\")
         if let rendered = try? AttributedString(markdown: escaped) {
             return rendered
         }
-        return AttributedString(text)
+        return AttributedString(condensed)
+    }
+
+    /// Phone display only: file paths condense to basenames
+    /// (`skills\hunit\hunit_write.py` -> `hunit_write.py`). The quoted
+    /// passage underneath stays verbatim; provenance travels in the
+    /// machine tail, never on screen. URLs, versions and bare filenames
+    /// are left alone. Pure, pinned by tests.
+    nonisolated static func condensedPaths(in text: String) -> String {
+        // No spaces in either class: a path match must never eat the
+        // prose before it. A match preceded by ":" is a URL scheme.
+        guard
+            let pattern = try? NSRegularExpression(
+                pattern: "([\\w.~\\\\/\\-]*[\\\\/])([\\w.\\-]*[A-Za-z][\\w.\\-]*\\.\\w{1,5})\\b"
+            )
+        else { return text }
+        let range = NSRange(text.startIndex..., in: text)
+        var out = text
+        for match in pattern.matches(in: text, range: range).reversed() {
+            guard
+                let full = Range(match.range, in: text),
+                let base = Range(match.range(at: 2), in: text)
+            else { continue }
+            if text[..<full.lowerBound].last == ":" { continue }
+            out.replaceSubrange(full, with: String(text[base]))
+        }
+        return out
     }
 
     nonisolated static func gapTail(

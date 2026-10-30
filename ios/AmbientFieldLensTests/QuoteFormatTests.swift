@@ -19,14 +19,17 @@ final class QuoteFormatTests: XCTestCase {
         XCTAssertTrue(plain.contains("Tool"))
     }
 
-    func testWindowsPathBackslashesSurvive() {
+    func testWindowsPathCondensesWithoutMerging() {
+        // Display condenses to the basename; the key check is that no
+        // backslash is eaten as a markdown escape (which would merge
+        // "skills\hunit" into "skillshunit").
         let out = AssistViewModel.formattedQuote(
             from: "run skills\\hunit\\hunit_write.py \"Hello\""
         )
-        XCTAssertEqual(
-            String(out.characters),
-            "run skills\\hunit\\hunit_write.py \"Hello\""
-        )
+        let plain = String(out.characters)
+        XCTAssertTrue(plain.contains("hunit_write.py"))
+        XCTAssertFalse(plain.contains("skillshunit"))
+        XCTAssertFalse(plain.contains("\\"))
     }
 
     func testPlainTextPassesThrough() {
@@ -37,5 +40,36 @@ final class QuoteFormatTests: XCTestCase {
             ),
             text
         )
+    }
+
+    func testPathsCondenseToBasenames() {
+        XCTAssertEqual(
+            AssistViewModel.condensedPaths(
+                in: "run skills\\hunit\\hunit_write.py \"Hello\""
+            ),
+            "run hunit_write.py \"Hello\""
+        )
+        XCTAssertEqual(
+            AssistViewModel.condensedPaths(
+                in: "see atf-wiki/Topics/Calibration.md for details"
+            ),
+            "see Calibration.md for details"
+        )
+    }
+
+    func testUrlsVersionsAndBareNamesUntouched() {
+        let text =
+            "see https://x.test/a/b.md, ratio 1.0/2.0, run hunit_write.py"
+        XCTAssertEqual(AssistViewModel.condensedPaths(in: text), text)
+    }
+
+    func testCondensedQuoteStillRenders() {
+        let out = AssistViewModel.formattedQuote(
+            from: "Run `skills\\hunit\\hunit_write.py` **now**"
+        )
+        let plain = String(out.characters)
+        XCTAssertTrue(plain.contains("hunit_write.py"))
+        XCTAssertFalse(plain.contains("skills"))
+        XCTAssertFalse(plain.contains("**"))
     }
 }
