@@ -246,3 +246,15 @@ container state. All current responses remain amber with no step. The
 [RED extension](docs/proposals/red-controller-contract.md) is a proposal only.
 No validated weight signal currently supplies a permission gate; raw Glimmer
 scores are diagnostic. No new score rounds or GPU windows in this work.
+
+## Versioned documentation repair (Codi, prepared for review)
+
+The CPU-only export bridge in `providers/corpus_repair.py` stages one exact,
+human-reviewed SM wiki passage into a new fingerprint-named collection in a
+separate DB. The original38-record collection and report remain unchanged.
+`providers/corpus-pins.json` binds explicit name/count/full fingerprint/report
+and full text+metadata+vector digest. Retrieval rejects anything outside that
+reviewed registry; IAM-only `select_corpus` validates before atomic activation
+or rollback. No threshold/verdict/green changes. A new39-record pin cannot be
+reviewed or activated until Miguel's actual passage exists. See
+[repair filming and rollback handoff](docs/documentation-repair-handoff.md).

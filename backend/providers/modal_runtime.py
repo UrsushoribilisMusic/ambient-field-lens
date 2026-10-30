@@ -114,28 +114,44 @@ def close_window(request:dict):
               min_containers=0,max_containers=1,scaledown_window=2,retries=0)
 def retrieve(request:dict):
     _sys()
-    from providers.payloads import COLLECTION
+    from providers.corpus_versions import (BASELINE, SELECTOR, load_pins,
+        guarded_collection, retrieve_evidence, database_path)
     import chromadb
     from chromadb.utils.embedding_functions import ONNXMiniLM_L6_V2
     question=request.get('question');frame=request.get('frame_sha256')
     import re
     if not isinstance(question,str) or not 1<=len(question.encode())<=1000 or not re.fullmatch('[0-9a-f]{64}',frame or ''):
         raise ValueError('invalid_retrieval_request')
-    report=json.loads(Path('/corpus/ingestion-report.json').read_text())
-    if report['collection']!=COLLECTION:raise ValueError('corpus_fingerprint_changed')
-    client=chromadb.PersistentClient(path='/corpus/chroma')
-    collection=client.get_collection(COLLECTION,embedding_function=ONNXMiniLM_L6_V2(preferred_providers=['CPUExecutionProvider']))
-    if collection.count()!=38:raise ValueError('corpus_count_changed')
-    found=collection.query(query_texts=[question],n_results=3,include=['documents','metadatas','distances'])
-    chunks=[{'id':ident,'text':text,'source':meta['source'],'source_sha256':meta['source_sha256'],
-             'source_commit':meta['source_commit'],'distance':float(distance)}
-            for ident,text,meta,distance in zip(found['ids'][0],found['documents'][0],found['metadatas'][0],found['distances'][0])]
-    if not chunks:raise ValueError('no_ross_evidence')
-    # Stable source order; no generated summaries inserted into evidence.
-    chunks=chunks[:1]  # Highest-ranked complete stored chunk; preserve finite prefill budget.
-    context=chunks[0]['text']
-    return {'frame_sha256':frame,'collection':COLLECTION,'chunks':chunks,'context':context,
-            'context_sha256':hashlib.sha256(context.encode()).hexdigest(),'gpu_used':False}
+    # One atomic selector read per request. Neither caller nor ingestion may
+    # invent an approved corpus. Legacy baseline remains the default.
+    selection=modal.Dict.from_name(SELECTOR,create_if_missing=True).get('active')
+    name=selection if selection is not None else BASELINE
+    pins=load_pins()
+    if not isinstance(name,str) or name not in pins:raise ValueError('unreviewed_corpus_version')
+    corpus.reload()
+    with chromadb.PersistentClient(path=str(database_path('/corpus',name))) as client:
+        collection=guarded_collection(client,name,'/corpus',
+            ONNXMiniLM_L6_V2(preferred_providers=['CPUExecutionProvider']))
+        return {**retrieve_evidence(collection,question,frame),'corpus_pin':pins[name]}
+
+
+@app.function(image=retrieval_image,gpu=None,volumes={'/corpus':corpus},timeout=120,
+              min_containers=0,max_containers=1,scaledown_window=2,retries=0)
+def select_corpus(request:dict):
+    """IAM-only activation/rollback, validated against this deployed allowlist."""
+    _sys()
+    from providers.corpus_versions import SELECTOR,load_pins,activate,database_path
+    import chromadb
+    from chromadb.utils.embedding_functions import ONNXMiniLM_L6_V2
+    name=request.get('collection')
+    pins=load_pins()
+    if not isinstance(name,str) or name not in pins or request.get('pin')!=pins[name]:
+        raise ValueError('deployed_corpus_pin_mismatch')
+    corpus.reload()
+    with chromadb.PersistentClient(path=str(database_path('/corpus',name))) as client:
+        return activate(client,'/corpus',
+            ONNXMiniLM_L6_V2(preferred_providers=['CPUExecutionProvider']),request,
+            modal.Dict.from_name(SELECTOR,create_if_missing=True),pins)
 
 
 @app.function(image=cpu,gpu=None,volumes={'/artifacts':artifacts},timeout=30,
