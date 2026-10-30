@@ -35,17 +35,15 @@ final class QuoteFormatTests: XCTestCase {
         XCTAssertTrue(boxed)
     }
 
-    func testFencedBlockIsBoxed() {
-        var out = AssistViewModel.formattedQuote(
-            from: "Try:\n```\nrun x.py\n```\n"
+    func testFencedBlockDroppedFromCard() {
+        let out = AssistViewModel.formattedQuote(
+            from: "Try:\n```\nrun x.py --long\n```\nThen Y."
         )
-        var boxed = false
-        for run in out.runs {
-            if String(out.characters[run.range]).contains("run x.py") {
-                boxed = run.attributes.backgroundColor != nil
-            }
-        }
-        XCTAssertTrue(boxed)
+        let plain = String(out.characters)
+        XCTAssertTrue(plain.contains("Try:"))
+        XCTAssertTrue(plain.contains("Then Y."))
+        XCTAssertFalse(plain.contains("run x.py"))
+        XCTAssertFalse(plain.contains("```"))
     }
 
     func testWindowsPathCondensesWithoutMerging() {
@@ -69,6 +67,22 @@ final class QuoteFormatTests: XCTestCase {
             ),
             text
         )
+    }
+
+    func testFencedBlocksDroppedProseStays() {
+        let out = AssistViewModel.dropFencedBlocks(
+            in: "Do X.\n```\nrun x.py --long-flag\n```\nThen Y."
+        )
+        XCTAssertTrue(out.contains("Do X."))
+        XCTAssertTrue(out.contains("Then Y."))
+        XCTAssertFalse(out.contains("run x.py"))
+        XCTAssertFalse(out.contains("```"))
+    }
+
+    func testUnbalancedTrailingFenceDropsToEnd() {
+        let out = AssistViewModel.dropFencedBlocks(in: "Do X.\n```\nrun x")
+        XCTAssertTrue(out.contains("Do X."))
+        XCTAssertFalse(out.contains("run x"))
     }
 
     func testPathsCondenseToBasenames() {

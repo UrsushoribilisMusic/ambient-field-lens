@@ -157,6 +157,19 @@ class LiveBackendTests(unittest.TestCase):
         self.assertTrue(out.endswith(' […]'))
         self.assertLessEqual(len(out), 610)
 
+    def test_passage_cut_backs_off_unterminated_span(self):
+        text = 'ok ' + '`code ' + 'y' * 700
+        out = live_backend.passage_excerpt([{'text': text}])
+        self.assertTrue(out.endswith(' […]'))
+        self.assertNotIn('`', out)
+        self.assertTrue(out.startswith('ok'))
+
+    def test_passage_cut_backs_off_unterminated_fence(self):
+        text = 'ok\n```\n' + 'z' * 700
+        out = live_backend.passage_excerpt([{'text': text}])
+        self.assertTrue(out.endswith(' […]'))
+        self.assertNotIn('```', out)
+
     def test_not_covered_carries_no_passage(self):
         live_backend.read_window = lambda: dict(WINDOW)
         live_backend.claim_call = lambda record: 'w1'

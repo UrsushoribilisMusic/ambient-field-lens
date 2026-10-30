@@ -67,6 +67,7 @@ final class AssistViewModel: ObservableObject {
     /// parsing fails. Pinned by tests.
     nonisolated static func formattedQuote(from text: String) -> AttributedString {
         var src = Self.condensedPaths(in: text)
+        src = Self.dropFencedBlocks(in: src)
         src = src.replacingOccurrences(
             of: "#{2,}\\s*", with: " ", options: .regularExpression
         )
@@ -81,6 +82,26 @@ final class AssistViewModel: ObservableObject {
 
     nonisolated private static let codeOpen = "\u{E000}"
     nonisolated private static let codeClose = "\u{E001}"
+
+    /// Fenced code blocks never reach the phone card: multi-line command
+    /// dumps are clutter on a viewfinder, and the full passage lives
+    /// server-side and in the Flywheel draft. Prose and inline code stay.
+    /// Unbalanced trailing fences (should not happen; the server balances
+    /// excerpts) drop to end-of-text rather than leaking markers.
+    nonisolated static func dropFencedBlocks(in text: String) -> String {
+        guard
+            let pattern = try? NSRegularExpression(
+                pattern: "```[\\s\\S]*?(```|$)"
+            )
+        else { return text }
+        let range = NSRange(text.startIndex..., in: text)
+        var out = text
+        for match in pattern.matches(in: text, range: range).reversed() {
+            guard let full = Range(match.range, in: text) else { continue }
+            out.replaceSubrange(full, with: "")
+        }
+        return out
+    }
 
     /// Wrap `code` spans in private-use markers that survive markdown
     /// parsing, so the spans can be found and boxed afterwards.
@@ -439,7 +460,10 @@ final class AssistViewModel: ObservableObject {
         do {
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
-            request.timeoutInterval = 60
+            // SM drafts the candidate answer before answering 201, so a
+            // first report can take a while server-side. Match the /assist
+            // posture: fail loudly, not early.
+            request.timeoutInterval = 180
             request.setValue(
                 "application/json", forHTTPHeaderField: "Content-Type"
             )

@@ -63,6 +63,12 @@ struct ContentView: View {
                 Text("Field Lens")
                     .font(.caption.bold())
                     .foregroundStyle(.white)
+                Text(
+                    Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion")
+                        as? String ?? "?"
+                )
+                .font(.caption2.monospaced())
+                .foregroundStyle(.white.opacity(0.6))
                 statusDot(phoneCamera.isReady, label: "cam")
                 statusDot(wearables.deviceCount > 0, label: "\(wearables.deviceCount)")
                 statusDot(wearables.sessionStarted, label: "ses")

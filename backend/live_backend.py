@@ -185,16 +185,23 @@ PASSAGE_MAX = 600
 def passage_excerpt(chunks):
     """Top chunk text as a labeled excerpt, or None. Only ever called
     after the coverage gate passed, so the quoted chunk is the one the
-    detail tail cites. Truncation is marked; never silently cut."""
+    detail tail cites. Truncation is marked; never silently cut. The cut
+    backs off past an unterminated code span or fence so markdown clients
+    never inherit unbalanced markers."""
     if not chunks or not isinstance(chunks[0], dict):
         return None
     text = chunks[0].get('text')
     if not isinstance(text, str) or not text.strip():
         return None
     text = text.strip()
-    if len(text) > PASSAGE_MAX:
-        return text[:PASSAGE_MAX].rstrip() + ' […]'
-    return text
+    if len(text) <= PASSAGE_MAX:
+        return text
+    cut = text[:PASSAGE_MAX]
+    if cut.count('```') % 2 == 1:
+        cut = cut.rsplit('```', 1)[0]
+    elif cut.count('`') % 2 == 1:
+        cut = cut.rsplit('`', 1)[0]
+    return cut.rstrip() + ' […]'
 
 
 def evidence_detail(*, masks, chunk_ids, score):
