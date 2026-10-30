@@ -105,7 +105,9 @@ def create_app(service=None):
             return JSONResponse(status_code=200,
                                 content={'ok': False, 'error': 'bad_json'},
                                 headers={'Cache-Control': 'no-store'})
-        ok, error = gap_report.report_gap(
+        # Sync + sleeps on retry: worker thread, never the loop.
+        ok, error = await asyncio.to_thread(
+            gap_report.report_gap,
             body.get('question'), body.get('answer'),
             body.get('retrieved_chunk_ids'), body.get('top1_distance'),
             body.get('comment'))

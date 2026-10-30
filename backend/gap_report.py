@@ -73,10 +73,19 @@ def validated(question, answer, chunk_ids, distance, comment):
             'persona': 'field-engineer'}
 
 
-def forward(payload, post=None, token=None):
+RETRYABLE_STATUS = (429, 500, 502, 503, 504)
+RETRY_ATTEMPTS = 3
+RETRY_BACKOFF_SECONDS = (3, 9)
+
+
+def forward(payload, post=None, token=None, sleep=None):
     """POST the shaped payload to SM. Returns True on 201. Injected
-    transport and token in tests; real urllib and vault otherwise.
-    Raises GapReportError."""
+    transport, token and sleep in tests; real urllib, vault and
+    time.sleep otherwise (runs in a worker thread, never the loop).
+    Transport errors and retryable statuses wait and retry; anything
+    else fails fast. Raises GapReportError."""
+    import time
+    wait = sleep or time.sleep
     body = json.dumps(payload).encode()
     if token is None:
         token = credential()
@@ -85,21 +94,32 @@ def forward(payload, post=None, token=None):
         headers={'Authorization': 'Bearer ' + token,
                  'Content-Type': 'application/json'})
     sender = post or (lambda req: urllib.request.build_opener(NoRedirect()).open(req, timeout=120))
-    try:
-        with sender(request) as response:
-            status = getattr(response, 'status', None)
-            raw = response.read(65537)
-    except GapReportError:
-        raise
-    except Exception as exc:
-        raise GapReportError('sm_unreachable') from exc
-    if status != 201 or len(raw) > 65536:
-        raise GapReportError('sm_rejected')
-    return True
+    last_error = 'sm_unreachable'
+    for attempt in range(RETRY_ATTEMPTS):
+        try:
+            with sender(request) as response:
+                status = getattr(response, 'status', None)
+                raw = response.read(65537)
+        except GapReportError:
+            raise
+        except Exception as exc:
+            last_error = 'sm_unreachable'
+            cause = exc
+        else:
+            if status == 201 and len(raw) <= 65536:
+                return True
+            if status in RETRYABLE_STATUS:
+                last_error = 'sm_rejected'
+                cause = None
+            else:
+                raise GapReportError('sm_rejected')
+        if attempt < RETRY_ATTEMPTS - 1:
+            wait(RETRY_BACKOFF_SECONDS[min(attempt, len(RETRY_BACKOFF_SECONDS) - 1)])
+    raise GapReportError(last_error) from cause
 
 
 def report_gap(question, answer, chunk_ids, distance, comment=None,
-               post=None, token=None):
+               post=None, token=None, sleep=None):
     """Route logic without HTTP: (ok, error). Error is a short code, never
     provider text, image data, or secret material."""
     try:
@@ -107,7 +127,7 @@ def report_gap(question, answer, chunk_ids, distance, comment=None,
     except GapReportError as exc:
         return False, str(exc)
     try:
-        forward(payload, post=post, token=token)
+        forward(payload, post=post, token=token, sleep=sleep)
     except GapReportError as exc:
         return False, str(exc)
     return True, ''

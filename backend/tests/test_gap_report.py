@@ -85,6 +85,44 @@ class GapReportTests(unittest.TestCase):
         self.assertFalse(ok)
         self.assertEqual(error, 'sm_unreachable')
 
+    def test_transient_failure_retries_then_succeeds(self):
+        calls = []
+        def flaky(req):
+            calls.append(1)
+            if len(calls) < 3:
+                raise ConnectionError('blip')
+            return FakeResponse(201)
+        slept = []
+        ok, error = gap_report.report_gap(
+            QUESTION, ANSWER, [CHUNK], 0.82, post=flaky, token='test-token',
+            sleep=slept.append)
+        self.assertTrue(ok)
+        self.assertEqual(len(calls), 3)
+        self.assertEqual(slept, [3, 9])
+
+    def test_retryable_status_retries(self):
+        calls = []
+        def cinquecento(req):
+            calls.append(1)
+            return FakeResponse(503, b'busy')
+        ok, error = gap_report.report_gap(
+            QUESTION, ANSWER, [CHUNK], 0.82, post=cinquecento,
+            token='test-token', sleep=lambda s: None)
+        self.assertFalse(ok)
+        self.assertEqual(error, 'sm_rejected')
+        self.assertEqual(len(calls), 3)
+
+    def test_client_error_fails_fast_without_retry(self):
+        calls = []
+        def bad(req):
+            calls.append(1)
+            return FakeResponse(400, b'nope')
+        ok, error = gap_report.report_gap(
+            QUESTION, ANSWER, [CHUNK], 0.82, post=bad, token='test-token',
+            sleep=lambda s: None)
+        self.assertFalse(ok)
+        self.assertEqual(len(calls), 1)
+
     def test_missing_credential_fail_closed(self):
         from unittest import mock
         with mock.patch.object(
