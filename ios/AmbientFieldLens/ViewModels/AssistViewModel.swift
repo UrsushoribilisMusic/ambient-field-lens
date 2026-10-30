@@ -325,6 +325,9 @@ final class AssistViewModel: ObservableObject {
         isAsking = true
         lastError = nil
         askedQuery = query
+        // New ask clears the previous answer: quote card, report button,
+        // chips and detail all fall back to idle until it lands.
+        verdict = .none
         gapState = .none
         gapError = nil
         quoteDismissed = false
