@@ -21,3 +21,23 @@ private work is convergent (same problem, same public APIs), not copied.
 Where an approach was tried and retired (contrastive probe, Jacobian lens,
 trajectory scoring), the protocols and negative results are in-repo under
 `docs/` and `docs/verification/`.
+
+## Platform boundary (Rule 4)
+
+Code provenance above is about *source*. Rule 4 also asks what pre-existed as
+a platform. Stated plainly:
+
+**Pre-existing, not built here:**
+
+- Robot Ross — the Huenit arm, its controller and the physical rig. It is the
+  machine under test, not a deliverable of this hackathon.
+- The ATF wiki corpus (Robot Ross manuals), used as the operator's documents.
+- Sovereign Mind — the wiki and review console the repair loop writes into.
+  Its Feedback Flywheel UI pre-existed; the integration that files a gap
+  report from a refusal, and the corpus re-versioning that follows approval,
+  were built here.
+
+**Built here:** everything listed under "Built during the hackathon" in the
+README — the iOS app, the `/assist` contract, SAM gating, the Glimmer probes
+and their negative results, the coverage gate and its calibration, corpus
+versioning with a reviewed pin registry, and the repair loop end to end.
