@@ -1,0 +1,28 @@
+{
+  "schema": "repair-before-retrieval-v1",
+  "question": "what to do if the paper is in the wrong position",
+  "collection": "ross-manuals-2ca5f2f152267049",
+  "records": 38,
+  "capture_sha256": "5b83a81e4a21374ba56cfe67c0b35cd8eeebe828ded235e7583536ef3a46ecc3",
+  "ranked": [
+    {
+      "id": "8135308218c2c50dfd8b0aec8c0a48b25782d42098b2af9d4aa03fb2d71ccbb6",
+      "distance": 0.8199027180671692,
+      "source": "atf-wiki/Topics/Calibration.md"
+    },
+    {
+      "id": "ddc2942ee79fe0e53ceffa020afa9aa1fb57c04db3fd47dda07a797ef4ea8e64",
+      "distance": 0.8298013210296631,
+      "source": "README.md"
+    },
+    {
+      "id": "d4ed86dba96660eeedf366fbf434f09cfc3c6dd431e8d676fd0007747bc90c17",
+      "distance": 0.8333027362823486,
+      "source": "COMMANDS.md"
+    }
+  ],
+  "gpu_used": false,
+  "coverage_threshold": null,
+  "top_passage_human_reading": "Does not explain how to correct misplaced paper.",
+  "private_text_export": "~/Downloads/AFL-paper-position-before-passages.md"
+}
