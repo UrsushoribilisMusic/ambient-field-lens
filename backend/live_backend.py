@@ -179,6 +179,24 @@ def mask_label(mask):
     return str(mask)[:8]
 
 
+PASSAGE_MAX = 600
+
+
+def passage_excerpt(chunks):
+    """Top chunk text as a labeled excerpt, or None. Only ever called
+    after the coverage gate passed, so the quoted chunk is the one the
+    detail tail cites. Truncation is marked; never silently cut."""
+    if not chunks or not isinstance(chunks[0], dict):
+        return None
+    text = chunks[0].get('text')
+    if not isinstance(text, str) or not text.strip():
+        return None
+    text = text.strip()
+    if len(text) > PASSAGE_MAX:
+        return text[:PASSAGE_MAX].rstrip() + ' […]'
+    return text
+
+
 def evidence_detail(*, masks, chunk_ids, score):
     """Compact evidence summary, contract-bounded to 300 chars."""
     mask_ids = ','.join(mask_label(m) for m in masks[:3])
@@ -336,10 +354,13 @@ class LiveAssistService:
             masks = segmentation.get('masks', [])
             if not masks:
                 # Prefix contract: the app derives WORLD ✗ from this prefix.
-                # Coverage holds here (chunks were retrieved above).
+                # Coverage holds here (chunks were retrieved above), so the
+                # card also quotes the covered passage: quotation, not
+                # endorsement — the verdict stays verify either way.
                 return deny('WORLD CHECK FAILED: No paper candidate in this '
                             'frame. Reposition the paper fully in view. '
-                            'Verify in the manual.')
+                            'Verify in the manual.',
+                            passage=passage_excerpt(chunks))
             stage = gated('ground')
             score = client.grounding(
                 request_id=request_id, question=request.query, evidence=evidence,
@@ -349,7 +370,8 @@ class LiveAssistService:
             return deny(evidence_detail(
                 masks=masks,
                 chunk_ids=[c.get('id', '?') for c in chunks],
-                score=score.get('score') if isinstance(score, dict) else None))
+                score=score.get('score') if isinstance(score, dict) else None),
+                passage=passage_excerpt(chunks))
         except Exception as exc:
             # Debug note carries the stage and exception TYPE only: never
             # provider text, image data, or partial steps. Best-effort.

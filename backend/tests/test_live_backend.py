@@ -125,6 +125,48 @@ class LiveBackendTests(unittest.TestCase):
         self.assertTrue(response.detail.startswith('NOT COVERED:'))
         self.assertIn('No manual passage within the coverage threshold', response.detail)
 
+    def test_world_failed_quotes_covered_passage(self):
+        live_backend.read_window = lambda: dict(WINDOW)
+        live_backend.claim_call = lambda record: 'w1'
+        chunks = [dict(EVIDENCE['chunks'][0], distance=0.3,
+                       text='The lock file keeps one job at a time.')]
+        live_backend.client.retrieve = lambda q, f: dict(EVIDENCE, chunks=chunks)
+        live_backend.segment_paper = lambda *a, **k: {'masks': []}
+        status, response = self.run_assist(request_with_image())
+        self.assertEqual(status, 200)
+        self.assertTrue(response.detail.startswith('WORLD CHECK FAILED:'))
+        self.assertEqual(response.verdict, 'verify')
+        self.assertIsNone(response.step)
+        self.assertEqual(response.passage, 'The lock file keeps one job at a time.')
+
+    def test_evidence_path_quotes_covered_passage(self):
+        live_backend.read_window = lambda: dict(WINDOW)
+        live_backend.claim_call = lambda record: 'w1'
+        chunks = [dict(EVIDENCE['chunks'][0], distance=0.3, text='abc')]
+        live_backend.client.retrieve = lambda q, f: dict(EVIDENCE, chunks=chunks)
+        live_backend.segment_paper = lambda *a, **k: MASKS
+        live_backend.client.grounding = lambda **k: SCORE
+        status, response = self.run_assist(request_with_image())
+        self.assertEqual(status, 200)
+        self.assertTrue(response.detail.startswith('Live check (amber):'))
+        self.assertEqual(response.passage, 'abc')
+
+    def test_passage_truncation_marked(self):
+        long_text = 'x' * 700
+        out = live_backend.passage_excerpt([{'text': long_text}])
+        self.assertTrue(out.endswith(' […]'))
+        self.assertLessEqual(len(out), 610)
+
+    def test_not_covered_carries_no_passage(self):
+        live_backend.read_window = lambda: dict(WINDOW)
+        live_backend.claim_call = lambda record: 'w1'
+        far = [dict(EVIDENCE['chunks'][0], distance=0.9, id='far-chunk')]
+        live_backend.client.retrieve = lambda q, f: dict(EVIDENCE, chunks=far)
+        status, response = self.run_assist(request_with_image())
+        self.assertEqual(status, 200)
+        self.assertTrue(response.detail.startswith('NOT COVERED:'))
+        self.assertIsNone(response.passage)
+
     def test_not_covered_detail_carries_machine_tail(self):
         import re
         live_backend.read_window = lambda: dict(WINDOW)

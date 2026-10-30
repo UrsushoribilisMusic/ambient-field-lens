@@ -21,6 +21,9 @@ final class AssistViewModel: ObservableObject {
     struct ReceiptInfo {
         var summary: String
         var scoreLine: String?
+        /// Quoted manual excerpt, present only when the coverage gate
+        /// passed. Quotation, never an endorsed instruction.
+        var passage: String?
     }
 
     enum Verdict {
@@ -38,6 +41,8 @@ final class AssistViewModel: ObservableObject {
     @Published var lastRequestLog: String = "no request yet"
     @Published var gapState: GapState = .none
     @Published var gapError: String?
+    /// Quote card dismissal. One card per answer: reset on every ask.
+    @Published var quoteDismissed = false
 
     /// One report per answer. Reset on every new ask.
     enum GapState {
@@ -106,6 +111,7 @@ final class AssistViewModel: ObservableObject {
         var checks: [CheckResponse]?
         var grounding: GroundingResponse?
         var receipt: ReceiptResponse?
+        var passage: String?
     }
 
     /// Downscale a camera frame to fit the server's wire contract
@@ -164,7 +170,8 @@ final class AssistViewModel: ObservableObject {
         }
         return ReceiptInfo(
             summary: parts.isEmpty ? "no receipt" : parts.joined(separator: " · "),
-            scoreLine: scoreLine
+            scoreLine: scoreLine,
+            passage: (response.passage?.isEmpty == false) ? response.passage : nil
         )
     }
 
@@ -215,6 +222,7 @@ final class AssistViewModel: ObservableObject {
         askedQuery = query
         gapState = .none
         gapError = nil
+        quoteDismissed = false
         defer { isAsking = false }
 
         var imageB64 = ""

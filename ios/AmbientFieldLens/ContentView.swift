@@ -68,7 +68,7 @@ struct ContentView: View {
                 statusDot(wearables.sessionStarted, label: "ses")
                 semaphore
                 gateChip("WORLD", mark: worldMark)
-                gateChip("COV", mark: coverageMark)
+                gateChip("COVERAGE", mark: coverageMark)
                 Spacer()
                 Button {
                     showSetup = true
@@ -89,10 +89,64 @@ struct ContentView: View {
             if isGapReportable {
                 gapReportRow
             }
+            if isQuoteVisible {
+                quoteCard
+            }
         }
         .padding(.horizontal, 1)
         .padding(.vertical, 6)
         .background(.black.opacity(0.55))
+    }
+
+    /// The manual answering: quoted excerpt when the coverage gate passed,
+    /// on every path including WORLD CHECK FAILED. Dismissed with OK, back
+    /// on the next answer. Never an instruction, never a pass.
+    private var quotePassage: String? {
+        switch assist.verdict {
+        case .verify(_, _, let receipt):
+            return receipt?.passage
+        case .verified(_, let receipt):
+            return receipt.passage
+        case .none:
+            return nil
+        }
+    }
+
+    private var isQuoteVisible: Bool {
+        guard let passage = quotePassage, !passage.isEmpty else {
+            return false
+        }
+        return !assist.quoteDismissed
+    }
+
+    private var quoteCard: some View {
+        VStack(alignment: .leading, spacing: 4) {
+            Text("FROM YOUR MANUALS")
+                .font(.caption2.bold())
+                .foregroundStyle(.white.opacity(0.7))
+            Text(quotePassage ?? "")
+                .font(.callout)
+                .foregroundStyle(.white)
+                .lineLimit(8)
+            HStack {
+                Spacer()
+                Button {
+                    assist.quoteDismissed = true
+                } label: {
+                    Text("OK")
+                        .font(.caption.bold())
+                        .foregroundStyle(.black)
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 4)
+                        .background(Color.white.opacity(0.92))
+                        .clipShape(Capsule())
+                }
+                .accessibilityLabel("Dismiss manual quote")
+            }
+        }
+        .padding(8)
+        .background(.black.opacity(0.45))
+        .clipShape(RoundedRectangle(cornerRadius: 10))
     }
 
     /// The repair loop made visible: only a NOT COVERED refusal arms it.
