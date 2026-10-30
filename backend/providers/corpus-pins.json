@@ -6,5 +6,13 @@
     "fingerprint": "2ca5f2f1522670499b24eef33bdcdc4ef6a3c6300bbd4e937e744b2e056df5d1",
     "report_sha256": "59bd1833e24c2b8cf2fef07bf186de9926ca9ef7c66b39197072147d1113e1cf",
     "snapshot_sha256": "213a30aa95ae8ec1edd0afe894dfbfe49393b80e14d16ac1d8ccc3f69b67fa02"
+  },
+  "ross-repair-ad3c9065b45ac2d3a0562011": {
+    "schema": "ross-corpus-version-v1",
+    "collection": "ross-repair-ad3c9065b45ac2d3a0562011",
+    "records": 39,
+    "fingerprint": "ad3c9065b45ac2d3a0562011e51ac61d2b24dae63e987126f89e490f47824775",
+    "report_sha256": "83d8ab1712e45b32628de5019bffeb553627c4a6892791a4acfa9c39fc0fd84e",
+    "snapshot_sha256": "c7e3568c64fb14b26ccbd1f280325979ad1f95d74a4f9cf356ce2a97465fe0a4"
   }
 }

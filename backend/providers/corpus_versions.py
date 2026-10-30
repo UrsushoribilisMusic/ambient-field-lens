@@ -146,6 +146,33 @@ def repair_record(text, source, revision, reviewer):
     return {'id': ident, 'text': text, 'metadata': meta}
 
 
+def same_stored_records(copied, original):
+    """True when a copied corpus is the original, at the precision Chroma stores.
+
+    Chroma persists embeddings as float32. Reading a vector out, writing it into
+    a new collection and reading it back can move a component by one ULP
+    (7.45e-09 at these magnitudes; relative 6.8e-08, below float32 epsilon). That
+    is storage precision, not modification, and exact float equality here rejects
+    a faithful copy: 3 of the 38 baseline records round-trip inexactly.
+
+    IDs, texts and metadata are still compared exactly -- the tolerance applies to
+    vector components only, and only within float32 resolution. A substituted or
+    edited vector differs by many orders of magnitude more than this bound.
+    """
+    if len(copied) != len(original):
+        return False
+    keys = ('id', 'text', 'metadata')
+    for a, b in zip(copied, original):
+        if {k: a[k] for k in keys} != {k: b[k] for k in keys}:
+            return False
+        u, v = a['embedding'], b['embedding']
+        if len(u) != len(v):
+            return False
+        if any(not math.isclose(x, y, rel_tol=1e-6, abs_tol=1e-9) for x, y in zip(u, v)):
+            return False
+    return True
+
+
 def stage_repair(client, root, embed, text, source, revision, reviewer, pins=None, client_factory=None):
     """Copy-on-write: never upsert/delete a baseline or previously staged version."""
     pins = load_pins() if pins is None else pins
@@ -177,7 +204,8 @@ def stage_repair(client, root, embed, text, source, revision, reviewer, pins=Non
             saved = json.loads(path.read_text())
             snap = rows(read_snapshot(collection))
             if (saved != report or collection.metadata != expected_metadata
-                    or [r for r in snap if r['id'] != record['id']] != parent_rows
+                    or not same_stored_records(
+                        [r for r in snap if r['id'] != record['id']], parent_rows)
                     or len(snap) != len(parent_rows) + 1):
                 raise ValueError('staged_version_changed')
             added = next(r for r in snap if r['id'] == record['id'])
@@ -193,7 +221,8 @@ def stage_repair(client, root, embed, text, source, revision, reviewer, pins=Non
                            embeddings=[r['embedding'] for r in parent_rows])
             collection.add(ids=[record['id']], documents=[record['text']], metadatas=[record['metadata']])
             snap = rows(read_snapshot(collection))
-            if len(snap) != report['records'] or [r for r in snap if r['id'] != record['id']] != parent_rows:
+            if len(snap) != report['records'] or not same_stored_records(
+                    [r for r in snap if r['id'] != record['id']], parent_rows):
                 raise ValueError('copy_verification_failed')
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_text(json.dumps(report, indent=2))
