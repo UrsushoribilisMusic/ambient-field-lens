@@ -29,7 +29,7 @@ final class AssistViewModel: ObservableObject {
         case verify(detail: String, corrections: [CheckInfo], receipt: ReceiptInfo?)
     }
 
-    @Published var baseURLString: String = "https://miguel-40686--afl-assist-stub-api.us-east.modal.run"
+    @Published var baseURLString: String = "https://miguel-40686--afl-assist-api.us-east.modal.run"
     @Published var query: String = "Can I draw this here?"
     @Published var verdict: Verdict = .none
     @Published var isAsking = false

@@ -16,7 +16,7 @@ import os
 
 import modal
 
-app = modal.App("afl-assist-stub")
+app = modal.App("afl-assist")
 
 LIVE = os.environ.get("AFL_LIVE_ASSIST") == "1"
 
