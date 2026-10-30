@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C97D37C2EC992B28F7CF2E3 /* QuoteFormatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67318383137E73329981FA86 /* QuoteFormatTests.swift */; };
 		35A23BA6D02C9FEA431A88EC /* FrameSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB76CDCCCBAF269B6014D735 /* FrameSourceTests.swift */; };
 		5BE2351F59BFB615D8D845F6 /* WearablesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2F6FF8D5622E9E6FEAFC50 /* WearablesViewModel.swift */; };
 		82FDDAEB226504453F8F0CB0 /* PhoneCameraPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB609A5C48AD4290C9F39C8 /* PhoneCameraPreview.swift */; };
@@ -42,6 +43,7 @@
 		5EFAC67F842A048C6F2927B7 /* AssistViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssistViewModel.swift; sourceTree = "<group>"; };
 		611240D0E8271A886FB042AA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		61C033352E8EA42C7F583E6D /* FrameSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameSource.swift; sourceTree = "<group>"; };
+		67318383137E73329981FA86 /* QuoteFormatTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteFormatTests.swift; sourceTree = "<group>"; };
 		6B2F6FF8D5622E9E6FEAFC50 /* WearablesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WearablesViewModel.swift; sourceTree = "<group>"; };
 		7B72A1322599FBEE85E5AAE5 /* AmbientFieldLens.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = AmbientFieldLens.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		876C4DF6FE4B15E0A5E3750F /* HUDCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUDCard.swift; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 			children = (
 				EB76CDCCCBAF269B6014D735 /* FrameSourceTests.swift */,
 				B3012F033F4A90631D0F5279 /* GapTailTests.swift */,
+				67318383137E73329981FA86 /* QuoteFormatTests.swift */,
 			);
 			path = AmbientFieldLensTests;
 			sourceTree = "<group>";
@@ -237,6 +240,7 @@
 			files = (
 				35A23BA6D02C9FEA431A88EC /* FrameSourceTests.swift in Sources */,
 				EA127405A81F106F89B2167A /* GapTailTests.swift in Sources */,
+				1C97D37C2EC992B28F7CF2E3 /* QuoteFormatTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

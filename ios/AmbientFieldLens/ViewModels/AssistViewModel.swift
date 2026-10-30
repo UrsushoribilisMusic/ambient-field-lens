@@ -58,6 +58,19 @@ final class AssistViewModel: ObservableObject {
     /// Machine tail of a NOT COVERED detail (docs/live-assist-wiring.md):
     /// the measured distance and the top chunk id the report must carry
     /// verbatim. Pure, so the simulator suite pins it.
+    /// Manual passages are plain text with markdown conventions AND
+    /// literal backslashes (Windows paths). Parsing raw would eat the
+    /// backslashes as escapes, so they are doubled first; headings, bold
+    /// and code spans then render natively, paths survive verbatim.
+    /// Falls back to plain text if parsing fails. Pure, pinned by tests.
+    nonisolated static func formattedQuote(from text: String) -> AttributedString {
+        let escaped = text.replacingOccurrences(of: "\\", with: "\\\\")
+        if let rendered = try? AttributedString(markdown: escaped) {
+            return rendered
+        }
+        return AttributedString(text)
+    }
+
     nonisolated static func gapTail(
         from detail: String
     ) -> (chunkID: String, distance: Double)? {

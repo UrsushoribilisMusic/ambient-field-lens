@@ -124,10 +124,13 @@ struct ContentView: View {
             Text("FROM YOUR MANUALS")
                 .font(.caption2.bold())
                 .foregroundStyle(.white.opacity(0.7))
-            Text(quotePassage ?? "")
-                .font(.callout)
-                .foregroundStyle(.white)
-                .lineLimit(8)
+            ScrollView {
+                Text(AssistViewModel.formattedQuote(from: quotePassage ?? ""))
+                    .font(.callout)
+                    .foregroundStyle(.white)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            }
+            .frame(maxHeight: 220)
             HStack {
                 Spacer()
                 Button {
