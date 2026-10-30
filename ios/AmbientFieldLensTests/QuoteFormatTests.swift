@@ -1,3 +1,4 @@
+import SwiftUI
 import XCTest
 
 @testable import AmbientFieldLens
@@ -5,18 +6,46 @@ import XCTest
 /// Quote formatting: markdown renders, literal backslashes survive.
 final class QuoteFormatTests: XCTestCase {
     func testBoldAndHeadingRenderWithoutMarkers() {
-        // Mirrors the real Calibration excerpt: the leading "# " is a
-        // heading marker and renders away, while the mid-line "## 1."
-        // numbering is literal text and stays (faithful to the source).
+        // Numbering runs (##+) drop everywhere; a lone "#" keeps its
+        // heading. Code ticks are consumed by the box pass.
         let out = AssistViewModel.formattedQuote(
             from: "# Calibration Topic ## 1. **Tool**: `run.py`"
         )
         let plain = String(out.characters)
         XCTAssertFalse(plain.hasPrefix("#"))
+        XCTAssertFalse(plain.contains("##"))
         XCTAssertFalse(plain.contains("**"))
         XCTAssertFalse(plain.contains("`"))
-        XCTAssertTrue(plain.contains("Calibration Topic ## 1."))
+        XCTAssertTrue(plain.contains("Calibration Topic"))
         XCTAssertTrue(plain.contains("Tool"))
+    }
+
+    func testInlineCodeSpanIsBoxed() {
+        var out = AssistViewModel.formattedQuote(
+            from: "Run `hunit_write.py` now"
+        )
+        XCTAssertFalse(String(out.characters).contains("`"))
+        var boxed = false
+        for run in out.runs {
+            let text = String(out.characters[run.range])
+            if text.contains("hunit_write.py") {
+                boxed = run.attributes.backgroundColor != nil
+            }
+        }
+        XCTAssertTrue(boxed)
+    }
+
+    func testFencedBlockIsBoxed() {
+        var out = AssistViewModel.formattedQuote(
+            from: "Try:\n```\nrun x.py\n```\n"
+        )
+        var boxed = false
+        for run in out.runs {
+            if String(out.characters[run.range]).contains("run x.py") {
+                boxed = run.attributes.backgroundColor != nil
+            }
+        }
+        XCTAssertTrue(boxed)
     }
 
     func testWindowsPathCondensesWithoutMerging() {

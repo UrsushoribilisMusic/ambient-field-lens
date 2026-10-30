@@ -1,5 +1,6 @@
 import Foundation
 import Network
+import SwiftUI
 import UIKit
 import os
 
@@ -59,17 +60,81 @@ final class AssistViewModel: ObservableObject {
     /// the measured distance and the top chunk id the report must carry
     /// verbatim. Pure, so the simulator suite pins it.
     /// Manual passages are plain text with markdown conventions AND
-    /// literal backslashes (Windows paths). Parsing raw would eat the
-    /// backslashes as escapes, so they are doubled first; headings, bold
-    /// and code spans then render natively, paths survive verbatim.
-    /// Falls back to plain text if parsing fails. Pure, pinned by tests.
+    /// literal backslashes (Windows paths). Display pipeline, all pure:
+    /// paths condense, `##+` numbering runs drop (a lone `#` keeps its
+    /// heading), inline code spans get boxed backgrounds, backslashes are
+    /// doubled so none is eaten as an escape. Falls back to plain text if
+    /// parsing fails. Pinned by tests.
     nonisolated static func formattedQuote(from text: String) -> AttributedString {
-        let condensed = Self.condensedPaths(in: text)
-        let escaped = condensed.replacingOccurrences(of: "\\", with: "\\\\")
-        if let rendered = try? AttributedString(markdown: escaped) {
-            return rendered
+        var src = Self.condensedPaths(in: text)
+        src = src.replacingOccurrences(
+            of: "#{2,}\\s*", with: " ", options: .regularExpression
+        )
+        src = Self.boxCodeSpans(in: src)
+        let escaped = src.replacingOccurrences(of: "\\", with: "\\\\")
+        guard var rendered = try? AttributedString(markdown: escaped) else {
+            return AttributedString(src)
         }
-        return AttributedString(condensed)
+        Self.decorateCode(in: &rendered)
+        return rendered
+    }
+
+    nonisolated private static let codeOpen = "\u{E000}"
+    nonisolated private static let codeClose = "\u{E001}"
+
+    /// Wrap `code` spans in private-use markers that survive markdown
+    /// parsing, so the spans can be found and boxed afterwards.
+    nonisolated static func boxCodeSpans(in text: String) -> String {
+        guard
+            let pattern = try? NSRegularExpression(pattern: "`([^`\\n]+)`")
+        else { return text }
+        var out = text
+        let range = NSRange(text.startIndex..., in: text)
+        for match in pattern.matches(in: text, range: range).reversed() {
+            guard
+                let full = Range(match.range, in: text),
+                let inner = Range(match.range(at: 1), in: text)
+            else { continue }
+            out.replaceSubrange(
+                full, with: codeOpen + text[inner] + codeClose
+            )
+        }
+        return out
+    }
+
+    /// Box code spans and fenced blocks with a subtle background. Runs
+    /// first for block intents, then pairs the private-use markers.
+    nonisolated static func decorateCode(in rendered: inout AttributedString) {
+        let box = Color.white.opacity(0.16)
+        for run in rendered.runs {
+            if let intent = run.attributes.presentationIntent,
+                "\(intent)".contains("codeBlock")
+            {
+                rendered[run.range].backgroundColor = box
+            }
+        }
+        var opens: [AttributedString.Index] = []
+        var closes: [AttributedString.Index] = []
+        var idx = rendered.characters.startIndex
+        while idx != rendered.characters.endIndex {
+            let ch = rendered.characters[idx]
+            if ch == Character(codeOpen) { opens.append(idx) }
+            if ch == Character(codeClose) { closes.append(idx) }
+            idx = rendered.characters.index(after: idx)
+        }
+        for (open, close) in zip(opens, closes) {
+            guard open < close else { continue }
+            let innerLower = rendered.characters.index(after: open)
+            rendered[innerLower..<close].backgroundColor = box
+            rendered[innerLower..<close].font = .system(
+                .callout, design: .monospaced
+            )
+        }
+        for marker in (opens + closes).sorted(by: >) {
+            rendered.removeSubrange(
+                marker..<rendered.index(afterCharacter: marker)
+            )
+        }
     }
 
     /// Phone display only: file paths condense to basenames
