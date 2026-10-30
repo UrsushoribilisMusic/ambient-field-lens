@@ -58,7 +58,11 @@ class AssistResponse(BaseModel):
     step: None = None
     score: float = Field(default=0.0, ge=0.0, le=0.0, allow_inf_nan=False)
     detail: str = Field(default='', max_length=300)
+    # Quoted manual excerpt, present only when the coverage gate passed:
+    # a quotation with its chunk id in the detail tail, never an endorsed
+    # instruction. The verdict stays verify and the step stays None.
+    passage: str | None = Field(default=None, max_length=2000)
 
 
-def deny(detail):
-    return AssistResponse(detail=detail)
+def deny(detail, passage=None):
+    return AssistResponse(detail=detail, passage=passage)

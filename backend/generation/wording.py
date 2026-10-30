@@ -90,15 +90,21 @@ def plan(job_id, purpose, text, provider='baseten', max_tokens=2048):
 
 def credential(provider):
     # Runtime vault only. No credential cached in source, disk receipts, or stdout.
+    # Container fallback: on Modal the secret is mounted as an environment variable
+    # (Modal Secret), since the Mac vault script does not exist there. Vault first,
+    # env second; neither is ever logged or persisted.
     fetch = Path.home() / 'projects/agentic-fleet-hub/vault/agent-fetch.sh'
     try:
         result = subprocess.run([str(fetch), ROUTES[provider][2], 'dev'],
                                 cwd=fetch.parent.parent, capture_output=True, timeout=30)
     except Exception:
-        raise RuntimeError('credential_unavailable') from None
-    key = result.stdout.decode().strip() if result.returncode == 0 else ''
+        result = None
+    key = result.stdout.decode().strip() if result is not None and result.returncode == 0 else ''
     if not key or any(c.isspace() for c in key):
-        raise RuntimeError('credential_unavailable')
+        env_key = os.environ.get(ROUTES[provider][2], '')
+        if not env_key or any(c.isspace() for c in env_key):
+            raise RuntimeError('credential_unavailable')
+        return env_key
     return key
 
 

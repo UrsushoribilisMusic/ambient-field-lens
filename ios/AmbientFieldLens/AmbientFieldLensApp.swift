@@ -1,9 +1,23 @@
 import MWDATCore
+import MWDATMockDevice
 import SwiftUI
 
 @main
 struct AmbientFieldLensApp: App {
     init() {
+        // Unit-test host launches the app binary too, and the host builds
+        // ContentView -> WearablesViewModel -> Wearables.shared at startup,
+        // which traps unless DAT is configured. The simulator has no
+        // Wearables transport so the real configure() traps there; the mock
+        // kit configures DAT itself instead. Enable it with no device paired
+        // (nothing streams) so the host can launch and the pure tests run.
+        // Production launch path is unchanged.
+        #if DEBUG
+            if NSClassFromString("XCTestCase") != nil {
+                MockDeviceKit.shared.enable()
+                return
+            }
+        #endif
         do {
             try Wearables.configure()
         } catch {

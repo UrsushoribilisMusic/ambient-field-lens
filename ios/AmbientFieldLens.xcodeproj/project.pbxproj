@@ -7,27 +7,50 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C97D37C2EC992B28F7CF2E3 /* QuoteFormatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67318383137E73329981FA86 /* QuoteFormatTests.swift */; };
+		35A23BA6D02C9FEA431A88EC /* FrameSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB76CDCCCBAF269B6014D735 /* FrameSourceTests.swift */; };
 		5BE2351F59BFB615D8D845F6 /* WearablesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2F6FF8D5622E9E6FEAFC50 /* WearablesViewModel.swift */; };
+		82FDDAEB226504453F8F0CB0 /* PhoneCameraPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB609A5C48AD4290C9F39C8 /* PhoneCameraPreview.swift */; };
 		884962AC682597C9F0397F8E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E8EF968BC90623AB0262C63 /* Assets.xcassets */; };
 		8D6EBE6D53143DBBFDF24CB7 /* MWDATCore in Frameworks */ = {isa = PBXBuildFile; productRef = 501B50AB7EDBB1124955B77B /* MWDATCore */; };
 		8DAB359264D31BD2C7A17C0F /* HUDCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876C4DF6FE4B15E0A5E3750F /* HUDCard.swift */; };
+		A159C19C2A3C784BF85926B7 /* PhoneCameraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20340A1779060379F6DFA372 /* PhoneCameraViewModel.swift */; };
 		BAA5E9D0C96604945BB30C59 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611240D0E8271A886FB042AA /* ContentView.swift */; };
 		BCB937103D1E6515429A0B5B /* MWDATCamera in Frameworks */ = {isa = PBXBuildFile; productRef = 6B73749C6A4FB201CA94BF30 /* MWDATCamera */; };
+		BE395800647DA9E4B34FFEAC /* FrameSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61C033352E8EA42C7F583E6D /* FrameSource.swift */; };
 		C1321B758B2151431B9CC28E /* MWDATMockDevice in Frameworks */ = {isa = PBXBuildFile; productRef = EB5A6B43915963A701127F9A /* MWDATMockDevice */; };
 		D7344F890B6523158828C678 /* AssistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFAC67F842A048C6F2927B7 /* AssistViewModel.swift */; };
 		D78A07B774AE8DDC3416F76B /* AmbientFieldLensApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BD1EA47F3E53B5A09ABB66 /* AmbientFieldLensApp.swift */; };
+		EA127405A81F106F89B2167A /* GapTailTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3012F033F4A90631D0F5279 /* GapTailTests.swift */; };
 		F1B97721574755C6CE152445 /* MWDATDisplay in Frameworks */ = {isa = PBXBuildFile; productRef = 07B1F2D4F9B4C4A4CD9906F5 /* MWDATDisplay */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		12F0501343F6E83547AB5849 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AC759BF9BB7D835DE9A57AD8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 14D8B8B241938C42F3319C8E;
+			remoteInfo = AmbientFieldLens;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		1E8EF968BC90623AB0262C63 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1EB609A5C48AD4290C9F39C8 /* PhoneCameraPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneCameraPreview.swift; sourceTree = "<group>"; };
+		20340A1779060379F6DFA372 /* PhoneCameraViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneCameraViewModel.swift; sourceTree = "<group>"; };
 		545F584CB5389E3CC86BE362 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		5EFAC67F842A048C6F2927B7 /* AssistViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssistViewModel.swift; sourceTree = "<group>"; };
 		611240D0E8271A886FB042AA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		61C033352E8EA42C7F583E6D /* FrameSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameSource.swift; sourceTree = "<group>"; };
+		67318383137E73329981FA86 /* QuoteFormatTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteFormatTests.swift; sourceTree = "<group>"; };
 		6B2F6FF8D5622E9E6FEAFC50 /* WearablesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WearablesViewModel.swift; sourceTree = "<group>"; };
 		7B72A1322599FBEE85E5AAE5 /* AmbientFieldLens.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = AmbientFieldLens.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		876C4DF6FE4B15E0A5E3750F /* HUDCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUDCard.swift; sourceTree = "<group>"; };
+		B3012F033F4A90631D0F5279 /* GapTailTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GapTailTests.swift; sourceTree = "<group>"; };
+		BA81B90C44BFFE274DD820D6 /* AmbientFieldLensTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = AmbientFieldLensTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9BD1EA47F3E53B5A09ABB66 /* AmbientFieldLensApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmbientFieldLensApp.swift; sourceTree = "<group>"; };
+		EB76CDCCCBAF269B6014D735 /* FrameSourceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameSourceTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +72,7 @@
 			isa = PBXGroup;
 			children = (
 				5EFAC67F842A048C6F2927B7 /* AssistViewModel.swift */,
+				20340A1779060379F6DFA372 /* PhoneCameraViewModel.swift */,
 				6B2F6FF8D5622E9E6FEAFC50 /* WearablesViewModel.swift */,
 			);
 			path = ViewModels;
@@ -58,6 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				876C4DF6FE4B15E0A5E3750F /* HUDCard.swift */,
+				1EB609A5C48AD4290C9F39C8 /* PhoneCameraPreview.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -66,6 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				7B72A1322599FBEE85E5AAE5 /* AmbientFieldLens.app */,
+				BA81B90C44BFFE274DD820D6 /* AmbientFieldLensTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -74,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				E3649466599BB3F358648461 /* AmbientFieldLens */,
+				E73AAB00E5391FDF0BDBC031 /* AmbientFieldLensTests */,
 				7ECB609CEC8CF86472CD94FA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -84,11 +111,22 @@
 				D9BD1EA47F3E53B5A09ABB66 /* AmbientFieldLensApp.swift */,
 				1E8EF968BC90623AB0262C63 /* Assets.xcassets */,
 				611240D0E8271A886FB042AA /* ContentView.swift */,
+				61C033352E8EA42C7F583E6D /* FrameSource.swift */,
 				545F584CB5389E3CC86BE362 /* Info.plist */,
 				40A9E4FBA4C99AF235EEC426 /* ViewModels */,
 				500FB1BF0879ED84EDD390F3 /* Views */,
 			);
 			path = AmbientFieldLens;
+			sourceTree = "<group>";
+		};
+		E73AAB00E5391FDF0BDBC031 /* AmbientFieldLensTests */ = {
+			isa = PBXGroup;
+			children = (
+				EB76CDCCCBAF269B6014D735 /* FrameSourceTests.swift */,
+				B3012F033F4A90631D0F5279 /* GapTailTests.swift */,
+				67318383137E73329981FA86 /* QuoteFormatTests.swift */,
+			);
+			path = AmbientFieldLensTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -116,6 +154,24 @@
 			productName = AmbientFieldLens;
 			productReference = 7B72A1322599FBEE85E5AAE5 /* AmbientFieldLens.app */;
 			productType = "com.apple.product-type.application";
+		};
+		5B8AA58797448DB8721CE973 /* AmbientFieldLensTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 19AF4F8422C2A9D13753DA22 /* Build configuration list for PBXNativeTarget "AmbientFieldLensTests" */;
+			buildPhases = (
+				79DE99558C84167D7A183522 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D5F74ACB90E25D0BBB6CA21F /* PBXTargetDependency */,
+			);
+			name = AmbientFieldLensTests;
+			packageProductDependencies = (
+			);
+			productName = AmbientFieldLensTests;
+			productReference = BA81B90C44BFFE274DD820D6 /* AmbientFieldLensTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -146,6 +202,7 @@
 			projectRoot = "";
 			targets = (
 				14D8B8B241938C42F3319C8E /* AmbientFieldLens */,
+				5B8AA58797448DB8721CE973 /* AmbientFieldLensTests */,
 			);
 		};
 /* End PBXProject section */
@@ -169,20 +226,60 @@
 				D78A07B774AE8DDC3416F76B /* AmbientFieldLensApp.swift in Sources */,
 				D7344F890B6523158828C678 /* AssistViewModel.swift in Sources */,
 				BAA5E9D0C96604945BB30C59 /* ContentView.swift in Sources */,
+				BE395800647DA9E4B34FFEAC /* FrameSource.swift in Sources */,
 				8DAB359264D31BD2C7A17C0F /* HUDCard.swift in Sources */,
+				82FDDAEB226504453F8F0CB0 /* PhoneCameraPreview.swift in Sources */,
+				A159C19C2A3C784BF85926B7 /* PhoneCameraViewModel.swift in Sources */,
 				5BE2351F59BFB615D8D845F6 /* WearablesViewModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		79DE99558C84167D7A183522 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				35A23BA6D02C9FEA431A88EC /* FrameSourceTests.swift in Sources */,
+				EA127405A81F106F89B2167A /* GapTailTests.swift in Sources */,
+				1C97D37C2EC992B28F7CF2E3 /* QuoteFormatTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		D5F74ACB90E25D0BBB6CA21F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 14D8B8B241938C42F3319C8E /* AmbientFieldLens */;
+			targetProxy = 12F0501343F6E83547AB5849 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		154212C1C100EA4468F6CC62 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = art.robotross.AmbientFieldLensTests;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AmbientFieldLens.app/AmbientFieldLens";
+			};
+			name = Release;
+		};
 		44BAB9E3A41B3C2E50867EE7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				INFOPLIST_FILE = AmbientFieldLens/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -258,7 +355,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				INFOPLIST_FILE = AmbientFieldLens/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -336,9 +433,37 @@
 			};
 			name = Debug;
 		};
+		F3101B2A980A7A8883FBCBFA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = art.robotross.AmbientFieldLensTests;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AmbientFieldLens.app/AmbientFieldLens";
+			};
+			name = Debug;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		19AF4F8422C2A9D13753DA22 /* Build configuration list for PBXNativeTarget "AmbientFieldLensTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F3101B2A980A7A8883FBCBFA /* Debug */,
+				154212C1C100EA4468F6CC62 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
 		6E980727FFAA4882A0190BC5 /* Build configuration list for PBXNativeTarget "AmbientFieldLens" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -2,13 +2,14 @@
 import asyncio
 import time
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.exceptions import RequestValidationError
 from starlette.exceptions import HTTPException
 from starlette.responses import JSONResponse
 
 from contracts import AssistRequest, AssistResponse, MAX_BODY_BYTES, deny
 from service import AssistService
+import gap_report
 
 
 def amber_response(status, detail):
@@ -87,6 +88,33 @@ def create_app(service=None):
     async def assist(request: AssistRequest):
         status, response = await app.state.assist_service.assist(request)
         return JSONResponse(status_code=status, content=response.model_dump(),
+                            headers={'Cache-Control': 'no-store'})
+
+    @app.post('/report_gap')
+    async def report_gap_route(request: Request):
+        # Separate route, own shape: always 200 with {"ok"} so the phone
+        # never has to parse an amber envelope here. All shaping and
+        # fail-closed validation lives in gap_report; this is transport.
+        try:
+            body = await request.json()
+        except Exception:
+            return JSONResponse(status_code=200,
+                                content={'ok': False, 'error': 'bad_json'},
+                                headers={'Cache-Control': 'no-store'})
+        if not isinstance(body, dict):
+            return JSONResponse(status_code=200,
+                                content={'ok': False, 'error': 'bad_json'},
+                                headers={'Cache-Control': 'no-store'})
+        # Sync + sleeps on retry: worker thread, never the loop.
+        ok, error = await asyncio.to_thread(
+            gap_report.report_gap,
+            body.get('question'), body.get('answer'),
+            body.get('retrieved_chunk_ids'), body.get('top1_distance'),
+            body.get('comment'))
+        content = {'ok': ok}
+        if not ok:
+            content['error'] = error
+        return JSONResponse(status_code=200, content=content,
                             headers={'Cache-Control': 'no-store'})
 
     return app
