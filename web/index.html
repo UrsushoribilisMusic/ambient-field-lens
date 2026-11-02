@@ -9,24 +9,30 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=IBM+Plex+Mono:wght@400;600&display=swap">
 <style>
 :root{
-  --bg:#0e1a22; --panel:#16252f; --panel2:#101d26;
-  --fg:#f4f2ea; --muted:#8fa6b2; --faint:#60798a; --line:#2b3e4a;
-  --teal:#5fd3bb; --amber:#e8a52b; --red:#e0685f; --green:#46c97a;
+  /* Palette follows the Meta Wearables developer site: white surfaces, one blue
+     accent, status colours only where they carry meaning. */
+  color-scheme:light;
+  --bg:#ffffff; --panel:#f1f4f6; --panel2:#f7f9fa;
+  --fg:#1c2b33; --muted:#465a69; --faint:#657786; --line:#dbe3e8;
+  --accent:#0064e0; --amber:#a1620a; --red:#c9252d; --green:#1a7f37;
+  --wire:#aab8c2;
   --sans:"Inter",-apple-system,system-ui,sans-serif;
   --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
+/* clip, not hidden: overflow:hidden on the root breaks position:sticky. */
+html{overflow-x:clip}
 body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:17px;line-height:1.55;
   -webkit-font-smoothing:antialiased}
-::selection{background:var(--teal);color:#0e1a22}
-a{color:var(--teal)}
+::selection{background:var(--accent);color:#fff}
+a{color:var(--accent)}
 .wrap{max-width:1080px;margin:0 auto;
   padding-left:max(16px,env(safe-area-inset-left,0px));
   padding-right:max(16px,env(safe-area-inset-right,0px))}
-.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);
   display:flex;align-items:center;gap:12px;margin:0 0 18px}
-.eyebrow::before{content:"";width:48px;height:3px;background:var(--teal);flex:none}
+.eyebrow::before{content:"";width:48px;height:3px;background:var(--accent);flex:none}
 h1{font-size:clamp(38px,7.2vw,86px);line-height:1.02;letter-spacing:-.03em;font-weight:800;margin:0 0 20px;text-wrap:balance}
 h2{font-size:clamp(28px,4.4vw,46px);line-height:1.08;letter-spacing:-.02em;font-weight:800;margin:0 0 16px;text-wrap:balance}
 h3{font-size:19px;font-weight:600;margin:0 0 6px}
@@ -39,16 +45,16 @@ p{margin:0 0 16px;max-width:66ch}
 header.hero{padding:clamp(56px,11vh,120px) 0 clamp(40px,7vh,72px)}
 .badges{display:flex;flex-wrap:wrap;gap:8px;margin:28px 0 0}
 .badge{font:600 12px var(--mono);border:1px solid var(--line);border-radius:999px;padding:6px 13px;color:var(--muted)}
-.badge.on{color:var(--teal);border-color:rgba(95,211,187,.45)}
+.badge.on{color:var(--accent);border-color:rgba(0,100,224,.3);background:#eef4fe}
 .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
 .cta a{font:600 15px var(--sans);text-decoration:none;border-radius:12px;padding:12px 20px;border:1px solid var(--line);color:var(--fg)}
-.cta a.primary{background:var(--teal);color:#0e1a22;border-color:var(--teal)}
-.cta a:hover{border-color:var(--teal)}
+.cta a.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+.cta a:hover{border-color:var(--accent)}
 
 .figures{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--line);
   border:1px solid var(--line);border-radius:16px;overflow:hidden;margin:44px 0 0}
 .fig{background:var(--bg);padding:18px 20px}
-.fig b{display:block;font:600 30px/1.1 var(--mono);color:var(--teal);letter-spacing:-.02em}
+.fig b{display:block;font:600 30px/1.1 var(--mono);color:var(--accent);letter-spacing:-.02em}
 .fig span{display:block;font-size:13px;color:var(--muted);margin-top:6px}
 
 /* ---------- sections ---------- */
@@ -62,9 +68,9 @@ section{padding:clamp(48px,9vh,96px) 0}
 .stage svg{width:100%;height:auto;max-height:76svh;overflow:visible}
 .steps{position:relative;z-index:2;margin-top:-100svh;pointer-events:none}
 .step{min-height:100svh;display:flex;align-items:flex-end;justify-content:flex-start;padding:0 0 9svh}
-.card{pointer-events:auto;width:min(430px,100%);background:rgba(14,26,34,.93);border:1px solid var(--line);
-  border-radius:16px;padding:18px 20px;backdrop-filter:blur(8px);box-shadow:0 18px 50px rgba(0,0,0,.45)}
-.card .n{font:600 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--teal);display:block;margin-bottom:8px}
+.card{pointer-events:auto;width:min(430px,100%);background:rgba(255,255,255,.95);border:1px solid var(--line);
+  border-radius:16px;padding:18px 20px;backdrop-filter:blur(8px);box-shadow:0 10px 34px rgba(28,43,51,.14)}
+.card .n{font:600 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:8px}
 .card p{margin:0;font-size:16px;color:var(--muted)}
 .card p strong{color:var(--fg);font-weight:600}
 
@@ -75,54 +81,61 @@ section{padding:clamp(48px,9vh,96px) 0}
 .bx.lit rect{stroke-width:3}
 .bx.lit text.t{fill:var(--fg)}
 .bx.lit text.s{fill:var(--muted)}
-.bx.lit.teal rect{stroke:var(--teal)} .bx.lit.teal text.t{fill:var(--teal)}
+.bx.lit.accent rect{stroke:var(--accent)} .bx.lit.accent text.t{fill:var(--accent)}
 .bx.lit.amber rect{stroke:var(--amber)} .bx.lit.amber text.t{fill:var(--amber)}
 .bx.lit.green rect{stroke:var(--green)} .bx.lit.green text.t{fill:var(--green)}
-.cn{stroke:#4a6475;stroke-width:2.5;fill:none;transition:stroke .45s ease}
-.cn.lit{stroke:var(--teal)}
+.cn{stroke:var(--wire);stroke-width:2.5;fill:none;transition:stroke .45s ease}
+.cn.lit{stroke:var(--accent)}
 .cn.grn.lit{stroke:var(--green)}
-.ar{fill:#4a6475;transition:fill .45s ease}
-.ar.lit{fill:var(--teal)}
+.ar{fill:var(--wire);transition:fill .45s ease}
+.ar.lit{fill:var(--accent)}
 .ar.grn.lit{fill:var(--green)}
 .draw{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.1s cubic-bezier(.4,0,.2,1)}
 .draw.on{stroke-dashoffset:0}
 .lbl{fill:var(--faint);font:400 11px var(--mono);opacity:0;transition:opacity .45s ease}
 .lbl.on{opacity:1}
 
+/* ---------- two diagrams per scene: wide for desktop, tall for a phone ----------
+   The wide one shrinks to ~5px type on a handset, so the phone gets its own
+   vertical layout with type sized for the screen it is read on. */
+.mdiag{display:none}
+.mdiag .bx text.t{font-size:30px}
+.mdiag .bx text.s{font-size:21px}
+.mdiag .lbl{font-size:17px}
+.chart.m .axis{font-size:20px}
+
 /* photo swap inside the architecture stage */
 .shots{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
 .shot{position:relative;margin:0;aspect-ratio:16/10;border-radius:14px;overflow:hidden;
   border:1px solid var(--line);opacity:0;transform:translateY(16px) scale(.97);
-  transition:opacity .55s ease,transform .55s ease;box-shadow:0 18px 44px rgba(0,0,0,.5)}
+  transition:opacity .55s ease,transform .55s ease;box-shadow:0 8px 24px rgba(28,43,51,.14)}
 .shot.on{opacity:1;transform:none}
 .shot img{width:100%;height:100%;object-fit:cover;display:block}
-.shot figcaption{position:absolute;left:0;right:0;bottom:0;font:600 10.5px var(--mono);color:var(--fg);
-  background:linear-gradient(transparent,rgba(14,26,34,.92));padding:18px 10px 7px}
+.shot figcaption{position:absolute;left:0;right:0;bottom:0;font:600 10.5px var(--mono);color:#fff;
+  background:linear-gradient(transparent,rgba(12,22,29,.9));padding:18px 10px 7px}
 .shotwrap{position:relative;width:100%;max-width:1000px}
 /* Top-align the busier stages so the caption cards keep a clear lane below. */
 #sysScrolly .stage,#gateScrolly .stage{align-items:flex-start;padding-top:4svh}
 #sysScrolly .stage svg{max-height:38svh}
 #gateScrolly .stage svg{max-height:52svh}
-@media (max-width:620px){
-  #sysScrolly .stage svg{max-height:30svh}
-  .shots{gap:6px;margin-top:10px} .shot figcaption{font-size:9px;padding:14px 6px 5px}
-}
+/* The stills stack full-width on a phone, below the scrolly -- see .mshots. */
+.mshots{display:none}
 
 /* ---------- video ---------- */
 .vwrap{position:relative;aspect-ratio:16/9;border:1px solid var(--line);border-radius:18px;overflow:hidden;
-  background:#0b141b;margin-top:28px}
+  background:var(--panel);margin-top:28px}
 .vwrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .vfacade{position:absolute;inset:0;width:100%;height:100%;padding:0;border:0;background:none;cursor:pointer;display:block}
 .vfacade img{width:100%;height:100%;object-fit:cover;display:block;opacity:.72;transition:opacity .3s}
 .vfacade:hover img{opacity:.9}
 .vplay{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:86px;height:86px;border-radius:50%;
-  background:rgba(95,211,187,.95);display:grid;place-items:center;box-shadow:0 10px 40px rgba(0,0,0,.5);
+  background:rgba(0,100,224,.95);display:grid;place-items:center;box-shadow:0 10px 40px rgba(0,0,0,.35);
   transition:transform .25s}
 .vfacade:hover .vplay{transform:translate(-50%,-50%) scale(1.07)}
-.vplay::after{content:"";border-left:26px solid #0e1a22;border-top:16px solid transparent;
+.vplay::after{content:"";border-left:26px solid #fff;border-top:16px solid transparent;
   border-bottom:16px solid transparent;margin-left:7px}
 .vsoon{position:absolute;left:0;right:0;bottom:0;padding:26px 22px 16px;font:600 12px var(--mono);
-  color:var(--muted);background:linear-gradient(transparent,rgba(11,20,27,.94));text-align:center}
+  color:#d7dee4;background:linear-gradient(transparent,rgba(12,22,29,.92));text-align:center}
 
 /* ---------- calibration chart ---------- */
 .chart{width:100%;height:auto;overflow:visible}
@@ -136,7 +149,7 @@ section{padding:clamp(48px,9vh,96px) 0}
 .gatewrap.on{transform:scaleX(1)}
 .pt{opacity:0;transition:opacity .5s ease,r .4s ease}
 .pt.on{opacity:1}
-.pt.cov{fill:#4a90d9} .pt.near{fill:var(--amber)} .pt.abs{fill:var(--muted)}
+.pt.cov{fill:#0064e0} .pt.near{fill:var(--amber)} .pt.abs{fill:var(--muted)}
 .ring{fill:none;stroke:var(--fg);stroke-width:2.5;opacity:0;transition:opacity .5s ease}
 .ring.on{opacity:1}
 
@@ -148,7 +161,7 @@ section{padding:clamp(48px,9vh,96px) 0}
 .tbl td.k{font-family:var(--mono);font-size:13px;color:var(--fg);word-break:break-all}
 .tbl td.num{font-family:var(--mono);color:var(--fg);white-space:nowrap}
 .tbl tr.after td{color:var(--fg)}
-.tbl tr.after td.num{color:var(--teal)}
+.tbl tr.after td.num{color:var(--accent)}
 .scrollx{overflow-x:auto;-webkit-overflow-scrolling:touch}
 
 .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-top:28px}
@@ -160,7 +173,7 @@ section{padding:clamp(48px,9vh,96px) 0}
 
 ul.plain{list-style:none;padding:0;margin:0 0 16px}
 ul.plain li{position:relative;padding-left:22px;margin-bottom:11px;color:var(--muted);max-width:66ch;font-size:16px}
-ul.plain li::before{content:"";position:absolute;left:2px;top:.62em;width:7px;height:7px;border-radius:50%;background:var(--teal)}
+ul.plain li::before{content:"";position:absolute;left:2px;top:.62em;width:7px;height:7px;border-radius:50%;background:var(--accent)}
 ul.plain li strong{color:var(--fg);font-weight:600}
 
 footer{padding:56px 0 76px;border-top:1px solid var(--line);color:var(--faint);font-size:14px}
@@ -182,12 +195,30 @@ footer .links{display:flex;flex-wrap:wrap;gap:8px 20px;margin-bottom:22px;font-s
   #sysScrolly .stage svg{max-height:46svh}
   #gateScrolly .stage svg{max-height:62svh}
 }
-@media (max-width:620px){
+@media (max-width:760px){
   body{font-size:16px}
-  .step{align-items:flex-end;padding-bottom:5svh}
-  .card{width:100%}
-  .shot{width:46vw}
-  .stage{padding:10px}
+  .ddiag{display:none}
+  .mdiag{display:block}
+  /* Top-align the tall diagram and park the caption at the very bottom, so the
+     two never overlap and the graphic gets every pixel that is left. */
+  .stage,#sysScrolly .stage,#gateScrolly .stage{align-items:flex-start;padding:8px 10px 0}
+  .stage svg,#sysScrolly .stage svg,#gateScrolly .stage svg{max-height:72svh}
+  .step{align-items:flex-end;padding-bottom:2svh}
+  .card{width:100%;padding:16px 18px}
+  .card p{font-size:15.5px}
+  /* The headline numbers go one per row on a phone: "0.820 -> 0.400" does not
+     fit a half-width cell at this size and was being clipped. */
+  .figures{grid-template-columns:1fr}
+  .fig{display:flex;align-items:baseline;gap:14px;padding:14px 18px}
+  .fig b{font-size:24px;flex:none}
+  .fig span{margin-top:0}
+  .shots{display:none}
+  .mshots{display:block;margin-top:30px}
+  .mshot{margin:0 0 18px;border:1px solid var(--line);border-radius:14px;overflow:hidden;
+    background:var(--panel);box-shadow:0 2px 8px rgba(28,43,51,.08)}
+  .mshot img{width:100%;height:auto;display:block}
+  .mshot figcaption{font:600 12px var(--mono);color:var(--muted);padding:11px 13px;
+    border-top:1px solid var(--line)}
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
@@ -261,7 +292,7 @@ footer .links{display:flex;flex-wrap:wrap;gap:8px 20px;margin-bottom:22px;font-s
 
   <div class="scrolly" id="loopScrolly">
     <div class="stage">
-      <svg viewBox="0 0 1000 420" role="img" aria-label="The improvement loop: a gap is flagged, a passage is proposed, a human approves it, the index is rebuilt, and the same question is asked again.">
+      <svg class="ddiag" viewBox="0 0 1000 420" role="img" aria-label="The improvement loop: a gap is flagged, a passage is proposed, a human approves it, the index is rebuilt, and the same question is asked again.">
         <!-- connectors -->
         <path class="cn" id="l-c1" d="M250 96 H300 V175 H358"/>
         <polygon class="ar" id="l-a1" points="372,175 356,167 356,183"/>
@@ -286,7 +317,7 @@ footer .links{display:flex;flex-wrap:wrap;gap:8px 20px;margin-bottom:22px;font-s
           <text class="s" x="50" y="224">This advice was</text>
           <text class="s" x="50" y="240">unhelpful</text>
         </g>
-        <g class="bx teal" id="b-prop">
+        <g class="bx accent" id="b-prop">
           <rect x="372" y="135" width="188" height="80" rx="12"/>
           <text class="t" x="392" y="167">Propose</text>
           <text class="s" x="392" y="189">A candidate drafted</text>
@@ -298,7 +329,7 @@ footer .links{display:flex;flex-wrap:wrap;gap:8px 20px;margin-bottom:22px;font-s
           <text class="s" x="632" y="189">An expert edits and</text>
           <text class="s" x="632" y="205">approves in the wiki</text>
         </g>
-        <g class="bx teal" id="b-rag">
+        <g class="bx accent" id="b-rag">
           <rect x="852" y="135" width="118" height="80" rx="12"/>
           <text class="t" x="870" y="167">RAG index</text>
           <text class="s" x="870" y="189">Re-embedded,</text>
@@ -309,6 +340,48 @@ footer .links{display:flex;flex-wrap:wrap;gap:8px 20px;margin-bottom:22px;font-s
           <text class="t" x="50" y="324">Ask again</text>
           <text class="s" x="50" y="346">Same question —</text>
           <text class="s" x="50" y="362">now it is grounded</text>
+        </g>
+      </svg>
+      <svg class="mdiag" viewBox="0 0 460 910" role="img" aria-label="The improvement loop, top to bottom: a gap is flagged by the coverage gate or by the operator, a passage is proposed, a human approves it, the index is rebuilt, and the same question is asked again.">
+        <path class="cn" data-k="l-c1" d="M416 60 H436 V264 H230 V282"/>
+        <polygon class="ar" data-k="l-a1" points="230,296 222,280 238,280"/>
+        <path class="cn" data-k="l-c2" d="M416 182 H436"/>
+        <path class="cn" data-k="l-c3" d="M230 400 V450"/>
+        <polygon class="ar" data-k="l-a3" points="230,464 222,448 238,448"/>
+        <path class="cn" data-k="l-c4" d="M230 568 V618"/>
+        <polygon class="ar" data-k="l-a4" points="230,632 222,616 238,616"/>
+        <path class="cn grn draw" data-k="l-ret" pathLength="1" d="M230 732 V782"/>
+        <polygon class="ar grn" data-k="l-aret" points="230,796 222,780 238,780"/>
+
+        <g class="bx amber" data-k="b-cov">
+          <rect x="16" y="10" width="400" height="100" rx="14"/>
+          <text class="t" x="40" y="54">Coverage gate</text>
+          <text class="s" x="40" y="86">No passage is close enough</text>
+        </g>
+        <g class="bx amber" data-k="b-op">
+          <rect x="16" y="132" width="400" height="100" rx="14"/>
+          <text class="t" x="40" y="176">Operator feedback</text>
+          <text class="s" x="40" y="208">A human: that was unhelpful</text>
+        </g>
+        <g class="bx accent" data-k="b-prop">
+          <rect x="16" y="300" width="400" height="100" rx="14"/>
+          <text class="t" x="40" y="344">Propose</text>
+          <text class="s" x="40" y="376">A candidate from your documents</text>
+        </g>
+        <g class="bx amber" data-k="b-rev">
+          <rect x="16" y="468" width="400" height="100" rx="14"/>
+          <text class="t" x="40" y="512">Human review</text>
+          <text class="s" x="40" y="544">An expert approves it in the wiki</text>
+        </g>
+        <g class="bx accent" data-k="b-rag">
+          <rect x="16" y="636" width="400" height="96" rx="14"/>
+          <text class="t" x="40" y="678">RAG index</text>
+          <text class="s" x="40" y="710">Re-embedded, local, auditable</text>
+        </g>
+        <g class="bx green" data-k="b-ask">
+          <rect x="16" y="800" width="400" height="100" rx="14"/>
+          <text class="t" x="40" y="844">Ask again</text>
+          <text class="s" x="40" y="876">Same question — now grounded</text>
         </g>
       </svg>
     </div>
@@ -352,7 +425,7 @@ footer .links{display:flex;flex-wrap:wrap;gap:8px 20px;margin-bottom:22px;font-s
   <div class="scrolly" id="sysScrolly">
     <div class="stage">
       <div class="shotwrap">
-        <svg viewBox="0 0 1000 400" role="img" aria-label="Architecture: a phone sees the robot, sends one frame and a question to Modal where Glimmer and the retrieval index run, and a wiki backend feeds approved passages back into the index.">
+        <svg class="ddiag" viewBox="0 0 1000 400" role="img" aria-label="Architecture: a phone sees the robot, sends one frame and a question to Modal where Glimmer and the retrieval index run, and a wiki backend feeds approved passages back into the index.">
           <path class="cn" id="s-c1" d="M298 150 H250"/>
           <polygon class="ar" id="s-a1" points="236,150 252,142 252,158"/>
           <text class="lbl" id="s-l1" x="252" y="132">sees</text>
@@ -372,21 +445,21 @@ footer .links{display:flex;flex-wrap:wrap;gap:8px 20px;margin-bottom:22px;font-s
             <text class="s" x="50" y="164">Huenit arm — the machine</text>
             <text class="s" x="50" y="180">being set up</text>
           </g>
-          <g class="bx teal" id="s-phone">
+          <g class="bx accent" id="s-phone">
             <rect x="290" y="110" width="206" height="80" rx="12"/>
             <text class="t" x="310" y="142">Phone — AR app</text>
             <text class="s" x="310" y="164">Meta Wearables DAT ·</text>
             <text class="s" x="310" y="180">one frame + your question</text>
           </g>
           <g id="s-modal">
-            <rect x="556" y="66" width="414" height="170" rx="14" fill="#101d26" stroke="var(--line)" stroke-width="2"/>
+            <rect x="556" y="66" width="414" height="170" rx="14" fill="#f7f9fa" stroke="var(--line)" stroke-width="2"/>
             <text class="lbl" id="s-l5" x="576" y="92">ON MODAL — GPU, budgeted call window</text>
-            <g class="bx teal" id="s-glim">
+            <g class="bx accent" id="s-glim">
               <rect x="576" y="104" width="374" height="58" rx="10"/>
               <text class="t" x="594" y="130">Glimmer 30B</text>
               <text class="s" x="594" y="150">Open weights, frozen — prefill readout</text>
             </g>
-            <g class="bx teal" id="s-rag">
+            <g class="bx accent" id="s-rag">
               <rect x="576" y="170" width="374" height="54" rx="10"/>
               <text class="t" x="594" y="194">RAG index</text>
               <text class="s" x="594" y="214">Your manuals, retrieved by distance</text>
@@ -396,6 +469,50 @@ footer .links{display:flex;flex-wrap:wrap;gap:8px 20px;margin-bottom:22px;font-s
             <rect x="290" y="300" width="400" height="72" rx="12"/>
             <text class="t" x="312" y="330">Wiki backend</text>
             <text class="s" x="312" y="352">A human writes the missing passage</text>
+          </g>
+        </svg>
+        <svg class="mdiag" viewBox="0 0 460 835" role="img" aria-label="Architecture, top to bottom: a phone sees the robot and sends one frame and a question to Modal, where Glimmer and the retrieval index run; a wiki backend feeds approved passages back into the index.">
+          <path class="cn" data-k="s-c1" d="M216 170 V124"/>
+          <polygon class="ar" data-k="s-a1" points="216,110 208,126 224,126"/>
+          <text class="lbl" data-k="s-l1" x="236" y="146">sees</text>
+          <path class="cn" data-k="s-c2" d="M96 276 V352"/>
+          <polygon class="ar" data-k="s-a2" points="96,366 88,350 104,350"/>
+          <text class="lbl" data-k="s-l2" x="116" y="312">frame + question</text>
+          <path class="cn" data-k="s-c3" d="M364 364 V292"/>
+          <polygon class="ar" data-k="s-a3" points="364,278 356,294 372,294"/>
+          <text class="lbl" data-k="s-l3" x="344" y="348" text-anchor="end">card + evidence</text>
+          <path class="cn grn draw" data-k="s-ret" pathLength="1" d="M120 716 V650"/>
+          <polygon class="ar grn" data-k="s-aret" points="120,636 112,652 128,652"/>
+          <text class="lbl" data-k="s-l4" x="146" y="688">approved passage, re-indexed</text>
+
+          <g class="bx green" data-k="s-robot">
+            <rect x="16" y="10" width="400" height="96" rx="14"/>
+            <text class="t" x="40" y="52">Robot Ross</text>
+            <text class="s" x="40" y="84">Huenit arm — the machine</text>
+          </g>
+          <g class="bx accent" data-k="s-phone">
+            <rect x="16" y="176" width="400" height="96" rx="14"/>
+            <text class="t" x="40" y="218">Phone — AR app</text>
+            <text class="s" x="40" y="250">Meta Wearables DAT</text>
+          </g>
+          <g data-k="s-modal">
+            <rect x="10" y="372" width="440" height="232" rx="16" fill="#f7f9fa" stroke="var(--line)" stroke-width="2"/>
+            <text class="lbl" data-k="s-l5" x="28" y="400">ON MODAL — GPU, budgeted window</text>
+            <g class="bx accent" data-k="s-glim">
+              <rect x="26" y="412" width="408" height="86" rx="12"/>
+              <text class="t" x="48" y="452">Glimmer 30B</text>
+              <text class="s" x="48" y="482">Open weights, frozen</text>
+            </g>
+            <g class="bx accent" data-k="s-rag">
+              <rect x="26" y="506" width="408" height="84" rx="12"/>
+              <text class="t" x="48" y="546">RAG index</text>
+              <text class="s" x="48" y="576">Your manuals, by distance</text>
+            </g>
+          </g>
+          <g class="bx amber" data-k="s-wiki">
+            <rect x="16" y="720" width="400" height="100" rx="14"/>
+            <text class="t" x="40" y="764">Wiki backend</text>
+            <text class="s" x="40" y="796">A human writes the passage</text>
           </g>
         </svg>
         <div class="shots">
@@ -424,6 +541,12 @@ footer .links{display:flex;flex-wrap:wrap;gap:8px 20px;margin-bottom:22px;font-s
         <strong>The only thing that changes between a refusal and an answer is the documentation you own.</strong></p></div></div>
     </div>
   </div>
+
+    <div class="wrap mshots">
+      <figure class="mshot"><img src="img/robot.jpg" alt="The Robot Ross rig: the Huenit arm, a phone on a tripod, and the controller screen" loading="lazy"><figcaption>Robot Ross — the rig</figcaption></figure>
+      <figure class="mshot"><img src="img/phone-card.jpg" alt="The Field Lens app showing a verdict card with a retrieved manual passage" loading="lazy"><figcaption>Field Lens — the card</figcaption></figure>
+      <figure class="mshot"><img src="img/backend-approved.jpg" alt="The review console showing a feedback item approved" loading="lazy"><figcaption>The wiki — approved</figcaption></figure>
+    </div>
 </section>
 
 <hr class="rule">
@@ -442,7 +565,7 @@ footer .links{display:flex;flex-wrap:wrap;gap:8px 20px;margin-bottom:22px;font-s
       <svg class="chart" viewBox="0 0 1000 470" role="img" aria-label="Scatter plot of top-1 retrieval distance for 13 labelled questions against the 0.760 gate.">
         <g id="g-grid"></g>
         <g class="gatewrap" id="g-gate"><line class="gate" x1="120" y1="0" x2="968" y2="0" pathLength="1"/></g>
-        <text class="axis" id="g-gatelbl" x="120" y="0" fill="#e0685f" style="opacity:0;transition:opacity .5s">gate 0.760</text>
+        <text class="axis" id="g-gatelbl" x="120" y="0" fill="#c9252d" style="opacity:0;transition:opacity .5s">gate 0.760</text>
         <g id="g-pts"></g>
         <g id="g-rings"></g>
         <g id="g-cls"></g>
@@ -631,13 +754,15 @@ footer .links{display:flex;flex-wrap:wrap;gap:8px 20px;margin-bottom:22px;font-s
     apply(0);                       // complete at rest
   }
 
-  const set = (id, on, ...cls) => {
-    const el = document.getElementById(id);
-    if (!el) return;
+  /* Desktop and phone each carry their own diagram. Both answer to the same
+     key -- the wide one by id, the tall one by data-k -- so the scene logic
+     below is written once and drives whichever is on screen. */
+  const parts = k => document.querySelectorAll(`#${k}, [data-k="${k}"]`);
+  const set = (k, on, ...cls) => parts(k).forEach(el => {
     el.classList.toggle("lit", !!on);
     cls.forEach(c => el.classList.toggle(c, !!on));
-  };
-  const draw = (id, on) => { const e = document.getElementById(id); if (e) e.classList.toggle("on", !!on); };
+  });
+  const draw = (k, on) => parts(k).forEach(e => e.classList.toggle("on", !!on));
 
 
   /* ---------- the film: click-to-load facade, no YouTube until asked ----------
@@ -705,52 +830,78 @@ footer .links{display:flex;flex-wrap:wrap;gap:8px 20px;margin-bottom:22px;font-s
     ["abs",0.7867,"make coffee"],            ["abs",0.8755,"what time is it"]
   ];
   (() => {
-    const X0=120, X1=968, Y0=40, Y1=400, LO=0.25, HI=0.95;
-    const y = d => Y0 + (d - LO) / (HI - LO) * (Y1 - Y0);
-    const COLX = {cov:430, near:690, abs:890};
+    const svg = document.querySelector("#gateScrolly .chart");
     const ns = "http://www.w3.org/2000/svg";
     const mk = (n, a) => { const e = document.createElementNS(ns, n); for (const k in a) e.setAttribute(k, a[k]); return e; };
+    const grid = document.getElementById("g-grid"), pts = document.getElementById("g-pts"),
+          rings = document.getElementById("g-rings"), cls = document.getElementById("g-cls"),
+          gate = document.getElementById("g-gate"), glbl = document.getElementById("g-gatelbl"),
+          gl = document.querySelector("#g-gate line");
+    const LO = 0.25, HI = 0.95;
+    const narrow = matchMedia("(max-width:760px)");
+    let scene = 0;
 
-    const grid = document.getElementById("g-grid");
-    for (let d = 0.3; d <= 0.9001; d += 0.1){
-      grid.appendChild(mk("line", {class:"gridline", x1:X0, y1:y(d).toFixed(1), x2:X1, y2:y(d).toFixed(1)}));
-      const t = mk("text", {class:"axis", x:X0-14, y:(y(d)+4).toFixed(1), "text-anchor":"end"});
-      t.textContent = d.toFixed(2); grid.appendChild(t);
+    /* A phone gets a tall, narrow plot rather than the wide one shrunk to
+       unreadable type, so the layout is data and the drawing is rebuilt. */
+    const WIDE = {box:"0 0 1000 470", X0:120, X1:968, Y0:40, Y1:400, step:34, r:9, leg:34,
+                  col:{cov:430, near:690, abs:890}, legsize:11, gatex:120, gateanchor:"start",
+                  lab:{cov:"covered (n=8)", near:"near-miss (n=3)", abs:"absurd (n=2)"}};
+    const TALL = {box:"0 0 460 760", X0:86, X1:448, Y0:44, Y1:620, step:20, r:11, leg:46,
+                  col:{cov:180, near:305, abs:412}, legsize:17, gatex:448, gateanchor:"end",
+                  lab:{cov:"covered 8", near:"near 3", abs:"absurd 2"}};
+
+    function layout(){
+      const m = narrow.matches, L = m ? TALL : WIDE;
+      svg.setAttribute("viewBox", L.box);
+      svg.classList.toggle("m", m);
+      [grid, pts, rings, cls].forEach(g => g.replaceChildren());
+      const y = d => L.Y0 + (d - LO) / (HI - LO) * (L.Y1 - L.Y0);
+
+      for (let d = 0.3; d <= 0.9001; d += 0.1){
+        grid.appendChild(mk("line", {class:"gridline", x1:L.X0, y1:y(d).toFixed(1), x2:L.X1, y2:y(d).toFixed(1)}));
+        const t = mk("text", {class:"axis", x:L.X0 - 14, y:(y(d) + 4).toFixed(1), "text-anchor":"end"});
+        t.textContent = d.toFixed(2); grid.appendChild(t);
+      }
+      gl.setAttribute("x1", L.X0); gl.setAttribute("x2", L.X1);
+      gl.setAttribute("y1", y(0.76).toFixed(1)); gl.setAttribute("y2", y(0.76).toFixed(1));
+      gate.style.transformOrigin = L.X0 + "px 0";
+      glbl.setAttribute("x", L.gatex); glbl.setAttribute("text-anchor", L.gateanchor);
+      glbl.setAttribute("y", (y(0.76) - 12).toFixed(1));
+
+      const seen = {};
+      DATA.forEach(([k, d, label]) => {
+        seen[k] = (seen[k] || 0) + 1;
+        const x = L.col[k] + ((seen[k] % 2 ? 1 : -1) * Math.floor(seen[k] / 2) * L.step);
+        const c = mk("circle", {class:`pt ${k}`, cx:x, cy:y(d).toFixed(1), r:L.r});
+        c.appendChild(mk("title", {})).textContent = `${label} — ${d.toFixed(4)}`;
+        pts.appendChild(c);
+        if (k === "near" && d < 0.76)
+          rings.appendChild(mk("circle", {class:"ring", cx:x, cy:y(d).toFixed(1), r:L.r + 7}));
+      });
+
+      [["cov", "#0064e0"], ["near", "#a1620a"], ["abs", "#657786"]].forEach(([k, col]) => {
+        const e = mk("text", {class:"axis", x:L.col[k], y:L.Y1 + L.leg, "text-anchor":"middle",
+                              fill:col, "font-size":L.legsize});
+        e.textContent = L.lab[k]; cls.appendChild(e);
+      });
+      apply(scene);
     }
-    const gl = document.querySelector("#g-gate line");
-    gl.setAttribute("y1", y(0.76).toFixed(1)); gl.setAttribute("y2", y(0.76).toFixed(1));
-    const glbl = document.getElementById("g-gatelbl");
-    glbl.setAttribute("y", (y(0.76) - 10).toFixed(1));
-
-    const pts = document.getElementById("g-pts"), rings = document.getElementById("g-rings");
-    const seen = {};
-    DATA.forEach(([k, d, label], i) => {
-      seen[k] = (seen[k] || 0) + 1;
-      const x = COLX[k] + ((seen[k] % 2 ? 1 : -1) * Math.floor(seen[k] / 2) * 34);
-      const c = mk("circle", {class:`pt ${k}`, cx:x, cy:y(d).toFixed(1), r:9, "data-k":k});
-      c.appendChild(mk("title", {})).textContent = `${label} — ${d.toFixed(4)}`;
-      pts.appendChild(c);
-      if (k === "near" && d < 0.76)
-        rings.appendChild(mk("circle", {class:"ring", cx:x, cy:y(d).toFixed(1), r:16}));
-    });
-
-    const cls = document.getElementById("g-cls");
-    [["covered (n=8)", COLX.cov, "#4a90d9"], ["near-miss (n=3)", COLX.near, "#e8a52b"],
-     ["absurd (n=2)", COLX.abs, "#8fa6b2"]].forEach(([t, x, col]) => {
-      const e = mk("text", {class:"axis", x, y:Y1+34, "text-anchor":"middle", fill:col});
-      e.textContent = t; cls.appendChild(e);
-    });
 
     const show = k => pts.querySelectorAll(`.pt.${k}`).forEach(p => p.classList.add("on"));
-    scrolly("gateScrolly", s => {
-      if (s >= 0) show("cov");
-      document.getElementById("g-gate").classList.toggle("on", s >= 1);
+    function apply(s){
+      scene = s;
+      show("cov");
+      gate.classList.toggle("on", s >= 1);
       glbl.style.opacity = s >= 1 ? 1 : 0;
       if (s >= 2) show("near");
       rings.querySelectorAll(".ring").forEach(r => r.classList.toggle("on", s >= 2));
       if (s >= 3) show("abs");
-    });
-    if (reduce) { ["cov","near","abs"].forEach(show); document.getElementById("g-gate").classList.add("on"); glbl.style.opacity = 1; }
+      if (reduce){ ["cov","near","abs"].forEach(show); gate.classList.add("on"); glbl.style.opacity = 1; }
+    }
+
+    layout();
+    narrow.addEventListener("change", layout);
+    scrolly("gateScrolly", apply);
   })();
 })();
 </script>
