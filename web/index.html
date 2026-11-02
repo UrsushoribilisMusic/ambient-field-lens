@@ -1,0 +1,678 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ambient Field Lens</title>
+<meta name="description" content="A field assistant that measures whether your own documentation covers the question, refuses when it does not, and turns the refusal into a documented answer.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  --bg:#0e1a22; --panel:#16252f; --panel2:#101d26;
+  --fg:#f4f2ea; --muted:#8fa6b2; --faint:#60798a; --line:#2b3e4a;
+  --teal:#5fd3bb; --amber:#e8a52b; --red:#e0685f; --green:#46c97a;
+  --sans:"Inter",-apple-system,system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:17px;line-height:1.55;
+  -webkit-font-smoothing:antialiased}
+::selection{background:var(--teal);color:#0e1a22}
+a{color:var(--teal)}
+.wrap{max-width:1080px;margin:0 auto;
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px))}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);
+  display:flex;align-items:center;gap:12px;margin:0 0 18px}
+.eyebrow::before{content:"";width:48px;height:3px;background:var(--teal);flex:none}
+h1{font-size:clamp(38px,7.2vw,86px);line-height:1.02;letter-spacing:-.03em;font-weight:800;margin:0 0 20px;text-wrap:balance}
+h2{font-size:clamp(28px,4.4vw,46px);line-height:1.08;letter-spacing:-.02em;font-weight:800;margin:0 0 16px;text-wrap:balance}
+h3{font-size:19px;font-weight:600;margin:0 0 6px}
+p{margin:0 0 16px;max-width:66ch}
+.lede{font-size:clamp(18px,2.3vw,23px);color:var(--muted);max-width:60ch}
+.lede strong{color:var(--fg);font-weight:600}
+.small{font-size:14px;color:var(--faint);max-width:70ch}
+
+/* ---------- hero: complete at rest, no scrolling needed ---------- */
+header.hero{padding:clamp(56px,11vh,120px) 0 clamp(40px,7vh,72px)}
+.badges{display:flex;flex-wrap:wrap;gap:8px;margin:28px 0 0}
+.badge{font:600 12px var(--mono);border:1px solid var(--line);border-radius:999px;padding:6px 13px;color:var(--muted)}
+.badge.on{color:var(--teal);border-color:rgba(95,211,187,.45)}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.cta a{font:600 15px var(--sans);text-decoration:none;border-radius:12px;padding:12px 20px;border:1px solid var(--line);color:var(--fg)}
+.cta a.primary{background:var(--teal);color:#0e1a22;border-color:var(--teal)}
+.cta a:hover{border-color:var(--teal)}
+
+.figures{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--line);
+  border:1px solid var(--line);border-radius:16px;overflow:hidden;margin:44px 0 0}
+.fig{background:var(--bg);padding:18px 20px}
+.fig b{display:block;font:600 30px/1.1 var(--mono);color:var(--teal);letter-spacing:-.02em}
+.fig span{display:block;font-size:13px;color:var(--muted);margin-top:6px}
+
+/* ---------- sections ---------- */
+section{padding:clamp(48px,9vh,96px) 0}
+.rule{height:1px;background:var(--line);border:0;margin:0}
+
+/* ---------- pinned stage + caption cards (one structure, used throughout) ---------- */
+.scrolly{position:relative}
+.stage{position:sticky;top:0;height:100vh;height:100svh;display:flex;align-items:center;justify-content:center;
+  padding:clamp(12px,3vw,40px)}
+.stage svg{width:100%;height:auto;max-height:76svh;overflow:visible}
+.steps{position:relative;z-index:2;margin-top:-100svh;pointer-events:none}
+.step{min-height:100svh;display:flex;align-items:flex-end;justify-content:flex-start;padding:0 0 9svh}
+.card{pointer-events:auto;width:min(430px,100%);background:rgba(14,26,34,.93);border:1px solid var(--line);
+  border-radius:16px;padding:18px 20px;backdrop-filter:blur(8px);box-shadow:0 18px 50px rgba(0,0,0,.45)}
+.card .n{font:600 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--teal);display:block;margin-bottom:8px}
+.card p{margin:0;font-size:16px;color:var(--muted)}
+.card p strong{color:var(--fg);font-weight:600}
+
+/* ---------- SVG scene states ---------- */
+.bx rect{fill:var(--panel);stroke:var(--line);stroke-width:2;transition:stroke .45s ease,fill .45s ease}
+.bx text.t{fill:var(--faint);font:600 15px var(--sans);transition:fill .45s ease}
+.bx text.s{fill:var(--faint);font:400 11.5px var(--sans);transition:fill .45s ease}
+.bx.lit rect{stroke-width:3}
+.bx.lit text.t{fill:var(--fg)}
+.bx.lit text.s{fill:var(--muted)}
+.bx.lit.teal rect{stroke:var(--teal)} .bx.lit.teal text.t{fill:var(--teal)}
+.bx.lit.amber rect{stroke:var(--amber)} .bx.lit.amber text.t{fill:var(--amber)}
+.bx.lit.green rect{stroke:var(--green)} .bx.lit.green text.t{fill:var(--green)}
+.cn{stroke:#4a6475;stroke-width:2.5;fill:none;transition:stroke .45s ease}
+.cn.lit{stroke:var(--teal)}
+.cn.grn.lit{stroke:var(--green)}
+.ar{fill:#4a6475;transition:fill .45s ease}
+.ar.lit{fill:var(--teal)}
+.ar.grn.lit{fill:var(--green)}
+.draw{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.1s cubic-bezier(.4,0,.2,1)}
+.draw.on{stroke-dashoffset:0}
+.lbl{fill:var(--faint);font:400 11px var(--mono);opacity:0;transition:opacity .45s ease}
+.lbl.on{opacity:1}
+
+/* photo swap inside the architecture stage */
+.shot{position:absolute;right:0;bottom:4px;width:min(300px,34vw);aspect-ratio:16/10;border-radius:14px;overflow:hidden;
+  border:1px solid var(--line);opacity:0;transform:translateY(14px) scale(.98);
+  transition:opacity .5s ease,transform .5s ease;box-shadow:0 20px 50px rgba(0,0,0,.5)}
+.shot.on{opacity:1;transform:none}
+.shot img{width:100%;height:100%;object-fit:cover;display:block}
+.shot figcaption{position:absolute;left:0;right:0;bottom:0;font:600 11px var(--mono);color:var(--fg);
+  background:linear-gradient(transparent,rgba(14,26,34,.92));padding:18px 10px 7px}
+/* Reserve a band under the diagram so the still never lands on a box. */
+.shotwrap{position:relative;width:100%;max-width:1000px;padding-bottom:200px}
+#sysScrolly .stage svg{max-height:54svh}
+@media (max-width:620px){ .shotwrap{padding-bottom:150px} #sysScrolly .stage svg{max-height:44svh} }
+
+/* ---------- calibration chart ---------- */
+.chart{width:100%;height:auto;overflow:visible}
+.gridline{stroke:var(--line);stroke-width:1}
+.axis{fill:var(--faint);font:400 11px var(--mono)}
+.gate{stroke:var(--red);stroke-width:2;stroke-dasharray:6 5}
+/* The gate line is dashed, so .gate's own stroke-dasharray overrides any
+   inherited dash-offset -- draw it with a scale instead. */
+.gatewrap{transform:scaleX(0);transform-box:view-box;transform-origin:120px 0;
+  transition:transform 1.1s cubic-bezier(.4,0,.2,1)}
+.gatewrap.on{transform:scaleX(1)}
+.pt{opacity:0;transition:opacity .5s ease,r .4s ease}
+.pt.on{opacity:1}
+.pt.cov{fill:#4a90d9} .pt.near{fill:var(--amber)} .pt.abs{fill:var(--muted)}
+.ring{fill:none;stroke:var(--fg);stroke-width:2.5;opacity:0;transition:opacity .5s ease}
+.ring.on{opacity:1}
+
+/* ---------- evidence ---------- */
+.tbl{width:100%;border-collapse:collapse;font-size:15px;margin:0 0 10px}
+.tbl th{text-align:left;font:600 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--faint);
+  padding:0 14px 10px 0;border-bottom:1px solid var(--line);white-space:nowrap}
+.tbl td{padding:13px 14px 13px 0;border-bottom:1px solid var(--line);vertical-align:top;color:var(--muted)}
+.tbl td.k{font-family:var(--mono);font-size:13px;color:var(--fg);word-break:break-all}
+.tbl td.num{font-family:var(--mono);color:var(--fg);white-space:nowrap}
+.tbl tr.after td{color:var(--fg)}
+.tbl tr.after td.num{color:var(--teal)}
+.scrollx{overflow-x:auto;-webkit-overflow-scrolling:touch}
+
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-top:28px}
+.box{background:var(--panel2);border:1px solid var(--line);border-radius:16px;padding:20px 22px}
+.box.warn{border-color:rgba(232,165,43,.4)}
+.box p{font-size:15px;color:var(--muted);margin:0}
+.box h3{color:var(--fg)}
+.box.warn h3{color:var(--amber)}
+
+ul.plain{list-style:none;padding:0;margin:0 0 16px}
+ul.plain li{position:relative;padding-left:22px;margin-bottom:11px;color:var(--muted);max-width:66ch;font-size:16px}
+ul.plain li::before{content:"";position:absolute;left:2px;top:.62em;width:7px;height:7px;border-radius:50%;background:var(--teal)}
+ul.plain li strong{color:var(--fg);font-weight:600}
+
+footer{padding:56px 0 76px;border-top:1px solid var(--line);color:var(--faint);font-size:14px}
+footer a{text-decoration:none}
+footer .links{display:flex;flex-wrap:wrap;gap:8px 20px;margin-bottom:22px;font-size:15px}
+
+@media (max-width:620px){
+  body{font-size:16px}
+  .step{align-items:flex-end;padding-bottom:5svh}
+  .card{width:100%}
+  .shot{width:46vw}
+  .stage{padding:10px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .bx rect,.bx text,.cn,.ar,.draw,.shot,.pt,.ring,.gatewrap,.lbl{transition:none!important}
+  .draw{stroke-dashoffset:0!important}
+  .gatewrap{transform:none!important}
+  .pt,.ring,.lbl,.shot{opacity:1!important;transform:none!important}
+}
+</style>
+
+<header class="hero wrap">
+  <p class="eyebrow">Meta Global AI Developer Hackathon &nbsp;·&nbsp; Startups</p>
+  <h1>Ambient Field Lens</h1>
+  <p class="lede"><strong>This is not a RAG chatbot.</strong> Most assistants answer even when your manual
+  does not cover the question, and nothing in the answer tells you which happened. Ambient Field Lens
+  <strong>measures</strong> whether your documentation covers the question, refuses when it does not, and turns
+  that refusal into a documented answer a human wrote and approved.</p>
+
+  <div class="badges">
+    <span class="badge on">Glimmer 30B · open weights</span>
+    <span class="badge on">SAM 3.1</span>
+    <span class="badge on">Meta Wearables DAT</span>
+    <span class="badge">Modal</span>
+    <span class="badge">Chroma</span>
+  </div>
+
+  <div class="figures">
+    <div class="fig"><b>0.760</b><span>coverage gate, calibrated over 13 labelled questions</span></div>
+    <div class="fig"><b>0.820&nbsp;→&nbsp;0.400</b><span>same question, after a human wrote the missing passage</span></div>
+    <div class="fig"><b>38&nbsp;→&nbsp;39</b><span>corpus records. Nothing retrained</span></div>
+    <div class="fig"><b>0</b><span>green steps the system has ever emitted</span></div>
+  </div>
+
+  <div class="cta">
+    <a class="primary" href="#loop">See how it works</a>
+    <a href="#evidence">The evidence</a>
+    <a href="#limits">What it does not do</a>
+  </div>
+</header>
+
+<hr class="rule">
+
+<!-- =============== 1. THE LOOP =============== -->
+<section id="loop">
+  <div class="wrap">
+    <p class="eyebrow">The improvement loop</p>
+    <h2>The refusal is the input.</h2>
+    <p class="lede">A refusal is not a dead end. It is the first step of a repair that ends in the operator's
+    own documentation — and the model is never retrained.</p>
+  </div>
+
+  <div class="scrolly" id="loopScrolly">
+    <div class="stage">
+      <svg viewBox="0 0 1000 420" role="img" aria-label="The improvement loop: a gap is flagged, a passage is proposed, a human approves it, the index is rebuilt, and the same question is asked again.">
+        <!-- connectors -->
+        <path class="cn" id="l-c1" d="M250 96 H300 V175 H358"/>
+        <polygon class="ar" id="l-a1" points="372,175 356,167 356,183"/>
+        <path class="cn" id="l-c2" d="M250 210 H300 V175"/>
+        <path class="cn" id="l-c3" d="M560 175 H598"/>
+        <polygon class="ar" id="l-a3" points="612,175 596,167 596,183"/>
+        <path class="cn" id="l-c4" d="M800 175 H838"/>
+        <polygon class="ar" id="l-a4" points="852,175 836,167 836,183"/>
+        <!-- the return path draws itself -->
+        <path class="cn grn draw" id="l-ret" pathLength="1" d="M960 232 V330 H250"/>
+        <polygon class="ar grn" id="l-aret" points="236,330 252,322 252,338"/>
+
+        <g class="bx amber" id="b-cov">
+          <rect x="30" y="56" width="220" height="80" rx="12"/>
+          <text class="t" x="50" y="88">Coverage gate</text>
+          <text class="s" x="50" y="110">No passage close enough</text>
+          <text class="s" x="50" y="126">to this question</text>
+        </g>
+        <g class="bx" id="b-op">
+          <rect x="30" y="170" width="220" height="80" rx="12"/>
+          <text class="t" x="50" y="202">Operator feedback</text>
+          <text class="s" x="50" y="224">This advice was</text>
+          <text class="s" x="50" y="240">unhelpful</text>
+        </g>
+        <g class="bx teal" id="b-prop">
+          <rect x="372" y="135" width="188" height="80" rx="12"/>
+          <text class="t" x="392" y="167">Propose</text>
+          <text class="s" x="392" y="189">A candidate drafted</text>
+          <text class="s" x="392" y="205">from your documents</text>
+        </g>
+        <g class="bx amber" id="b-rev">
+          <rect x="612" y="135" width="188" height="80" rx="12"/>
+          <text class="t" x="632" y="167">Human review</text>
+          <text class="s" x="632" y="189">An expert edits and</text>
+          <text class="s" x="632" y="205">approves in the wiki</text>
+        </g>
+        <g class="bx teal" id="b-rag">
+          <rect x="852" y="135" width="118" height="80" rx="12"/>
+          <text class="t" x="870" y="167">RAG index</text>
+          <text class="s" x="870" y="189">Re-embedded,</text>
+          <text class="s" x="870" y="205">local, auditable</text>
+        </g>
+        <g class="bx green" id="b-ask">
+          <rect x="30" y="292" width="220" height="80" rx="12"/>
+          <text class="t" x="50" y="324">Ask again</text>
+          <text class="s" x="50" y="346">Same question —</text>
+          <text class="s" x="50" y="362">now it is grounded</text>
+        </g>
+      </svg>
+    </div>
+
+    <div class="steps wrap">
+      <div class="step"><div class="card" data-scene="0"><span class="n">Two ways a gap is flagged</span>
+        <p>Nothing here starts with a success. The loop begins when the system <strong>cannot</strong> answer —
+        and there are exactly two ways that happens.</p></div></div>
+      <div class="step"><div class="card" data-scene="1"><span class="n">1 · The coverage gate</span>
+        <p>The system measures how far the question sits from anything in your manuals. If nothing is close
+        enough it <strong>stops and says so</strong>, rather than reaching for the nearest related passage.</p></div></div>
+      <div class="step"><div class="card" data-scene="2"><span class="n">2 · The operator</span>
+        <p>Or a human says the answer was useless. Both routes carry the same payload: the question, the answer,
+        and <strong>the exact passages that were retrieved</strong>.</p></div></div>
+      <div class="step"><div class="card" data-scene="3"><span class="n">3 · Propose</span>
+        <p>A candidate answer is drafted <strong>against your own documents</strong>. In our run it declined to
+        invent a procedure and instead listed what an expert would need to confirm.</p></div></div>
+      <div class="step"><div class="card" data-scene="4"><span class="n">4 · A human approves</span>
+        <p>An expert edits the draft and approves it in their wiki. <strong>Nothing deploys unsigned.</strong>
+        In our run the human discarded the draft and wrote four steps of their own.</p></div></div>
+      <div class="step"><div class="card" data-scene="5"><span class="n">5 · Re-index</span>
+        <p>The corpus is re-versioned — a <strong>new immutable collection</strong>, the original preserved
+        byte-for-byte, the addition embedded locally on CPU.</p></div></div>
+      <div class="step"><div class="card" data-scene="6"><span class="n">6 · Ask again</span>
+        <p>The same question now cites the new passage. <strong>The documentation improved. Nothing was
+        retrained, fine-tuned or re-certified.</strong></p></div></div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- =============== 2. WHAT WE BUILT =============== -->
+<section id="system">
+  <div class="wrap">
+    <p class="eyebrow">What we built / to test the thesis</p>
+    <h2>A robot, a phone, and a manual you can edit.</h2>
+    <p class="lede">We needed a machine where the failure mode is observable, so we instrumented one we own.</p>
+  </div>
+
+  <div class="scrolly" id="sysScrolly">
+    <div class="stage">
+      <div class="shotwrap">
+        <svg viewBox="0 0 1000 400" role="img" aria-label="Architecture: a phone sees the robot, sends one frame and a question to Modal where Glimmer and the retrieval index run, and a wiki backend feeds approved passages back into the index.">
+          <path class="cn" id="s-c1" d="M298 150 H250"/>
+          <polygon class="ar" id="s-a1" points="236,150 252,142 252,158"/>
+          <text class="lbl" id="s-l1" x="252" y="132">sees</text>
+          <path class="cn" id="s-c2" d="M496 128 H556"/>
+          <polygon class="ar" id="s-a2" points="570,128 554,120 554,136"/>
+          <text class="lbl" id="s-l2" x="470" y="100">frame + question</text>
+          <path class="cn" id="s-c3" d="M556 196 H498"/>
+          <polygon class="ar" id="s-a3" points="484,196 500,188 500,204"/>
+          <text class="lbl" id="s-l3" x="462" y="222">card + evidence</text>
+          <path class="cn grn draw" id="s-ret" pathLength="1" d="M500 300 V236"/>
+          <polygon class="ar grn" id="s-aret" points="500,222 492,238 508,238"/>
+          <text class="lbl" id="s-l4" x="518" y="272">approved passage, re-indexed</text>
+
+          <g class="bx green" id="s-robot">
+            <rect x="30" y="110" width="206" height="80" rx="12"/>
+            <text class="t" x="50" y="142">Robot Ross</text>
+            <text class="s" x="50" y="164">Huenit arm — the machine</text>
+            <text class="s" x="50" y="180">being set up</text>
+          </g>
+          <g class="bx teal" id="s-phone">
+            <rect x="290" y="110" width="206" height="80" rx="12"/>
+            <text class="t" x="310" y="142">Phone — AR app</text>
+            <text class="s" x="310" y="164">Meta Wearables DAT ·</text>
+            <text class="s" x="310" y="180">one frame + your question</text>
+          </g>
+          <g id="s-modal">
+            <rect x="556" y="66" width="414" height="170" rx="14" fill="#101d26" stroke="var(--line)" stroke-width="2"/>
+            <text class="lbl" id="s-l5" x="576" y="92">ON MODAL — GPU, budgeted call window</text>
+            <g class="bx teal" id="s-glim">
+              <rect x="576" y="104" width="374" height="58" rx="10"/>
+              <text class="t" x="594" y="130">Glimmer 30B</text>
+              <text class="s" x="594" y="150">Open weights, frozen — prefill readout</text>
+            </g>
+            <g class="bx teal" id="s-rag">
+              <rect x="576" y="170" width="374" height="54" rx="10"/>
+              <text class="t" x="594" y="194">RAG index</text>
+              <text class="s" x="594" y="214">Your manuals, retrieved by distance</text>
+            </g>
+          </g>
+          <g class="bx amber" id="s-wiki">
+            <rect x="290" y="300" width="400" height="72" rx="12"/>
+            <text class="t" x="312" y="330">Wiki backend</text>
+            <text class="s" x="312" y="352">A human writes the missing passage</text>
+          </g>
+        </svg>
+        <figure class="shot" id="shot1"><img src="img/robot.jpg" alt="The Robot Ross rig: the Huenit arm, a phone on a tripod, and the controller screen" loading="lazy"><figcaption>Robot Ross — the rig</figcaption></figure>
+        <figure class="shot" id="shot2"><img src="img/phone-card.jpg" alt="The Field Lens app showing a verdict card with a retrieved manual passage" loading="lazy"><figcaption>Field Lens — the card</figcaption></figure>
+        <figure class="shot" id="shot3"><img src="img/backend-approved.jpg" alt="The review console showing a feedback item approved" loading="lazy"><figcaption>The wiki — approved</figcaption></figure>
+      </div>
+    </div>
+
+    <div class="steps wrap">
+      <div class="step"><div class="card" data-scene="0"><span class="n">The whole thing</span>
+        <p>Four pieces. A machine to set up, something that looks at it, somewhere the thinking happens, and a
+        place a human fixes the documentation.</p></div></div>
+      <div class="step"><div class="card" data-scene="1"><span class="n">The machine</span>
+        <p>A drawing robot we own and instrumented, so a wrong answer costs a sheet of paper instead of a part.
+        <strong>The arm moves only on a human command</strong>, over a local serial link the cloud never reaches.</p></div></div>
+      <div class="step"><div class="card" data-scene="2"><span class="n">What sees it</span>
+        <p>The phone runs against <strong>the same interface the glasses expose</strong> — the frame source is an
+        implementation detail the rest of the pipeline does not see.</p></div></div>
+      <div class="step"><div class="card" data-scene="3"><span class="n">Where it thinks</span>
+        <p>Retrieval over your manuals runs on <strong>CPU</strong>. Segmentation and the Glimmer readout run on
+        <strong>GPU</strong>, inside a window capped at four single-use call tokens.</p></div></div>
+      <div class="step"><div class="card" data-scene="4"><span class="n">Where it is fixed</span>
+        <p>An approved passage is re-indexed into a new immutable corpus version.
+        <strong>The only thing that changes between a refusal and an answer is the documentation you own.</strong></p></div></div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- =============== 3. THE GATE =============== -->
+<section id="gate">
+  <div class="wrap">
+    <p class="eyebrow">Calibrated, not asserted</p>
+    <h2>Where the gate sits, and why.</h2>
+    <p class="lede">The coverage gate is a distance threshold. It was measured, not chosen to make a demo
+    pass — and the measurement has a wrinkle we are not hiding.</p>
+  </div>
+
+  <div class="scrolly" id="gateScrolly">
+    <div class="stage">
+      <svg class="chart" viewBox="0 0 1000 470" role="img" aria-label="Scatter plot of top-1 retrieval distance for 13 labelled questions against the 0.760 gate.">
+        <g id="g-grid"></g>
+        <g class="gatewrap" id="g-gate"><line class="gate" x1="120" y1="0" x2="968" y2="0" pathLength="1"/></g>
+        <text class="axis" id="g-gatelbl" x="120" y="0" fill="#e0685f" style="opacity:0;transition:opacity .5s">gate 0.760</text>
+        <g id="g-pts"></g>
+        <g id="g-rings"></g>
+        <g id="g-cls"></g>
+      </svg>
+    </div>
+
+    <div class="steps wrap">
+      <div class="step"><div class="card" data-scene="0"><span class="n">Eight the manual covers</span>
+        <p>Questions the Robot Ross manuals genuinely answer. Their top-1 retrieval distance
+        <strong>tops out at 0.741</strong>.</p></div></div>
+      <div class="step"><div class="card" data-scene="1"><span class="n">The gate</span>
+        <p>So the threshold sits at <strong>0.760</strong> — just above the hardest covered question. There is no
+        setting anyone can turn to make the system say yes.</p></div></div>
+      <div class="step"><div class="card" data-scene="2"><span class="n">Three near-misses</span>
+        <p>Questions about the right machine that the manual does not actually answer. <strong>Two of the three
+        fall below the gate.</strong> We are showing you that rather than letting a reviewer find it.</p></div></div>
+      <div class="step"><div class="card" data-scene="3"><span class="n">And two that are nowhere near</span>
+        <p>"How do I make coffee with this machine" measures <strong>0.787</strong> — closer to the corpus than the
+        legitimate near-miss at 0.820. <strong>Distance measures proximity, not relevance.</strong> Both are
+        correctly refused, but near-miss and absurd negatives have to be evaluated separately.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- =============== EVIDENCE =============== -->
+<section id="evidence">
+  <div class="wrap">
+    <p class="eyebrow">The receipt</p>
+    <h2>The same question, before and after.</h2>
+    <p class="lede">On 30 October an operator wrote the missing passage in their own wiki and approved it.
+    These are the two citations the identical query returned, either side of that approval.</p>
+
+    <div class="scrollx">
+      <table class="tbl">
+        <thead><tr><th></th><th>Cited chunk</th><th>Distance</th><th>Source</th></tr></thead>
+        <tbody>
+          <tr><td><b>before</b></td><td class="k">8135308218c2c50d…</td><td class="num">0.8199</td>
+            <td>atf-wiki/Topics/Calibration.md</td></tr>
+          <tr class="after"><td><b>after</b></td><td class="k">59bb1a272e2ed09d…</td><td class="num">0.3997</td>
+            <td>sm-faq/robot-ross-atf/fb-1793359723991-x33ca</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="small">Query, verbatim and identical both times: <code>what to do if the paper is in the wrong
+    position</code>. Corpus <code>ross-manuals-2ca5f2f152267049</code> (38 records) →
+    <code>ross-repair-ad3c9065b45ac2d3a0562011</code> (39). The comparison tool reports
+    <code>cited_chunk_changed: true</code> and <code>cited_text_changed: true</code>. The original collection and
+    its vectors are preserved unchanged; activation requires a code-reviewed pin, and rollback is one command.</p>
+
+    <div class="cols">
+      <div class="box"><h3>It is not the heading doing the work</h3>
+        <p>The new passage opens with the question as a heading, which would flatter the distance. Measured
+        against the same corpus: answer body only scores 0.476, a neutral heading 0.451, the published version
+        0.400. All three clear the gate by a wide margin — the match is the answer, not the echo.</p></div>
+      <div class="box"><h3>The negative control held</h3>
+        <p>Adding the passage changed nothing else. "How do I make coffee" still measures 0.7867 and is still
+        refused; the two other calibrated questions returned bit-identical distances.</p></div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- =============== THE NEGATIVE RESULT =============== -->
+<section id="readout">
+  <div class="wrap">
+    <p class="eyebrow">Negative result / the one we are not burying</p>
+    <h2>We tried to read it from inside the model. It did not transfer.</h2>
+    <p class="lede">We wanted the grounding signal to come from the model's own activations rather than from
+    retrieval. <strong>Open weights are why the attempt was possible at all</strong> — the reading is taken on the
+    residual stream at prefill, which a hosted API cannot return.</p>
+
+    <div class="scrollx">
+      <table class="tbl">
+        <thead><tr><th>Probe</th><th>Result</th><th>Verdict</th></tr></thead>
+        <tbody>
+          <tr><td>Held-out text pilot — prefill AUROC</td><td class="num">1.000</td><td>separated, but n=24, two topic clusters, length confound unresolved</td></tr>
+          <tr><td>Live visual task — supported question</td><td class="num">−0.018</td><td rowspan="2">no separation</td></tr>
+          <tr><td>Live visual task — unsupported question</td><td class="num">−0.015</td></tr>
+          <tr><td>Contrastive probe</td><td class="num">0.575</td><td>retired</td></tr>
+          <tr><td>Jacobian lens vs plain</td><td class="num">0.861 / 0.889</td><td>no advantage, retired</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="cols">
+      <div class="box warn"><h3>So it does not gate</h3>
+        <p>The score is pinned to zero on the wire and the verdict never reads it. What gates is measured
+        retrieval distance. Groundedness here is a property of the composition — retrieved passage, hash-bound
+        evidence, fail-closed on anything missing — not a model readout.</p></div>
+      <div class="box"><h3>Why we still say open weights matter</h3>
+        <p>This class of check simply is not available on a hosted API, which returns tokens and never internal
+        state. The result is negative; the capability to run the experiment at all is the point.</p></div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- =============== LIMITS =============== -->
+<section id="limits">
+  <div class="wrap">
+    <p class="eyebrow">Stated on camera</p>
+    <h2>What it does not do.</h2>
+    <ul class="plain">
+      <li><strong>No green steps, no red blocks, no instructions to touch the machine.</strong> The verdict is
+      always <code>verify</code> and there is no threshold anyone can turn to change that. The arm moves only on a
+      human command.</li>
+      <li><strong>No capture-time proof.</strong> The evidence card binds which frame, question, passage and masks
+      went into an answer, each by hash. It does not bind when the photograph was taken — a photograph from
+      yesterday passes every check on the card.</li>
+      <li><strong>Autonomous masks are candidates</strong>, never presence and never approval. SAM did not find a
+      paper candidate in several legitimate framings during the shoot; the gate refused, which is the correct
+      behaviour and not a claim that the scene was read correctly.</li>
+      <li><strong>Distance is not relevance.</strong> Two of three labelled near-misses fall below the gate.</li>
+      <li><strong>The gap report did not always file.</strong> On camera the phone's report returns
+      <code>sm_unreachable</code>; the item in this write-up was filed through the service identity. The report
+      genuinely happened — the transport failed.</li>
+    </ul>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- =============== RULE 4 =============== -->
+<section id="built">
+  <div class="wrap">
+    <p class="eyebrow">Hackathon Rule 4</p>
+    <h2>What pre-existed, and what we built.</h2>
+    <div class="cols">
+      <div class="box"><h3>Pre-existing, used as a test bench</h3>
+        <p>The Robot Ross Huenit arm, its controller and the physical rig. The ATF wiki corpus used as the
+        operator's source documents. The Sovereign Mind wiki and review console that the repair loop writes
+        back into.</p></div>
+      <div class="box"><h3>Built during the hackathon</h3>
+        <p>The Field Lens iOS app on the Meta Wearables DAT interface. The default-deny <code>/assist</code>
+        contract on Modal. SAM 3.1 scene gating with millimetre geometry. The Glimmer prefill readout, its four
+        probe protocols and the negative results that retired them. The coverage gate and its calibration.
+        Immutable corpus versioning with a code-reviewed pin registry. And the documentation repair loop, end to
+        end.</p></div>
+    </div>
+    <p class="small" style="margin-top:22px">Clean-room repository created 26 October 2026; nothing copied from
+    earlier private prototypes. Calibration labels were reviewed by a human and scoring ran only on frozen
+    labels. Every negative result is in the repository under <code>docs/verification/</code>.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="links">
+      <a href="https://github.com/UrsushoribilisMusic/ambient-field-lens">Repository</a>
+      <a href="#loop">How it works</a>
+      <a href="#evidence">Evidence</a>
+      <a href="#readout">The negative result</a>
+    </div>
+    <p class="small">Ambient Field Lens — Meta Global AI Developer Hackathon, Startups track. Built 26 October –
+    4 November 2026. Scroll interactions inspired by The Economist's and the New York Times' scrollytelling; no
+    assets or code were taken from either.</p>
+  </div>
+</footer>
+
+<script>
+(() => {
+  "use strict";
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------- one structure: card-edge triggers drive discrete scenes ----------
+     Fire the moment a card's edge enters: the furthest-along card when scrolling
+     down, the earliest when scrolling up. Between cards the graphic holds. */
+  function scrolly(rootId, apply){
+    const root = document.getElementById(rootId);
+    if (!root) return;
+    const cards = [...root.querySelectorAll(".card")];
+    let current = -1, lastY = scrollY;
+    const go = i => { if (i === current) return; current = i; apply(i); };
+    const io = new IntersectionObserver(entries => {
+      const down = scrollY >= lastY; lastY = scrollY;
+      const hit = entries.filter(e => e.isIntersecting).map(e => cards.indexOf(e.target));
+      if (!hit.length) return;
+      go(down ? Math.max(...hit) : Math.min(...hit));
+    }, {threshold: 0});
+    cards.forEach(c => io.observe(c));
+    apply(0);                       // complete at rest
+  }
+
+  const set = (id, on, ...cls) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.classList.toggle("lit", !!on);
+    cls.forEach(c => el.classList.toggle(c, !!on));
+  };
+  const draw = (id, on) => { const e = document.getElementById(id); if (e) e.classList.toggle("on", !!on); };
+
+  /* ---------- 1. the loop lights in sequence ---------- */
+  scrolly("loopScrolly", s => {
+    set("b-cov",  s >= 1);
+    set("b-op",   s >= 2);
+    set("b-prop", s >= 3);
+    set("b-rev",  s >= 4);
+    set("b-rag",  s >= 5);
+    set("b-ask",  s >= 6);
+    ["l-c1","l-a1","l-c2"].forEach(i => set(i, s >= 3));
+    ["l-c3","l-a3"].forEach(i => set(i, s >= 4));
+    ["l-c4","l-a4"].forEach(i => set(i, s >= 5));
+    draw("l-ret", s >= 6);
+    set("l-aret", s >= 6);
+  });
+
+  /* ---------- 2. the architecture assembles, with real stills ---------- */
+  scrolly("sysScrolly", s => {
+    set("s-robot", s >= 1);
+    set("s-phone", s >= 2);
+    set("s-glim",  s >= 3);
+    set("s-rag",   s >= 3);
+    set("s-wiki",  s >= 4);
+    ["s-c1","s-a1"].forEach(i => set(i, s >= 2));
+    ["s-c2","s-a2","s-c3","s-a3"].forEach(i => set(i, s >= 3));
+    ["s-l1"].forEach(i => draw(i, s >= 2));
+    ["s-l2","s-l3","s-l5"].forEach(i => draw(i, s >= 3));
+    draw("s-l4", s >= 4);
+    draw("s-ret", s >= 4);
+    set("s-aret", s >= 4);
+    draw("shot1", s === 1);
+    draw("shot2", s === 2);
+    draw("shot3", s >= 4);
+  });
+
+  /* ---------- 3. the calibration gate ----------
+     Real measured values; receipt: docs/verification/coverage-calibration-2026-10-30.json */
+  const DATA = [
+    ["cov",0.3115,"lock file purpose"],      ["cov",0.4873,"concurrent jobs"],
+    ["cov",0.4986,"suppress narration"],     ["cov",0.5279,"disable voice"],
+    ["cov",0.5362,"which lock"],             ["cov",0.5440,"silent-draw flag"],
+    ["cov",0.6743,"one-job rule"],           ["cov",0.7414,"documented flag"],
+    ["near",0.6683,"paper centred for 120 mm?"],
+    ["near",0.7254,"did the pen touch?"],
+    ["near",0.8199,"paper in the wrong position"],
+    ["abs",0.7867,"make coffee"],            ["abs",0.8755,"what time is it"]
+  ];
+  (() => {
+    const X0=120, X1=968, Y0=40, Y1=400, LO=0.25, HI=0.95;
+    const y = d => Y0 + (d - LO) / (HI - LO) * (Y1 - Y0);
+    const COLX = {cov:430, near:690, abs:890};
+    const ns = "http://www.w3.org/2000/svg";
+    const mk = (n, a) => { const e = document.createElementNS(ns, n); for (const k in a) e.setAttribute(k, a[k]); return e; };
+
+    const grid = document.getElementById("g-grid");
+    for (let d = 0.3; d <= 0.9001; d += 0.1){
+      grid.appendChild(mk("line", {class:"gridline", x1:X0, y1:y(d).toFixed(1), x2:X1, y2:y(d).toFixed(1)}));
+      const t = mk("text", {class:"axis", x:X0-14, y:(y(d)+4).toFixed(1), "text-anchor":"end"});
+      t.textContent = d.toFixed(2); grid.appendChild(t);
+    }
+    const gl = document.querySelector("#g-gate line");
+    gl.setAttribute("y1", y(0.76).toFixed(1)); gl.setAttribute("y2", y(0.76).toFixed(1));
+    const glbl = document.getElementById("g-gatelbl");
+    glbl.setAttribute("y", (y(0.76) - 10).toFixed(1));
+
+    const pts = document.getElementById("g-pts"), rings = document.getElementById("g-rings");
+    const seen = {};
+    DATA.forEach(([k, d, label], i) => {
+      seen[k] = (seen[k] || 0) + 1;
+      const x = COLX[k] + ((seen[k] % 2 ? 1 : -1) * Math.floor(seen[k] / 2) * 34);
+      const c = mk("circle", {class:`pt ${k}`, cx:x, cy:y(d).toFixed(1), r:9, "data-k":k});
+      c.appendChild(mk("title", {})).textContent = `${label} — ${d.toFixed(4)}`;
+      pts.appendChild(c);
+      if (k === "near" && d < 0.76)
+        rings.appendChild(mk("circle", {class:"ring", cx:x, cy:y(d).toFixed(1), r:16}));
+    });
+
+    const cls = document.getElementById("g-cls");
+    [["covered (n=8)", COLX.cov, "#4a90d9"], ["near-miss (n=3)", COLX.near, "#e8a52b"],
+     ["absurd (n=2)", COLX.abs, "#8fa6b2"]].forEach(([t, x, col]) => {
+      const e = mk("text", {class:"axis", x, y:Y1+34, "text-anchor":"middle", fill:col});
+      e.textContent = t; cls.appendChild(e);
+    });
+
+    const show = k => pts.querySelectorAll(`.pt.${k}`).forEach(p => p.classList.add("on"));
+    scrolly("gateScrolly", s => {
+      if (s >= 0) show("cov");
+      document.getElementById("g-gate").classList.toggle("on", s >= 1);
+      glbl.style.opacity = s >= 1 ? 1 : 0;
+      if (s >= 2) show("near");
+      rings.querySelectorAll(".ring").forEach(r => r.classList.toggle("on", s >= 2));
+      if (s >= 3) show("abs");
+    });
+    if (reduce) { ["cov","near","abs"].forEach(show); document.getElementById("g-gate").classList.add("on"); glbl.style.opacity = 1; }
+  })();
+})();
+</script>
+</html>
