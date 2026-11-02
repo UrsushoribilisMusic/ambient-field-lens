@@ -140,6 +140,22 @@ struct ContentView: View {
             HStack {
                 Spacer()
                 Button {
+                    if let detail = gateDetail {
+                        wearables.sendVerdictToGlasses(
+                            detail: detail, query: assist.query
+                        )
+                    }
+                } label: {
+                    Text("Glasses")
+                        .font(.caption.bold())
+                        .foregroundStyle(.black)
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 4)
+                        .background(Color.white.opacity(0.92))
+                        .clipShape(Capsule())
+                }
+                .accessibilityLabel("Show answer on glasses")
+                Button {
                     assist.quoteDismissed = true
                 } label: {
                     Text("OK")
@@ -441,10 +457,27 @@ struct ContentView: View {
                 Button("Start glasses preview") {
                     wearables.startPreview()
                 }
+                Button("Attach display") {
+                    wearables.attachDisplay()
+                }
+                Button("Send current answer to glasses") {
+                    if let detail = gateDetail {
+                        wearables.sendVerdictToGlasses(
+                            detail: detail, query: assist.query
+                        )
+                    }
+                }
+                Button("Detach display") {
+                    wearables.detachDisplay()
+                }
                 Text(
-                    "devices=\(wearables.deviceCount) session=\(wearables.sessionState) stream=\(wearables.streamState)"
+                    "devices=\(wearables.deviceCount) session=\(wearables.sessionState) stream=\(wearables.streamState) display=\(wearables.displayState)"
                 )
                 .font(.caption2.monospaced())
+                MockDisplayPreview {
+                    wearables.mockPreviewView()
+                }
+                .frame(height: 120)
             }
             .navigationTitle("Setup")
             .navigationBarTitleDisplayMode(.inline)

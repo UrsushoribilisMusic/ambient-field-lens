@@ -1,27 +1,23 @@
 import MWDATCore
-import MWDATMockDevice
 import SwiftUI
 
 @main
 struct AmbientFieldLensApp: App {
     init() {
-        // Unit-test host launches the app binary too, and the host builds
-        // ContentView -> WearablesViewModel -> Wearables.shared at startup,
-        // which traps unless DAT is configured. The simulator has no
-        // Wearables transport so the real configure() traps there; the mock
-        // kit configures DAT itself instead. Enable it with no device paired
-        // (nothing streams) so the host can launch and the pure tests run.
-        // Production launch path is unchanged.
-        #if DEBUG
-            if NSClassFromString("XCTestCase") != nil {
-                MockDeviceKit.shared.enable()
-                return
-            }
-        #endif
+        // Always configure first, like the DisplayAccess sample. Mock is
+        // enabled later at runtime (DemoSetup / Setup sheet), never here:
+        // MockDeviceKit.enable() without a configured SDK traps (SIGTRAP
+        // in MWDATCore), which is what crashed the test host.
+        // Pure unit tests never touch Wearables.shared, so configure alone
+        // is enough for the host to launch.
         do {
             try Wearables.configure()
+            WearablesViewModel.sdkAvailable = true
         } catch {
-            assertionFailure("Wearables SDK configuration failed: \(error)")
+            WearablesViewModel.sdkAvailable = false
+            #if DEBUG
+                NSLog("[AFL] Wearables configure failed: \(error)")
+            #endif
         }
     }
 

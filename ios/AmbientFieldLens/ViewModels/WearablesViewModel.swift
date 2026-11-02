@@ -1,6 +1,7 @@
 import Foundation
 import MWDATCamera
 import MWDATCore
+import MWDATDisplay
 import MWDATMockDevice
 import UIKit
 
@@ -23,22 +24,38 @@ final class WearablesViewModel: ObservableObject {
     @Published var currentFrame: UIImage?
     @Published var lastError: String?
 
-    private let wearables = Wearables.shared
-    private let deviceSelector: AutoDeviceSelector
+    /// Set once by the App entry point after `Wearables.configure()`.
+    /// On the iOS Simulator the SDK has no transport and configure throws,
+    /// so nothing here may touch `Wearables.shared` unless this is true.
+    static var sdkAvailable = false
+
+    private var wearables: (any WearablesInterface)?
+    private var deviceSelector: AutoDeviceSelector?
     private var deviceSession: DeviceSession?
     private var camera: Camera?
     private var stream: MWDATCamera.Stream?
     private var mockEnabled = false
+    private var mockDevice: MockGlasses?
+    private var display: Display?
+    private var displayToken: AnyListenerToken?
+    private var pendingDisplay: (detail: String, query: String)?
     private let sessionTokens = ListenerTokenBag()
 
     @Published var selectorDevice: String = "none"
+    @Published var displayState: String = "Idle"
+    @Published var displayConnected = false
 
     init() {
-        registrationState = Wearables.shared.registrationState
-        deviceSelector = AutoDeviceSelector(wearables: Wearables.shared)
+        registrationState = .unavailable
+        guard Self.sdkAvailable else { return }
+        let shared = Wearables.shared
+        wearables = shared
+        registrationState = shared.registrationState
+        deviceSelector = AutoDeviceSelector(wearables: shared)
     }
 
     func observe() {
+        guard let wearables, let deviceSelector else { return }
         Task {
             for await state in wearables.registrationStateStream() {
                 self.registrationState = state
@@ -67,7 +84,7 @@ final class WearablesViewModel: ObservableObject {
         }
         for id in deviceIds {
             guard compatibilityTokens[id] == nil else { continue }
-            guard let device = wearables.deviceForIdentifier(id) else {
+            guard let device = wearables?.deviceForIdentifier(id) else {
                 continue
             }
             deviceCompatibility[id] = "\(device.compatibility())"
@@ -87,7 +104,7 @@ final class WearablesViewModel: ObservableObject {
     private func refreshDiagnostics() {
         var lines: [String] = []
         for id in deviceCompatibility.keys.sorted() {
-            if let device = wearables.deviceForIdentifier(id) {
+            if let device = wearables?.deviceForIdentifier(id) {
                 lines.append(
                     "\(device.nameOrId()): type=\(device.deviceType()) link=\(device.linkState) compat=\(deviceCompatibility[id] ?? "?")"
                 )
@@ -104,6 +121,10 @@ final class WearablesViewModel: ObservableObject {
     }
 
     func register() async {
+        guard let wearables else {
+            lastError = "Glasses unavailable on this device."
+            return
+        }
         do {
             try await wearables.startRegistration()
         } catch {
@@ -112,6 +133,10 @@ final class WearablesViewModel: ObservableObject {
     }
 
     func enableMock() {
+        guard Self.sdkAvailable else {
+            lastError = "Glasses unavailable on this device."
+            return
+        }
         guard !mockEnabled else { return }
         lastError = nil
         MockDeviceKit.shared.enable()
@@ -123,13 +148,111 @@ final class WearablesViewModel: ObservableObject {
             device.unfold()
             device.don()
             device.services.camera.setCameraFeed(cameraFacing: .back)
+            mockDevice = device
             mockEnabled = true
         } catch {
             lastError = "Mock pairing failed: \(error.localizedDescription)"
         }
     }
 
+    /// Phone-side render of what the glasses would show. Mock only.
+    func mockPreviewView() -> UIView? {
+        mockDevice?.services.display.createPreviewView()
+    }
+
+    /// Attach the Display capability on the already-started session.
+    /// Must run after sessionState == .started; keeps the state token
+    /// alive while the display is in use.
+    func attachDisplay() {
+        guard let session = deviceSession else {
+            lastError = "Start the session first."
+            return
+        }
+        guard sessionStarted else {
+            lastError = "Display needs a started session."
+            return
+        }
+        guard display == nil else { return }
+        lastError = nil
+        displayState = "Starting"
+        do {
+            let capability = try session.addDisplay()
+            display = capability
+            displayToken = capability.statePublisher.listen { [weak self] state in
+                Task { @MainActor in
+                    self?.displayState = "\(state)"
+                    if state == .started {
+                        self?.displayConnected = true
+                        if let pending = self?.pendingDisplay {
+                            self?.pendingDisplay = nil
+                            self?.sendCard(
+                                detail: pending.detail, query: pending.query
+                            )
+                        }
+                    } else if state == .stopped {
+                        self?.displayConnected = false
+                    } else {
+                        self?.displayConnected = false
+                    }
+                }
+            }
+            capability.start()
+        } catch {
+            displayState = "Idle"
+            displayConnected = false
+            display = nil
+            displayToken = nil
+            lastError = error.localizedDescription
+        }
+    }
+
+    /// Manual validation path: mirror the current amber refusal onto the
+    /// glasses (mock preview or real Display). Quotation only, no step.
+    func sendVerdictToGlasses(detail: String, query: String) {
+        guard !detail.isEmpty else { return }
+        guard display != nil, displayConnected else {
+            pendingDisplay = (detail, query)
+            attachDisplay()
+            if display == nil {
+                pendingDisplay = nil
+            }
+            return
+        }
+        sendCard(detail: detail, query: query)
+    }
+
+    private func sendCard(detail: String, query: String) {
+        guard let capability = display else { return }
+        Task {
+            do {
+                try await capability.send(
+                    AmberDisplayCard.make(detail: detail, query: query)
+                )
+            } catch {
+                await MainActor.run {
+                    self.lastError = error.localizedDescription
+                }
+            }
+        }
+    }
+
+    func detachDisplay() {
+        pendingDisplay = nil
+        displayToken = nil
+        if let capability = display {
+            capability.stop()
+        }
+        display = nil
+        displayState = "Idle"
+        displayConnected = false
+    }
+
     func startSession() async {
+        guard let wearables, let deviceSelector else {
+            sessionState = "Idle"
+            lastError = "Glasses unavailable on this device."
+            return
+        }
         lastError = nil
         sessionState = "Starting"
         do {
@@ -234,6 +357,7 @@ final class WearablesViewModel: ObservableObject {
 
     func endSession() {
         stopPreview()
+        detachDisplay()
         deviceSession?.stop()
         deviceSession = nil
         sessionState = "Idle"
