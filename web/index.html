@@ -90,17 +90,39 @@ section{padding:clamp(48px,9vh,96px) 0}
 .lbl.on{opacity:1}
 
 /* photo swap inside the architecture stage */
-.shot{position:absolute;right:0;bottom:4px;width:min(300px,34vw);aspect-ratio:16/10;border-radius:14px;overflow:hidden;
-  border:1px solid var(--line);opacity:0;transform:translateY(14px) scale(.98);
-  transition:opacity .5s ease,transform .5s ease;box-shadow:0 20px 50px rgba(0,0,0,.5)}
+.shots{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
+.shot{position:relative;margin:0;aspect-ratio:16/10;border-radius:14px;overflow:hidden;
+  border:1px solid var(--line);opacity:0;transform:translateY(16px) scale(.97);
+  transition:opacity .55s ease,transform .55s ease;box-shadow:0 18px 44px rgba(0,0,0,.5)}
 .shot.on{opacity:1;transform:none}
 .shot img{width:100%;height:100%;object-fit:cover;display:block}
-.shot figcaption{position:absolute;left:0;right:0;bottom:0;font:600 11px var(--mono);color:var(--fg);
+.shot figcaption{position:absolute;left:0;right:0;bottom:0;font:600 10.5px var(--mono);color:var(--fg);
   background:linear-gradient(transparent,rgba(14,26,34,.92));padding:18px 10px 7px}
-/* Reserve a band under the diagram so the still never lands on a box. */
-.shotwrap{position:relative;width:100%;max-width:1000px;padding-bottom:200px}
-#sysScrolly .stage svg{max-height:54svh}
-@media (max-width:620px){ .shotwrap{padding-bottom:150px} #sysScrolly .stage svg{max-height:44svh} }
+.shotwrap{position:relative;width:100%;max-width:1000px}
+/* Top-align the busier stages so the caption cards keep a clear lane below. */
+#sysScrolly .stage,#gateScrolly .stage{align-items:flex-start;padding-top:4svh}
+#sysScrolly .stage svg{max-height:38svh}
+#gateScrolly .stage svg{max-height:52svh}
+@media (max-width:620px){
+  #sysScrolly .stage svg{max-height:30svh}
+  .shots{gap:6px;margin-top:10px} .shot figcaption{font-size:9px;padding:14px 6px 5px}
+}
+
+/* ---------- video ---------- */
+.vwrap{position:relative;aspect-ratio:16/9;border:1px solid var(--line);border-radius:18px;overflow:hidden;
+  background:#0b141b;margin-top:28px}
+.vwrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vfacade{position:absolute;inset:0;width:100%;height:100%;padding:0;border:0;background:none;cursor:pointer;display:block}
+.vfacade img{width:100%;height:100%;object-fit:cover;display:block;opacity:.72;transition:opacity .3s}
+.vfacade:hover img{opacity:.9}
+.vplay{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:86px;height:86px;border-radius:50%;
+  background:rgba(95,211,187,.95);display:grid;place-items:center;box-shadow:0 10px 40px rgba(0,0,0,.5);
+  transition:transform .25s}
+.vfacade:hover .vplay{transform:translate(-50%,-50%) scale(1.07)}
+.vplay::after{content:"";border-left:26px solid #0e1a22;border-top:16px solid transparent;
+  border-bottom:16px solid transparent;margin-left:7px}
+.vsoon{position:absolute;left:0;right:0;bottom:0;padding:26px 22px 16px;font:600 12px var(--mono);
+  color:var(--muted);background:linear-gradient(transparent,rgba(11,20,27,.94));text-align:center}
 
 /* ---------- calibration chart ---------- */
 .chart{width:100%;height:auto;overflow:visible}
@@ -145,6 +167,21 @@ footer{padding:56px 0 76px;border-top:1px solid var(--line);color:var(--faint);f
 footer a{text-decoration:none}
 footer .links{display:flex;flex-wrap:wrap;gap:8px 20px;margin-bottom:22px;font-size:15px}
 
+/* Desktop: captions get their own column beside the pinned graphic, so a card
+   never crosses the box it is describing. Phones keep the overlay. */
+@media (min-width:900px){
+  .scrolly{display:grid;grid-template-columns:minmax(0,34%) minmax(0,66%);
+    max-width:1440px;margin:0 auto;
+    padding-left:max(16px,env(safe-area-inset-left,0px));
+    padding-right:max(16px,env(safe-area-inset-right,0px))}
+  .stage{grid-column:2;grid-row:1;padding:clamp(12px,2.4vw,32px) 0 clamp(12px,2.4vw,32px) clamp(16px,2.4vw,32px)}
+  .steps{grid-column:1;grid-row:1;margin-top:0;max-width:none;padding:0}
+  .step{min-height:100svh;align-items:center;justify-content:flex-start;padding:0 26px 0 0}
+  .card{width:100%;backdrop-filter:none;box-shadow:none;background:var(--panel2)}
+  #sysScrolly .stage,#gateScrolly .stage{align-items:center;padding-top:clamp(12px,2.4vw,32px)}
+  #sysScrolly .stage svg{max-height:46svh}
+  #gateScrolly .stage svg{max-height:62svh}
+}
 @media (max-width:620px){
   body{font-size:16px}
   .step{align-items:flex-end;padding-bottom:5svh}
@@ -185,11 +222,31 @@ footer .links{display:flex;flex-wrap:wrap;gap:8px 20px;margin-bottom:22px;font-s
   </div>
 
   <div class="cta">
-    <a class="primary" href="#loop">See how it works</a>
+    <a class="primary" href="#video">Watch the film</a>
+    <a href="#loop">See how it works</a>
     <a href="#evidence">The evidence</a>
     <a href="#limits">What it does not do</a>
   </div>
 </header>
+
+<hr class="rule">
+
+<!-- =============== THE FILM =============== -->
+<section id="video">
+  <div class="wrap">
+    <p class="eyebrow">The submission film</p>
+    <h2>Two minutes fifty-eight, shot live.</h2>
+    <p class="lede">Every card, console and phone screen in it is real footage from the shoot — including the
+    refusals, and the one report that failed to file.</p>
+    <div class="vwrap" id="vwrap">
+      <button class="vfacade" id="vfacade" type="button" aria-label="Play the Ambient Field Lens submission film">
+        <img src="img/video-poster.jpg" alt="Title card reading Ambient Field Lens">
+        <span class="vplay" aria-hidden="true"></span>
+        <span class="vsoon" id="vsoon">Publishing to YouTube before submission — this player goes live with it</span>
+      </button>
+    </div>
+  </div>
+</section>
 
 <hr class="rule">
 
@@ -223,7 +280,7 @@ footer .links{display:flex;flex-wrap:wrap;gap:8px 20px;margin-bottom:22px;font-s
           <text class="s" x="50" y="110">No passage close enough</text>
           <text class="s" x="50" y="126">to this question</text>
         </g>
-        <g class="bx" id="b-op">
+        <g class="bx amber" id="b-op">
           <rect x="30" y="170" width="220" height="80" rx="12"/>
           <text class="t" x="50" y="202">Operator feedback</text>
           <text class="s" x="50" y="224">This advice was</text>
@@ -341,9 +398,11 @@ footer .links{display:flex;flex-wrap:wrap;gap:8px 20px;margin-bottom:22px;font-s
             <text class="s" x="312" y="352">A human writes the missing passage</text>
           </g>
         </svg>
+        <div class="shots">
         <figure class="shot" id="shot1"><img src="img/robot.jpg" alt="The Robot Ross rig: the Huenit arm, a phone on a tripod, and the controller screen" loading="lazy"><figcaption>Robot Ross — the rig</figcaption></figure>
         <figure class="shot" id="shot2"><img src="img/phone-card.jpg" alt="The Field Lens app showing a verdict card with a retrieved manual passage" loading="lazy"><figcaption>Field Lens — the card</figcaption></figure>
         <figure class="shot" id="shot3"><img src="img/backend-approved.jpg" alt="The review console showing a feedback item approved" loading="lazy"><figcaption>The wiki — approved</figcaption></figure>
+        </div>
       </div>
     </div>
 
@@ -540,9 +599,10 @@ footer .links{display:flex;flex-wrap:wrap;gap:8px 20px;margin-bottom:22px;font-s
       <a href="#loop">How it works</a>
       <a href="#evidence">Evidence</a>
       <a href="#readout">The negative result</a>
+      <a href="https://agentegra.com">Agentegra</a>
     </div>
     <p class="small">Ambient Field Lens — Meta Global AI Developer Hackathon, Startups track. Built 26 October –
-    4 November 2026. Scroll interactions inspired by The Economist's and the New York Times' scrollytelling; no
+    4 November 2026. Built by <a href="https://agentegra.com">Agentegra</a>. Scroll interactions inspired by The Economist's and the New York Times' scrollytelling; no
     assets or code were taken from either.</p>
   </div>
 </footer>
@@ -579,6 +639,25 @@ footer .links{display:flex;flex-wrap:wrap;gap:8px 20px;margin-bottom:22px;font-s
   };
   const draw = (id, on) => { const e = document.getElementById(id); if (e) e.classList.toggle("on", !!on); };
 
+
+  /* ---------- the film: click-to-load facade, no YouTube until asked ----------
+     Set YT_ID to the video id once it is published; nothing else changes. */
+  const YT_ID = "";
+  (() => {
+    const fac = document.getElementById("vfacade"), soon = document.getElementById("vsoon");
+    if (!fac) return;
+    if (!YT_ID){ fac.setAttribute("aria-disabled","true"); return; }
+    soon.remove();
+    fac.addEventListener("click", () => {
+      const f = document.createElement("iframe");
+      f.src = `https://www.youtube-nocookie.com/embed/${YT_ID}?autoplay=1&rel=0`;
+      f.title = "Ambient Field Lens — submission film";
+      f.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture";
+      f.allowFullscreen = true;
+      document.getElementById("vwrap").appendChild(f);
+      fac.remove();
+    }, {once:true});
+  })();
   /* ---------- 1. the loop lights in sequence ---------- */
   scrolly("loopScrolly", s => {
     set("b-cov",  s >= 1);
@@ -608,8 +687,8 @@ footer .links{display:flex;flex-wrap:wrap;gap:8px 20px;margin-bottom:22px;font-s
     draw("s-l4", s >= 4);
     draw("s-ret", s >= 4);
     set("s-aret", s >= 4);
-    draw("shot1", s === 1);
-    draw("shot2", s === 2);
+    draw("shot1", s >= 1);          // stay on once revealed, left to right
+    draw("shot2", s >= 2);
     draw("shot3", s >= 4);
   });
 
