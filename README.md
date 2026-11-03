@@ -43,8 +43,9 @@ Required by Rule 4. Nothing below was copied from earlier work; see
 - Field Lens iOS app — viewfinder, verdict card, gate chips, on the Meta
   Wearables Device Access Toolkit interface.
 - The `/assist` contract and its default-deny service on Modal.
-- SAM 3.1 scene gating — paper candidates and footprint geometry in
-  millimetres, not pixels.
+- SAM 3.1 scene gating — paper-mask candidates in the live path, and a
+  measured footprint geometry the live card reports as unverified rather than
+  accepting as clearance.
 - The Glimmer 30B prefill activation readout, its four probe protocols, and
   the negative results that retired them.
 - The coverage gate: corpus ingestion, retrieval-distance measurement, and
@@ -68,9 +69,11 @@ with world checks as a separate gate](docs/img/request-path.png)
   questions (`docs/verification/coverage-calibration-2026-10-30.json`).
   Covered questions top out at 0.741. A question the corpus does not answer
   returns `NOT COVERED` with the distance on the card.
-- **World checks.** A separate gate: is there a paper candidate in the frame,
-  and does the drawing footprint fall inside its boundary. Failing it returns
-  `WORLD CHECK FAILED`. It is independent of coverage — either can refuse.
+- **World checks.** A separate gate: is there a paper candidate in this frame
+  at all. Failing it returns `WORLD CHECK FAILED`. It is independent of
+  coverage — either can refuse. Footprint clearance is measured but **not
+  accepted**: the card reports `footprint unverified`, and no geometry in the
+  live path can pass anything.
 - **The repair loop.** A refusal offers to report the gap, carrying the
   question, the answer and the exact retrieved chunk ids. A candidate answer
   is drafted against the operator's own documents; a human edits and approves

@@ -166,6 +166,11 @@ section{padding:clamp(48px,9vh,96px) 0}
 .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-top:28px}
 .box{background:var(--panel2);border:1px solid var(--line);border-radius:16px;padding:20px 22px}
 .box.warn{border-color:rgba(232,165,43,.4)}
+/* The before/after pair under the film. One number each, set large enough to
+   land from the scroll position a judge actually arrives at. */
+.pf b{display:block;font:700 clamp(30px,4.6vw,40px)/1 var(--mono);letter-spacing:-.02em;margin:0 0 10px}
+.pf.no b{color:var(--amber)}
+.pf.ok b{color:var(--accent)}
 .box p{font-size:15px;color:var(--muted);margin:0}
 .box h3{color:var(--fg)}
 .box.warn h3{color:var(--amber)}
@@ -239,9 +244,10 @@ footer .links{display:flex;flex-wrap:wrap;gap:8px 20px;margin-bottom:22px;font-s
   <div class="cta">
     <a class="primary" href="#video">Watch the film</a>
     <a href="#loop">See how it works</a>
-    <a href="#evidence">The evidence</a>
+    <a href="#proof">The evidence</a>
     <a href="#limits">What it does not do</a>
     <a href="https://github.com/UrsushoribilisMusic/ambient-field-lens" rel="noopener">Code on GitHub</a>
+    <a href="https://x.com/ursushoribilis/status/2117645069226242151" rel="noopener">See it on X</a>
   </div>
 </header>
 
@@ -258,6 +264,42 @@ footer .links{display:flex;flex-wrap:wrap;gap:8px 20px;margin-bottom:22px;font-s
         <span class="vsoon" id="vsoon">2:59 · click to play</span>
       </button>
     </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- =============== THE RECEIPT, BEFORE THE EXPLANATION =============== -->
+<section id="proof">
+  <div class="wrap">
+    <p class="eyebrow">The receipt</p>
+    <h2>Ask again, after a human fixes the manual.</h2>
+    <p class="lede">One question, verbatim and identical both times: <code>what to do if the paper is in the
+    wrong position</code>. On 30 October an operator wrote the missing passage in their own wiki and approved
+    it. These are the two citations that query returned, either side of that approval.</p>
+
+    <div class="cols">
+      <div class="box pf no">
+        <h3>Before — refused</h3>
+        <b>0.8199</b>
+        <p>Past the 0.760 gate, so there is no answer. The nearest passage was
+        <code>8135308218c2c50d…</code> in <code>atf-wiki/Topics/Calibration.md</code> — calibration slopes and
+        lift height, which do not address where the paper is.</p>
+      </div>
+      <div class="box pf ok">
+        <h3>After — answered</h3>
+        <b>0.3997</b>
+        <p>Inside the gate, citing <code>59bb1a272e2ed09d…</code> — the passage the human had just written.
+        Corpus 38 records → 39. The original collection and its vectors are preserved; nothing was retrained.</p>
+      </div>
+    </div>
+
+    <p class="small" style="margin-top:22px">Receipts, in the repository:
+    <a href="https://github.com/UrsushoribilisMusic/ambient-field-lens/blob/main/backend/providers/corpus-pins.json">the reviewed pin registry</a> that binds the 39-record
+    collection, <a href="https://github.com/UrsushoribilisMusic/ambient-field-lens/blob/main/docs/verification/coverage-calibration-2026-10-30.json">the gate calibration</a>
+    over 13 labelled questions, and <a href="https://github.com/UrsushoribilisMusic/ambient-field-lens/blob/main/docs/submission.md">the before/after comparison</a>.
+    <a href="#evidence">Further down</a>: the controls that rule out the new heading doing the work, and the
+    negative control that held.</p>
   </div>
 </section>
 
@@ -321,7 +363,7 @@ footer .links{display:flex;flex-wrap:wrap;gap:8px 20px;margin-bottom:22px;font-s
           <rect x="30" y="292" width="220" height="80" rx="12"/>
           <text class="t" x="50" y="324">Ask again</text>
           <text class="s" x="50" y="346">Same question —</text>
-          <text class="s" x="50" y="362">now it is grounded</text>
+          <text class="s" x="50" y="362">now it cites the new passage</text>
         </g>
       </svg>
       <svg class="mdiag" viewBox="0 0 460 910" role="img" aria-label="The improvement loop, top to bottom: a gap is flagged by the coverage gate or by the operator, a passage is proposed, a human approves it, the index is rebuilt, and the same question is asked again.">
@@ -363,7 +405,7 @@ footer .links{display:flex;flex-wrap:wrap;gap:8px 20px;margin-bottom:22px;font-s
         <g class="bx green" data-k="b-ask">
           <rect x="16" y="800" width="400" height="100" rx="14"/>
           <text class="t" x="40" y="844">Ask again</text>
-          <text class="s" x="40" y="876">Same question — now grounded</text>
+          <text class="s" x="40" y="876">Same question — new citation</text>
         </g>
       </svg>
     </div>
@@ -382,7 +424,7 @@ footer .links{display:flex;flex-wrap:wrap;gap:8px 20px;margin-bottom:22px;font-s
         <p>A candidate answer is drafted <strong>against your own documents</strong>. In our run it declined to
         invent a procedure and instead listed what an expert would need to confirm.</p></div></div>
       <div class="step"><div class="card" data-scene="4"><span class="n">4 · A human approves</span>
-        <p>An expert edits the draft and approves it in their wiki. <strong>Nothing deploys unsigned.</strong>
+        <p>An expert edits the draft and approves it in their wiki. <strong>Nothing deploys without human approval.</strong>
         In our run the human discarded the draft and wrote four steps of their own.</p></div></div>
       <div class="step"><div class="card" data-scene="5"><span class="n">5 · Re-index</span>
         <p>The corpus is re-versioned — a <strong>new immutable collection</strong>, the original preserved
@@ -686,7 +728,8 @@ footer .links{display:flex;flex-wrap:wrap;gap:8px 20px;margin-bottom:22px;font-s
         back into.</p></div>
       <div class="box"><h3>Built during the hackathon</h3>
         <p>The Field Lens iOS app on the Meta Wearables DAT interface. The default-deny <code>/assist</code>
-        contract on Modal. SAM 3.1 scene gating with millimetre geometry. The Glimmer prefill readout, its four
+        contract on Modal. SAM 3.1 scene gating — paper-mask candidates in the live path, plus a measured-geometry
+        experiment the live card reports as unverified rather than accepting. The Glimmer prefill readout, its four
         probe protocols and the negative results that retired them. The coverage gate and its calibration.
         Immutable corpus versioning with a code-reviewed pin registry. And the documentation repair loop, end to
         end.</p></div>
@@ -701,6 +744,7 @@ footer .links{display:flex;flex-wrap:wrap;gap:8px 20px;margin-bottom:22px;font-s
   <div class="wrap">
     <div class="links">
       <a href="https://github.com/UrsushoribilisMusic/ambient-field-lens">Repository</a>
+      <a href="https://x.com/ursushoribilis/status/2117645069226242151" rel="noopener">On X</a>
       <a href="#loop">How it works</a>
       <a href="#evidence">Evidence</a>
       <a href="#readout">The negative result</a>
@@ -839,7 +883,9 @@ footer .links{display:flex;flex-wrap:wrap;gap:8px 20px;margin-bottom:22px;font-s
       svg.setAttribute("viewBox", L.box);
       svg.classList.toggle("m", m);
       [grid, pts, rings, cls].forEach(g => g.replaceChildren());
-      const y = d => L.Y0 + (d - LO) / (HI - LO) * (L.Y1 - L.Y0);
+      /* Distance increases upward, so "below the gate" is also below the
+         line on screen, and the covered cluster sits under it. */
+      const y = d => L.Y1 - (d - LO) / (HI - LO) * (L.Y1 - L.Y0);
 
       for (let d = 0.3; d <= 0.9001; d += 0.1){
         grid.appendChild(mk("line", {class:"gridline", x1:L.X0, y1:y(d).toFixed(1), x2:L.X1, y2:y(d).toFixed(1)}));

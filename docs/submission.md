@@ -25,8 +25,9 @@ Two independent gates, and the film is about the first:
 
 - **Coverage** — retrieval distance from the question to the nearest passage
   in the operator's corpus, against a calibrated threshold.
-- **World checks** — is there a paper candidate in the frame, and does the
-  drawing footprint fall inside its boundary, in millimetres.
+- **World checks** — is there a paper candidate in this frame at all.
+  Footprint clearance is measured and deliberately not accepted: the live card
+  reports `footprint unverified`.
 
 ## Built during the hackathon (Rule 4)
 
@@ -36,7 +37,8 @@ repair loop writes back into.
 
 **Built here, Oct 26 – Nov 4:** the Field Lens iOS app on the Meta Wearables
 DAT interface; the default-deny `/assist` contract on Modal; SAM 3.1 scene
-gating with millimetre geometry; the Glimmer 30B prefill readout and the four
+gating, with a measured footprint geometry that is reported and not accepted;
+the Glimmer 30B prefill readout and the four
 probe protocols that retired it; the coverage gate and its calibration;
 immutable corpus versioning with a code-reviewed pin registry; and the
 documentation repair loop end to end.
