@@ -481,6 +481,11 @@ struct ContentView: View {
             }
             .navigationTitle("Setup")
             .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("Done") { showSetup = false }
+                }
+            }
         }
     }
 }

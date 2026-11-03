@@ -2,32 +2,18 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CFBundleIdentifier</key>
-	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
-	<key>CFBundleName</key>
-	<string>$(PRODUCT_NAME)</string>
 	<key>CFBundleDisplayName</key>
 	<string>Ambient Field Lens</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
 	<string>$(MARKETING_VERSION)</string>
-	<key>CFBundleVersion</key>
-	<string>$(CURRENT_PROJECT_VERSION)</string>
-	<key>NSAppTransportSecurity</key>
-	<dict>
-		<key>NSAllowsLocalNetworking</key>
-		<true/>
-	</dict>
-	<key>NSCameraUsageDescription</key>
-	<string>Used as the mock glasses camera feed during development.</string>
-	<key>UISupportedInterfaceOrientations</key>
-	<array>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -41,17 +27,34 @@
 			</array>
 		</dict>
 	</array>
+	<key>CFBundleVersion</key>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>MWDAT</key>
 	<dict>
 		<key>AppLinkURLScheme</key>
 		<string>ambientfieldlens://</string>
-		<key>MetaAppID</key>
-		<string>1603045434222671</string>
 		<key>ClientToken</key>
 		<string>AR|1603045434222671|77a02d07369eb29ca9caf1778e119b7d</string>
+		<key>MetaAppID</key>
+		<string>1603045434222671</string>
 		<key>TeamID</key>
 		<string>$(DEVELOPMENT_TEAM)</string>
 	</dict>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsLocalNetworking</key>
+		<true/>
+	</dict>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>Needed to connect to Meta AI Glasses</string>
+	<key>NSBonjourServices</key>
+	<array>
+		<string>_bonjour._tcp</string>
+	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>Used as the mock glasses camera feed during development.</string>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>This lets your phone find and connect to your glasses over Wi-Fi.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>processing</string>
@@ -63,13 +66,10 @@
 	<array>
 		<string>com.meta.ar.wearable</string>
 	</array>
-	<key>NSBluetoothAlwaysUsageDescription</key>
-	<string>Needed to connect to Meta AI Glasses</string>
-	<key>NSLocalNetworkUsageDescription</key>
-	<string>This lets your phone find and connect to your glasses over Wi-Fi.</string>
-	<key>NSBonjourServices</key>
+	<key>UISupportedInterfaceOrientations</key>
 	<array>
-		<string>_bonjour._tcp</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 </dict>
 </plist>

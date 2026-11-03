@@ -1,7 +1,8 @@
 # Xcode
 build/
-*.xcworkspace/xcuserdata/
-*.xcodeproj/xcuserdata/
+# Anchored patterns only matched a project at the repo root; the project
+# lives in ios/, so match the directory at any depth instead.
+xcuserdata/
 DerivedData/
 *.ipa
 *.dSYM.zip
