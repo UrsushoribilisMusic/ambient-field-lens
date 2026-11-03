@@ -20,16 +20,17 @@
   --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
-/* clip, not hidden: overflow:hidden on the root breaks position:sticky. */
-html{overflow-x:clip}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%}
 body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:17px;line-height:1.55;
   -webkit-font-smoothing:antialiased}
 ::selection{background:var(--accent);color:#fff}
 a{color:var(--accent)}
-.wrap{max-width:1080px;margin:0 auto;
-  padding-left:max(16px,env(safe-area-inset-left,0px));
-  padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1080px;margin:0 auto;padding-left:20px;padding-right:20px}
+@supports (padding:max(0px,1px)){
+  .wrap{padding-left:max(20px,env(safe-area-inset-left,0px));
+        padding-right:max(20px,env(safe-area-inset-right,0px))}
+}
+code{font-family:var(--mono);font-size:.92em;overflow-wrap:anywhere}
 .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);
   display:flex;align-items:center;gap:12px;margin:0 0 18px}
 .eyebrow::before{content:"";width:48px;height:3px;background:var(--accent);flex:none}
@@ -42,7 +43,10 @@ p{margin:0 0 16px;max-width:66ch}
 .small{font-size:14px;color:var(--faint);max-width:70ch}
 
 /* ---------- hero: complete at rest, no scrolling needed ---------- */
-header.hero{padding:clamp(56px,11vh,120px) 0 clamp(40px,7vh,72px)}
+/* Vertical only -- the padding shorthand here used to zero the horizontal
+   gutter .wrap sets, and header.hero outranks .wrap, so the hero ran edge
+   to edge on any screen narrower than its max-width. */
+header.hero{padding-top:clamp(56px,11vh,120px);padding-bottom:clamp(40px,7vh,72px)}
 .badges{display:flex;flex-wrap:wrap;gap:8px;margin:28px 0 0}
 .badge{font:600 12px var(--mono);border:1px solid var(--line);border-radius:999px;padding:6px 13px;color:var(--muted)}
 .badge.on{color:var(--accent);border-color:rgba(0,100,224,.3);background:#eef4fe}
@@ -184,9 +188,7 @@ footer .links{display:flex;flex-wrap:wrap;gap:8px 20px;margin-bottom:22px;font-s
    never crosses the box it is describing. Phones keep the overlay. */
 @media (min-width:900px){
   .scrolly{display:grid;grid-template-columns:minmax(0,34%) minmax(0,66%);
-    max-width:1440px;margin:0 auto;
-    padding-left:max(16px,env(safe-area-inset-left,0px));
-    padding-right:max(16px,env(safe-area-inset-right,0px))}
+    max-width:1440px;margin:0 auto;padding-left:20px;padding-right:20px}
   .stage{grid-column:2;grid-row:1;padding:clamp(12px,2.4vw,32px) 0 clamp(12px,2.4vw,32px) clamp(16px,2.4vw,32px)}
   .steps{grid-column:1;grid-row:1;margin-top:0;max-width:none;padding:0}
   .step{min-height:100svh;align-items:center;justify-content:flex-start;padding:0 26px 0 0}
@@ -206,12 +208,9 @@ footer .links{display:flex;flex-wrap:wrap;gap:8px 20px;margin-bottom:22px;font-s
   .step{align-items:flex-end;padding-bottom:2svh}
   .card{width:100%;padding:16px 18px}
   .card p{font-size:15.5px}
-  /* The headline numbers go one per row on a phone: "0.820 -> 0.400" does not
-     fit a half-width cell at this size and was being clipped. */
+  /* One headline number per row: "0.820 -> 0.400" does not fit a half-width
+     cell at this size and was being clipped mid-number. */
   .figures{grid-template-columns:1fr}
-  .fig{display:flex;align-items:baseline;gap:14px;padding:14px 18px}
-  .fig b{font-size:24px;flex:none}
-  .fig span{margin-top:0}
   .shots{display:none}
   .mshots{display:block;margin-top:30px}
   .mshot{margin:0 0 18px;border:1px solid var(--line);border-radius:14px;overflow:hidden;
