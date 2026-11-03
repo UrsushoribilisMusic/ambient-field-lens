@@ -1,8 +1,9 @@
 # Ambient Field Lens — Architecture (as built)
 
-Companion to the [README](README.md). Status markings are load-bearing:
-**proven** means measured in-repo or on camera, **pending** means hypothesized
-with a defined validation.
+Companion to the [README](README.md); the narrative, the numbers and the film
+are at [afl.flotilla.cc](https://afl.flotilla.cc). Status markings are
+load-bearing: **proven** means measured in-repo or on camera, **pending** means
+hypothesized with a defined validation.
 
 ## Product
 
@@ -20,6 +21,9 @@ phone capture → POST /assist → window/token admission → Ross retrieval
 → SAM paper candidates → Glimmer prefill readout → amber denial w/ evidence
 ```
 
+![One request: frame, SAM 3.1, identity, retrieval, then the coverage check,
+with world checks as a separate gate](docs/img/request-path.png)
+
 - `backend/live_backend.py`: composition. Reuses `contracts` (verdict is
   type-level `Literal['verify']`, score pinned 0.0) and the circuit breaker
   untouched; does not reuse the stub `AssistService`.
@@ -32,15 +36,19 @@ phone capture → POST /assist → window/token admission → Ross retrieval
   `Live check (amber)` / `WORLD CHECK FAILED` / `NOT COVERED` prefixes the
   phone parses into WORLD / COV chips. Only real failures earn color.
 - Coverage is a threshold on top-chunk retrieval distance
-  (`COVERAGE_DISTANCE_MAX`, None until the Q1 labelling freezes it). The
-  provider raises on empty, so emptiness never reaches composition.
+  (`COVERAGE_DISTANCE_MAX`), calibrated at **0.760** over 13 labelled
+  questions — covered questions top out at 0.741, the nearest non-covered
+  observation is 0.787. Receipt:
+  `docs/verification/coverage-calibration-2026-10-30.json`. The provider
+  raises on empty, so emptiness never reaches composition.
 
 ## The two gates (as filmed)
 
 - WORLD: paper mask found or not (autonomous SAM candidates; ambiguous by
   design, never presence/fitment/approval by themselves).
-- COVERAGE: manual passage close enough or not (validated cutoff pending;
-  until then covered-but-uncalibrated).
+- COVERAGE: manual passage close enough or not, at the calibrated cutoff of
+  0.760. The filmed refusal measures 0.820; after the human's passage was
+  published the same question measures 0.400.
 
 ## What the receipt proves (narration-locked)
 
@@ -66,28 +74,34 @@ Baseten credits cover the offline wording lane only. Ledger: GPU attempts
 with exact scores in `close_window`; Modal dashboard is final on charges.
 
 
-## Offline teacher-forced trajectory comparison
+## Research lanes — offline, none of them in the live path
+
+Two are measurement lanes whose results retired the thing they tested; two are
+authoring tools. All four are reported for completeness, and none of them feeds
+`/assist`, the gates or the card.
+
+### Offline teacher-forced trajectory comparison
 
 `backend/recal/trajectory_window.py` captures all candidate-token residuals in
 one causal pass per frozen record. Pure CPU analysis selects predefined points
 and layers using validation only. Results and the true pre-candidate control
-are in `docs/verification/trajectory-comparison-2026-10-28.md`: both score1.000
+are in `docs/verification/trajectory-comparison-2026-10-28.md`: both score 1.000
 on this tiny test, so extra trajectory scoring adds no demonstrated value.
 This remains an offline research unit, not a live generation or /assist adapter.
 
 
-## Frozen-label wording robustness
+### Frozen-label wording robustness
 
 `backend/recal/expanded_window.py` is a separate offline experiment, not a live
 readiness adapter. It inherits only exact candidate/context/frame combinations
 from Miguel's frozen label review and keeps novel wording separate from old
 controls. Fixed layers and fit-only estimators score actual pre-candidate inputs.
-Results: hidden AUROC1.000, norm/head lens0.970486 on24 new wording pairs; still
+Results: hidden AUROC 1.000, norm/head lens 0.970486 on 24 new wording pairs; still
 only two independent held-out topics, no grounding or Jacobian-advantage claim.
 See `docs/verification/heldout-wording-results-2026-10-28.md`.
 
 
-## Image-only pair authoring and human review
+### Image-only pair authoring and human review
 
 `tools/prepare_visual_pair_review.py` derives native crops and provenance from
 archived footage, without filming, model/provider requests or new predictions.
@@ -98,7 +112,7 @@ is implemented here; even validated human labels only enable later planning.
 The supplied image-space footprint is a separate reference target, not accepted
 robot registration. See `docs/visual-grounding-pair-protocol-2026-10-28.md`.
 
-## Hosted wording generation (offline authoring)
+### Hosted wording generation (offline authoring)
 
 [Generation routing](docs/generation-routing.md) defaults pair phrasings, step
 text and review copy to Baseten `meta-models/muse-spark-open-1026`, with explicit
@@ -107,19 +121,23 @@ per-call hosted-API ledger; missing usage is unknown, not zero. This authoring
 tool does not change frozen labels, scoring, SAM, `/assist` or GPU windows. SAM
 stays on Meta; probes and all internal-state readouts stay on Modal Glimmer.
 
-## Live demo providers (28 October integration)
+## Live providers
+
+![What runs where: capture and card on the person, the /assist contract,
+retrieval, SAM and Glimmer on Modal, and the controller, arm and camera in the
+workshop](docs/img/runs-where.png)
 
 `backend/providers/` supplies deployed Ross Chroma retrieval, Meta SAM current-frame
-mask decoding, and Modal Glimmer frozen layer27 true-prefill scoring. Calls carry
+mask decoding, and Modal Glimmer frozen layer 27 true-prefill scoring. Calls carry
 frame/context/source hashes and private receipts; GPU admission is window-bound,
-max1 worker, scale-to-zero, with grant reservations. Signed containment clearance
-uses measured mm errors and reading uncertainty rather than an inherited2px cutoff.
-The real displaced-paper phone control is still required before shipment. Muse
-owns the reviewed `/assist` admission contract and iOS integration; provider raw
-scores alone never authorize a step. [Interfaces, proof and remaining integration
+max 1 worker, scale-to-zero, with grant reservations. Signed containment clearance
+uses measured mm errors and reading uncertainty rather than an inherited 2 px cutoff.
+The displaced-paper phone control has since been filmed on the live path and
+refuses at 0.820. The reviewed `/assist` admission contract and the iOS
+integration are one owner; provider raw scores alone never authorize a step. [Interfaces, proof and remaining integration
 requirements](docs/live-provider-handoff.md).
 
-## Observable refusals and controller binding — 29 October
+## Observable refusals and controller binding
 
 [Runtime handoff](docs/observable-checks-handoff.md): Spark pen presence is a
 separate, provenance-bound check (not contact or mechanical fitment). Measured
@@ -133,7 +151,7 @@ container state. All current responses remain amber with no step. The
 No validated weight signal currently supplies a permission gate; raw Glimmer
 scores are diagnostic. No new score rounds or GPU windows in this work.
 
-## Versioned documentation repair (Codi, merged as PR #16)
+## Versioned documentation repair
 
 The CPU-only export bridge in `providers/corpus_repair.py` stages one exact,
 human-reviewed SM wiki passage into a new fingerprint-named collection in a
@@ -141,6 +159,7 @@ separate DB. The original 38-record collection and report remain unchanged.
 `providers/corpus-pins.json` binds explicit name/count/full fingerprint/report
 and full text+metadata+vector digest. Retrieval rejects anything outside that
 reviewed registry; IAM-only `select_corpus` validates before atomic activation
-or rollback. No threshold/verdict/green changes. A new 39-record pin cannot be
-reviewed or activated until Miguel's actual passage exists. See
+or rollback. No threshold/verdict/green changes. The 39-record pin was
+reviewed and activated against a passage a human wrote and approved: the
+re-ask cites it and measures 0.400 against the unchanged 0.760 gate. See
 [repair filming and rollback handoff](docs/documentation-repair-handoff.md).

@@ -3,11 +3,23 @@
 Safety-gated field assistant for the Meta Global AI Developer Hackathon,
 Startup track. Built Oct 26 – Nov 4, 2026.
 
+**[afl.flotilla.cc](https://afl.flotilla.cc)** — the submission page, with the
+film, the measured numbers and the limits. &nbsp;·&nbsp;
+**[The film (2:59)](https://www.youtube.com/watch?v=H1f1R8UuIqM)** &nbsp;·&nbsp;
+[Privacy](https://afl.flotilla.cc/privacy/) &nbsp;·&nbsp;
+[Terms](https://afl.flotilla.cc/terms/)
+
 **This is not a RAG chatbot.** Most assistants answer even when your manual
 does not cover the question, and nothing in the answer tells you which
 happened. Ambient Field Lens *measures* whether your documentation covers the
 question, refuses when it does not, and turns that refusal into a documented
 answer a human wrote and approved.
+
+![The Field Lens app refusing a question: NOT COVERED, d=0.820 > 0.760, with a
+button to report the missing instruction](docs/img/refusal-card.jpg)
+
+*The real app, on the real rig. The question is outside the manuals, the
+distance that says so is on the card, and the refusal offers to file the gap.*
 
 **One-liner:** an operator looks at a machine through the phone (standing in
 for glasses) and asks setup questions. The system answers with amber cards
@@ -44,6 +56,9 @@ Required by Rule 4. Nothing below was copied from earlier work; see
 
 ## What it does today
 
+![One request: frame, SAM 3.1, identity, retrieval, then the coverage check,
+with world checks as a separate gate](docs/img/request-path.png)
+
 - Frame a rig, tap **Ask**: the phone captures one frame; retrieval runs over
   the Robot Ross manuals, SAM segments paper candidates, and the Glimmer
   prefill readout is taken and reported. The card carries its evidence —
@@ -64,7 +79,36 @@ Required by Rule 4. Nothing below was copied from earlier work; see
 - Header chips (WORLD / COV) show only earned failures in colour; anything
   unestablished renders grey. No chip can pass anything.
 
+### The gate is calibrated, not asserted
+
+![Coverage gate calibration: eight covered questions between 0.31 and 0.74,
+three near-misses, two absurd questions, against a gate at 0.76](docs/verification/coverage-calibration-2026-10-30.png)
+
+*Thirteen labelled questions, frozen before scoring. The gate sits at 0.760
+because covered questions top out at 0.741 and the nearest non-covered
+observation is 0.787. Receipt:
+[`docs/verification/coverage-calibration-2026-10-30.json`](docs/verification/coverage-calibration-2026-10-30.json).*
+
+### The refusal is the input
+
+![The improvement loop: a coverage refusal or operator feedback leads to a
+drafted passage, human review in the wiki, re-indexing, and asking
+again](docs/img/repair-loop.png)
+
+![The review console: the refusal with its distance, the operator's comment,
+the retrieved chunk ids, and a drafted candidate answer awaiting
+approval](web/img/backend-approved.jpg)
+
+*The gap report as the reviewer sees it — the question, the refusal with
+`d=0.820`, the chunks that were actually retrieved, and a candidate answer
+nobody has approved yet. Approving it publishes the passage and re-versions
+the corpus from 38 records to 39. Asking the same question then measures 0.400
+and cites the new passage.*
+
 ## What it does not do
+
+![Negative result: held-out text pilot AUROC 1.000; live visual task
+supported −0.018, unsupported −0.015 — no separation](docs/img/negative-result.png)
 
 - **No weight readout in the verdict.** Four independent probes (contrastive,
   Jacobian lens, trajectory, live prefill) found no signal separating grounded
@@ -87,6 +131,10 @@ Required by Rule 4. Nothing below was copied from earlier work; see
   The gate measures embedding proximity, not whether a passage answers.
 
 ## Where each piece runs
+
+![What runs where: capture and card on the person, the /assist contract,
+retrieval, SAM and Glimmer on Modal, and the controller, arm and camera in the
+workshop](docs/img/runs-where.png)
 
 | Piece | Runs on |
 |---|---|
@@ -131,6 +179,7 @@ or not the calls are used. Close with `client.close_window(id)`.
 - [docs/observable-checks-handoff.md](docs/observable-checks-handoff.md) — providers.
 - [docs/existing-work.md](docs/existing-work.md) — provenance boundary.
 - [docs/proposals/red-controller-contract.md](docs/proposals/red-controller-contract.md) — red proposal (not implemented).
+- [web/](web/) — the source of [afl.flotilla.cc](https://afl.flotilla.cc).
 
 ## Disclosure
 
