@@ -46,9 +46,9 @@
 		<key>AppLinkURLScheme</key>
 		<string>ambientfieldlens://</string>
 		<key>MetaAppID</key>
-		<string>$(META_APP_ID)</string>
+		<string>1603045434222671</string>
 		<key>ClientToken</key>
-		<string>$(CLIENT_TOKEN)</string>
+		<string>AR|1603045434222671|77a02d07369eb29ca9caf1778e119b7d</string>
 		<key>TeamID</key>
 		<string>$(DEVELOPMENT_TEAM)</string>
 	</dict>
