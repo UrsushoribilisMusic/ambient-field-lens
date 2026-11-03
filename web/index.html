@@ -55,11 +55,6 @@ header.hero{padding-top:clamp(56px,11vh,120px);padding-bottom:clamp(40px,7vh,72p
 .cta a.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
 .cta a:hover{border-color:var(--accent)}
 
-.figures{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--line);
-  border:1px solid var(--line);border-radius:16px;overflow:hidden;margin:44px 0 0}
-.fig{background:var(--bg);padding:18px 20px}
-.fig b{display:block;font:600 30px/1.1 var(--mono);color:var(--accent);letter-spacing:-.02em}
-.fig span{display:block;font-size:13px;color:var(--muted);margin-top:6px}
 
 /* ---------- sections ---------- */
 section{padding:clamp(48px,9vh,96px) 0}
@@ -208,9 +203,6 @@ footer .links{display:flex;flex-wrap:wrap;gap:8px 20px;margin-bottom:22px;font-s
   .step{align-items:flex-end;padding-bottom:2svh}
   .card{width:100%;padding:16px 18px}
   .card p{font-size:15.5px}
-  /* One headline number per row: "0.820 -> 0.400" does not fit a half-width
-     cell at this size and was being clipped mid-number. */
-  .figures{grid-template-columns:1fr}
   .shots{display:none}
   .mshots{display:block;margin-top:30px}
   .mshot{margin:0 0 18px;border:1px solid var(--line);border-radius:14px;overflow:hidden;
@@ -244,18 +236,12 @@ footer .links{display:flex;flex-wrap:wrap;gap:8px 20px;margin-bottom:22px;font-s
     <span class="badge">Chroma</span>
   </div>
 
-  <div class="figures">
-    <div class="fig"><b>0.760</b><span>coverage gate, calibrated over 13 labelled questions</span></div>
-    <div class="fig"><b>0.820&nbsp;→&nbsp;0.400</b><span>same question, after a human wrote the missing passage</span></div>
-    <div class="fig"><b>38&nbsp;→&nbsp;39</b><span>corpus records. Nothing retrained</span></div>
-    <div class="fig"><b>0</b><span>green steps the system has ever emitted</span></div>
-  </div>
-
   <div class="cta">
     <a class="primary" href="#video">Watch the film</a>
     <a href="#loop">See how it works</a>
     <a href="#evidence">The evidence</a>
     <a href="#limits">What it does not do</a>
+    <a href="https://github.com/UrsushoribilisMusic/ambient-field-lens" rel="noopener">Code on GitHub</a>
   </div>
 </header>
 
@@ -265,14 +251,11 @@ footer .links{display:flex;flex-wrap:wrap;gap:8px 20px;margin-bottom:22px;font-s
 <section id="video">
   <div class="wrap">
     <p class="eyebrow">The submission film</p>
-    <h2>Two minutes fifty-eight, shot live.</h2>
-    <p class="lede">Every card, console and phone screen in it is real footage from the shoot — including the
-    refusals, and the one report that failed to file.</p>
     <div class="vwrap" id="vwrap">
       <button class="vfacade" id="vfacade" type="button" aria-label="Play the Ambient Field Lens submission film">
-        <img src="img/video-poster.jpg" alt="Title card reading Ambient Field Lens">
+        <img src="img/video-poster.jpg?v=2" alt="Title card: Ambient Field Lens — reading Glimmer's residual stream to see whether an answer is grounded in your own documents">
         <span class="vplay" aria-hidden="true"></span>
-        <span class="vsoon" id="vsoon">Publishing to YouTube before submission — this player goes live with it</span>
+        <span class="vsoon" id="vsoon">2:59 · click to play</span>
       </button>
     </div>
   </div>
@@ -768,7 +751,7 @@ footer .links{display:flex;flex-wrap:wrap;gap:8px 20px;margin-bottom:22px;font-s
 
   /* ---------- the film: click-to-load facade, no YouTube until asked ----------
      Set YT_ID to the video id once it is published; nothing else changes. */
-  const YT_ID = "";
+  const YT_ID = "H1f1R8UuIqM";
   (() => {
     const fac = document.getElementById("vfacade"), soon = document.getElementById("vsoon");
     if (!fac) return;
