@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<title>Ambient Field Lens — Privacy Policy</title>
+<meta name="description" content="What Ambient Field Lens sends off your device, what it keeps, and what it never does with it.">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  color-scheme:light;
+  --bg:#ffffff; --panel:#f7f9fa; --fg:#1c2b33; --muted:#465a69; --faint:#657786;
+  --line:#dbe3e8; --accent:#0064e0; --amber:#a1620a;
+  --sans:"Inter",-apple-system,system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:17px;line-height:1.6;
+  -webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+.wrap{max-width:760px;margin:0 auto;padding-left:20px;padding-right:20px}
+@supports (padding:max(0px,1px)){
+  .wrap{padding-left:max(20px,env(safe-area-inset-left,0px));
+        padding-right:max(20px,env(safe-area-inset-right,0px))}
+}
+header.bar{border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(255,255,255,.92);
+  backdrop-filter:blur(10px);z-index:5}
+.bar .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:62px;flex-wrap:wrap}
+.brand{font-weight:800;letter-spacing:-.01em;text-decoration:none;color:var(--fg);font-size:16px}
+.bar nav{display:flex;gap:18px;font-size:14px;font-weight:600}
+.bar nav a{text-decoration:none;color:var(--muted)}
+.bar nav a:hover{color:var(--accent)}
+main{padding:clamp(40px,8vh,80px) 0 90px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);
+  display:flex;align-items:center;gap:12px;margin:0 0 18px}
+.eyebrow::before{content:"";width:40px;height:3px;background:var(--accent);flex:none}
+h1{font-size:clamp(32px,5.6vw,52px);line-height:1.06;letter-spacing:-.025em;font-weight:800;margin:0 0 18px;
+  text-wrap:balance}
+h2{font-size:20px;font-weight:600;margin:0 0 10px;letter-spacing:-.01em}
+p{margin:0 0 14px}
+p:last-child{margin-bottom:0}
+.lead{font-size:clamp(17px,2.1vw,20px);color:var(--muted);margin-bottom:22px}
+.updated{font-family:var(--mono);font-size:13px;color:var(--faint);margin:0 0 30px}
+section.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin:0 0 16px}
+section.panel.flag{border-color:rgba(161,98,10,.42);background:#fdf8f1}
+section.panel.flag h2{color:var(--amber)}
+section.panel p,section.panel li{color:var(--muted);font-size:16px}
+ul{margin:12px 0 0;padding-left:20px;display:grid;gap:9px}
+li strong,p strong{color:var(--fg);font-weight:600}
+code{font-family:var(--mono);font-size:.9em;overflow-wrap:anywhere;background:#eef2f5;border-radius:5px;padding:1px 5px}
+footer{border-top:1px solid var(--line);padding:26px 0 60px;color:var(--faint);font-size:14px}
+footer a{text-decoration:none}
+@media (max-width:620px){
+  body{font-size:16px}
+  section.panel{padding:18px 18px}
+  .bar .wrap{min-height:56px}
+  .bar nav{gap:14px;font-size:13px}
+}
+</style>
+<body>
+<header class="bar">
+  <div class="wrap">
+    <a class="brand" href="/">Ambient Field Lens</a>
+    <nav aria-label="Primary">
+      <a href="/">Overview</a>
+      <a href="/terms/">Terms</a>
+      <a href="https://github.com/UrsushoribilisMusic/ambient-field-lens">Repository</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <p class="eyebrow">Privacy policy</p>
+  <h1>One frame, one question, and nothing we keep.</h1>
+  <p class="lead">Ambient Field Lens is an experimental field assistant for machine setup. Unlike a local-only
+  app, it has to send something off the device to work — so this page says exactly what, where it goes, and
+  how long it lives.</p>
+  <p class="updated">Last updated: 3 November 2026</p>
+
+  <section class="panel">
+    <h2>Summary</h2>
+    <p>There is no account and no sign-in. There is no advertising, no analytics SDK, no cross-app tracking,
+    and no sale of personal data. Each time you ask a question the app sends <strong>one still camera frame
+    and the text you typed</strong>; both are processed to produce the answer card and are not written to
+    storage by the service. <strong>Nothing you capture is used to train or fine-tune a model</strong> — the
+    model weights are frozen and are never modified.</p>
+  </section>
+
+  <section class="panel">
+    <h2>What leaves your device</h2>
+    <ul>
+      <li><strong>One still frame</strong>, captured through the Meta Wearables Device Access Toolkit when
+      you ask a question. Not a video stream, and never in the background.</li>
+      <li><strong>The question you typed.</strong></li>
+      <li>Nothing else. The app does not read your contacts, location, photo library, advertising identifier,
+      or any other device data.</li>
+    </ul>
+  </section>
+
+  <section class="panel">
+    <h2>Where it goes</h2>
+    <p>The frame and question are sent over HTTPS to our processing endpoint, which runs on
+    <strong>Modal</strong>. Three things happen there:</p>
+    <ul>
+      <li><strong>Segmentation.</strong> The frame is forwarded to <strong>Meta's hosted SAM 3.1 endpoint</strong>
+      (<code>api.meta.ai</code>) to find candidate objects in the scene. That call is governed by Meta's own
+      terms and privacy policy for its developer APIs.</li>
+      <li><strong>Retrieval.</strong> Your question is compared against the operator's manual corpus. This runs
+      on CPU inside our own service; the question is not sent to any third party for this step.</li>
+      <li><strong>Readout.</strong> An open-weights model (Glimmer 30B) is run on our GPU container and read at
+      prefill. The weights are frozen and are not modified by anything you send.</li>
+    </ul>
+    <p>The frame is held in memory for the duration of the request. The service does not write it to disk or to
+    any storage volume.</p>
+  </section>
+
+  <section class="panel">
+    <h2>The call ledger</h2>
+    <p>So that an answer can be traced to the exact inputs that produced it, and so that GPU spend stays capped,
+    the service appends a record per request: a timestamp, a job identifier, model identifiers, the outcome, and
+    <strong>SHA-256 hashes of the inputs</strong>. It stores the hashes, not the content — a hash cannot be turned
+    back into your photograph or your question.</p>
+  </section>
+
+  <section class="panel flag">
+    <h2>Gap reports — only when you tap</h2>
+    <p>When the system refuses a question, the card offers a button that files the gap for a human to fix.
+    Pressing it sends the question, the refusal text, the identifiers of the passages that were retrieved, and
+    any comment you type to our review console at <code>sm.flotilla.cc</code>. <strong>No image is sent with a
+    gap report.</strong> A person then reads it and may write a corrected passage into the documentation. If you
+    do not press the button, nothing is filed.</p>
+  </section>
+
+  <section class="panel">
+    <h2>The documentation corpus</h2>
+    <p>The manuals the system retrieves from are supplied by the operator and held in an immutable, versioned
+    index. They are not shared with third parties and are not used as training data. When a correction is
+    approved, a new version of the index is created and the previous one is preserved unchanged.</p>
+  </section>
+
+  <section class="panel">
+    <h2>Camera permission</h2>
+    <p>Camera access is used only to capture the single frame for a request you initiate. The app does not
+    record continuously, does not capture in the background, and does not upload anything you have not asked a
+    question about.</p>
+  </section>
+
+  <section class="panel">
+    <h2>Retention and deletion</h2>
+    <p>Frames and questions are not retained. Ledger records — hashes and metadata only — are kept for the
+    duration of the hackathon evaluation and the project's own verification record. Gap reports you filed are
+    kept as part of the documentation history, because an approved correction has to be auditable. To ask for a
+    gap report you filed to be removed, write to the address below.</p>
+  </section>
+
+  <section class="panel">
+    <h2>Children</h2>
+    <p>Ambient Field Lens is a tool for technical work on machinery and is not directed to children. If you
+    believe a child has supplied personal information through support or a gap report, contact us and we will
+    delete it.</p>
+  </section>
+
+  <section class="panel">
+    <h2>Changes</h2>
+    <p>This is a prototype under active development and this policy may change. The date at the top of the page
+    is the date of the version you are reading.</p>
+  </section>
+
+  <section class="panel">
+    <h2>Contact</h2>
+    <p>Ambient Field Lens is developed and published by Big Bear Engineering GmbH, trading as Agentegra.
+    Privacy questions can be sent to
+    <a href="mailto:miguel@bigbearengineering.com?subject=Ambient%20Field%20Lens%20privacy">miguel@bigbearengineering.com</a>.</p>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Big Bear Engineering GmbH. Ambient Field Lens is an experimental prototype.
+  <a href="/terms/">Terms of service</a> · <a href="/">Overview</a></div>
+</footer>
+</html>

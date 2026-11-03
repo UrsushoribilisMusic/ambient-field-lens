@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<title>Ambient Field Lens — Terms of Service</title>
+<meta name="description" content="The terms that govern use of Ambient Field Lens, an experimental field assistant that refuses by default.">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  color-scheme:light;
+  --bg:#ffffff; --panel:#f7f9fa; --fg:#1c2b33; --muted:#465a69; --faint:#657786;
+  --line:#dbe3e8; --accent:#0064e0; --amber:#a1620a;
+  --sans:"Inter",-apple-system,system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:17px;line-height:1.6;
+  -webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+.wrap{max-width:760px;margin:0 auto;padding-left:20px;padding-right:20px}
+@supports (padding:max(0px,1px)){
+  .wrap{padding-left:max(20px,env(safe-area-inset-left,0px));
+        padding-right:max(20px,env(safe-area-inset-right,0px))}
+}
+header.bar{border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(255,255,255,.92);
+  backdrop-filter:blur(10px);z-index:5}
+.bar .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:62px;flex-wrap:wrap}
+.brand{font-weight:800;letter-spacing:-.01em;text-decoration:none;color:var(--fg);font-size:16px}
+.bar nav{display:flex;gap:18px;font-size:14px;font-weight:600}
+.bar nav a{text-decoration:none;color:var(--muted)}
+.bar nav a:hover{color:var(--accent)}
+main{padding:clamp(40px,8vh,80px) 0 90px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);
+  display:flex;align-items:center;gap:12px;margin:0 0 18px}
+.eyebrow::before{content:"";width:40px;height:3px;background:var(--accent);flex:none}
+h1{font-size:clamp(32px,5.6vw,52px);line-height:1.06;letter-spacing:-.025em;font-weight:800;margin:0 0 18px;
+  text-wrap:balance}
+h2{font-size:20px;font-weight:600;margin:0 0 10px;letter-spacing:-.01em}
+p{margin:0 0 14px}
+p:last-child{margin-bottom:0}
+.lead{font-size:clamp(17px,2.1vw,20px);color:var(--muted);margin-bottom:22px}
+.updated{font-family:var(--mono);font-size:13px;color:var(--faint);margin:0 0 30px}
+section.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin:0 0 16px}
+section.panel.flag{border-color:rgba(161,98,10,.42);background:#fdf8f1}
+section.panel.flag h2{color:var(--amber)}
+section.panel p,section.panel li{color:var(--muted);font-size:16px}
+ul{margin:12px 0 0;padding-left:20px;display:grid;gap:9px}
+li strong,p strong{color:var(--fg);font-weight:600}
+code{font-family:var(--mono);font-size:.9em;overflow-wrap:anywhere;background:#eef2f5;border-radius:5px;padding:1px 5px}
+footer{border-top:1px solid var(--line);padding:26px 0 60px;color:var(--faint);font-size:14px}
+footer a{text-decoration:none}
+@media (max-width:620px){
+  body{font-size:16px}
+  section.panel{padding:18px 18px}
+  .bar .wrap{min-height:56px}
+  .bar nav{gap:14px;font-size:13px}
+}
+</style>
+<body>
+<header class="bar">
+  <div class="wrap">
+    <a class="brand" href="/">Ambient Field Lens</a>
+    <nav aria-label="Primary">
+      <a href="/">Overview</a>
+      <a href="/privacy/">Privacy</a>
+      <a href="https://github.com/UrsushoribilisMusic/ambient-field-lens">Repository</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <p class="eyebrow">Terms of service</p>
+  <h1>An experimental assistant that refuses by default.</h1>
+  <p class="lead">These terms apply to the Ambient Field Lens app, its hosted service, this website and related
+  materials, all provided by Big Bear Engineering GmbH.</p>
+  <p class="updated">Last updated: 3 November 2026</p>
+
+  <section class="panel flag">
+    <h2>Short version</h2>
+    <p>Ambient Field Lens is a research prototype. It never tells you it is safe to proceed: every verdict is
+    <code>verify</code>, and there is no setting that changes that. Read the passage it shows you, in your own
+    manual, before you touch a machine. <strong>It is not a safety device.</strong></p>
+  </section>
+
+  <section class="panel">
+    <h2>Scope</h2>
+    <p>The app was built for the Meta Global AI Developer Hackathon and is demonstrated on a single instrumented
+    machine. It may be distributed as a development or TestFlight build. Features, the hosted endpoint and the
+    documentation corpus can change, break or be withdrawn at any time.</p>
+  </section>
+
+  <section class="panel">
+    <h2>What it does, and what it will not do</h2>
+    <ul>
+      <li>It <strong>measures</strong> whether your documentation covers the question, shows the passage it
+      retrieved, and refuses when nothing is close enough.</li>
+      <li>It <strong>never emits a green step</strong> and never instructs you to act on the machine. The verdict
+      is always <code>verify</code> and the step is always empty.</li>
+      <li>It <strong>does not command machinery.</strong> The arm in the demonstration moves only on a human
+      command, over a local link the hosted service cannot reach.</li>
+      <li>Segmentation masks are <strong>candidates</strong>, never proof that an object is present and never an
+      approval to proceed.</li>
+      <li>The evidence card binds which frame, question, passage and masks produced an answer — but
+      <strong>not when the photograph was taken</strong>. A picture from yesterday passes every check on the card.</li>
+    </ul>
+  </section>
+
+  <section class="panel flag">
+    <h2>Safety</h2>
+    <p>Do not use Ambient Field Lens as a safety device, an interlock, a guard, a lockout procedure or a
+    substitute for the machine's own documentation, its manufacturer's instructions, or a qualified person. It is
+    not certified for safety-critical use and carries no such certification. You remain responsible for the
+    machine, for the people near it and for deciding whether any answer applies to your situation.</p>
+  </section>
+
+  <section class="panel">
+    <h2>AI outputs</h2>
+    <ul>
+      <li>Answers are produced by a language model over retrieved passages and may be incomplete, outdated or
+      wrong.</li>
+      <li>The coverage gate is a <strong>measured distance</strong> between your question and your documents. It
+      is a measure of proximity, not of relevance and not of correctness. A question can sit close to the corpus
+      and still be absurd.</li>
+      <li>A refusal means the documentation does not cover the question. It is not a claim that the machine is
+      unsafe, nor that the question has no answer.</li>
+    </ul>
+  </section>
+
+  <section class="panel">
+    <h2>Your documentation</h2>
+    <p>If manuals or other documents are loaded as the retrieval corpus, you confirm you have the right to use
+    them for that purpose. The corpus is versioned and the original is preserved, but the app is not a backup
+    and should not be the only copy of anything you need.</p>
+  </section>
+
+  <section class="panel">
+    <h2>Permitted use</h2>
+    <ul>
+      <li>Do not use the app to create unlawful, harmful, abusive or rights-infringing content.</li>
+      <li>Do not attempt to defeat the refusal behaviour, the coverage gate or the call budget, and do not reuse
+      or share the single-use call tokens that cap GPU spend.</li>
+      <li>Do not misuse the gap-report channel, which is read by a person.</li>
+      <li>Do not reverse engineer restricted distribution components, except where applicable law or an
+      open-source licence permits it.</li>
+    </ul>
+  </section>
+
+  <section class="panel">
+    <h2>Availability</h2>
+    <p>The service is provided on an as-is and as-available basis. The GPU window is budget-capped and may be
+    closed, after which requests fail rather than degrade — the system is designed to stop rather than guess.</p>
+  </section>
+
+  <section class="panel">
+    <h2>Liability</h2>
+    <p>To the extent permitted by applicable law, Big Bear Engineering GmbH is not liable for indirect,
+    incidental, special, consequential or business-loss damages arising from use of Ambient Field Lens.
+    Mandatory statutory rights are unaffected.</p>
+  </section>
+
+  <section class="panel">
+    <h2>Privacy</h2>
+    <p>What the app sends, where it goes and what is kept is described in the
+    <a href="/privacy/">Ambient Field Lens Privacy Policy</a>.</p>
+  </section>
+
+  <section class="panel">
+    <h2>Contact</h2>
+    <p>Ambient Field Lens is developed and published by Big Bear Engineering GmbH, trading as Agentegra.
+    Questions can be sent to
+    <a href="mailto:miguel@bigbearengineering.com?subject=Ambient%20Field%20Lens%20terms">miguel@bigbearengineering.com</a>.</p>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Big Bear Engineering GmbH. Ambient Field Lens is an experimental prototype.
+  <a href="/privacy/">Privacy policy</a> · <a href="/">Overview</a></div>
+</footer>
+</html>
