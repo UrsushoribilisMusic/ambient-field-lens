@@ -1,5 +1,10 @@
 # Live demo provider handoff — Codi to Muse, 28 October 2026
 
+>  **Historical working document.** Dated notes from the build, kept for
+>  provenance. Test counts, open questions and failure notes in here were
+>  true when written and are not current status. For what holds now, see
+>  [docs/evidence-index.md](evidence-index.md).
+
 Director's brief is the target. This branch supplies **runtime providers** for
 Muse's `/assist` path. No new research, comparison, label collection or tuning.
 It deliberately leaves server-owned green admission and iOS composition to Muse.

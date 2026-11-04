@@ -1,5 +1,10 @@
 # Documentation repair: evidence before and after
 
+>  **Historical working document.** Dated notes from the build, kept for
+>  provenance. Test counts, open questions and failure notes in here were
+>  true when written and are not current status. For what holds now, see
+>  [docs/evidence-index.md](evidence-index.md).
+
 This is separate from PR14. No threshold, gate, /assist contract or verdict
 changes. The supported film claim is **the cited evidence changed after a
 human improved the documentation**, never “not covered → covered” or permission

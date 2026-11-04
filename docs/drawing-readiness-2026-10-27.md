@@ -1,5 +1,10 @@
 # Codi — drawing-readiness capture, 27 October 2026
 
+>  **Historical working document.** Dated notes from the build, kept for
+>  provenance. Test counts, open questions and failure notes in here were
+>  true when written and are not current status. For what holds now, see
+>  [docs/evidence-index.md](evidence-index.md).
+
 ## S04: missing pen
 
 At the operator's request, recorded a 12-second video-only take with the pen

@@ -1,5 +1,10 @@
 # Codi — observable refusal checks, 29 October 2026
 
+>  **Historical working document.** Dated notes from the build, kept for
+>  provenance. Test counts, open questions and failure notes in here were
+>  true when written and are not current status. For what holds now, see
+>  [docs/evidence-index.md](docs/evidence-index.md).
+
 Fresh main69104bb. Muse/user tasks: Spark pen presence (not contact) through
 existing observation adapter with provenance/replay; measured marker-to-robot
 footprint containment and signed mm corrections; read-only robot calibration /

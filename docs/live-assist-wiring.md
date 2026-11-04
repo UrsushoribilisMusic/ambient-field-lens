@@ -1,5 +1,10 @@
 # Live /assist wiring (amber-only) — status 2026-10-29 ~00:40 CET
 
+>  **Historical working document.** Dated notes from the build, kept for
+>  provenance. Test counts, open questions and failure notes in here were
+>  true when written and are not current status. For what holds now, see
+>  [docs/evidence-index.md](evidence-index.md).
+
 ## What it is
 `backend/live_backend.py`: real providers (Ross retrieval, SAM paper
 candidates, Glimmer grounding readout) composed into the reviewed

@@ -1,5 +1,10 @@
 # Drawing readiness — CPU checkpoint, 26 October 2026
 
+>  **Historical working document.** Dated notes from the build, kept for
+>  provenance. Test counts, open questions and failure notes in here were
+>  true when written and are not current status. For what holds now, see
+>  [docs/evidence-index.md](evidence-index.md).
+
 **27 October evening update:** see the [measured v2 and adapter report](verification/adapter-and-measured-v2-2026-10-27.md).
 Nine manual readings, fit 1–4 / validation 5–9, fail the unchanged 2 px bar:
 RMS 2.054368 px, max 2.954858 px. No robot-frame linkage accepted. Frame-bound

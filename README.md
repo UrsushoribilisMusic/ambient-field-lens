@@ -57,6 +57,11 @@ Last run from a clean environment: **213 passed, 8 skipped, 131 subtests
 passed**, no network, no Modal account, no Meta API key. Live inference is a
 separate path and does need credentials — see [Run the demo](#run-the-demo).
 
+**Every claim, mapped to its receipt:** [docs/evidence-index.md](docs/evidence-index.md).
+It also says which documents are current and which are historical working notes
+— the dated handoffs carry point-in-time test counts and open questions that are
+not status.
+
 **What is real, and how real.** Status is stated per capability rather than
 left to the reader to infer from a demo.
 
@@ -261,6 +266,7 @@ or not the calls are used. Close with `client.close_window(id)`.
 - [docs/documentation-repair-handoff.md](docs/documentation-repair-handoff.md) — the repair procedure and its guard.
 - [docs/live-assist-wiring.md](docs/live-assist-wiring.md) — live path ops log.
 - [docs/observable-checks-handoff.md](docs/observable-checks-handoff.md) — providers.
+- [docs/evidence-index.md](docs/evidence-index.md) — every claim mapped to its receipt, and which docs are current.
 - [docs/existing-work.md](docs/existing-work.md) — provenance boundary.
 - [docs/proposals/red-controller-contract.md](docs/proposals/red-controller-contract.md) — red proposal (not implemented).
 - [web/](web/) — the source of [afl.flotilla.cc](https://afl.flotilla.cc).

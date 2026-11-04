@@ -1,5 +1,10 @@
 # Observable refusal checks — Codi to Muse, 29 October 2026
 
+>  **Historical working document.** Dated notes from the build, kept for
+>  provenance. Test counts, open questions and failure notes in here were
+>  true when written and are not current status. For what holds now, see
+>  [docs/evidence-index.md](evidence-index.md).
+
 Scope is runtime evidence for the amber-only demo: pen presence, measured
 camera/robot geometry and read-only controller state. No new research scoring,
 threshold, GPU window, green permission or automatic hardware action.
