@@ -9,6 +9,58 @@ film, the measured numbers and the limits. &nbsp;·&nbsp;
 [Privacy](https://afl.flotilla.cc/privacy/) &nbsp;·&nbsp;
 [Terms](https://afl.flotilla.cc/terms/)
 
+## For judges
+
+**Track:** Startups. **Built:** Oct 26 – Nov 4, 2026, in this repo, from empty.
+
+**The fit.** A technician in front of a machine asks a setup question and gets
+an answer whose grounding they cannot check. We put a wearable-class capture
+path in front of the operator's own manuals, and made the assistant refuse
+rather than guess when those manuals do not cover the question — then turn the
+refusal into a passage a human writes and approves.
+
+**Meta models and APIs used.** Both routes the rules name are in the live path —
+the Meta Model API, and Meta open-weight models.
+
+| Model | How it is used | Route | Call site |
+|---|---|---|---|
+| **Glimmer 30B** | Residual-stream readout at prefill; weights never modified | **Open weights**, self-hosted on Modal GPU | [`backend/providers/modal_runtime.py`](backend/providers/modal_runtime.py) |
+| **SAM 3.1** | Segments the frame into paper-mask candidates | **Meta Model API** | [`backend/providers/sam.py#L88`](backend/providers/sam.py#L88) |
+| **Muse Spark 1.3** | Scene wording and pen-presence observations | **Meta Model API** | [`backend/providers/pen_presence.py#L71`](backend/providers/pen_presence.py#L71) |
+| **Muse Spark Open** (`meta-models/muse-spark-open-1026`) | Offline wording generation | **Open weights** | [`backend/generation/wording.py#L16`](backend/generation/wording.py#L16) |
+| **Meta Wearables DAT** | Capture, and the glasses display path | SDK | [`ios/AmbientFieldLens/ViewModels/WearablesViewModel.swift`](ios/AmbientFieldLens/ViewModels/WearablesViewModel.swift) |
+
+**One frame through both Meta models, with receipts.**
+[`docs/verification/live-provider-integration-2026-10-28.json`](docs/verification/live-provider-integration-2026-10-28.json)
+carries a single `frame_sha256` through SAM 3.1 (one mask returned, 1.68 s) and
+Glimmer 30B (prefill readout, layer 27, 861 prefix tokens, one forward pass,
+`model_revision` recorded). That mask's `origin` is `server_reviewed_manual_box`
+— a reviewed box prompt, not autonomous detection, and it says so in the file.
+
+Read this next to the film, because the two show different things: the filmed
+refusal at d=0.820 returns from the **coverage gate**, which runs on retrieval
+distance *before* any frame is inspected ([`backend/live_backend.py#L341`](backend/live_backend.py#L341);
+SAM at L357, Glimmer at L372). That shot proves the refusal behaviour, not Meta
+model use. The answered re-ask, and the receipt above, are where SAM and Glimmer
+actually run.
+
+**Verify in two minutes, with no credentials.**
+
+```bash
+git clone https://github.com/UrsushoribilisMusic/ambient-field-lens
+cd ambient-field-lens/backend
+python3.12 -m venv .venv && .venv/bin/python -m pip install -r requirements-dev.txt
+.venv/bin/python -m pytest tests recal -q
+```
+
+Last run from a clean environment: **213 passed, 8 skipped, 131 subtests
+passed**, no network, no Modal account, no Meta API key. Live inference is a
+separate path and does need credentials — see [Run the demo](#run-the-demo).
+
+**What pre-existed** is in [Built during the hackathon](#built-during-the-hackathon)
+and [docs/existing-work.md](docs/existing-work.md): the robot arm, its manuals
+and the wiki backend are the test bench; the software here is new.
+
 **This is not a RAG chatbot.** Most assistants answer even when your manual
 does not cover the question, and nothing in the answer tells you which
 happened. Ambient Field Lens *measures* whether your documentation covers the

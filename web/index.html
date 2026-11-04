@@ -737,6 +737,25 @@ footer .links{display:flex;flex-wrap:wrap;gap:8px 20px;margin-bottom:22px;font-s
         Immutable corpus versioning with a code-reviewed pin registry. And the documentation repair loop, end to
         end.</p></div>
     </div>
+    <p class="small" style="margin-top:22px"><strong>Meta models, and where they run.</strong> Both routes
+    count here. <strong>Open weights:</strong> Glimmer 30B, self-hosted on Modal GPU, read on the residual
+    stream at prefill with the weights never modified; and Muse Spark Open for offline wording
+    (<a href="https://github.com/UrsushoribilisMusic/ambient-field-lens/blob/main/backend/generation/wording.py#L16">wording.py</a>).
+    <strong>Meta Model API:</strong> SAM 3.1 for frame segmentation
+    (<a href="https://github.com/UrsushoribilisMusic/ambient-field-lens/blob/main/backend/providers/sam.py#L88">sam.py</a>) and Muse Spark 1.3 for scene observations
+    (<a href="https://github.com/UrsushoribilisMusic/ambient-field-lens/blob/main/backend/providers/pen_presence.py#L71">pen_presence.py</a>). Capture and the glasses
+    display run on the Meta Wearables Device Access Toolkit.
+    <a href="https://github.com/UrsushoribilisMusic/ambient-field-lens/blob/main/docs/verification/live-provider-integration-2026-10-28.json">One receipt</a> carries a single
+    frame hash through both SAM (one mask) and Glimmer (layer 27, 861 prefix tokens, one forward pass); that
+    mask came from a reviewed box prompt, not autonomous detection, and the file says so.
+    Note that the refusal shown above returns from the coverage gate, which runs on retrieval distance before
+    any frame is inspected — the answered re-ask is where SAM and Glimmer run.</p>
+
+    <p class="small" style="margin-top:22px"><strong>Verify without credentials.</strong> Clone the repo,
+    <code>pip install -r backend/requirements-dev.txt</code>, then
+    <code>pytest tests recal -q</code> — 213 passed, 8 skipped from a clean environment, no network, no Modal
+    account, no API key. Live inference is a separate path that does need credentials.</p>
+
     <p class="small" style="margin-top:22px">Clean-room repository created 26 October 2026; nothing copied from
     earlier private prototypes. Calibration labels were reviewed by a human and scoring ran only on frozen
     labels. Every negative result is in the repository under <code>docs/verification/</code>.</p>

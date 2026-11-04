@@ -126,5 +126,15 @@ rollback, exact-query citation comparisons and unchanged-evidence reporting.
 local databases with synthetic embeddings: copy, close/reopen, one added chunk,
 old vectors intact, idempotent retry. No network embeddings or GPU.
 The actual archived 38-record snapshot independently matches the committed
-baseline pin. A real 39-record SM repair and different after citation remain
-pending Miguel's text and reviewed deployment; no completed payoff is claimed.
+baseline pin.
+
+**The repair has since run end to end.** A human wrote and approved the missing
+passage, and the reviewed 39-record version `ross-repair-ad3c9065b45ac2d3a0562011`
+is pinned in [`backend/providers/corpus-pins.json`](../backend/providers/corpus-pins.json)
+beside the 38-record baseline, each with its fingerprint, report and snapshot
+hash. The same question measures 0.820 before
+([repair-before-retrieval-2026-10-29.json](verification/repair-before-retrieval-2026-10-29.json))
+and 0.400 after, citing the new passage. Nothing was retrained.
+
+The sentence this paragraph replaced said the repair was pending; it was written
+before the run and was stale, not a current caveat.
