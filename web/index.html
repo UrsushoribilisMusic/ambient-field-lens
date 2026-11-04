@@ -449,7 +449,7 @@ footer .links{display:flex;flex-wrap:wrap;gap:8px 20px;margin-bottom:22px;font-s
   <div class="scrolly" id="sysScrolly">
     <div class="stage">
       <div class="shotwrap">
-        <svg class="ddiag" viewBox="0 0 1000 400" role="img" aria-label="Architecture: a phone sees the robot, sends one frame and a question to Modal where Glimmer and the retrieval index run, and a wiki backend feeds approved passages back into the index.">
+        <svg class="ddiag" viewBox="0 0 1000 440" role="img" aria-label="Architecture: a phone sees the robot and sends one frame and a question to Modal, where CPU retrieval runs over your manuals, SAM 3.1 is called on the Meta Model API, and the Glimmer readout runs on GPU; a wiki backend feeds approved passages back into the index.">
           <path class="cn" id="s-c1" d="M298 150 H250"/>
           <polygon class="ar" id="s-a1" points="236,150 252,142 252,158"/>
           <text class="lbl" id="s-l1" x="252" y="132">sees</text>
@@ -459,9 +459,9 @@ footer .links{display:flex;flex-wrap:wrap;gap:8px 20px;margin-bottom:22px;font-s
           <path class="cn" id="s-c3" d="M556 196 H498"/>
           <polygon class="ar" id="s-a3" points="484,196 500,188 500,204"/>
           <text class="lbl" id="s-l3" x="462" y="222">card + evidence</text>
-          <path class="cn grn draw" id="s-ret" pathLength="1" d="M500 300 V236"/>
-          <polygon class="ar grn" id="s-aret" points="500,222 492,238 508,238"/>
-          <text class="lbl" id="s-l4" x="518" y="272">approved passage, re-indexed</text>
+          <path class="cn grn draw" id="s-ret" pathLength="1" d="M500 340 V300"/>
+          <polygon class="ar grn" id="s-aret" points="500,286 492,302 508,302"/>
+          <text class="lbl" id="s-l4" x="518" y="318">approved passage, re-indexed</text>
 
           <g class="bx green" id="s-robot">
             <rect x="30" y="110" width="206" height="80" rx="12"/>
@@ -476,26 +476,31 @@ footer .links{display:flex;flex-wrap:wrap;gap:8px 20px;margin-bottom:22px;font-s
             <text class="s" x="310" y="180">one frame + your question</text>
           </g>
           <g id="s-modal">
-            <rect x="556" y="66" width="414" height="170" rx="14" fill="#f7f9fa" stroke="var(--line)" stroke-width="2"/>
+            <rect x="556" y="66" width="414" height="226" rx="14" fill="#f7f9fa" stroke="var(--line)" stroke-width="2"/>
             <text class="lbl" id="s-l5" x="576" y="92">ON MODAL — CPU + GPU, budgeted call window</text>
             <g class="bx accent" id="s-glim">
               <rect x="576" y="104" width="374" height="58" rx="10"/>
               <text class="t" x="594" y="130">Glimmer 30B</text>
               <text class="s" x="594" y="150">Open weights, frozen — prefill readout</text>
             </g>
-            <g class="bx accent" id="s-rag">
+            <g class="bx accent" id="s-sam">
               <rect x="576" y="170" width="374" height="54" rx="10"/>
-              <text class="t" x="594" y="194">RAG index</text>
-              <text class="s" x="594" y="214">Your manuals, retrieved by distance — on CPU</text>
+              <text class="t" x="594" y="194">SAM 3.1</text>
+              <text class="s" x="594" y="214">Meta Model API — paper-mask candidates</text>
+            </g>
+            <g class="bx accent" id="s-rag">
+              <rect x="576" y="232" width="374" height="54" rx="10"/>
+              <text class="t" x="594" y="256">RAG index</text>
+              <text class="s" x="594" y="276">Your manuals, retrieved by distance — on CPU</text>
             </g>
           </g>
           <g class="bx amber" id="s-wiki">
-            <rect x="290" y="300" width="400" height="72" rx="12"/>
-            <text class="t" x="312" y="330">Wiki backend</text>
-            <text class="s" x="312" y="352">A human writes the missing passage</text>
+            <rect x="290" y="340" width="400" height="72" rx="12"/>
+            <text class="t" x="312" y="370">Wiki backend</text>
+            <text class="s" x="312" y="392">A human writes the missing passage</text>
           </g>
         </svg>
-        <svg class="mdiag" viewBox="0 0 460 835" role="img" aria-label="Architecture, top to bottom: a phone sees the robot and sends one frame and a question to Modal, where Glimmer and the retrieval index run; a wiki backend feeds approved passages back into the index.">
+        <svg class="mdiag" viewBox="0 0 460 920" role="img" aria-label="Architecture, top to bottom: a phone sees the robot and sends one frame and a question to Modal, where the Glimmer readout runs on GPU, SAM 3.1 is called on the Meta Model API, and retrieval runs on CPU; a wiki backend feeds approved passages back into the index.">
           <path class="cn" data-k="s-c1" d="M216 170 V124"/>
           <polygon class="ar" data-k="s-a1" points="216,110 208,126 224,126"/>
           <text class="lbl" data-k="s-l1" x="236" y="146">sees</text>
@@ -505,9 +510,9 @@ footer .links{display:flex;flex-wrap:wrap;gap:8px 20px;margin-bottom:22px;font-s
           <path class="cn" data-k="s-c3" d="M364 364 V292"/>
           <polygon class="ar" data-k="s-a3" points="364,278 356,294 372,294"/>
           <text class="lbl" data-k="s-l3" x="344" y="348" text-anchor="end">card + evidence</text>
-          <path class="cn grn draw" data-k="s-ret" pathLength="1" d="M120 716 V650"/>
-          <polygon class="ar grn" data-k="s-aret" points="120,636 112,652 128,652"/>
-          <text class="lbl" data-k="s-l4" x="146" y="688">approved passage, re-indexed</text>
+          <path class="cn grn draw" data-k="s-ret" pathLength="1" d="M120 786 V712"/>
+          <polygon class="ar grn" data-k="s-aret" points="120,698 112,714 128,714"/>
+          <text class="lbl" data-k="s-l4" x="146" y="758">approved passage, re-indexed</text>
 
           <g class="bx green" data-k="s-robot">
             <rect x="16" y="10" width="400" height="96" rx="14"/>
@@ -520,23 +525,28 @@ footer .links{display:flex;flex-wrap:wrap;gap:8px 20px;margin-bottom:22px;font-s
             <text class="s" x="40" y="250">Meta Wearables DAT</text>
           </g>
           <g data-k="s-modal">
-            <rect x="10" y="372" width="440" height="232" rx="16" fill="#f7f9fa" stroke="var(--line)" stroke-width="2"/>
+            <rect x="10" y="372" width="440" height="328" rx="16" fill="#f7f9fa" stroke="var(--line)" stroke-width="2"/>
             <text class="lbl" data-k="s-l5" x="28" y="400">ON MODAL — CPU + GPU, budgeted window</text>
             <g class="bx accent" data-k="s-glim">
               <rect x="26" y="412" width="408" height="86" rx="12"/>
               <text class="t" x="48" y="452">Glimmer 30B</text>
               <text class="s" x="48" y="482">Open weights, frozen</text>
             </g>
+            <g class="bx accent" data-k="s-sam">
+              <rect x="26" y="506" width="408" height="86" rx="12"/>
+              <text class="t" x="48" y="546">SAM 3.1</text>
+              <text class="s" x="48" y="576">Meta Model API — mask candidates</text>
+            </g>
             <g class="bx accent" data-k="s-rag">
-              <rect x="26" y="506" width="408" height="84" rx="12"/>
-              <text class="t" x="48" y="546">RAG index</text>
-              <text class="s" x="48" y="576">Your manuals, by distance</text>
+              <rect x="26" y="600" width="408" height="86" rx="12"/>
+              <text class="t" x="48" y="640">RAG index</text>
+              <text class="s" x="48" y="670">Your manuals, by distance — CPU</text>
             </g>
           </g>
           <g class="bx amber" data-k="s-wiki">
-            <rect x="16" y="720" width="400" height="100" rx="14"/>
-            <text class="t" x="40" y="764">Wiki backend</text>
-            <text class="s" x="40" y="796">A human writes the passage</text>
+            <rect x="16" y="790" width="400" height="100" rx="14"/>
+            <text class="t" x="40" y="834">Wiki backend</text>
+            <text class="s" x="40" y="866">A human writes the passage</text>
           </g>
         </svg>
         <div class="shots">
@@ -558,8 +568,9 @@ footer .links{display:flex;flex-wrap:wrap;gap:8px 20px;margin-bottom:22px;font-s
         <p>The phone runs against <strong>the same interface the glasses expose</strong> — the frame source is an
         implementation detail the rest of the pipeline does not see.</p></div></div>
       <div class="step"><div class="card" data-scene="3"><span class="n">Where it thinks</span>
-        <p>Retrieval over your manuals runs on <strong>CPU</strong>. Segmentation and the Glimmer readout run on
-        <strong>GPU</strong>, inside a window capped at four single-use call tokens.</p></div></div>
+        <p>Retrieval over your manuals runs on <strong>CPU</strong>. The Glimmer readout runs on <strong>GPU</strong>,
+        inside a window capped at four single-use call tokens. Segmentation is a <strong>Meta Model API</strong> call
+        made from that window — SAM 3.1 runs on Meta, not on our GPU.</p></div></div>
       <div class="step"><div class="card" data-scene="4"><span class="n">Where it is fixed</span>
         <p>An approved passage is re-indexed into a new immutable corpus version.
         <strong>The only thing that changes between a refusal and an answer is the documentation you own.</strong></p></div></div>
@@ -853,6 +864,7 @@ footer .links{display:flex;flex-wrap:wrap;gap:8px 20px;margin-bottom:22px;font-s
     set("s-robot", s >= 1);
     set("s-phone", s >= 2);
     set("s-glim",  s >= 3);
+    set("s-sam",   s >= 3);
     set("s-rag",   s >= 3);
     set("s-wiki",  s >= 4);
     ["s-c1","s-a1"].forEach(i => set(i, s >= 2));

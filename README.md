@@ -57,6 +57,22 @@ Last run from a clean environment: **213 passed, 8 skipped, 131 subtests
 passed**, no network, no Modal account, no Meta API key. Live inference is a
 separate path and does need credentials — see [Run the demo](#run-the-demo).
 
+**What is real, and how real.** Status is stated per capability rather than
+left to the reader to infer from a demo.
+
+| Capability | Status | Evidence |
+|---|---|---|
+| Coverage gate — refuse when no passage is close enough | **Demonstrated live** | [calibration over 13 questions](docs/verification/coverage-calibration-2026-10-30.json), the film |
+| Documentation repair loop — refusal to approved passage to new citation | **Demonstrated live** | [reviewed 39-record pin](backend/providers/corpus-pins.json), [before-receipt at d=0.820](docs/verification/repair-before-retrieval-2026-10-29.json) |
+| SAM 3.1 paper-mask candidates | **Implemented, receipted** — the filmed mask came from a reviewed box prompt, not autonomous detection | [provider receipt](docs/verification/live-provider-integration-2026-10-28.json) |
+| Glimmer 30B prefill readout | **Implemented, reported, never gates** — score pinned to 0.0 on the wire | same receipt; `backend/live_backend.py#L372` |
+| Grounding gate read from activations | **Experimental, retired** — separated on held-out text, did not transfer to the live task | [negative results](docs/verification/) |
+| Footprint geometry clearance | **Measured, not accepted** — the card reports `footprint unverified` and no geometry can pass anything | [scene reports](docs/verification/) |
+| Glasses display output | **Implemented, mock-validated only** — no display hardware was available | [handoff](docs/glasses-display-handoff.md) |
+| Autonomous mask identity | **Not implemented** — multiple candidates stay ambiguous and go to human review | `backend/providers/sam.py#L63` |
+| A green "safe to proceed" verdict | **Not built, by design** — the backend is type-level incapable of emitting one | [ARCHITECTURE.md](ARCHITECTURE.md) |
+| Fully customer-hosted pipeline | **Target, not demonstrated** — SAM runs on Meta, the rest on our Modal account | [What runs where](#where-each-piece-runs) |
+
 **What pre-existed** is in [Built during the hackathon](#built-during-the-hackathon)
 and [docs/existing-work.md](docs/existing-work.md): the robot arm, its manuals
 and the wiki backend are the test bench; the software here is new.
@@ -153,8 +169,10 @@ observation is 0.787. Receipt:
 ### The refusal is the input
 
 ![The improvement loop: a coverage refusal or operator feedback leads to a
-drafted passage, human review in the wiki, re-indexing, and asking
-again](docs/img/repair-loop.png)
+drafted passage and human review in the wiki; approval alone deploys nothing,
+and four reviewed steps follow — wiki export, CPU staging, a reviewed corpus
+pin, then guarded activation — before the same question cites the new
+passage](docs/img/repair-loop.png)
 
 ![The review console: the refusal with its distance, the operator's comment,
 the retrieved chunk ids, and a drafted candidate answer awaiting
