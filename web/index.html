@@ -727,7 +727,10 @@ footer .links{display:flex;flex-wrap:wrap;gap:8px 20px;margin-bottom:22px;font-s
         operator's source documents. The Sovereign Mind wiki and review console that the repair loop writes
         back into.</p></div>
       <div class="box"><h3>Built during the hackathon</h3>
-        <p>The Field Lens iOS app on the Meta Wearables DAT interface. The default-deny <code>/assist</code>
+        <p>The Field Lens iOS app on the Meta Wearables DAT interface — the same binary is the glasses host,
+        streaming from the glasses camera and sending an amber-only card to the glasses display; there is no
+        separate glasses binary, and the display path is validated against a display-capable mock because no
+        display hardware was available. The default-deny <code>/assist</code>
         contract on Modal. SAM 3.1 scene gating — paper-mask candidates in the live path, plus a measured-geometry
         experiment the live card reports as unverified rather than accepting. The Glimmer prefill readout, its four
         probe protocols and the negative results that retired them. The coverage gate and its calibration.
@@ -795,7 +798,7 @@ footer .links{display:flex;flex-wrap:wrap;gap:8px 20px;margin-bottom:22px;font-s
 
   /* ---------- the film: click-to-load facade, no YouTube until asked ----------
      Set YT_ID to the video id once it is published; nothing else changes. */
-  const YT_ID = "H1f1R8UuIqM";
+  const YT_ID = "--41dwUlMIs";
   (() => {
     const fac = document.getElementById("vfacade"), soon = document.getElementById("vsoon");
     if (!fac) return;
