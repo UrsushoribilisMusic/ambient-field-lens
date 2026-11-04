@@ -41,7 +41,12 @@ Required by Rule 4. Nothing below was copied from earlier work; see
 **Built during the hackathon, in this repo:**
 
 - Field Lens iOS app — viewfinder, verdict card, gate chips, on the Meta
-  Wearables Device Access Toolkit interface.
+  Wearables Device Access Toolkit interface. The same binary is the glasses
+  host: it streams from the glasses camera and sends an amber-only card to
+  the glasses display over the same device session. There is no separate
+  glasses binary, and no display hardware was available — the display path
+  is validated against a display-capable mock
+  ([docs/glasses-display-handoff.md](docs/glasses-display-handoff.md)).
 - The `/assist` contract and its default-deny service on Modal.
 - SAM 3.1 scene gating — paper-mask candidates in the live path, and a
   measured footprint geometry the live card reports as unverified rather than
