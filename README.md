@@ -114,8 +114,9 @@ Required by Rule 4. Nothing below was copied from earlier work; see
 
 ## What it does today
 
-![One request: frame, SAM 3.1, identity, retrieval, then the coverage check,
-with world checks as a separate gate](docs/img/request-path.png)
+![One request: frame, then retrieval over your manuals, then the coverage
+check. A refusal returns at that check, before any frame is inspected. SAM 3.1
+and the Glimmer readout run only once coverage clears](docs/img/request-path.png)
 
 - Frame a rig, tap **Ask**: the phone captures one frame; retrieval runs over
   the Robot Ross manuals, SAM segments paper candidates, and the Glimmer
@@ -170,10 +171,15 @@ and cites the new passage.*
 ![Negative result: held-out text pilot AUROC 1.000; live visual task
 supported −0.018, unsupported −0.015 — no separation](docs/img/negative-result.png)
 
-- **No weight readout in the verdict.** Four independent probes (contrastive,
-  Jacobian lens, trajectory, live prefill) found no signal separating grounded
-  from improvised answers on this task. On the live visual task a supported
-  question scored −0.018 and an unsupported one −0.015 — no separation. The
+- **No weight readout in the verdict.** None of the four tested readouts
+  (contrastive, Jacobian lens, trajectory, live prefill) established a reliable
+  grounding gate for the live task. That is not the same as finding nothing:
+  the held-out text pilot separated at AUROC 1.000 over 24 pairs, with two
+  topic clusters and a length confound we did not resolve, and the per-probe
+  numbers differ (contrastive 0.575; Jacobian lens 0.861 vs plain 0.889;
+  trajectory retired). What failed was the transfer to the live visual task,
+  where a supported question scored −0.018 and an unsupported one −0.015 — no
+  separation. The
   score is pinned to zero on the wire and the verdict does not read it.
   Groundedness here is a system property — retrieved passage, hash-bound
   evidence, fail-closed on anything missing — not a model readout.
@@ -192,9 +198,9 @@ supported −0.018, unsupported −0.015 — no separation](docs/img/negative-re
 
 ## Where each piece runs
 
-![What runs where: capture and card on the person, the /assist contract,
-retrieval, SAM and Glimmer on Modal, and the controller, arm and camera in the
-workshop](docs/img/runs-where.png)
+![What runs where: capture and card on the person; the /assist contract, CPU
+retrieval, the SAM 3.1 Meta Model API call and the Glimmer GPU readout on
+Modal; the controller, arm and camera in the workshop](docs/img/runs-where.png)
 
 | Piece | Runs on |
 |---|---|

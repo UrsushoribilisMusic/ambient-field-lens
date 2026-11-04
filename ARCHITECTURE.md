@@ -21,8 +21,9 @@ phone capture → POST /assist → window/token admission → Ross retrieval
 → SAM paper candidates → Glimmer prefill readout → amber denial w/ evidence
 ```
 
-![One request: frame, SAM 3.1, identity, retrieval, then the coverage check,
-with world checks as a separate gate](docs/img/request-path.png)
+![One request: frame, then retrieval over your manuals, then the coverage
+check. A refusal returns at that check, before any frame is inspected. SAM 3.1
+and the Glimmer readout run only once coverage clears](docs/img/request-path.png)
 
 - `backend/live_backend.py`: composition. Reuses `contracts` (verdict is
   type-level `Literal['verify']`, score pinned 0.0) and the circuit breaker
@@ -123,9 +124,9 @@ stays on Meta; probes and all internal-state readouts stay on Modal Glimmer.
 
 ## Live providers
 
-![What runs where: capture and card on the person, the /assist contract,
-retrieval, SAM and Glimmer on Modal, and the controller, arm and camera in the
-workshop](docs/img/runs-where.png)
+![What runs where: capture and card on the person; the /assist contract, CPU
+retrieval, the SAM 3.1 Meta Model API call and the Glimmer GPU readout on
+Modal; the controller, arm and camera in the workshop](docs/img/runs-where.png)
 
 `backend/providers/` supplies deployed Ross Chroma retrieval, Meta SAM current-frame
 mask decoding, and Modal Glimmer frozen layer 27 true-prefill scoring. Calls carry
